@@ -1,0 +1,123 @@
+.ghc-card {
+  height: 100%;
+  padding: var(--ghc-space-5);
+  border: 1px solid var(--ghc-color-border);
+  border-radius: var(--ghc-radius-large);
+  background: var(--ghc-color-surface);
+  box-shadow: var(--ghc-shadow-small);
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.ghc-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--ghc-color-primary);
+  box-shadow: var(--ghc-shadow-medium);
+}
+
+.ghc-card h2,
+.ghc-card h3 {
+  margin-top: 0;
+}
+
+.ghc-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ghc-space-2);
+  min-height: 2.8rem;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid transparent;
+  border-radius: var(--ghc-radius-medium);
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    transform 150ms ease,
+    opacity 150ms ease,
+    background-color 150ms ease;
+}
+
+.ghc-button:hover {
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.ghc-button-primary {
+  background: var(--ghc-color-primary);
+  color: #ffffff;
+}
+
+.ghc-button-primary:hover {
+  background: var(--ghc-color-primary-dark);
+  color: #ffffff;
+}
+
+.ghc-button-secondary {
+  border-color: var(--ghc-color-border);
+  background: transparent;
+  color: var(--ghc-color-text);
+}
+
+.ghc-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.ghc-badge-free {
+  background: rgb(22 163 74 / 12%);
+  color: var(--ghc-color-success);
+}
+
+.ghc-badge-premium {
+  background: rgb(37 99 235 / 12%);
+  color: var(--ghc-color-primary);
+}
+
+.ghc-callout {
+  padding: var(--ghc-space-5);
+  border-left: 4px solid var(--ghc-color-primary);
+  border-radius: var(--ghc-radius-medium);
+  background: var(--ghc-color-primary-light);
+}
+
+.ghc-progress {
+  width: 100%;
+  height: 0.7rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--ghc-color-border);
+}
+
+.ghc-progress-value {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--ghc-color-primary);
+}
+
+.ghc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ghc-space-3);
+  color: var(--ghc-color-muted);
+  font-size: 0.92rem;
+}
+
+.ghc-cta {
+  padding: var(--ghc-space-6);
+  border: 1px solid var(--ghc-color-border);
+  border-radius: var(--ghc-radius-large);
+  background:
+    linear-gradient(
+      135deg,
+      rgb(37 99 235 / 10%),
+      rgb(37 99 235 / 2%)
+    );
+}

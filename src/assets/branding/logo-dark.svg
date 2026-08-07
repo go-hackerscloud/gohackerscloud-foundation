@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 720 140"
+     role="img"
+     aria-labelledby="title">
+  <title>GoHackersCloud Foundation</title>
+
+  <defs>
+    <linearGradient id="cloud" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#27D3E2"/>
+      <stop offset="100%" stop-color="#1497E6"/>
+    </linearGradient>
+
+    <linearGradient id="lock" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF2C93"/>
+      <stop offset="100%" stop-color="#C31FB4"/>
+    </linearGradient>
+
+    <linearGradient id="circuit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF7A00"/>
+      <stop offset="100%" stop-color="#FFC300"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Cloud -->
+  <path
+    fill="url(#cloud)"
+    d="M170 86
+       C170 63 188 45 211 45
+       C220 24 242 10 269 10
+       C299 10 324 28 331 54
+       C335 53 340 52 345 52
+       C367 52 385 70 385 92
+       C385 114 367 130 345 130
+       H211
+       C188 130 170 112 170 86Z"/>
+
+  <!-- Lock -->
+  <path
+    d="M292 54
+       V42
+       C292 27 304 15 320 15
+       C336 15 348 27 348 42
+       V54"
+    fill="none"
+    stroke="url(#lock)"
+    stroke-width="8"
+    stroke-linecap="round"/>
+
+  <rect
+    x="286"
+    y="52"
+    width="68"
+    height="56"
+    rx="10"
+    fill="url(#lock)"/>
+
+  <circle cx="320" cy="77" r="7" fill="#151629"/>
+  <rect x="317" y="77" width="6" height="14" rx="3" fill="#151629"/>
+
+  <!-- Circuit Lines -->
+  <g stroke="url(#circuit)" stroke-width="5" stroke-linecap="round">
+    <line x1="150" y1="52" x2="205" y2="52"/>
+    <line x1="130" y1="70" x2="205" y2="70"/>
+    <line x1="140" y1="88" x2="205" y2="88"/>
+
+    <circle cx="140" cy="52" r="5" fill="none"/>
+    <circle cx="120" cy="70" r="5" fill="none"/>
+    <circle cx="130" cy="88" r="5" fill="none"/>
+  </g>
+
+  <!-- Text -->
+  <text
+    x="410"
+    y="63"
+    font-size="38"
+    font-family="Inter, Arial, Helvetica, sans-serif"
+    font-weight="700"
+    fill="#FF8A00">
+    Go
+  </text>
+
+  <text
+    x="462"
+    y="63"
+    font-size="38"
+    font-family="Inter, Arial, Helvetica, sans-serif"
+    font-weight="700"
+    fill="#F8FAFC">
+    Hackers
+  </text>
+
+  <text
+    x="410"
+    y="108"
+    font-size="38"
+    font-family="Inter, Arial, Helvetica, sans-serif"
+    font-weight="700"
+    fill="#1ED6E6">
+    Foundation
+  </text>
+</svg>

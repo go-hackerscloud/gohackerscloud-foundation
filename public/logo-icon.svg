@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 512 512"
+     role="img"
+     aria-labelledby="title desc">
+  <title id="title">GoHackersCloud Logo Icon</title>
+  <desc id="desc">A cloud security icon with circuit lines and a lock.</desc>
+
+  <defs>
+    <linearGradient id="cloudGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#21D4D8"/>
+      <stop offset="55%" stop-color="#08BCD0"/>
+      <stop offset="100%" stop-color="#168FE0"/>
+    </linearGradient>
+
+    <linearGradient id="lockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF2496"/>
+      <stop offset="55%" stop-color="#E80B86"/>
+      <stop offset="100%" stop-color="#B91BB6"/>
+    </linearGradient>
+
+    <linearGradient id="circuitTop" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF6A00"/>
+      <stop offset="100%" stop-color="#FFC400"/>
+    </linearGradient>
+
+    <linearGradient id="circuitBottom" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7729D8"/>
+      <stop offset="100%" stop-color="#B43BFF"/>
+    </linearGradient>
+
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8"
+                    flood-color="#070A1B" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Transparent background -->
+
+  <!-- Cloud -->
+  <path
+    d="M170 352
+       C128 352 94 320 94 279
+       C94 241 123 211 161 207
+       C174 159 217 124 270 124
+       C331 124 380 171 384 231
+       C392 229 400 228 408 228
+       C451 228 486 262 486 304
+       C486 346 451 380 408 380
+       H170
+       C128 380 94 346 94 304
+       C94 292 97 282 101 272"
+    fill="url(#cloudGradient)"
+    stroke="#10152D"
+    stroke-width="8"
+    stroke-linejoin="round"
+    filter="url(#softShadow)"/>
+
+  <!-- Circuit lines -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M48 192 H112 L147 227 H205"
+          stroke="url(#circuitTop)" stroke-width="14"/>
+    <circle cx="48" cy="192" r="18"
+            stroke="url(#circuitTop)" stroke-width="12"/>
+
+    <path d="M74 250 H142 L171 279 H205"
+          stroke="url(#circuitTop)" stroke-width="14"/>
+    <circle cx="74" cy="250" r="18"
+            stroke="url(#circuitTop)" stroke-width="12"/>
+
+    <path d="M56 330 H128 L158 300 H205"
+          stroke="url(#circuitBottom)" stroke-width="14"/>
+    <circle cx="56" cy="330" r="18"
+            stroke="url(#circuitBottom)" stroke-width="12"/>
+  </g>
+
+  <!-- Lock shackle -->
+  <path
+    d="M250 245 V205
+       C250 164 281 133 322 133
+       C363 133 394 164 394 205
+       V245"
+    fill="none"
+    stroke="#10152D"
+    stroke-width="28"
+    stroke-linecap="round"/>
+
+  <path
+    d="M266 245 V207
+       C266 176 289 153 322 153
+       C355 153 378 176 378 207
+       V245"
+    fill="none"
+    stroke="url(#lockGradient)"
+    stroke-width="14"
+    stroke-linecap="round"/>
+
+  <!-- Lock body -->
+  <path
+    d="M231 237
+       Q231 217 251 217
+       H393
+       Q413 217 413 237
+       V343
+       Q413 361 397 370
+       L331 408
+       Q322 413 313 408
+       L247 370
+       Q231 361 231 343
+       Z"
+    fill="url(#lockGradient)"
+    stroke="#10152D"
+    stroke-width="12"
+    stroke-linejoin="round"
+    filter="url(#softShadow)"/>
+
+  <!-- Keyhole -->
+  <circle cx="322" cy="294" r="19" fill="#10152D"/>
+  <path d="M313 307 H331 L328 343 H316 Z" fill="#10152D"/>
+</svg>

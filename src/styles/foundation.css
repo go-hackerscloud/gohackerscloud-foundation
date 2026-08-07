@@ -1,0 +1,40 @@
+.foundation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ghc-space-3);
+  margin-block: var(--ghc-space-5);
+}
+
+.sl-markdown-content > h1 {
+  max-width: 18ch;
+  margin-bottom: var(--ghc-space-4);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.sl-markdown-content > h2 {
+  margin-top: var(--ghc-space-8);
+  padding-top: var(--ghc-space-3);
+  border-top: 1px solid var(--ghc-color-border);
+}
+
+.sl-markdown-content > p {
+  max-width: 48rem;
+  line-height: 1.75;
+}
+
+.sl-markdown-content .card-grid {
+  margin-block: var(--ghc-space-5);
+}
+
+@media (max-width: 48rem) {
+  .foundation-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .foundation-actions .ghc-button {
+    width: 100%;
+  }
+}

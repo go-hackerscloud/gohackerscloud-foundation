@@ -1,0 +1,45 @@
+:root {
+  --ghc-color-primary: #2563eb;
+  --ghc-color-primary-dark: #1d4ed8;
+  --ghc-color-primary-light: #dbeafe;
+
+  --ghc-color-navy: #0f172a;
+  --ghc-color-surface: #f8fafc;
+  --ghc-color-border: #dbe2ea;
+  --ghc-color-text: #172033;
+  --ghc-color-muted: #64748b;
+
+  --ghc-color-success: #16a34a;
+  --ghc-color-warning: #d97706;
+  --ghc-color-danger: #dc2626;
+
+  --ghc-radius-small: 0.5rem;
+  --ghc-radius-medium: 0.85rem;
+  --ghc-radius-large: 1.15rem;
+
+  --ghc-shadow-small:
+    0 1px 2px rgb(15 23 42 / 6%),
+    0 2px 8px rgb(15 23 42 / 5%);
+
+  --ghc-shadow-medium:
+    0 8px 24px rgb(15 23 42 / 8%);
+
+  --ghc-content-width: 72rem;
+
+  --ghc-space-1: 0.25rem;
+  --ghc-space-2: 0.5rem;
+  --ghc-space-3: 0.75rem;
+  --ghc-space-4: 1rem;
+  --ghc-space-5: 1.5rem;
+  --ghc-space-6: 2rem;
+  --ghc-space-7: 3rem;
+  --ghc-space-8: 4rem;
+}
+
+:root[data-theme='dark'] {
+  --ghc-color-surface: #111827;
+  --ghc-color-border: #273449;
+  --ghc-color-text: #e5edf7;
+  --ghc-color-muted: #94a3b8;
+  --ghc-color-primary-light: #172554;
+}
