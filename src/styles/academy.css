@@ -1,0 +1,14 @@
+.academy-dashboard {
+  width: 100%;
+}
+
+.sl-markdown-content > h2 {
+  margin-top: var(--ghc-space-8);
+  padding-top: var(--ghc-space-3);
+  border-top: 1px solid var(--ghc-color-border);
+}
+
+.sl-markdown-content > p {
+  max-width: 48rem;
+  line-height: 1.75;
+}

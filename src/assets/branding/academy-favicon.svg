@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+<title id="title">GoHackersCloud Academy</title>
+<defs>
+  <linearGradient id="cloud" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#27D3E2"/><stop offset="100%" stop-color="#1497E6"/>
+  </linearGradient>
+  <linearGradient id="lock" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#FF2C93"/><stop offset="100%" stop-color="#C31FB4"/>
+  </linearGradient>
+  <linearGradient id="top" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#FF6A00"/><stop offset="100%" stop-color="#FFC400"/>
+  </linearGradient>
+  <linearGradient id="bottom" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#7627D9"/><stop offset="100%" stop-color="#A93BFF"/>
+  </linearGradient>
+</defs>
+<path d="M18 46 C12 46 8 42 8 36 C8 31 12 27 17 27 C19 20 25 15 33 15 C42 15 49 22 49 31 C55 31 59 35 59 41 C59 47 55 51 49 51 H18 C12 51 8 47 8 41"
+      fill="url(#cloud)" stroke="#10152D" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M4 24 H12 L17 29 H25" fill="none" stroke="url(#top)" stroke-width="3" stroke-linecap="round"/>
+<circle cx="4" cy="24" r="3" fill="#FF8A00" stroke="#10152D" stroke-width="1.4"/>
+<path d="M4 34 H13 L18 34 H25" fill="none" stroke="url(#bottom)" stroke-width="3" stroke-linecap="round"/>
+<circle cx="4" cy="34" r="3" fill="#7B3FF2" stroke="#10152D" stroke-width="1.4"/>
+<path d="M29 31 V25 C29 20 33 16 38 16 C43 16 47 20 47 25 V31"
+      fill="none" stroke="#10152D" stroke-width="5" stroke-linecap="round"/>
+<path d="M31.5 31 V25.5 C31.5 22 34 19.5 38 19.5 C42 19.5 44.5 22 44.5 25.5 V31"
+      fill="none" stroke="url(#lock)" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M27 29 Q27 27 29 27 H47 Q49 27 49 29 V43 Q49 45 47 46 L39 51 Q38 52 37 51 L29 46 Q27 45 27 43 Z"
+      fill="url(#lock)" stroke="#10152D" stroke-width="2.5" stroke-linejoin="round"/>
+<circle cx="38" cy="36" r="2.5" fill="#10152D"/>
+<path d="M36.8 38 H39.2 L38.8 43 H37.2 Z" fill="#10152D"/>
+</svg>

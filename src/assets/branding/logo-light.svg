@@ -2,7 +2,7 @@
      viewBox="0 0 720 140"
      role="img"
      aria-labelledby="title">
-  <title>GoHackersCloud Foundation</title>
+  <title id="title">GoHackersCloud Academy</title>
 
   <defs>
     <linearGradient id="cloud" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -15,87 +15,55 @@
       <stop offset="100%" stop-color="#C31FB4"/>
     </linearGradient>
 
-    <linearGradient id="circuit" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FF7A00"/>
-      <stop offset="100%" stop-color="#FFC300"/>
+    <linearGradient id="circuitTop" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF6A00"/>
+      <stop offset="100%" stop-color="#FFC400"/>
+    </linearGradient>
+
+    <linearGradient id="circuitBottom" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7627D9"/>
+      <stop offset="100%" stop-color="#A93BFF"/>
     </linearGradient>
   </defs>
 
-  <!-- Cloud -->
-  <path
-    fill="url(#cloud)"
-    d="M170 86
-       C170 63 188 45 211 45
-       C220 24 242 10 269 10
-       C299 10 324 28 331 54
-       C335 53 340 52 345 52
-       C367 52 385 70 385 92
-       C385 114 367 130 345 130
-       H211
-       C188 130 170 112 170 86Z"/>
-
-  <!-- Lock -->
-  <path
-    d="M292 54
-       V42
-       C292 27 304 15 320 15
-       C336 15 348 27 348 42
-       V54"
-    fill="none"
-    stroke="url(#lock)"
-    stroke-width="8"
-    stroke-linecap="round"/>
-
-  <rect
-    x="286"
-    y="52"
-    width="68"
-    height="56"
-    rx="10"
-    fill="url(#lock)"/>
-
-  <circle cx="320" cy="77" r="7" fill="#1B1534"/>
-  <rect x="317" y="77" width="6" height="14" rx="3" fill="#1B1534"/>
-
-  <!-- Circuits -->
-  <g stroke="url(#circuit)" stroke-width="5" stroke-linecap="round">
-    <line x1="150" y1="52" x2="205" y2="52"/>
-    <line x1="130" y1="70" x2="205" y2="70"/>
-    <line x1="140" y1="88" x2="205" y2="88"/>
-
-    <circle cx="140" cy="52" r="5" fill="none"/>
-    <circle cx="120" cy="70" r="5" fill="none"/>
-    <circle cx="130" cy="88" r="5" fill="none"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M75 42 H125 L151 66 H205" stroke="url(#circuitTop)" stroke-width="8"/>
+    <circle cx="75" cy="42" r="9" stroke="url(#circuitTop)" stroke-width="7"/>
+    <path d="M56 69 H126 L150 88 H205" stroke="url(#circuitTop)" stroke-width="8"/>
+    <circle cx="56" cy="69" r="9" stroke="url(#circuitTop)" stroke-width="7"/>
+    <path d="M58 105 H128 L154 82 H205" stroke="url(#circuitBottom)" stroke-width="8"/>
+    <circle cx="58" cy="105" r="9" stroke="url(#circuitBottom)" stroke-width="7"/>
   </g>
 
-  <!-- Text -->
-  <text
-    x="410"
-    y="63"
-    font-size="38"
-    font-family="Inter, Arial, sans-serif"
-    font-weight="700"
-    fill="#FF8A00">
-    Go
-  </text>
+  <path fill="url(#cloud)" stroke="#10152D" stroke-width="5"
+    d="M170 88 C170 64 189 46 212 46 C222 25 243 12 269 12 C300 12 324 29 332 55 C337 54 342 53 347 53 C369 53 387 71 387 93 C387 115 369 131 347 131 H211 C188 131 170 113 170 88Z"/>
 
-  <text
-    x="462"
-    y="63"
-    font-size="38"
-    font-family="Inter, Arial, sans-serif"
-    font-weight="700"
-    fill="#111827">
-    Hackers
-  </text>
+  <path d="M292 58V43C292 27 304 15 320 15C336 15 348 27 348 43V58"
+        fill="none" stroke="#10152D" stroke-width="15" stroke-linecap="round"/>
+  <path d="M299 58V43C299 31 308 22 320 22C332 22 341 31 341 43V58"
+        fill="none" stroke="url(#lock)" stroke-width="7" stroke-linecap="round"/>
 
-  <text
-    x="410"
-    y="108"
-    font-size="38"
-    font-family="Inter, Arial, sans-serif"
-    font-weight="700"
-    fill="#14C7D9">
-    Foundation
-  </text>
+  <path d="M281 55Q281 48 289 48H351Q359 48 359 55V103Q359 110 353 114L326 130Q320 133 314 130L287 114Q281 110 281 103Z"
+        fill="url(#lock)" stroke="#10152D" stroke-width="6"/>
+
+  <circle cx="320" cy="80" r="7" fill="#10152D"/>
+  <path d="M316.5 86H323.5L322 100H318Z" fill="#10152D"/>
+
+  <text x="410" y="58" font-size="36"
+        font-family="Inter,Arial,Helvetica,sans-serif"
+        font-weight="700" fill="#FF8A00">Go</text>
+
+  <text x="462" y="58" font-size="36"
+        font-family="Inter,Arial,Helvetica,sans-serif"
+        font-weight="700" fill="#111827">Hackers</text>
+
+  <text x="600" y="58" font-size="36"
+        font-family="Inter,Arial,Helvetica,sans-serif"
+        font-weight="700" fill="#18C7D9">Cloud</text>
+
+  <text x="410" y="105" font-size="30"
+        font-family="Inter,Arial,Helvetica,sans-serif"
+        font-weight="700"
+        letter-spacing="8"
+        fill="#0EAFC2">ACADEMY</text>
 </svg>
