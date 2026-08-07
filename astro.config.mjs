@@ -2,14 +2,22 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 export default defineConfig({
-  site: 'https://academy.gohackerscloud.com',
+  site: 'https://foundation.gohackerscloud.com',
 
   integrations: [
     starlight({
-      title: 'GoHackersCloud Academy',
+      title: 'GoHackersCloud Foundation',
 
       description:
-        'Practical career learning paths, hands-on labs, enterprise runbooks and real-world projects.',
+        'Free practical learning in Cloud, Cybersecurity, AI, DevOps and Enterprise IT.',
+
+      logo: {
+        light: './src/assets/branding/logo-light.svg',
+        dark: './src/assets/branding/logo-dark.svg',
+        replacesTitle: true,
+      },
+
+      favicon: '/favicon.svg',
 
       social: [
         {
@@ -22,16 +30,49 @@ export default defineConfig({
       customCss: [
         './src/styles/common.css',
         './src/styles/components.css',
-        './src/styles/academy.css',
+        './src/styles/foundation.css',
       ],
 
       sidebar: [
         {
-          label: '☁️ Cloud Security Engineer',
+          label: '🌍 Foundation Learning',
           items: [
             {
               autogenerate: {
-                directory: 'academy/cloud-security-engineer',
+                directory: 'foundation',
+              },
+            },
+          ],
+        },
+
+        {
+          label: '🛣️ Career Roadmaps',
+          items: [
+            {
+              autogenerate: {
+                directory: 'roadmaps',
+              },
+            },
+          ],
+        },
+
+        {
+          label: '📜 Certification Guides',
+          items: [
+            {
+              autogenerate: {
+                directory: 'certifications',
+              },
+            },
+          ],
+        },
+
+        {
+          label: '📚 Free Resources',
+          items: [
+            {
+              autogenerate: {
+                directory: 'resources',
               },
             },
           ],
