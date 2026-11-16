@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import { foundationModules } from './src/data/foundation-modules.mjs';
 
 const foundationStructuredData = JSON.stringify({
   '@context': 'https://schema.org',
@@ -13,6 +14,12 @@ const foundationStructuredData = JSON.stringify({
     url: 'https://gohackerscloud.com/',
   },
 });
+
+// Short, learner-focused navigation. The full Obsidian lesson tree remains
+// available in a separate collapsed section without moving any lesson URLs.
+const moduleLinks = (category) => foundationModules
+  .filter((module) => module.category === category)
+  .map((module) => ({label: `${module.id} · ${module.title}`, link: module.link}));
 
 export default defineConfig({
   site: 'https://foundation.gohackerscloud.com',
@@ -53,47 +60,41 @@ export default defineConfig({
 
       sidebar: [
         {
-          label: '🌍 Foundation Learning',
+          label: 'Start Learning',
           items: [
-            {
-              autogenerate: {
-                directory: 'foundation',
-              },
-            },
+            { label: 'Foundation Home', link: '/' },
+            { label: 'Start Here', link: '/start-here/' },
+            { label: 'Explore 16 Modules', link: '/curriculum/' },
+            { label: '12-Week Study Plan', link: '/study-plan/' },
           ],
         },
-
         {
-          label: '🛣️ Career Roadmaps',
+          label: 'Foundation Learning Stages',
           items: [
-            {
-              autogenerate: {
-                directory: 'roadmaps',
-              },
-            },
+            {label: '01 · Core IT & DevOps', collapsed: true, items: moduleLinks('core')},
+            {label: '02 · Cloud & Cybersecurity', collapsed: true, items: moduleLinks('security')},
+            {label: '03 · Enterprise & Professional', collapsed: true, items: moduleLinks('professional')},
           ],
         },
-
         {
-          label: '📜 Certification Guides',
-          items: [
-            {
-              autogenerate: {
-                directory: 'certifications',
-              },
-            },
-          ],
+          label: 'All Foundation Lessons',
+          collapsed: true,
+          items: [{autogenerate: {directory: 'foundation'}}],
         },
-
         {
-          label: '📚 Free Resources',
-          items: [
-            {
-              autogenerate: {
-                directory: 'resources',
-              },
-            },
-          ],
+          label: 'Career Roadmaps',
+          collapsed: true,
+          items: [{autogenerate: {directory: 'roadmaps'}}],
+        },
+        {
+          label: 'Certification Guides',
+          collapsed: true,
+          items: [{autogenerate: {directory: 'certifications'}}],
+        },
+        {
+          label: 'Free Resources',
+          collapsed: true,
+          items: [{autogenerate: {directory: 'resources'}}],
         },
       ],
     }),
