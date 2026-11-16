@@ -21,11 +21,17 @@
 .EXAMPLE
   .\scripts\sync-foundation-to-obsidian.ps1 -Scope EnterpriseProUpdates -Apply -Overwrite
 .EXAMPLE
+  .\scripts\sync-foundation-to-obsidian.ps1 -Scope Stage0102Diagrams
+.EXAMPLE
+  .\scripts\sync-foundation-to-obsidian.ps1 -Scope Stage0102Diagrams -Apply -Overwrite
+.EXAMPLE
+  .\scripts\sync-foundation-to-obsidian.ps1 -Scope Stage0102Diagrams -IncludeHub
+.EXAMPLE
   .\scripts\sync-foundation-to-obsidian.ps1 -Scope All -IncludeHub -Apply -Overwrite
 #>
 [CmdletBinding()]
 param(
-  [ValidateSet('CoreUpdates','Core','CloudCyberUpdates','EnterpriseProUpdates','All')]
+  [ValidateSet('CoreUpdates','Core','CloudCyberUpdates','EnterpriseProUpdates','Stage0102Diagrams','All')]
   [string]$Scope = 'CoreUpdates',
 
   [string]$RepoPath = 'C:\Projects\GoHackersCloud\gohackerscloud-foundation',
@@ -145,6 +151,44 @@ foreach ($mapping in $mappings) {
         'GoHackersCloud Foundation/15 Enterprise (GRC)/07 Security Audits & Compliance Assessments.md'
       )
       if ($stagePath -notin $enterpriseAllowedLessons) { continue }
+    }
+
+    if ($Scope -eq 'Stage0102Diagrams') {
+      # Only the 15 changed original lessons, plus 7 optional Core guide references.
+      # The existing publisher owns original lessons but DOES NOT publish hub references.
+      $syncPath = $relativePath.Replace('\', '/')
+      if ($mapping.Name -eq 'Foundation') {
+        $visualAllowedLessons = @(
+          'GoHackersCloud Foundation/00 Welcome to GoHackersCloud/01 Welcome to the Academy.md',
+          'GoHackersCloud Foundation/01 IT Fundamentals/01 Computer Hardware.md',
+          'GoHackersCloud Foundation/02 Networking Fundamentals/01 Networking Basics.md',
+          'GoHackersCloud Foundation/03 Linux Fundamentals/01 Linux Introduction.md',
+          'GoHackersCloud Foundation/04 Windows Fundamentals/01 Windows Architecture.md',
+          'GoHackersCloud Foundation/05 Programming Fundamentals/01 Programming Concepts.md',
+          'GoHackersCloud Foundation/06 DevOps & Version Control/01 Git.md',
+          'GoHackersCloud Foundation/07 Cloud Computing Fundamentals/03 PaaS.md',
+          'GoHackersCloud Foundation/07 Cloud Computing Fundamentals/07 Hybrid Cloud.md',
+          'GoHackersCloud Foundation/07 Cloud Computing Fundamentals/08 Cloud Networking.md',
+          'GoHackersCloud Foundation/07 Cloud Computing Fundamentals/10 Cloud Identity.md',
+          'GoHackersCloud Foundation/08 Cybersecurity Fundamentals/03 Risk Management.md',
+          'GoHackersCloud Foundation/08 Cybersecurity Fundamentals/07 Security Controls.md',
+          'GoHackersCloud Foundation/08 Cybersecurity Fundamentals/09 Zero Trust.md',
+          'GoHackersCloud Foundation/08 Cybersecurity Fundamentals/11 Secure Design.md'
+        )
+        if ($syncPath -notin $visualAllowedLessons) { continue }
+      } else {
+        if ($mapping.Name -ne 'Core IT & DevOps Reference') { continue }
+        $visualAllowedGuides = @(
+          'module-00.md',
+          'module-01.md',
+          'module-02.md',
+          'module-03.md',
+          'module-04.md',
+          'module-05.md',
+          'module-06.md'
+        )
+        if ($syncPath -notin $visualAllowedGuides) { continue }
+      }
     }
 
     $target = Join-Path $destinationRoot $relativePath
