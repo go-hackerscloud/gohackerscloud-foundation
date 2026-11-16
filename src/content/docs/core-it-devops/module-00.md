@@ -34,6 +34,24 @@ Foundation pages are free reading, illustrations, self-checks and suggested inde
 
 Record definitions in your own words, commands you ran (without secrets), observations, diagrams, failed attempts and the next question. Revisit a topic after one day and one week. This is evidence of learning, not an automatically graded Academy dashboard.
 
+## Architecture diagram — From Foundation learning to evidence
+
+```mermaid
+flowchart LR
+    ORIENT["Set personal goal"] --> CONCEPT["Read and explain concept"]
+    CONCEPT --> DIAGRAM["Draw a system diagram"]
+    DIAGRAM --> EXERCISE["Safe self-directed exercise"]
+    EXERCISE --> REFLECT["Write observations and limits"]
+    REFLECT --> RETEST["Review and improve"]
+    RETEST --> NEXT["Choose the next module"]
+```
+
+**How to interpret it:** Every lesson should end with something a beginner can explain or demonstrate, not only a page marked as read.
+
+**Diagram exercise:** Design a personal learning log that records goals, a diagram, one observation and a next step.
+
+**Expected evidence:** A labeled architecture or flowchart plus one safe verification step. This is independent Foundation study; no paid Academy lab is required.
+
 ## Enterprise case study (hypothetical)
 
 A college graduate hears that cybersecurity requires Linux, Python, AWS and penetration testing. Instead of buying several courses immediately, the learner designs a three-week trial: explain one network flow, inspect a Linux service on a personal VM and write a tiny Python summary. Each week ends with a one-page evidence note.
