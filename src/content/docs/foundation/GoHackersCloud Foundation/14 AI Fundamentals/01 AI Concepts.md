@@ -34,7 +34,7 @@ Understanding AI fundamentals is now an essential skill for modern IT profession
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -49,7 +49,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Artificial Intelligence?
+## What is Artificial Intelligence?
 
 **Artificial Intelligence (AI)** is the ability of computer systems to perform tasks that normally require human intelligence.
 
@@ -68,7 +68,7 @@ AI helps computers make decisions using data rather than explicit instructions f
 
 ---
 
-# Why AI Matters
+## Why AI Matters
 
 Organizations use AI to:
 
@@ -85,7 +85,7 @@ AI enables teams to work faster while focusing more on complex problems.
 
 ---
 
-# Examples of AI in Daily Life
+## Examples of AI in Daily Life
 
 You already interact with AI every day.
 
@@ -104,7 +104,7 @@ Many AI systems operate behind the scenes without users noticing.
 
 ---
 
-# AI vs Automation
+## AI vs Automation
 
 Automation follows predefined rules.
 
@@ -138,7 +138,7 @@ AI learns patterns.
 
 ---
 
-# AI vs Machine Learning vs Deep Learning
+## AI vs Machine Learning vs Deep Learning
 
 ```text
 Artificial Intelligence
@@ -158,11 +158,11 @@ Deep Learning
 
 ---
 
-# Types of AI
+## Types of AI
 
 AI is commonly categorized into:
 
-### Narrow AI
+#### Narrow AI
 
 Designed for one specific task.
 
@@ -177,7 +177,7 @@ This is the type of AI used today.
 
 ---
 
-### General AI (AGI)
+#### General AI (AGI)
 
 A theoretical AI capable of performing any intellectual task a human can perform.
 
@@ -192,7 +192,7 @@ AGI has not yet been achieved.
 
 ---
 
-### Super AI
+#### Super AI
 
 A hypothetical form of AI that would surpass human intelligence in every domain.
 
@@ -200,7 +200,7 @@ This remains a research concept and is not currently available.
 
 ---
 
-# How AI Learns
+## How AI Learns
 
 AI systems learn by analyzing data.
 
@@ -230,7 +230,7 @@ The quality of data significantly influences AI performance.
 
 ---
 
-# Enterprise AI Applications
+## Enterprise AI Applications
 
 Organizations commonly use AI for:
 
@@ -247,11 +247,11 @@ AI is increasingly integrated into enterprise workflows.
 
 ---
 
-# AI in Cloud Computing
+## AI in Cloud Computing
 
 Cloud providers offer managed AI services.
 
-### AWS
+#### AWS
 
 - Amazon Bedrock
 - Amazon SageMaker
@@ -259,13 +259,13 @@ Cloud providers offer managed AI services.
 - Amazon Comprehend
 - Amazon Textract
 
-### Microsoft Azure
+#### Microsoft Azure
 
 - Azure AI Services
 - Azure Machine Learning
 - Azure OpenAI Service
 
-### Google Cloud
+#### Google Cloud
 
 - Vertex AI
 - Gemini Models
@@ -276,7 +276,7 @@ These services allow organizations to build AI-powered applications without mana
 
 ---
 
-# AI in Cybersecurity
+## AI in Cybersecurity
 
 AI supports cybersecurity by:
 
@@ -293,7 +293,7 @@ AI assists analysts but does not replace human decision-making.
 
 ---
 
-# Benefits of AI
+## Benefits of AI
 
 AI helps organizations:
 
@@ -309,7 +309,7 @@ Used responsibly, AI becomes a powerful productivity tool.
 
 ---
 
-# Limitations of AI
+## Limitations of AI
 
 AI also has limitations.
 
@@ -327,7 +327,7 @@ Human oversight remains essential.
 
 ---
 
-# Common AI Terminology
+## Common AI Terminology
 
 Become familiar with terms such as:
 
@@ -345,7 +345,7 @@ Understanding these terms prepares you for advanced AI topics.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Organizations adopting AI should:
 
@@ -361,7 +361,7 @@ Responsible AI adoption builds trust and reduces risk.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 CloudNova Technologies introduces AI into its Security Operations Center.
 
@@ -397,7 +397,92 @@ AI helps analysts process thousands of security events more efficiently while hu
 
 ---
 
-# Key Takeaways
+## Architecture workshop — Where AI fits in enterprise technology
+
+AI is a family of techniques, not a replacement for engineering judgment. A useful first step is to distinguish **deterministic automation**, **statistical prediction**, and **generative systems**, then understand how each is evaluated and governed.
+
+### Diagram 1 — AI, machine learning and generative AI
+
+```mermaid
+flowchart TB
+    AI["Artificial intelligence"] --> RULES["Rule-based reasoning / planning"]
+    AI --> ML["Machine learning"]
+    ML --> DL["Deep learning"]
+    DL --> GEN["Generative models (one major approach)"]
+    ML --> PREDICT["Classification and prediction"]
+    RULES --> AUTO["Defined decision logic"]
+```
+
+**Explanation:** Machine learning is a subset of AI. Deep learning is a subset of machine learning; many contemporary generative AI systems are deep-learning models. Not all AI relies on neural networks, and not every use of automation is AI.
+
+**Workplace decision:** Use a deterministic rule when the required decision has a clear, reliable specification. Consider learned models when patterns are complex and enough appropriate data and evaluation exist. A generative assistant may summarize text, but the resulting recommendations still need validation.
+
+### Diagram 2 — Training, evaluation and inference
+
+```mermaid
+flowchart LR
+    SOURCE["Approved, relevant datasets"] --> PREP["Prepare and check quality"]
+    PREP --> TRAIN["Train / adapt model"]
+    TRAIN --> EVAL["Evaluate on held-out scenarios"]
+    EVAL --> GATE{"Meets requirements?"}
+    GATE -->|"No"| FIX["Improve data or approach"]
+    FIX --> PREP
+    GATE -->|"Yes"| DEPLOY["Controlled deployment"]
+    DEPLOY --> INFER["New input and inference"]
+    INFER --> MONITOR["Monitor quality and drift"]
+    MONITOR --> EVAL
+```
+
+**What it shows:** Training produces or adapts a model; inference uses an existing model on new inputs. Evaluation must use appropriate data and success criteria. Real operations also require access control, monitoring, change ownership and safe rollback.
+
+**Important:** A model can be accurate on historical examples yet unreliable on new cases because data, user behavior or operating conditions change.
+
+### Diagram 3 — A governed AI-assisted IT workflow
+
+```mermaid
+flowchart LR
+    USER["Authorized employee"] --> APP["Internal application"]
+    APP --> FILTER["Input policy and data minimization"]
+    FILTER --> MODEL["Approved AI service"]
+    MODEL --> OUTPUT["Generated suggestion"]
+    OUTPUT --> CHECK["Evidence, correctness and security review"]
+    CHECK --> PERSON["Accountable human decision"]
+    PERSON --> RECORD["Approved action and audit trail"]
+```
+
+**How it works:** AI can help summarize a synthetic incident or suggest troubleshooting steps. The organization must decide which data is allowed in prompts, how outputs are checked, what actions are permitted and who remains responsible. A plausible answer is not proof of correctness.
+
+### Safe classroom scenario — AI for support triage
+
+A fictional support team receives six synthetic tickets: login failure, DNS timeout, missing access, storage quota warning, slow service and printer issue.
+
+1. Choose which parts can be handled by **rules** (for example, routing tickets by category).
+2. Choose which parts could use **machine learning** (for example, predicting likely categories from descriptions), stating risks.
+3. Choose a **generative AI** task, such as drafting a summary from invented ticket details.
+4. For every AI task, define one expected quality criterion and one privacy or safety control.
+5. Describe a human review step before modifying any production system.
+
+**Expected deliverable:** an AI use-case matrix with data inputs, intended benefit, validation, risks, owner and limitations. Do not upload real workplace logs, employee records or customer data into an unapproved AI service.
+
+### Knowledge check
+
+1. **Does a generated answer prove a system is configured correctly?**
+
+   <details><summary>Suggested answer</summary>No. Generated output is a hypothesis or draft; verify it with permitted authoritative sources, tests and system evidence.</details>
+
+2. **What is the difference between training and inference?**
+
+   <details><summary>Suggested answer</summary>Training creates or adapts model parameters; inference applies the trained model to new inputs.</details>
+
+3. **When is a deterministic rule preferable to a model?**
+
+   <details><summary>Suggested answer</summary>When the task has a well-defined, testable rule and model uncertainty would introduce unnecessary risk or complexity.</details>
+
+**Continue:** [Machine Learning Basics](/foundation/gohackerscloud-foundation/14-ai-fundamentals/02-machine-learning-basics/) · [Generative AI](/foundation/gohackerscloud-foundation/14-ai-fundamentals/03-generative-ai/) · [Responsible AI & Governance](/foundation/gohackerscloud-foundation/14-ai-fundamentals/09-responsible-ai-ai-governance/).
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -414,7 +499,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Artificial Intelligence is becoming a core capability across modern technology. Understanding AI concepts enables Cloud Engineers, Cybersecurity Professionals, DevSecOps Engineers, Developers, and IT leaders to responsibly adopt AI, improve productivity, automate repetitive tasks, and build intelligent enterprise solutions.
 
@@ -422,7 +507,7 @@ This foundational knowledge prepares you for the next lessons, where you'll expl
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 02 — Machine Learning Basics**
 
