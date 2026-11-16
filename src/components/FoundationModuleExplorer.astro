@@ -1,0 +1,104 @@
+---
+import {foundationModules, foundationGroups} from '../data/foundation-modules.mjs';
+const featured = Astro.props.featured === true;
+const featuredIds = new Set(['00','01','02','03','07','08']);
+const groups = foundationGroups.map(group=>({
+  ...group,
+  modules: foundationModules.filter(module=>module.category===group.id && (!featured || featuredIds.has(module.id))),
+})).filter(group=>group.modules.length);
+---
+<div class="foundation-explorer" data-foundation-explorer id="foundation-modules">
+  {!featured && (
+    <div class="foundation-controls">
+      <label for="foundation-module-search">Find a Foundation module</label>
+      <input id="foundation-module-search" data-module-search type="search" autocomplete="off" placeholder="Search Linux, cloud, networking, security…" />
+      <div class="foundation-filters" role="group" aria-label="Filter Foundation modules">
+        <button type="button" data-module-filter="all" aria-pressed="true">All 16</button>
+        <button type="button" data-module-filter="core" aria-pressed="false">Core IT</button>
+        <button type="button" data-module-filter="security" aria-pressed="false">Cloud & security</button>
+        <button type="button" data-module-filter="professional" aria-pressed="false">Professional</button>
+      </div>
+      <p class="foundation-module-count" data-module-count role="status">Showing all 16 modules</p>
+    </div>
+  )}
+  {groups.map(group=>(
+    <section class="foundation-group" data-module-group aria-label={group.title}>
+      <header class="foundation-group-heading">
+        <h2>{group.title}</h2>
+        <p>{group.description}</p>
+      </header>
+      <div class="foundation-module-grid">
+        {group.modules.map(module=>(
+          <a class="foundation-module-card" data-module-card data-module-category={module.category} data-module-query={`${module.id} ${module.title} ${module.description}`.toLowerCase()} href={module.link} aria-label={`Start module ${module.id}: ${module.title}`}>
+            <span class="foundation-module-tag"><span>MODULE {module.id}</span><span>FREE</span></span>
+            <strong>{module.title}</strong>
+            <span class="foundation-module-desc">{module.description}</span>
+            <span class="foundation-module-outcome"><b>You'll practise:</b> {module.outcome}</span>
+            <span class="foundation-module-go">Start this module <span aria-hidden="true">→</span></span>
+          </a>
+        ))}
+      </div>
+    </section>
+  ))}
+  {!featured && <p class="foundation-empty" data-module-empty hidden>No matching modules. Try another keyword or select All.</p>}
+  {featured && <p class="foundation-all-link"><a href="/curriculum/">Browse all 16 free modules <span aria-hidden="true">→</span></a></p>}
+</div>
+<script>
+for (const root of document.querySelectorAll('[data-foundation-explorer]')) {
+  const search = root.querySelector('[data-module-search]');
+  if (!search) continue;
+  const cards = [...root.querySelectorAll('[data-module-card]')];
+  const sections = [...root.querySelectorAll('[data-module-group]')];
+  const filters = [...root.querySelectorAll('[data-module-filter]')];
+  const count = root.querySelector('[data-module-count]');
+  const empty = root.querySelector('[data-module-empty]');
+  let selected = 'all';
+  const update = () => {
+    let visible = 0;
+    const query = search.value.trim().toLowerCase();
+    for (const card of cards) {
+      const matches = (selected==='all' || card.dataset.moduleCategory===selected) && card.dataset.moduleQuery.includes(query);
+      card.hidden = !matches;
+      if(matches) visible++;
+    }
+    for (const section of sections) section.hidden = !section.querySelector('[data-module-card]:not([hidden])');
+    count.textContent = visible===cards.length ? `Showing all ${cards.length} modules` : `Showing ${visible} of ${cards.length} modules`;
+    empty.hidden = visible>0;
+  };
+  search.addEventListener('input',update);
+  filters.forEach(button=>button.addEventListener('click',()=>{
+    selected = button.dataset.moduleFilter;
+    filters.forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+    update();
+  }));
+}
+</script>
+<style>
+.foundation-explorer{margin:1.5rem 0 3rem;scroll-margin-top:1rem}
+.foundation-controls{padding:1.4rem;border:1px solid var(--sl-color-gray-5);background:var(--sl-color-bg-nav);border-radius:16px;display:grid;gap:.7rem;margin:1rem 0 2rem}
+.foundation-controls label{font-weight:800;font-size:.9rem}
+.foundation-controls input{padding:.8rem 1rem;min-height:44px;width:100%;max-width:700px;border:1px solid var(--sl-color-gray-5);border-radius:10px;background:var(--sl-color-bg);color:var(--sl-color-text);font:inherit}
+.foundation-controls input:focus-visible,.foundation-filters button:focus-visible,.foundation-module-card:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+.foundation-filters{display:flex;flex-wrap:wrap;gap:.45rem}
+.foundation-filters button{border:1px solid var(--sl-color-gray-5);border-radius:999px;padding:.5rem .8rem;cursor:pointer;background:var(--sl-color-bg);color:var(--sl-color-text);font:inherit;font-size:.77rem;font-weight:700}
+.foundation-filters button[aria-pressed="true"]{background:var(--sl-color-accent-low);border-color:var(--sl-color-accent);color:var(--sl-color-text)}
+.foundation-module-count{font-size:.77rem;color:var(--sl-color-gray-2);margin:0}
+.foundation-group{margin:2.2rem 0 0}
+.foundation-group-heading h2{font-size:clamp(1.4rem,2.2vw,1.85rem);margin:0 0 .4rem!important;letter-spacing:-.025em}
+.foundation-group-heading p{margin:0 0 1.2rem;color:var(--sl-color-gray-2);font-size:.91rem;line-height:1.6}
+.foundation-module-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.foundation-module-card{display:flex;flex-direction:column;gap:.7rem;min-width:0;padding:1.3rem;border:1px solid var(--sl-color-gray-5);border-radius:14px;background:var(--sl-color-bg-nav);color:var(--sl-color-text)!important;text-decoration:none!important;transition:transform .16s ease,border-color .16s ease}
+.foundation-module-card:hover{transform:translateY(-2px);border-color:var(--sl-color-accent)}
+.foundation-module-tag{display:flex;justify-content:space-between;align-items:center;gap:.5rem;font-size:.66rem;font-weight:850;letter-spacing:.08em;color:var(--sl-color-accent-high)}
+.foundation-module-card strong{font-size:1.04rem;line-height:1.3;letter-spacing:-.015em}
+.foundation-module-desc{font-size:.83rem;line-height:1.63;color:var(--sl-color-gray-2)}
+.foundation-module-outcome{font-size:.74rem;line-height:1.6;color:var(--sl-color-gray-2);margin-top:auto;border-top:1px solid var(--sl-color-gray-5);padding-top:.7rem}
+.foundation-module-outcome b{color:var(--sl-color-text)}
+.foundation-module-go{font-size:.83rem;font-weight:800;color:var(--sl-color-accent-high);margin-top:.1rem}
+.foundation-empty{padding:1rem;border:1px solid var(--sl-color-gray-5);border-radius:10px}
+.foundation-all-link a{display:inline-flex;font-weight:800;text-decoration:none;margin-top:1.35rem}
+[data-module-card][hidden],[data-module-group][hidden],.foundation-empty[hidden]{display:none!important}
+@media(max-width:1050px){.foundation-module-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.foundation-module-grid{grid-template-columns:1fr}.foundation-controls{padding:1rem}}
+@media(prefers-reduced-motion:reduce){.foundation-module-card{transition:none}}
+</style>

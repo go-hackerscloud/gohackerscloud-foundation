@@ -1,0 +1,59 @@
+---
+const steps = [
+  {number:'01',label:'Choose a starting point'},
+  {number:'02',label:'Understand the concepts'},
+  {number:'03',label:'Practise independently'},
+  {number:'04',label:'Review and grow'},
+];
+---
+<section class="foundation-hero" aria-label="Welcome to GoHackersCloud Foundation">
+  <div class="foundation-hero-copy">
+    <span class="foundation-eyebrow">GOHACKERSCLOUD FOUNDATION · FREE LEARNING</span>
+    <h2>Build the foundations.<br /><span>Find your direction.</span></h2>
+    <p>Start with IT, networking and operating systems. Progress into cloud, cybersecurity, DevOps, AI and professional skills—with a clear learning sequence you can follow at your own pace.</p>
+    <div class="foundation-hero-actions">
+      <a class="foundation-primary" href="/start-here/">Start learning for free <span aria-hidden="true">→</span></a>
+      <a class="foundation-secondary" href="/curriculum/">Explore the 16 modules <span aria-hidden="true">↗</span></a>
+    </div>
+    <ul class="foundation-points" aria-label="Foundation benefits">
+      <li>Free self-paced lessons</li>
+      <li>Beginner-friendly progression</li>
+      <li>No subscription required for Foundation pages</li>
+    </ul>
+  </div>
+  <div class="foundation-hero-graphic" aria-label="Four-step learning process">
+    <div class="foundation-process">
+      <div class="foundation-process-heading"><span aria-hidden="true">●</span> YOUR LEARNING JOURNEY</div>
+      <ol>
+        {steps.map((step) => <li><span>{step.number}</span><strong>{step.label}</strong><span aria-hidden="true">✓</span></li>)}
+      </ol>
+      <div class="foundation-process-footer">LEARN · PRACTISE · REVIEW · GROW</div>
+    </div>
+  </div>
+</section>
+<style>
+.foundation-hero{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(235px,.85fr);gap:2rem;align-items:center;padding:clamp(1.4rem,3.6vw,3.5rem);border:1px solid #23425d;border-radius:20px;background:radial-gradient(circle at 88% 0%,#154b61 0%,transparent 42%),linear-gradient(135deg,#071629,#0b2541);color:#f8fafc;margin:.7rem 0 2.4rem;overflow:hidden}
+.foundation-eyebrow{font-size:.7rem;font-weight:800;letter-spacing:.1em;color:#8edff0}
+.foundation-hero h2{font-size:clamp(2.1rem,3.5vw,3.55rem)!important;line-height:1.08;letter-spacing:-.045em;color:#fff;margin:.75rem 0 1.15rem!important}
+.foundation-hero h2 span{color:#8be3f3}
+.foundation-hero p{max-width:58ch;line-height:1.75;font-size:1.02rem;color:#d2e0ec}
+.foundation-hero-actions{display:flex;flex-wrap:wrap;gap:.65rem;margin:1.7rem 0}
+.foundation-hero-actions a{display:inline-flex;gap:.5rem;align-items:center;justify-content:center;padding:.76rem 1rem;min-height:46px;border-radius:9px;border:1px solid #5b83a2;font-weight:750;text-decoration:none!important}
+.foundation-hero-actions .foundation-primary{color:#08263b;background:#82e1f0;border-color:#82e1f0}
+.foundation-hero-actions .foundation-secondary{color:#fff;background:#ffffff12}
+.foundation-hero-actions a:hover{filter:brightness(1.09)}
+.foundation-hero-actions a:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.foundation-points{display:flex;flex-wrap:wrap;gap:.5rem 1rem;list-style:none;padding:0;margin:0;color:#c0d8e5;font-size:.77rem}
+.foundation-points li::before{content:'✓';color:#66e0bc;margin-right:.35rem}
+.foundation-hero-graphic{min-width:0}
+.foundation-process{border:1px solid #447992;border-radius:13px;overflow:hidden;background:#0d2b42;box-shadow:0 15px 40px #0005;transform:rotate(-2deg)}
+.foundation-process-heading,.foundation-process-footer{padding:.85rem 1rem;font-size:.67rem;font-weight:800;letter-spacing:.06em;color:#93e0f2;background:#123a54}
+.foundation-process-heading span{color:#67dab2;margin-right:.5rem}
+.foundation-process ol{list-style:none;margin:0;padding:.65rem 1rem}
+.foundation-process li{display:grid;grid-template-columns:25px 1fr 14px;gap:.5rem;align-items:center;padding:.82rem 0;border-bottom:1px solid #294760;font-size:.81rem;color:#f6fcff}
+.foundation-process li:last-child{border-bottom:0}
+.foundation-process li span:first-child{font-size:.68rem;color:#98b9ce}
+.foundation-process li span:last-child{color:#62e8ae}
+@media(max-width:850px){.foundation-hero{grid-template-columns:1fr}.foundation-process{transform:none}.foundation-hero-graphic{max-width:450px}}
+@media(max-width:540px){.foundation-hero{padding:1.4rem}.foundation-hero-graphic{display:none}.foundation-hero-actions a{width:100%}}
+</style>
