@@ -36,7 +36,7 @@ This concept is known as the **Shared Responsibility Model**.
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -51,7 +51,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is the Shared Responsibility Model?
+## What is the Shared Responsibility Model?
 
 The **Shared Responsibility Model** defines how security responsibilities are divided between:
 
@@ -64,7 +64,7 @@ Simply moving workloads to the cloud does not transfer all security responsibili
 
 ---
 
-# Why the Shared Responsibility Model Matters
+## Why the Shared Responsibility Model Matters
 
 Without understanding this model, organizations may:
 
@@ -79,11 +79,11 @@ Understanding responsibilities reduces cloud security risks.
 
 ---
 
-# Security of the Cloud vs Security in the Cloud
+## Security of the Cloud vs Security in the Cloud
 
 Cloud providers often describe responsibilities using two concepts.
 
-## Security **of** the Cloud
+### Security **of** the Cloud
 
 The cloud provider protects the infrastructure that runs cloud services.
 
@@ -98,7 +98,7 @@ Examples:
 
 ---
 
-## Security **in** the Cloud
+### Security **in** the Cloud
 
 Customers secure everything they deploy inside the cloud.
 
@@ -114,7 +114,7 @@ Examples:
 
 ---
 
-# Shared Responsibility Overview
+## Shared Responsibility Overview
 
 ```text
 Cloud Provider
@@ -150,7 +150,7 @@ Security is a shared effort.
 
 ---
 
-# Cloud Provider Responsibilities
+## Cloud Provider Responsibilities
 
 Cloud providers typically manage:
 
@@ -167,7 +167,7 @@ Customers do not manage these components.
 
 ---
 
-# Customer Responsibilities
+## Customer Responsibilities
 
 Customers commonly manage:
 
@@ -187,18 +187,18 @@ Customers remain responsible for securing their workloads.
 
 ---
 
-# Shared Responsibility in IaaS
+## Shared Responsibility in IaaS
 
 With **Infrastructure as a Service (IaaS)**, customers have the greatest responsibility.
 
-## Cloud Provider
+### Cloud Provider
 
 - Physical Infrastructure
 - Networking Hardware
 - Storage Hardware
 - Hypervisor
 
-## Customer
+### Customer
 
 - Operating System
 - Applications
@@ -218,18 +218,18 @@ Google Compute Engine
 
 ---
 
-# Shared Responsibility in PaaS
+## Shared Responsibility in PaaS
 
 With **Platform as a Service (PaaS)**, the cloud provider manages more components.
 
-## Cloud Provider
+### Cloud Provider
 
 - Infrastructure
 - Operating System
 - Runtime
 - Middleware
 
-## Customer
+### Customer
 
 - Application Code
 - Data
@@ -246,11 +246,11 @@ Google App Engine
 
 ---
 
-# Shared Responsibility in SaaS
+## Shared Responsibility in SaaS
 
 With **Software as a Service (SaaS)**, the provider manages almost everything.
 
-## Cloud Provider
+### Cloud Provider
 
 - Infrastructure
 - Operating Systems
@@ -258,7 +258,7 @@ With **Software as a Service (SaaS)**, the provider manages almost everything.
 - Updates
 - Backups
 
-## Customer
+### Customer
 
 - User Accounts
 - Passwords
@@ -276,7 +276,7 @@ Salesforce
 
 ---
 
-# Comparing Responsibilities
+## Comparing Responsibilities
 
 | Component | IaaS | PaaS | SaaS |
 |-----------|------|------|------|
@@ -291,7 +291,7 @@ As cloud services become more managed, customers manage less infrastructure—bu
 
 ---
 
-# Identity Responsibilities
+## Identity Responsibilities
 
 Customers should:
 
@@ -306,7 +306,7 @@ Identity security is always the customer's responsibility.
 
 ---
 
-# Data Protection
+## Data Protection
 
 Customers must protect:
 
@@ -320,27 +320,27 @@ Cloud providers store the data, but customers decide how it is protected.
 
 ---
 
-# Patch Management
+## Patch Management
 
 Responsibility depends on the service model.
 
-### IaaS
+#### IaaS
 
 Customer installs operating system patches.
 
-### PaaS
+#### PaaS
 
 Provider patches the operating system.
 
 Customer updates application code.
 
-### SaaS
+#### SaaS
 
 Provider manages software updates.
 
 ---
 
-# Network Security
+## Network Security
 
 Customers are responsible for:
 
@@ -354,7 +354,7 @@ Cloud providers supply networking services, but customers configure them.
 
 ---
 
-# Compliance Responsibilities
+## Compliance Responsibilities
 
 Compliance is also shared.
 
@@ -371,7 +371,7 @@ Cloud adoption does not eliminate compliance responsibilities.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A company deploys an application on Amazon EC2.
 
@@ -395,7 +395,7 @@ Both parties contribute to overall security.
 
 ---
 
-# Common Misunderstandings
+## Common Misunderstandings
 
 Many beginners incorrectly believe:
 
@@ -410,7 +410,7 @@ Understanding ownership prevents security gaps.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -427,7 +427,7 @@ These practices strengthen cloud security and compliance.
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid:
 
@@ -442,17 +442,17 @@ Security responsibilities should always be clearly understood.
 
 ---
 
-# Cloud Provider Examples
+## Cloud Provider Examples
 
-### AWS
+#### AWS
 
 Shared Responsibility Model applies to all AWS services.
 
-### Microsoft Azure
+#### Microsoft Azure
 
 Responsibilities vary based on IaaS, PaaS, and SaaS offerings.
 
-### Google Cloud Platform
+#### Google Cloud Platform
 
 Google secures cloud infrastructure while customers secure workloads and data.
 
@@ -460,7 +460,40 @@ Although implementations differ slightly, the shared responsibility principle is
 
 ---
 
-# Key Takeaways
+## Architecture diagram — Responsibility depends on the service model
+
+```mermaid
+flowchart LR
+    MODEL{"Service model"} --> IAAS["IaaS"]
+    MODEL --> PAAS["PaaS"]
+    MODEL --> SAAS["SaaS"]
+    IAAS --> IAASC["Customer: guest OS, applications, data and IAM"]
+    PAAS --> PAASC["Customer: application logic, data and IAM"]
+    SAAS --> SAASC["Customer: tenant setup, user access and data choices"]
+    IAAS --> IAASP["Provider: physical and virtualization infrastructure"]
+    PAAS --> PAASP["Provider: managed runtime and underlying platform"]
+    SAAS --> SAASP["Provider: application and underlying platform operations"]
+```
+
+**How to read it:** Responsibility is shared but **not identical across service models**. Provider-managed services can reduce a customer's infrastructure administration while leaving access policies, data classification, tenant controls and application configuration decisions with the customer. Product-specific documentation is always the final authority.
+
+### Example — A school learning portal
+
+A fictional school uses an IaaS virtual machine, a managed database and a SaaS email platform. It must define who patches the VM, who grants database user access, who controls mailing-list membership and who investigates suspicious logins.
+
+| Resource | Example customer obligation | Example provider obligation |
+|---|---|---|
+| Virtual machine (IaaS) | Guest OS hardening and VM access | Physical hosts and hypervisor |
+| Managed database | Database identities, schema/data access, settings | Managed database platform operations |
+| SaaS collaboration | Accounts, sharing and retention policies | Application hosting/platform operations |
+
+**Exercise:** choose one control from each row and write a positive test and an expected-deny test. **Expected evidence:** a responsibility table with named owners, one verification step per control and any uncertainty documented.
+
+**Next learning step:** study [Cloud Governance](/foundation/gohackerscloud-foundation/07-cloud-computing-fundamentals/12-cloud-governance/) to see how these responsibilities become repeatable policy and review activities.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -478,7 +511,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 The Shared Responsibility Model is one of the most fundamental concepts in cloud computing and cloud security.
 
@@ -488,7 +521,7 @@ Understanding these responsibilities helps organizations deploy secure cloud env
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 12 — Cloud Governance**
 
