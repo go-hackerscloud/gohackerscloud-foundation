@@ -481,7 +481,7 @@ Use a hypothetical university portal, not any real institution's system.
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -496,7 +496,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 A Security Mindset is the foundation of every successful cybersecurity career.
 
@@ -508,7 +508,7 @@ Developing this mindset early will help you build secure systems, protect organi
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 02 — CIA Triad**
 
