@@ -33,6 +33,8 @@ Some older lessons may still mention Academy activities. The free Foundation cur
 
 **Where to begin:** [Start Here](/start-here/) · [See the full Core IT & DevOps roadmap](/core-it-devops/) · [Explore all 16 modules](/curriculum/).
 
+For the detailed orientation case study and practice assignment, see [Module 00 — Foundation Orientation](/core-it-devops/module-00/).
+
 ## Why we teach the foundations in this order
 
 Imagine a student running a command that reports a website cannot be reached. Without the fundamentals, they may immediately blame a firewall. A more capable learner knows the failure could involve DNS, routing, a TCP port, TLS, server processes, a database dependency or a misconfigured deployment.
