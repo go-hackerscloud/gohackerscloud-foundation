@@ -521,7 +521,7 @@ Your fictional company maintains user accounts, course progress and subscription
 
    <details><summary>Suggested answer</summary>An observation describes evidence and criteria; remediation addresses the gap and requires verification.</details>
 
-**Continue:** [Enterprise Risk Management](/foundation/gohackerscloud-foundation/15-enterprise-grc/03-risk-management-fundamentals/) · [Security Audits](/foundation/gohackerscloud-foundation/15-enterprise-grc/07-security-audits-compliance-assessments/) · [GHC Labs and practice options](/ghc-labs/). Check access terms for hosted activities.
+**Continue:** [Enterprise Risk Management](/foundation/gohackerscloud-foundation/15-enterprise-grc/03-risk-management-fundamentals/) · [Security Audits](/foundation/gohackerscloud-foundation/15-enterprise-grc/07-security-audits--compliance-assessments/) · [GHC Labs and practice options](/ghc-labs/). Check access terms for hosted activities.
 
 ---
 
