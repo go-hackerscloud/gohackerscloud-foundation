@@ -36,9 +36,9 @@ const contentRoot = 'src/content/docs/foundation/GoHackersCloud Foundation';
 const countMarkdown = (dir) => readdirSync(dir, {withFileTypes:true})
   .reduce((count, entry) => entry.isDirectory()
     ? count + countMarkdown(join(dir, entry.name))
-    : count + Number(/\\.(md|mdx)$/i.test(entry.name)), 0);
+    : count + Number(/\.(md|mdx)$/i.test(entry.name)), 0);
 const sourceLessonCount = countMarkdown(contentRoot);
-const directoryLinks = [...curriculum.matchAll(/class="foundation-directory-link"\\s+href="([^"]+)"/g)]
+const directoryLinks = [...curriculum.matchAll(/class="foundation-directory-link"\s+href="([^"]+)"/g)]
   .map(match => match[1].replaceAll('&amp;', '&'));
 const moduleDetails = (curriculum.match(/data-foundation-directory-module/g) || []).length;
 assert.equal(moduleDetails, 16, 'Full lesson directory must contain all 16 modules');
