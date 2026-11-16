@@ -622,7 +622,7 @@ A fictional training platform wants to serve students around the world and prese
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -637,7 +637,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Cloud Computing has fundamentally transformed modern IT by providing scalable, reliable, and on-demand access to computing resources over the Internet.
 
@@ -647,7 +647,7 @@ A solid understanding of Cloud Computing forms the foundation for learning AWS, 
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 02 — Infrastructure as a Service (IaaS)**
 
