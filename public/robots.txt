@@ -1,0 +1,7 @@
+# GoHackersCloud Foundation — public educational content
+# Content-Signal is an expressed preference; individual crawlers may vary in support.
+User-agent: *
+Allow: /
+Content-Signal: search=yes, ai-train=no
+
+Sitemap: https://foundation.gohackerscloud.com/sitemap-index.xml
