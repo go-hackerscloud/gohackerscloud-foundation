@@ -34,6 +34,24 @@ TCP provides connection-oriented transport and reliability; UDP has different be
 
 TLS negotiates an encrypted, authenticated channel when correctly validated. HTTP sends application requests and responses. Status 404 means the requested resource was not found; 503 usually indicates service unavailability, not necessarily a routing failure.
 
+## Architecture diagram — Network troubleshooting as a sequence of evidence
+
+```mermaid
+flowchart LR
+    NAME["Name and DNS response"] --> PATH["Route / network controls"]
+    PATH --> PORT["TCP port and listener"]
+    PORT --> TRUST["TLS and certificate trust"]
+    TRUST --> HTTP["HTTP response"]
+    HTTP --> BACKEND["API and database dependencies"]
+    BACKEND --> REPORT["Record result and next test"]
+```
+
+**How to interpret it:** A successful stage does not prove all later stages work. Engineers isolate the layer that first diverges from expected behavior.
+
+**Diagram exercise:** Create an expected-result column for each hop, then explain which safe command would test it.
+
+**Expected evidence:** A labeled architecture or flowchart plus one safe verification step. This is independent Foundation study; no paid Academy lab is required.
+
 ## Enterprise case study (hypothetical)
 
 Students in one campus cannot open an HTTPS learning portal, while mobile data works. A support engineer checks whether campus DNS returns an address, whether TCP/443 is reachable, whether the certificate is valid and whether a proxy blocks the request. The report distinguishes facts from hypotheses.
