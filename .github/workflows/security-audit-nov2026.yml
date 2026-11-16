@@ -6,6 +6,8 @@ on:
       - package-lock.json
       - astro.config.mjs
       - src/**
+      - public/**
+      - scripts/**
       - .github/workflows/security-audit-nov2026.yml
   workflow_dispatch:
 permissions:
@@ -33,3 +35,5 @@ jobs:
           test -s dist/index.html
           test -d dist/foundation
           echo "Static Foundation build and learning tree present"
+      - name: Validate crawler discovery and generated lesson sitemap
+        run: node scripts/verify-discovery.mjs
