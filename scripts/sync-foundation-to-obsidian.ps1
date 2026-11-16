@@ -9,16 +9,16 @@
   Run on the Windows machine that holds your vault, after git pull --ff-only.
   Do NOT run publish-foundation.ps1 before importing the reviewed GitHub edits.
 .EXAMPLE
-  .\scripts\sync-foundation-to-obsidian.ps1 -Scope Core
+  .\scripts\sync-foundation-to-obsidian.ps1 -Scope CoreUpdates
 .EXAMPLE
-  .\scripts\sync-foundation-to-obsidian.ps1 -Scope Core -Apply -Overwrite
+  .\scripts\sync-foundation-to-obsidian.ps1 -Scope CoreUpdates -Apply -Overwrite
 .EXAMPLE
   .\scripts\sync-foundation-to-obsidian.ps1 -Scope All -IncludeHub -Apply -Overwrite
 #>
 [CmdletBinding()]
 param(
-  [ValidateSet('Core','All')]
-  [string]$Scope = 'Core',
+  [ValidateSet('CoreUpdates','Core','All')]
+  [string]$Scope = 'CoreUpdates',
 
   [string]$RepoPath = 'C:\Projects\GoHackersCloud\gohackerscloud-foundation',
 
@@ -84,10 +84,20 @@ foreach ($mapping in $mappings) {
 
   foreach ($file in $files) {
     $relativePath = $file.FullName.Substring($sourceRoot.Length).TrimStart([char[]]@('\','/'))
-    if ($mapping.Name -eq 'Foundation' -and $Scope -eq 'Core') {
+    if ($mapping.Name -eq 'Foundation' -and $Scope -in @('CoreUpdates','Core')) {
       $parts = $relativePath -split '[\\/]'
       if ($parts.Count -lt 3 -or $parts[0] -ne 'GoHackersCloud Foundation' -or $parts[1] -notmatch '^0[0-6] ') {
         continue
+      }
+      # Safest default: only the eight edited original lesson files.
+      # Leave all other locally edited Obsidian notes untouched.
+      if ($Scope -eq 'CoreUpdates') {
+        if ($parts[1] -match '^00 ' -and $parts[2] -notin @('01 Welcome to the Academy.md','02 How to Use the Academy.md')) {
+          continue
+        }
+        if ($parts[1] -match '^0[1-6] ' -and $parts[2] -notmatch '^01 ') {
+          continue
+        }
       }
     }
 
