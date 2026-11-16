@@ -39,7 +39,7 @@ This security model is known as **Zero Trust**.
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -54,7 +54,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Zero Trust?
+## What is Zero Trust?
 
 **Zero Trust** is a cybersecurity model that assumes **no user, device, application, or network should be trusted automatically**, even if it is inside the organization's network.
 
@@ -69,7 +69,7 @@ Trust is earned—not assumed.
 
 ---
 
-# Why Zero Trust Matters
+## Why Zero Trust Matters
 
 Modern organizations face risks such as:
 
@@ -85,9 +85,9 @@ Zero Trust reduces these risks by validating every request before access is gran
 
 ---
 
-# Traditional Security vs Zero Trust
+## Traditional Security vs Zero Trust
 
-### Traditional Model
+#### Traditional Model
 
 ```text
 Internet
@@ -105,7 +105,7 @@ Once inside, users often had broad access.
 
 ---
 
-### Zero Trust Model
+#### Zero Trust Model
 
 ```text
 User
@@ -135,7 +135,7 @@ Every request is evaluated independently.
 
 ---
 
-# Core Principles of Zero Trust
+## Core Principles of Zero Trust
 
 Zero Trust is built on several key principles:
 
@@ -150,7 +150,7 @@ These principles guide modern enterprise security.
 
 ---
 
-# Verify Explicitly
+## Verify Explicitly
 
 Every access request should be verified using multiple signals.
 
@@ -167,7 +167,7 @@ Access decisions are based on context, not location.
 
 ---
 
-# Least Privilege Access
+## Least Privilege Access
 
 Users receive only the permissions required to perform their jobs.
 
@@ -193,7 +193,7 @@ Least Privilege reduces the impact of compromised accounts.
 
 ---
 
-# Assume Breach
+## Assume Breach
 
 Zero Trust assumes attackers may already have access.
 
@@ -208,7 +208,7 @@ Planning for compromise improves resilience.
 
 ---
 
-# Continuous Verification
+## Continuous Verification
 
 Verification does not occur only during login.
 
@@ -224,7 +224,7 @@ Access can be modified or revoked if risk changes.
 
 ---
 
-# Micro-Segmentation
+## Micro-Segmentation
 
 Instead of one large trusted network, Zero Trust divides environments into smaller protected segments.
 
@@ -254,7 +254,7 @@ Compromising one segment does not automatically expose the rest of the environme
 
 ---
 
-# Identity as the New Security Perimeter
+## Identity as the New Security Perimeter
 
 Modern security focuses on identity rather than network location.
 
@@ -270,7 +270,7 @@ Identity becomes the primary control point.
 
 ---
 
-# Zero Trust in Cloud Computing
+## Zero Trust in Cloud Computing
 
 Cloud environments commonly implement Zero Trust using:
 
@@ -285,7 +285,7 @@ Every cloud request should be authenticated and authorized.
 
 ---
 
-# Zero Trust in Kubernetes
+## Zero Trust in Kubernetes
 
 Kubernetes clusters apply Zero Trust using:
 
@@ -300,7 +300,7 @@ Every workload communicates securely and only when authorized.
 
 ---
 
-# Zero Trust in DevSecOps
+## Zero Trust in DevSecOps
 
 DevSecOps teams implement Zero Trust by:
 
@@ -315,7 +315,7 @@ Security becomes part of every deployment.
 
 ---
 
-# Zero Trust in Artificial Intelligence
+## Zero Trust in Artificial Intelligence
 
 AI systems benefit from Zero Trust through:
 
@@ -330,7 +330,7 @@ Every interaction with AI resources should be verified.
 
 ---
 
-# Zero Trust Architecture
+## Zero Trust Architecture
 
 A simplified Zero Trust architecture looks like this:
 
@@ -366,7 +366,7 @@ Every access request passes through security validation.
 
 ---
 
-# Enterprise Zero Trust Technologies
+## Enterprise Zero Trust Technologies
 
 Organizations commonly deploy:
 
@@ -382,7 +382,7 @@ These technologies work together to enforce Zero Trust.
 
 ---
 
-# Benefits of Zero Trust
+## Benefits of Zero Trust
 
 Organizations implementing Zero Trust gain:
 
@@ -398,7 +398,7 @@ Zero Trust supports modern digital transformation initiatives.
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid:
 
@@ -413,7 +413,7 @@ Zero Trust removes implicit trust.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -430,7 +430,7 @@ These practices significantly reduce organizational risk.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A remote employee accesses a cloud application.
 
@@ -466,7 +466,42 @@ Even after access is granted, user activity continues to be monitored for suspic
 
 ---
 
-# Key Takeaways
+## Architecture workshop — Context-based access decision
+
+```mermaid
+flowchart LR
+    SUBJECT["Employee or workload"] --> AUTHN["Strong authentication"]
+    AUTHN --> POSTURE["Device and request context"]
+    POSTURE --> DECIDE["Policy decision"]
+    DECIDE --> ENFORCE["Policy enforcement"]
+    ENFORCE --> RESOURCE["Scoped application access"]
+    DECIDE -. "decision events" .-> LOG["Audit and monitoring"]
+    ENFORCE -. "session telemetry" .-> LOG
+```
+
+**What this shows:** Zero Trust relies on explicit verification, least privilege and appropriate ongoing evaluation. It is not a single network appliance, and a valid corporate network connection is not universal authorization.
+
+### Hypothetical workplace example
+
+An employee requests an internal finance system from an unmanaged device. Identity, device posture and resource sensitivity affect the access decision.
+
+### Safe independent exercise
+
+Describe two allowed and two denied scenarios and what data the policy needs, including one example of a compromised identity.
+
+**Expected output:** An access-policy flow with conditions and an audit checklist.
+
+### Knowledge check
+
+**Does being on a VPN automatically authorize access to every service?**
+
+<details><summary>Suggested reasoning</summary>No. Network reachability does not replace identity checks or resource-specific authorization.</details>
+
+**Next:** [Full Foundation curriculum](/curriculum/) · [Optional GHC Labs practice](/ghc-labs/). The free exercise requires no membership.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -483,7 +518,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Zero Trust is one of the most important cybersecurity models used by modern organizations.
 
@@ -495,7 +530,7 @@ Zero Trust is a foundational concept for Cloud Security Engineers, DevSecOps Eng
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 10 — Security Architecture**
 
