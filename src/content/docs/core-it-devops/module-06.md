@@ -34,6 +34,26 @@ CI validates changes through builds and tests. Deployment and delivery processes
 
 Never commit actual secrets or sensitive customer logs. Use `.gitignore` for local files, protected credentials for pipelines, least-privileged identities and appropriate approvals for risky changes.
 
+## Architecture diagram — Reviewable source-control lifecycle
+
+```mermaid
+flowchart TD
+    EDIT["Make a focused change"] --> DIFF["Inspect diff and staged files"]
+    DIFF --> COMMIT["Create local Git commit"]
+    COMMIT --> PR["Open review request"]
+    PR --> CI["Build and security checks"]
+    CI --> APPROVAL{"Reviewed and approved?"}
+    APPROVAL -->|"No"| EDIT
+    APPROVAL -->|"Yes"| DEPLOY["Controlled release"]
+    DEPLOY --> MONITOR["Verify and prepare rollback"]
+```
+
+**How to interpret it:** Local Git snapshots, remote reviews, CI and production deployment are different steps. Tests reduce risk but do not eliminate uncertainty.
+
+**Diagram exercise:** Write a short PR description for an updated troubleshooting runbook: why, what changed, tests and rollback.
+
+**Expected evidence:** A labeled architecture or flowchart plus one safe verification step. This is independent Foundation study; no paid Academy lab is required.
+
 ## Enterprise case study (hypothetical)
 
 A team modifies a service configuration. The developer makes a focused commit, opens a review with expected behavior, runs tests and checks monitoring after release. When a regression appears, the team can trace which revision was deployed and decide on a controlled rollback.
