@@ -2,6 +2,9 @@
 title: Lesson 01 — Programming Concepts
 description: Learn the fundamental concepts of programming, understand how software is built, explore programming logic, algorithms, variables, and problem-solving techniques that form the foundation of Cloud Computing, DevOps, AI, and Cybersecurity.
 ---
+
+> **Foundation workshop:** [View the full Module 05 learning guide](/core-it-devops/module-05/) for prerequisite skills, a professional scenario, expected observations and exercises.
+
 ## Lesson Overview
 
 Every modern technology is built using programming.
@@ -27,7 +30,7 @@ This lesson introduces the core concepts that every technical professional shoul
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -41,7 +44,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Programming?
+## What is Programming?
 
 Programming is the process of writing instructions that tell a computer what to do.
 
@@ -69,7 +72,7 @@ The computer performs each instruction exactly as written.
 
 ---
 
-# Why Learn Programming?
+## Why Learn Programming?
 
 Programming helps IT professionals:
 
@@ -87,7 +90,7 @@ Today it is an essential IT skill.
 
 ---
 
-# Programming Everywhere
+## Programming Everywhere
 
 Programming powers almost everything around us.
 
@@ -109,7 +112,7 @@ Behind every digital service is software created by programmers.
 
 ---
 
-# Programming in Cloud Computing
+## Programming in Cloud Computing
 
 Cloud Engineers write code to:
 
@@ -124,7 +127,7 @@ Infrastructure is increasingly managed as code rather than through manual config
 
 ---
 
-# Programming in Cybersecurity
+## Programming in Cybersecurity
 
 Security professionals use programming to:
 
@@ -140,7 +143,7 @@ Programming significantly improves efficiency during security operations.
 
 ---
 
-# Programming in DevOps
+## Programming in DevOps
 
 DevOps Engineers automate:
 
@@ -156,7 +159,7 @@ Automation is at the heart of DevOps.
 
 ---
 
-# Programming in AI
+## Programming in AI
 
 Artificial Intelligence relies heavily on programming.
 
@@ -173,7 +176,7 @@ Python is currently the most popular language for AI development.
 
 ---
 
-# Programming Languages
+## Programming Languages
 
 A programming language is used to communicate with a computer.
 
@@ -194,7 +197,7 @@ Each language is designed for different types of work.
 
 ---
 
-# Why We Learn Python
+## Why We Learn Python
 
 Throughout GoHackersCloud Academy, Python will be our primary programming language because it is:
 
@@ -216,7 +219,7 @@ Python is commonly used in:
 
 ---
 
-# How Programs Work
+## How Programs Work
 
 Programs follow a simple workflow.
 
@@ -250,7 +253,7 @@ Every application follows this pattern.
 
 ---
 
-# What is Logic?
+## What is Logic?
 
 Programming is based on logical thinking.
 
@@ -274,7 +277,7 @@ Programs make decisions based on conditions.
 
 ---
 
-# What is an Algorithm?
+## What is an Algorithm?
 
 An **Algorithm** is a step-by-step procedure used to solve a problem.
 
@@ -306,7 +309,7 @@ Computers follow algorithms in exactly the same way.
 
 ---
 
-# Flowcharts
+## Flowcharts
 
 Algorithms are often represented visually.
 
@@ -344,7 +347,7 @@ Flowcharts simplify problem-solving before writing code.
 
 ---
 
-# Programming Workflow
+## Programming Workflow
 
 Developers generally follow this process:
 
@@ -380,7 +383,7 @@ This workflow is used in almost every software project.
 
 ---
 
-# Source Code
+## Source Code
 
 The instructions written by a programmer are called **Source Code**.
 
@@ -394,7 +397,7 @@ Source code is stored in text files and executed by a programming language.
 
 ---
 
-# Compiler vs Interpreter
+## Compiler vs Interpreter
 
 Programming languages execute code differently.
 
@@ -408,7 +411,7 @@ Python is an interpreted language.
 
 ---
 
-# Errors in Programming
+## Errors in Programming
 
 Programs do not always work the first time.
 
@@ -422,7 +425,7 @@ Finding and fixing errors is called **Debugging**.
 
 ---
 
-# Debugging
+## Debugging
 
 Debugging is the process of identifying and fixing problems in code.
 
@@ -452,7 +455,7 @@ Every programmer spends time debugging.
 
 ---
 
-# Problem-Solving Mindset
+## Problem-Solving Mindset
 
 Successful programmers:
 
@@ -466,7 +469,7 @@ Programming is more about problem-solving than memorizing syntax.
 
 ---
 
-# Programming Tools
+## Programming Tools
 
 Developers commonly use:
 
@@ -482,7 +485,7 @@ These tools improve productivity and collaboration.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Imagine an HR department needs to create 500 employee accounts.
 
@@ -512,7 +515,7 @@ Automation saves time and reduces errors.
 
 ---
 
-# Best Practices
+## Best Practices
 
 As a beginner programmer:
 
@@ -529,7 +532,78 @@ Programming is a skill developed through hands-on experience.
 
 ---
 
-# Key Takeaways
+### Extended Foundation Workshop — Your first practical automation
+
+Programming becomes useful when you can transform a repeated observation into an understandable and testable process. This beginner exercise analyzes **synthetic log records** without accessing real systems.
+
+#### Workplace scenario
+
+A support engineer receives a small collection of HTTP status events from a fictional application. They want a quick count of successful requests, authentication failures and service-unavailable responses to support triage.
+
+#### Create a safe local Python program
+
+Save this file as `foundation_http_summary.py` using Python 3:
+
+```python
+from collections import Counter
+
+events = [
+    {"path": "/login", "status": 200},
+    {"path": "/login", "status": 401},
+    {"path": "/orders", "status": 200},
+    {"path": "/orders", "status": 503},
+]
+
+counts = Counter(event["status"] for event in events)
+for status, count in sorted(counts.items()):
+    print(f"HTTP {status}: {count}")
+```
+
+Run it on your computer:
+
+```bash
+python foundation_http_summary.py
+```
+
+Expected output:
+
+```text
+HTTP 200: 2
+HTTP 401: 1
+HTTP 503: 1
+```
+
+#### Understand the implementation
+
+- A **list** holds several event **dictionaries**.
+- Each dictionary has a `path` string and a `status` number.
+- A generator expression extracts the status from each event.
+- `Counter` calculates occurrences.
+- A sorted loop makes the summary reproducible.
+
+#### Improve the code like an engineer
+
+Try adding `{"path":"/missing","status":404}`. Predict the result before rerunning. Next, add an event without a `status` field. Observe that the original code raises `KeyError` and think about safe handling: validate each record and explicitly report malformed entries instead of silently ignoring them.
+
+Never paste production customer logs, tokens or passwords into public code examples.
+
+#### Knowledge check
+
+1. **Why is a status count more useful than printing the whole log?**
+
+   <details><summary>Suggested answer</summary>Aggregation provides a compact overview and can reduce exposure of sensitive details, although the original records may still be needed for authorized investigation.</details>
+
+2. **Why should a script handle missing fields?**
+
+   <details><summary>Suggested answer</summary>Real inputs may be incomplete or malformed; validation makes failures explicit and prevents incorrect conclusions.</details>
+
+#### Deliverable
+
+Create the script, write down one test for correct input and one for malformed input, and add a README stating that the dataset is synthetic. See [Module 05 deep-dive](/core-it-devops/module-05/), then explore [Ethical Hacking Tools](https://academy.gohackerscloud.com/tracks/tools/) for structured technical learning.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -545,7 +619,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Programming is the foundation of modern technology.
 
@@ -555,7 +629,7 @@ By understanding these core concepts, you're now ready to begin writing your fir
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 02 — Python Basics**
 
