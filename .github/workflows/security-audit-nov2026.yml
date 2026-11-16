@@ -37,3 +37,5 @@ jobs:
           echo "Static Foundation build and learning tree present"
       - name: Validate crawler discovery and generated lesson sitemap
         run: node scripts/verify-discovery.mjs
+      - name: Validate learner navigation and existing Foundation module routes
+        run: node scripts/verify-foundation-learning.mjs
