@@ -1,0 +1,30 @@
+# Isolated dependency audit, not a production deployment.
+name: November dependency audit
+on:
+  push:
+    branches:
+      - security/dependency-audit-nov2026
+    paths:
+      - .github/workflows/security-audit-nov2026.yml
+      - package-lock.json
+      - package.json
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Reproducible install
+        run: npm ci --no-audit --no-fund
+      - name: Full dependency advisory report
+        run: npm audit --audit-level=low || true
+      - name: Production-only dependency advisory report
+        run: npm audit --omit=dev --audit-level=low || true
+      - name: Regression checks
+        run: npm run build
