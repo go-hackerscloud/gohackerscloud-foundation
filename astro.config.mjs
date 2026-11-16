@@ -84,17 +84,34 @@ export default defineConfig({
         {
           label: 'Career Roadmaps',
           collapsed: true,
-          items: [{autogenerate: {directory: 'roadmaps'}}],
+          items: [
+            {label: 'Cloud Security Engineer · Full Guide', link: '/learning-hub/cloud-security-roadmap/'},
+          ],
         },
         {
           label: 'Certification Guides',
           collapsed: true,
-          items: [{autogenerate: {directory: 'certifications'}}],
+          items: [
+            {label: 'AWS Cloud Practitioner · CLF-C02', link: '/learning-hub/aws-clf-c02/'},
+          ],
         },
         {
-          label: 'Free Resources',
+          label: 'IT Interview Preparation',
           collapsed: true,
-          items: [{autogenerate: {directory: 'resources'}}],
+          items: [
+            {label: 'Complete Interview Handbook', link: '/learning-hub/it-interview/'},
+          ],
+        },
+        {
+          label: 'Academy & GHC Labs',
+          collapsed: true,
+          items: [
+            {label: 'GHC Labs Overview', link: '/ghc-labs/'},
+            {label: 'How Labs Work', link: '/ghc-labs/how-it-works/'},
+            {label: 'Explore 13 Academy Tracks', link: '/ghc-labs/track-selection/'},
+            {label: 'Demo Video', link: '/ghc-labs/instructor-demo/'},
+            {label: 'Membership & FAQs', link: '/ghc-labs/faq/'},
+          ],
         },
       ],
     }),

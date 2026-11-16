@@ -39,3 +39,5 @@ jobs:
         run: node scripts/verify-discovery.mjs
       - name: Validate learner navigation and existing Foundation module routes
         run: node scripts/verify-foundation-learning.mjs
+      - name: Validate three expanded guides and Academy lab overview
+        run: node scripts/verify-expanded-guides.mjs

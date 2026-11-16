@@ -1,0 +1,48 @@
+---
+import {demoVideoId, demoTitle} from '../data/ghc-labs-demo.mjs';
+const valid = /^[a-zA-Z0-9_-]{11}$/.test(demoVideoId);
+---
+<section class="ghc-labs-video" aria-labelledby="ghc-labs-demo-heading">
+  <div class="ghc-labs-video-heading">
+    <span class="ghc-labs-eyebrow">PRODUCT DEMONSTRATION</span>
+    <h2 id="ghc-labs-demo-heading">See the student lab experience</h2>
+    <p>Watch the walkthrough when the official demo is published. The demo will show how to select a track, follow a lesson, launch an authorized environment, inspect the result, and end the session.</p>
+  </div>
+  {valid ? (
+    <div class="ghc-labs-player">
+      <iframe
+        src={`https://www.youtube-nocookie.com/embed/${demoVideoId}`}
+        title={demoTitle}
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      />
+    </div>
+  ) : (
+    <div class="ghc-labs-placeholder" role="note" aria-label="Video demonstration placeholder">
+      <div class="ghc-labs-play" aria-hidden="true">▶</div>
+      <strong>Official demo video — placement reserved</strong>
+      <p>This space is ready for the recorded student walkthrough. A demo has not yet been embedded.</p>
+    </div>
+  )}
+  <div class="ghc-labs-video-cta">
+    <a href="/ghc-labs/instructor-demo/">See the suggested demonstration script</a>
+    <a href="https://gohackerscloud.com/hands-on-cybersecurity-labs">Explore subscriptions and access terms →</a>
+  </div>
+</section>
+<style>
+.ghc-labs-video{margin:2rem 0 3rem}
+.ghc-labs-video-heading{max-width:75ch;margin-bottom:1rem}
+.ghc-labs-video-heading h2{margin:.4rem 0!important}
+.ghc-labs-video-heading p{line-height:1.65;color:var(--sl-color-gray-2)}
+.ghc-labs-eyebrow{color:var(--sl-color-accent-high);font-size:.72rem;letter-spacing:.08em;font-weight:800}
+.ghc-labs-player{aspect-ratio:16/9;width:min(100%,900px);border:1px solid var(--sl-color-gray-5);border-radius:16px;overflow:hidden;background:#061322}
+.ghc-labs-player iframe{width:100%;height:100%;border:0}
+.ghc-labs-placeholder{aspect-ratio:16/9;width:min(100%,900px);min-height:215px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1rem;text-align:center;padding:1.5rem;border:1px dashed #589ab0;border-radius:16px;background:linear-gradient(135deg,#0b1c32,#12314c);color:#f4fcff}
+.ghc-labs-placeholder p{color:#bacddc;max-width:55ch;font-size:.9rem;line-height:1.6;margin:0}
+.ghc-labs-play{width:68px;height:68px;display:grid;place-items:center;border-radius:50%;background:#74e1ee;color:#0b2939;font-size:1.4rem}
+.ghc-labs-video-cta{display:flex;flex-wrap:wrap;gap:1rem;margin-top:.9rem}
+.ghc-labs-video-cta a{font-size:.87rem;font-weight:750}
+@media(max-width:540px){.ghc-labs-placeholder{aspect-ratio:auto;min-height:245px}}
+</style>
