@@ -30,7 +30,7 @@ Today, PaaS is widely used for building modern web applications, APIs, mobile ba
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -45,7 +45,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Platform as a Service (PaaS)?
+## What is Platform as a Service (PaaS)?
 
 Platform as a Service (PaaS) is a cloud computing model that provides a complete development and deployment platform over the Internet.
 
@@ -63,7 +63,7 @@ Developers simply deploy their applications.
 
 ---
 
-# Why PaaS Matters
+## Why PaaS Matters
 
 PaaS enables organizations to:
 
@@ -78,7 +78,7 @@ Developers spend more time writing code and less time managing servers.
 
 ---
 
-# Traditional Development
+## Traditional Development
 
 Without PaaS:
 
@@ -114,7 +114,7 @@ This process requires significant operational effort.
 
 ---
 
-# Platform as a Service Workflow
+## Platform as a Service Workflow
 
 With PaaS:
 
@@ -142,9 +142,9 @@ The platform manages the underlying infrastructure automatically.
 
 ---
 
-# Shared Responsibility in PaaS
+## Shared Responsibility in PaaS
 
-## Cloud Provider Manages
+### Cloud Provider Manages
 
 - Physical Infrastructure
 - Networking
@@ -156,7 +156,7 @@ The platform manages the underlying infrastructure automatically.
 - Scaling
 - Monitoring
 
-## Customer Manages
+### Customer Manages
 
 - Application Code
 - Data
@@ -167,7 +167,7 @@ This allows developers to focus on building business functionality.
 
 ---
 
-# Core Components of PaaS
+## Core Components of PaaS
 
 Typical PaaS platforms include:
 
@@ -185,7 +185,7 @@ These components provide everything needed to host modern applications.
 
 ---
 
-# Runtime Environment
+## Runtime Environment
 
 A runtime provides the environment required for an application to execute.
 
@@ -203,7 +203,7 @@ Developers simply choose the runtime required for their application.
 
 ---
 
-# Managed Databases
+## Managed Databases
 
 Many PaaS platforms provide managed databases.
 
@@ -225,7 +225,7 @@ The cloud provider manages:
 
 ---
 
-# Auto Scaling
+## Auto Scaling
 
 Applications automatically scale based on demand.
 
@@ -251,7 +251,7 @@ Scaling occurs automatically without administrator intervention.
 
 ---
 
-# Load Balancing
+## Load Balancing
 
 Traffic is distributed across multiple application instances.
 
@@ -275,7 +275,7 @@ This improves availability and performance.
 
 ---
 
-# Continuous Deployment
+## Continuous Deployment
 
 Most PaaS platforms integrate directly with Git repositories.
 
@@ -305,7 +305,7 @@ This simplifies software delivery.
 
 ---
 
-# Popular PaaS Services
+## Popular PaaS Services
 
 | Cloud Provider | PaaS Service |
 |----------------|--------------|
@@ -320,7 +320,7 @@ These services provide managed application hosting.
 
 ---
 
-# PaaS vs IaaS
+## PaaS vs IaaS
 
 | Infrastructure as a Service | Platform as a Service |
 |------------------------------|-----------------------|
@@ -334,7 +334,7 @@ PaaS sacrifices some infrastructure control in exchange for simplicity and speed
 
 ---
 
-# Advantages of PaaS
+## Advantages of PaaS
 
 PaaS offers:
 
@@ -350,7 +350,7 @@ These advantages improve developer productivity.
 
 ---
 
-# Limitations of PaaS
+## Limitations of PaaS
 
 Potential challenges include:
 
@@ -364,7 +364,7 @@ Organizations should evaluate these factors when selecting a platform.
 
 ---
 
-# PaaS in Cloud Computing
+## PaaS in Cloud Computing
 
 Cloud Engineers use PaaS to host:
 
@@ -378,7 +378,7 @@ PaaS reduces infrastructure complexity.
 
 ---
 
-# PaaS in DevOps
+## PaaS in DevOps
 
 DevOps Engineers use PaaS for:
 
@@ -392,7 +392,7 @@ PaaS accelerates software delivery pipelines.
 
 ---
 
-# PaaS in Cybersecurity
+## PaaS in Cybersecurity
 
 Security teams benefit from:
 
@@ -406,7 +406,7 @@ This reduces operational security tasks.
 
 ---
 
-# PaaS in Artificial Intelligence
+## PaaS in Artificial Intelligence
 
 AI Developers deploy:
 
@@ -420,7 +420,7 @@ PaaS simplifies AI application deployment.
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid:
 
@@ -435,7 +435,7 @@ Even with managed infrastructure, application security remains your responsibili
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -452,7 +452,7 @@ These practices improve reliability and operational efficiency.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A software company develops an online customer portal.
 
@@ -484,7 +484,41 @@ Developers focus entirely on building features while the cloud platform manages 
 
 ---
 
-# Key Takeaways
+## Architecture workshop — Managed application delivery
+
+```mermaid
+flowchart LR
+    CODE["Reviewed application code"] --> PIPE["CI/CD build and deployment"]
+    PIPE --> RUNTIME["Provider-managed application runtime"]
+    RUNTIME --> APP["Application instances"]
+    APP --> DATA[("Managed database")]
+    APP -. "health and logs" .-> MON["Monitoring and alerts"]
+    ID["Scoped deployment identity"] -. "permissions" .-> PIPE
+```
+
+**How to read it:** PaaS reduces some underlying platform administration. The customer still owns application logic, data choices, permissions and its deployment process.
+
+### Enterprise scenario
+
+A fictional startup deploys a course-booking API. The provider manages its runtime but the team must test authentication and ensure the API can read only its own data.
+
+### Independent practical exercise
+
+Create a responsibility matrix for platform patching, app input validation, data access, backup expectations, secret handling and rollback.
+
+**Expected evidence:** A reviewed responsibility matrix and deployment diagram, without a paid account.
+
+### Check your understanding
+
+**Does PaaS automatically secure customer-written APIs?**
+
+<details><summary>Suggested reasoning</summary>No. Application authorization and data management remain important customer responsibilities.</details>
+
+**Next step:** [Review the 16-module curriculum](/curriculum/) or [explore optional GHC Labs practice](/ghc-labs/). This Foundation exercise is free and self-directed.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -501,7 +535,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Platform as a Service (PaaS) enables developers to build, deploy, and scale applications without managing the underlying infrastructure.
 
@@ -511,7 +545,7 @@ PaaS is an important cloud service model used extensively for modern web applica
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 04 — Software as a Service (SaaS)**
 
