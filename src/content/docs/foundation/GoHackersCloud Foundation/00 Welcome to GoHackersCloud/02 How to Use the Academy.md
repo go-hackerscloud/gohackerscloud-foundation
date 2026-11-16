@@ -1,302 +1,150 @@
 ---
-title: Lesson 02 — How to Use the Academy
-description: Learn how to navigate GoHackersCloud Academy, follow your learning path, complete labs, track your progress, and maximize your learning experience.
----
-## Lesson Overview
-
-Welcome back!
-
-Now that you understand the mission and learning philosophy of GoHackersCloud Academy, it's time to learn how to use the platform effectively.
-
-The academy has been designed to provide a structured learning experience that helps you progress from beginner to industry-ready professional without feeling overwhelmed.
-
-In this lesson, you'll learn how the academy is organized, where to find learning resources, and how to get the best results from your learning journey.
-
+title: "Lesson 02 — How to Use GoHackersCloud Foundation"
+description: "Navigate the free Foundation curriculum, lessons, modules, study plans and safe exercises; learn when and how Academy/GHC Labs are appropriate."
 ---
 
-# Academy Structure
+**Module 00 · Lesson 02 · Level: Beginner · Recommended study time: 35–50 minutes**
 
-GoHackersCloud Academy is organized into several sections.
+GoHackersCloud Foundation is designed for **self-directed, practical learning**. You can read published Foundation lessons without an Academy subscription. The key is knowing where to find the next lesson, how to practice safely and how to judge your own understanding.
 
-Each section serves a specific purpose in your learning journey.
+## The Foundation map
 
-```
-Career Track
-│
-├── Foundation
-│
-├── Modules
-│   ├── Lessons
-│   ├── Assessments
-│   ├── Hands-on Labs
-│   └── Enterprise Runbooks
-│
-├── Projects
-│
-├── Certification Preparation
-│
-└── Career Resources
+The website has three main entry points:
+
+| Destination | What you can accomplish |
+|---|---|
+| [Start Here](/start-here/) | Choose your starting level and learn the study routine |
+| [Explore 16 Modules](/curriculum/) | Browse modules, expand the complete syllabus, jump to lessons |
+| [Core IT & DevOps Deep Dive](/core-it-devops/) | Follow seven technical foundation modules with exercises and cases |
+
+You can also use the site's search to find a concept such as DNS, IAM or Git. The collapsed **All Foundation Lessons** sidebar retains the full original learning hierarchy.
+
+## Learn using stages, not random pages
+
+```text
+Start Here
+    |
+Core IT & DevOps (00–06)
+    |
+Cloud & Cybersecurity (07–11)
+    |
+Enterprise & Professional Foundations (12–15)
+    |
+Career Roadmaps / Exam Guides / Interview Preparation
+    |
+Optional: Academy & GHC Labs (separate access)
 ```
 
-Following this sequence ensures you build knowledge gradually without missing important concepts.
+This is a recommended sequence, not a compulsory course registration. An experienced professional can begin with a relevant topic, while a complete beginner may benefit from starting at Module 00.
 
----
+## Reading a lesson effectively
 
-# Understanding the Learning Flow
+### Step 1 — Understand the outcome
 
-Every learning path follows the same structure.
+Before reading, ask: “What should I be able to explain or demonstrate afterward?” A good outcome is specific, such as describing the difference between DNS resolution and HTTP response.
 
-## Step 1 — Lessons
+### Step 2 — Build a miniature glossary
 
-Lessons introduce new concepts, explain how technologies work, and prepare you for practical implementation.
+Write at most five new terms for each session. Avoid copying long definitions. For example, instead of “TCP is a transport protocol,” write “TCP helps two applications exchange an ordered stream of bytes after establishing a connection.”
 
-You'll learn:
+### Step 3 — Examine the architecture
 
-- Concepts
-- Architecture
-- Best practices
-- Enterprise implementation
-- Security considerations
-- Real-world examples
+A table or diagram often reveals how concepts relate to each other. Recreate a diagram from memory and identify one dependency that could fail.
 
-Never skip lessons, even if you already know some of the material.
+### Step 4 — Practise only within a safe scope
 
----
+Run introductory commands on **your own laptop, an authorized classroom system or a clearly approved lab**. Do not scan, modify or exploit third-party services because a lesson discusses them.
 
-## Step 2 — Assessments
+### Step 5 — Compare expected and observed results
 
-Each module includes quizzes or assessments to help you verify your understanding.
+A command may give different output across operating systems, permissions, service versions and network conditions. Explain the difference instead of forcing a match.
 
-These assessments help you identify areas that need additional practice before moving forward.
+### Step 6 — Record an evidence note
 
-Treat assessments as learning opportunities rather than examinations.
+Capture the command or question, expected behavior, actual behavior, your explanation, unresolved questions and next safe step. Remove secrets, customer data and private identifiers before sharing.
 
----
+## Example: how a learner studies networking
 
-## Step 3 — Hands-on Labs
+A lesson introduces DNS. An unhelpful learning pattern is to memorize “DNS converts names to IP addresses” and stop.
 
-This is where learning becomes practical.
+A better routine:
 
-You'll complete guided exercises that simulate real-world environments.
+1. Draw the path from your browser to a resolver and onward to the intended application.
+2. On your own computer run a standard DNS lookup.
+3. Note the returned address records and the resolver context.
+4. Explain why a DNS response alone does not prove that HTTPS works.
+5. Write the next test that would distinguish a routing issue from an application error.
 
-Labs are designed to help you:
+**Expected result:** a diagram, a harmless observation and a short explanation. This is already meaningful independent practice.
 
-- Build confidence
-- Practice commands
-- Deploy services
-- Investigate security issues
-- Troubleshoot problems
-- Apply theoretical knowledge
+## Your progress tracker — a simple personal template
 
-Complete every lab before moving to the next module.
+Foundation's public pages do not automatically record Academy dashboard achievements. For free self-study, keep an Obsidian or Markdown table:
 
----
+| Date | Module | What I can explain | Evidence saved | Next step |
+|---|---|---|---|---|
+| Example | Networking | DNS vs HTTPS | Diagram and lookup notes | Study TCP and TLS |
 
-## Step 4 — Enterprise Runbooks
+You can also create a local Git repository when you reach Module 06. Never commit credentials or sensitive workplace information.
 
-Runbooks show how organizations perform operational tasks in production environments.
+## Study schedules for different learners
 
-You'll learn how professionals:
+| Learner | Suitable pacing | First milestone |
+|---|---|---|
+| Complete beginner | Two or three short sessions weekly | Label a computer diagram and one network flow |
+| College student | Four focused sessions weekly | Explain OS and networking concepts with evidence |
+| Working professional | Pick modules relevant to a real skill gap | Complete a safe case study and share a concise report |
+| Certification learner | Mix the study guide with basic examples | Explain service-choice decisions rather than only definitions |
 
-- Perform security reviews
-- Conduct investigations
-- Troubleshoot incidents
-- Document findings
-- Follow standard operating procedures
-- Implement enterprise best practices
+The [12-week study plan](/study-plan/) is optional. Progress is measured by what you can explain or demonstrate, not simply how many pages you opened.
 
-These runbooks bridge the gap between certification knowledge and real-world experience.
+## When you get stuck
 
----
+1. Re-read the learning objective.
+2. Identify exactly which term or command is unclear.
+3. Return to the prerequisite lesson using the syllabus directory.
+4. Check the operating system and permissions for the exercise.
+5. Try a simpler, read-only variation on a system you control.
+6. Record the question and consult reliable documentation.
+7. Ask a mentor or community member without exposing passwords, tokens or private data.
 
-## Step 5 — Projects
+Avoid blindly restarting services or elevating privileges to “make the exercise work.”
 
-Projects combine everything you've learned into practical implementations.
+## Foundation, Academy and GHC Labs
 
-Projects help you build:
+**Foundation:** Free reading, diagrams, review questions and self-directed practice.
 
-- Portfolio experience
-- Problem-solving skills
-- Confidence
-- Production-ready knowledge
+**GoHackersCloud Academy:** Separate advanced technical tracks and membership features.
 
-These projects are valuable additions to your resume and interview discussions.
+**GHC Labs:** Browser-based, preconfigured environments for supported Academy lessons, with access eligibility, session lifecycle and targets defined by each exercise. Some Academy tracks are learning resources rather than guaranteed hosted laboratories.
 
----
+Explore the [GHC Labs walkthrough](/ghc-labs/how-it-works/) and [13-track selection guide](/ghc-labs/track-selection/). The official [Hands-On Cybersecurity Labs page](https://gohackerscloud.com/hands-on-cybersecurity-labs) lists the current commercial options.
 
-# Following Your Learning Path
+## Mini assignment: plan your first two modules
 
-Every career track has been carefully structured.
+- [ ] Choose one starting point and explain why it fits your experience.
+- [ ] List three topics you find confusing.
+- [ ] Write a realistic weekly study commitment.
+- [ ] Select one safe independent exercise for each week.
+- [ ] Create a simple progress table with expected and actual results.
+- [ ] Decide what evidence you will save after each session.
 
-Avoid jumping randomly between modules.
+**Deliverable:** one page of personal learning objectives, practice scope and weekly milestones.
 
-Instead, follow the recommended sequence.
+## Check your understanding
 
-```
-Foundation
+1. **Does Foundation require an Academy subscription?**
 
-↓
+   <details><summary>Suggested reasoning</summary>No. Public Foundation pages are free. Hosted Academy lab access is separate and depends on lesson and membership terms.</details>
 
-Module 1
+2. **Why record observed output rather than copying a sample?**
 
-↓
+   <details><summary>Suggested reasoning</summary>Real results differ by environment; your observation and interpretation are evidence of actual understanding.</details>
 
-Assessment
+3. **What should you do before using an unfamiliar technical command?**
 
-↓
+   <details><summary>Suggested reasoning</summary>Understand what it changes or reads, confirm scope/permissions, and choose a harmless variation when learning.</details>
 
-Lab
+## Continue learning
 
-↓
-
-Runbook
-
-↓
-
-Module 2
-
-↓
-
-Assessment
-
-↓
-
-Lab
-
-↓
-
-Runbook
-
-↓
-
-Continue Until Completion
-```
-
-Learning sequentially ensures you develop strong fundamentals before moving into advanced topics.
-
----
-
-# Track Your Progress
-
-As you complete each lesson:
-
-- Mark lessons as completed.
-- Complete all assessments.
-- Finish every lab.
-- Read every runbook.
-- Review difficult topics.
-- Take personal notes.
-
-Keeping track of your progress helps maintain motivation and ensures nothing important is missed.
-
----
-
-# Build Your Personal Knowledge Base
-
-We strongly recommend maintaining your own documentation.
-
-Create notes for:
-
-- Important commands
-- Architecture diagrams
-- Troubleshooting tips
-- Best practices
-- Interview questions
-- Common mistakes
-- Useful references
-
-Building your own knowledge base reinforces learning and becomes a valuable reference throughout your career.
-
----
-
-# Set Up Your Home Lab
-
-Practical experience is essential.
-
-As you progress through the academy, you'll build your own home lab using technologies such as:
-
-- Virtual Machines
-- Docker
-- Linux
-- Windows
-- AWS
-- Azure
-- Google Cloud
-- Kubernetes
-- DevOps tools
-
-Your home lab allows you to experiment, make mistakes, and learn safely.
-
-Don't worry if you don't have everything set up yet—we'll guide you through the process in upcoming lessons.
-
----
-
-# Learn at Your Own Pace
-
-Everyone learns differently.
-
-Some students complete a module in one day.
-
-Others take a week.
-
-Focus on understanding rather than speed.
-
-Remember:
-
-> **Your goal is mastery, not completion.**
-
----
-
-# When You Get Stuck
-
-Getting stuck is a normal part of learning.
-
-When that happens:
-
-1. Rewatch the lesson.
-2. Review your notes.
-3. Repeat the lab.
-4. Read the runbook.
-5. Search the documentation.
-6. Ask questions in the community.
-7. Continue practicing.
-
-Every challenge you overcome makes you a better engineer.
-
----
-
-# Learning Tips for Success
-
-To get the most from the academy:
-
-- Study consistently.
-- Complete every lab.
-- Practice outside the lessons.
-- Build projects independently.
-- Take notes regularly.
-- Ask questions.
-- Review previous modules.
-- Stay curious.
-
-Small, consistent progress leads to long-term success.
-
----
-
-# Key Takeaways
-
-After completing this lesson, you should understand:
-
-- How GoHackersCloud Academy is organized.
-- The purpose of lessons, assessments, labs, and runbooks.
-- How to follow your learning path.
-- Why practical learning is important.
-- How to maximize your learning experience.
-
----
-
-# Next Lesson
-
-➡️ **Lesson 03 — Learning Methodology**
-
-In the next lesson, you'll discover the GoHackersCloud learning methodology and understand how concepts, hands-on practice, enterprise projects, and continuous learning work together to help you build real-world technical expertise.
-```
+[Next lesson — Learning Methodology](/foundation/gohackerscloud-foundation/00-welcome-to-gohackerscloud/03-learning-methodology/) · [Start Core IT & DevOps](/core-it-devops/) · [View all Foundation lessons](/curriculum/)
