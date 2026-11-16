@@ -13,11 +13,15 @@
 .EXAMPLE
   .\scripts\sync-foundation-to-obsidian.ps1 -Scope CoreUpdates -Apply -Overwrite
 .EXAMPLE
+  .\scripts\sync-foundation-to-obsidian.ps1 -Scope CloudCyberUpdates
+.EXAMPLE
+  .\scripts\sync-foundation-to-obsidian.ps1 -Scope CloudCyberUpdates -Apply -Overwrite
+.EXAMPLE
   .\scripts\sync-foundation-to-obsidian.ps1 -Scope All -IncludeHub -Apply -Overwrite
 #>
 [CmdletBinding()]
 param(
-  [ValidateSet('CoreUpdates','Core','All')]
+  [ValidateSet('CoreUpdates','Core','CloudCyberUpdates','All')]
   [string]$Scope = 'CoreUpdates',
 
   [string]$RepoPath = 'C:\Projects\GoHackersCloud\gohackerscloud-foundation',
@@ -99,6 +103,23 @@ foreach ($mapping in $mappings) {
           continue
         }
       }
+    }
+
+    if ($mapping.Name -eq 'Foundation' -and $Scope -eq 'CloudCyberUpdates') {
+      # Only the 8 reviewed Mermaid architecture lessons from this pull request.
+      # Never overwrite unrelated modules when syncing cloud/security edits.
+      $matchPath = $relativePath.Replace('\\', '/')
+      $allowedLessons = @(
+        'GoHackersCloud Foundation/07 Cloud Computing Fundamentals/01 Cloud Computing.md',
+        'GoHackersCloud Foundation/07 Cloud Computing Fundamentals/02 IaaS.md',
+        'GoHackersCloud Foundation/07 Cloud Computing Fundamentals/11 Shared Responsibility.md',
+        'GoHackersCloud Foundation/08 Cybersecurity Fundamentals/01 Security Mindset.md',
+        'GoHackersCloud Foundation/08 Cybersecurity Fundamentals/02 CIA Triad.md',
+        'GoHackersCloud Foundation/08 Cybersecurity Fundamentals/08 Defense in Depth.md',
+        'GoHackersCloud Foundation/08 Cybersecurity Fundamentals/10 Security Architecture.md',
+        'GoHackersCloud Foundation/08 Cybersecurity Fundamentals/12 Security Operations.md'
+      )
+      if ($matchPath -notin $allowedLessons) { continue }
     }
 
     $target = Join-Path $destinationRoot $relativePath
