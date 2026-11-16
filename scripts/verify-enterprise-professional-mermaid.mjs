@@ -18,7 +18,7 @@ const specs=[
   ['15 Enterprise (GRC)','07 Security Audits & Compliance Assessments.md',1],
 ];
 const slug = value => value.toLowerCase()
-  .replace(/&/g,'-').replace(/[^a-z0-9]+/g,'-')
+  .replace(/[&()]/g,'').replace(/\s/g,'-').replace(/[^a-z0-9-]/g,'')
   .replace(/^-|-$/g,'');
 
 assert.equal(specs.length,12);
