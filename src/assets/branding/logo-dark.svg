@@ -2,7 +2,7 @@
      viewBox="0 0 720 140"
      role="img"
      aria-labelledby="title">
-  <title id="title">GoHackersCloud Academy</title>
+  <title id="title">GoHackersCloud Foundation</title>
 
   <defs>
     <linearGradient id="cloud" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -117,9 +117,9 @@
         fill="#18C7D9">Cloud</text>
 
   <text x="410" y="105"
-        font-size="30"
+        font-size="26"
         font-family="Inter, Arial, Helvetica, sans-serif"
         font-weight="700"
-        letter-spacing="8"
-        fill="#1ED6E6">ACADEMY</text>
+        letter-spacing="3.5"
+        fill="#1ED6E6">FOUNDATION</text>
 </svg>
