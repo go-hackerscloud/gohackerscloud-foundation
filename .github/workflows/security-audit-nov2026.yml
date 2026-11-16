@@ -45,3 +45,5 @@ jobs:
         run: node scripts/verify-core-learning.mjs
       - name: Validate architecture diagrams and original lesson URLs
         run: node scripts/verify-cloud-cyber-mermaid.mjs
+      - name: Validate Stage 03 enterprise and professional Mermaid lessons
+        run: node scripts/verify-enterprise-professional-mermaid.mjs
