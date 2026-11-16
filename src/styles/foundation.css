@@ -38,3 +38,18 @@
     width: 100%;
   }
 }
+/* Mermaid architecture diagrams: responsive across desktop and phone widths. */
+.sl-markdown-content pre.mermaid {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-block: 1.25rem;
+  padding: clamp(0.9rem, 2vw, 1.6rem);
+  border: 1px solid var(--ghc-color-border);
+  border-radius: 12px;
+}
+.sl-markdown-content pre.mermaid svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
