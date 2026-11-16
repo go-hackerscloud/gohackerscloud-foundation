@@ -1,0 +1,35 @@
+name: Foundation dependency security and build
+on:
+  pull_request:
+    paths:
+      - package.json
+      - package-lock.json
+      - astro.config.mjs
+      - src/**
+      - .github/workflows/security-audit-nov2026.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-foundation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install exactly the reviewed versions
+        run: npm ci --no-audit --no-fund
+      - name: Fail on high/critical issues in all dependencies
+        run: npm audit --audit-level=high
+      - name: Fail on high/critical production dependency issues
+        run: npm audit --omit=dev --audit-level=high
+      - name: Build Foundation static site
+        run: npm run build
+      - name: Confirm built homepage and lesson pages exist
+        run: |
+          test -s dist/index.html
+          test -d dist/foundation
+          echo "Static Foundation build and learning tree present"
