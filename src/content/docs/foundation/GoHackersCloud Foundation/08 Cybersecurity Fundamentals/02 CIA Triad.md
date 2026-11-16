@@ -36,7 +36,7 @@ Whether you're protecting cloud environments, enterprise applications, Kubernete
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -50,7 +50,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is the CIA Triad?
+## What is the CIA Triad?
 
 The **CIA Triad** is a security model that defines the three primary objectives of information security.
 
@@ -70,7 +70,7 @@ Together, these principles guide the design, implementation, and operation of se
 
 ---
 
-# Why the CIA Triad Matters
+## Why the CIA Triad Matters
 
 Every cybersecurity decision should support at least one of these objectives.
 
@@ -86,9 +86,9 @@ It serves as the foundation for enterprise security programs.
 
 ---
 
-# Confidentiality
+## Confidentiality
 
-## Definition
+### Definition
 
 Confidentiality ensures that information is accessible **only to authorized users**.
 
@@ -105,7 +105,7 @@ Examples include:
 
 ---
 
-# Threats to Confidentiality
+## Threats to Confidentiality
 
 Common threats include:
 
@@ -120,7 +120,7 @@ Any unauthorized disclosure of information violates confidentiality.
 
 ---
 
-# Security Controls for Confidentiality
+## Security Controls for Confidentiality
 
 Organizations protect confidentiality using:
 
@@ -136,7 +136,7 @@ These controls ensure only authorized users access sensitive information.
 
 ---
 
-# Real-World Example — Confidentiality
+## Real-World Example — Confidentiality
 
 A hospital stores patient medical records.
 
@@ -154,9 +154,9 @@ This protects patient confidentiality.
 
 ---
 
-# Integrity
+## Integrity
 
-## Definition
+### Definition
 
 Integrity ensures that information remains:
 
@@ -169,7 +169,7 @@ Users must be able to trust the data they use.
 
 ---
 
-# Threats to Integrity
+## Threats to Integrity
 
 Examples include:
 
@@ -184,7 +184,7 @@ Even accidental changes can compromise data integrity.
 
 ---
 
-# Security Controls for Integrity
+## Security Controls for Integrity
 
 Organizations protect integrity through:
 
@@ -199,7 +199,7 @@ These controls help detect unauthorized changes.
 
 ---
 
-# Real-World Example — Integrity
+## Real-World Example — Integrity
 
 An employee's salary information is stored in an HR database.
 
@@ -211,9 +211,9 @@ This ensures the integrity of employee data.
 
 ---
 
-# Availability
+## Availability
 
-## Definition
+### Definition
 
 Availability ensures that systems and data remain accessible whenever authorized users need them.
 
@@ -221,7 +221,7 @@ Critical systems should remain operational even during failures or cyberattacks.
 
 ---
 
-# Threats to Availability
+## Threats to Availability
 
 Examples include:
 
@@ -236,7 +236,7 @@ Any event preventing legitimate access affects availability.
 
 ---
 
-# Security Controls for Availability
+## Security Controls for Availability
 
 Organizations improve availability using:
 
@@ -253,7 +253,7 @@ These controls minimize downtime.
 
 ---
 
-# Real-World Example — Availability
+## Real-World Example — Availability
 
 An online shopping platform experiences heavy traffic during a holiday sale.
 
@@ -267,19 +267,19 @@ Availability is maintained.
 
 ---
 
-# Understanding the CIA Triad Together
+## Understanding the CIA Triad Together
 
 Consider an online banking system.
 
-### Confidentiality
+#### Confidentiality
 
 Only customers can view their accounts.
 
-### Integrity
+#### Integrity
 
 Transactions cannot be modified without authorization.
 
-### Availability
+#### Availability
 
 Customers can access online banking 24/7.
 
@@ -287,7 +287,7 @@ All three principles work together to secure the application.
 
 ---
 
-# CIA Triad in Cloud Computing
+## CIA Triad in Cloud Computing
 
 Cloud Engineers apply the CIA Triad by:
 
@@ -301,21 +301,21 @@ The CIA Triad is integrated into cloud architecture design.
 
 ---
 
-# CIA Triad in DevOps
+## CIA Triad in DevOps
 
 DevSecOps teams protect:
 
-### Confidentiality
+#### Confidentiality
 
 Secrets Management
 
-### Integrity
+#### Integrity
 
 Code Signing
 
 Pipeline Validation
 
-### Availability
+#### Availability
 
 CI/CD Redundancy
 
@@ -325,19 +325,19 @@ Security becomes part of the software development lifecycle.
 
 ---
 
-# CIA Triad in Artificial Intelligence
+## CIA Triad in Artificial Intelligence
 
 AI platforms require:
 
-### Confidentiality
+#### Confidentiality
 
 Protect training datasets.
 
-### Integrity
+#### Integrity
 
 Prevent model tampering.
 
-### Availability
+#### Availability
 
 Ensure AI services remain accessible.
 
@@ -345,7 +345,7 @@ As AI adoption grows, these principles become increasingly important.
 
 ---
 
-# CIA Triad in Enterprise Security
+## CIA Triad in Enterprise Security
 
 Enterprise security teams use the CIA Triad when designing:
 
@@ -360,7 +360,7 @@ The CIA Triad influences every security decision.
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid:
 
@@ -375,7 +375,7 @@ All three principles are equally important.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -392,7 +392,7 @@ These practices strengthen confidentiality, integrity, and availability.
 
 ---
 
-# Real-World Enterprise Scenario
+## Real-World Enterprise Scenario
 
 A financial institution protects its online banking platform.
 
@@ -432,7 +432,39 @@ This architecture protects:
 
 ---
 
-# Key Takeaways
+## Security architecture exercise — CIA objectives in a learning portal
+
+```mermaid
+flowchart TB
+    PORTAL["University learning portal"] --> RECORDS[("Student records")]
+    PORTAL --> EXAMS["Assessments and results"]
+    PORTAL --> LOGIN["Identity and sign-in"]
+    RECORDS --> C["Confidentiality: access limits and encryption"]
+    EXAMS --> I["Integrity: controlled updates and audit history"]
+    LOGIN --> A["Availability: resilience and recovery"]
+```
+
+**What this diagram shows:** Security priorities depend on the business asset. Confidentiality, integrity and availability can each apply to *all* assets; the arrows highlight one illustrative priority per component, not a hard rule.
+
+**Workplace example:** A student can read their own grade but not another student's records. Authorized faculty can change grades through an approved workflow, and the service should remain available during exam periods.
+
+### Practise mapping controls to evidence
+
+1. **Confidentiality:** write an expected-deny test for student A attempting to access student B's record. Do not attempt this against a real school system.
+2. **Integrity:** describe how an authorized grade correction should be logged and later verified.
+3. **Availability:** propose a safe disaster recovery tabletop scenario and a restore-validation criterion.
+
+| Goal | Control category | Evidence to collect |
+|---|---|---|
+| Confidentiality | Authentication and per-record authorization | Denied test for an unauthorized identity |
+| Integrity | Role approvals and change records | Authorized change audit trail |
+| Availability | Monitored service and tested recovery | Recovery walkthrough against stated objective |
+
+**Expected deliverable:** an asset–control–evidence table. This is a free, scenario-based exercise requiring no production access or subscription.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -449,7 +481,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 The CIA Triad is the foundation of modern cybersecurity.
 
@@ -461,7 +493,7 @@ A solid understanding of the CIA Triad prepares you for advanced topics in Cloud
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 03 — Risk Management**
 
