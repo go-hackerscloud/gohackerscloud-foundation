@@ -28,7 +28,7 @@ Today, Hybrid Cloud is one of the most common cloud strategies used by enterpris
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -43,7 +43,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Hybrid Cloud?
+## What is Hybrid Cloud?
 
 A **Hybrid Cloud** is a cloud deployment model that combines two or more cloud environments that work together.
 
@@ -58,7 +58,7 @@ Hybrid Cloud allows organizations to keep sensitive workloads private while taki
 
 ---
 
-# Why Hybrid Cloud Matters
+## Why Hybrid Cloud Matters
 
 Organizations adopt Hybrid Cloud because it enables them to:
 
@@ -74,7 +74,7 @@ Hybrid Cloud provides flexibility without requiring organizations to abandon exi
 
 ---
 
-# Hybrid Cloud Architecture
+## Hybrid Cloud Architecture
 
 A simplified Hybrid Cloud architecture looks like this:
 
@@ -106,7 +106,7 @@ Applications and data communicate securely between cloud environments.
 
 ---
 
-# Components of a Hybrid Cloud
+## Components of a Hybrid Cloud
 
 A Hybrid Cloud typically includes:
 
@@ -123,7 +123,7 @@ Together, these components provide a unified cloud environment.
 
 ---
 
-# Hybrid Cloud Connectivity
+## Hybrid Cloud Connectivity
 
 Public and Private Cloud environments communicate through secure connections.
 
@@ -139,7 +139,7 @@ Secure connectivity enables reliable communication between environments.
 
 ---
 
-# Data Flow in Hybrid Cloud
+## Data Flow in Hybrid Cloud
 
 Example workflow:
 
@@ -167,13 +167,13 @@ Applications can use resources across both cloud environments while keeping sens
 
 ---
 
-# Workload Placement
+## Workload Placement
 
 Organizations decide where workloads should run based on business requirements.
 
 Examples:
 
-### Public Cloud
+#### Public Cloud
 
 - Websites
 - Development Environments
@@ -181,7 +181,7 @@ Examples:
 - Disaster Recovery
 - Test Environments
 
-### Private Cloud
+#### Private Cloud
 
 - Financial Systems
 - Healthcare Records
@@ -193,7 +193,7 @@ Choosing the appropriate environment improves security and efficiency.
 
 ---
 
-# Cloud Bursting
+## Cloud Bursting
 
 Hybrid Cloud supports **Cloud Bursting**.
 
@@ -225,7 +225,7 @@ Cloud Bursting enables applications to handle unexpected increases in demand.
 
 ---
 
-# Disaster Recovery
+## Disaster Recovery
 
 Hybrid Cloud simplifies disaster recovery.
 
@@ -251,7 +251,7 @@ If the primary environment fails, workloads can be recovered in the cloud.
 
 ---
 
-# Backup Strategy
+## Backup Strategy
 
 Organizations commonly implement:
 
@@ -279,7 +279,7 @@ Storing backups across multiple environments improves resilience.
 
 ---
 
-# Identity Management
+## Identity Management
 
 Hybrid Cloud environments commonly integrate:
 
@@ -293,7 +293,7 @@ A unified identity strategy improves security and simplifies user management.
 
 ---
 
-# Hybrid Cloud Networking
+## Hybrid Cloud Networking
 
 Hybrid networking commonly includes:
 
@@ -308,7 +308,7 @@ Reliable networking is essential for Hybrid Cloud success.
 
 ---
 
-# Automation
+## Automation
 
 Organizations automate Hybrid Cloud operations using:
 
@@ -323,7 +323,7 @@ Automation reduces manual effort and improves consistency.
 
 ---
 
-# Monitoring
+## Monitoring
 
 Hybrid Cloud environments require centralized monitoring.
 
@@ -340,7 +340,7 @@ Unified monitoring provides visibility across both cloud environments.
 
 ---
 
-# Security
+## Security
 
 Hybrid Cloud security includes:
 
@@ -356,7 +356,7 @@ Security policies should be applied consistently across all environments.
 
 ---
 
-# Benefits of Hybrid Cloud
+## Benefits of Hybrid Cloud
 
 Hybrid Cloud offers:
 
@@ -373,7 +373,7 @@ These advantages make Hybrid Cloud attractive to enterprise organizations.
 
 ---
 
-# Challenges of Hybrid Cloud
+## Challenges of Hybrid Cloud
 
 Organizations may encounter:
 
@@ -389,7 +389,7 @@ Planning and governance are essential for successful Hybrid Cloud adoption.
 
 ---
 
-# Hybrid Cloud in Cloud Computing
+## Hybrid Cloud in Cloud Computing
 
 Cloud Engineers use Hybrid Cloud for:
 
@@ -403,7 +403,7 @@ Hybrid Cloud enables gradual adoption of cloud technologies.
 
 ---
 
-# Hybrid Cloud in DevOps
+## Hybrid Cloud in DevOps
 
 DevOps Engineers use Hybrid Cloud to:
 
@@ -417,7 +417,7 @@ Automation simplifies operations across environments.
 
 ---
 
-# Hybrid Cloud in Cybersecurity
+## Hybrid Cloud in Cybersecurity
 
 Security teams use Hybrid Cloud for:
 
@@ -432,7 +432,7 @@ Hybrid Cloud supports both operational flexibility and regulatory requirements.
 
 ---
 
-# Hybrid Cloud in Artificial Intelligence
+## Hybrid Cloud in Artificial Intelligence
 
 AI workloads commonly use Hybrid Cloud for:
 
@@ -446,7 +446,7 @@ Organizations balance security with scalable compute resources.
 
 ---
 
-# Public vs Private vs Hybrid Cloud
+## Public vs Private vs Hybrid Cloud
 
 | Public Cloud | Private Cloud | Hybrid Cloud |
 |---------------|---------------|--------------|
@@ -460,7 +460,7 @@ Each deployment model addresses different business requirements.
 
 ---
 
-# Enterprise Use Cases
+## Enterprise Use Cases
 
 Hybrid Cloud is commonly used for:
 
@@ -477,7 +477,7 @@ Many organizations adopt Hybrid Cloud as part of their long-term cloud strategy.
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid:
 
@@ -492,7 +492,7 @@ Hybrid Cloud should operate as a unified platform.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -509,7 +509,7 @@ These practices improve security, reliability, and operational efficiency.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A healthcare provider maintains patient records in a Private Cloud while hosting its public patient portal in the Public Cloud.
 
@@ -541,7 +541,46 @@ This architecture provides scalability for public-facing services while protecti
 
 ---
 
-# Key Takeaways
+## Architecture workshop — Connected data center and public cloud
+
+```mermaid
+flowchart LR
+    USER["Approved employees"] --> IDENT["Company identity provider"]
+    subgraph LOCAL["Company-managed data center"]
+        LEGACY["Internal service"] --> DB[("Legacy data")]
+    end
+    subgraph CLOUD["Provider cloud"]
+        WEB["Cloud customer portal"] --> CLOUDDB[("Managed data")]
+    end
+    IDENT -. "user identity" .-> LEGACY
+    IDENT -. "user identity" .-> WEB
+    LEGACY <-->|"Restricted private connection"| WEB
+    WEB -. "audit" .-> LOG["Security monitoring"]
+```
+
+**How to read it:** Hybrid connectivity joins environments but does not eliminate the need for network segmentation, encryption, identity and data-governance decisions.
+
+### Enterprise scenario
+
+A school keeps legacy finance records on premises while offering students a cloud-hosted portal. Only explicitly approved traffic should cross the private connection.
+
+### Independent practical exercise
+
+Label each trust boundary, decide which paths must be denied, then describe what happens when the private connection fails.
+
+**Expected evidence:** A hybrid data-flow and an outage checklist using only fictional systems.
+
+### Check your understanding
+
+**Does a private link make all cross-environment traffic automatically trusted?**
+
+<details><summary>Suggested reasoning</summary>No. Private routing is separate from authorization, data protection and service identity.</details>
+
+**Next step:** [Review the 16-module curriculum](/curriculum/) or [explore optional GHC Labs practice](/ghc-labs/). This Foundation exercise is free and self-directed.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -558,7 +597,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Hybrid Cloud combines the scalability of the Public Cloud with the control and security of the Private Cloud.
 
@@ -568,7 +607,7 @@ Hybrid Cloud continues to be one of the most widely adopted cloud strategies acr
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 08 — Cloud Networking**
 
