@@ -33,7 +33,7 @@ Good documentation enables engineers to deploy faster, troubleshoot efficiently,
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -48,7 +48,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Technical Documentation?
+## What is Technical Documentation?
 
 **Technical Documentation** is structured information that describes systems, infrastructure, applications, processes, and operational procedures.
 
@@ -65,7 +65,7 @@ Documentation is an essential part of enterprise engineering.
 
 ---
 
-# Why Documentation Matters
+## Why Documentation Matters
 
 Organizations create documentation to:
 
@@ -82,7 +82,7 @@ Well-maintained documentation saves significant time during incidents and operat
 
 ---
 
-# Characteristics of Good Documentation
+## Characteristics of Good Documentation
 
 Professional documentation should be:
 
@@ -99,7 +99,7 @@ Clear documentation improves engineering efficiency.
 
 ---
 
-# Common Types of Documentation
+## Common Types of Documentation
 
 Enterprise organizations maintain:
 
@@ -116,7 +116,7 @@ Each serves a different audience and purpose.
 
 ---
 
-# Architecture Documentation
+## Architecture Documentation
 
 Architecture documentation typically includes:
 
@@ -132,7 +132,7 @@ Architecture documentation explains how systems are designed and connected.
 
 ---
 
-# Operational Documentation
+## Operational Documentation
 
 Operational teams commonly create:
 
@@ -147,7 +147,7 @@ These documents ensure consistent execution of operational tasks.
 
 ---
 
-# Runbooks
+## Runbooks
 
 A **Runbook** provides step-by-step instructions for performing operational activities.
 
@@ -163,7 +163,7 @@ Runbooks reduce operational errors during high-pressure situations.
 
 ---
 
-# Standard Operating Procedures (SOPs)
+## Standard Operating Procedures (SOPs)
 
 SOPs document repeatable business and operational processes.
 
@@ -179,7 +179,7 @@ SOPs improve consistency across teams.
 
 ---
 
-# Knowledge Base
+## Knowledge Base
 
 Organizations maintain centralized knowledge bases containing:
 
@@ -194,7 +194,7 @@ Knowledge bases reduce duplicated effort and improve self-service.
 
 ---
 
-# Infrastructure Documentation
+## Infrastructure Documentation
 
 Infrastructure documentation should describe:
 
@@ -211,7 +211,7 @@ This information supports operations, security, and disaster recovery.
 
 ---
 
-# Security Documentation
+## Security Documentation
 
 Security teams maintain:
 
@@ -226,7 +226,7 @@ These documents support governance and regulatory requirements.
 
 ---
 
-# Documentation Lifecycle
+## Documentation Lifecycle
 
 ```text
 Create
@@ -264,11 +264,11 @@ Documentation should evolve as systems and processes change.
 
 ---
 
-# Documentation in Cloud Computing
+## Documentation in Cloud Computing
 
 Cloud documentation commonly includes:
 
-### AWS
+#### AWS
 
 - Architecture Diagrams
 - IAM Designs
@@ -276,13 +276,13 @@ Cloud documentation commonly includes:
 - CloudFormation Documentation
 - Disaster Recovery Plans
 
-### Microsoft Azure
+#### Microsoft Azure
 
 - Landing Zone Documentation
 - Resource Architecture
 - Network Design
 
-### Google Cloud
+#### Google Cloud
 
 - Project Structure
 - Security Architecture
@@ -292,7 +292,7 @@ Cloud environments should always be accompanied by accurate documentation.
 
 ---
 
-# Documentation in DevSecOps
+## Documentation in DevSecOps
 
 DevSecOps teams document:
 
@@ -307,7 +307,7 @@ Documentation supports collaboration and repeatable deployments.
 
 ---
 
-# Version Control
+## Version Control
 
 Documentation should be stored alongside source code whenever possible.
 
@@ -323,7 +323,7 @@ Git-based documentation has become an enterprise best practice.
 
 ---
 
-# Common Documentation Mistakes
+## Common Documentation Mistakes
 
 Avoid:
 
@@ -339,7 +339,7 @@ Poor documentation increases operational risk.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -356,7 +356,7 @@ These practices improve knowledge sharing and operational resilience.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 CloudNova Technologies stores engineering documentation in a centralized documentation platform.
 
@@ -400,7 +400,86 @@ When a production issue occurs, engineers immediately access current documentati
 
 ---
 
-# Key Takeaways
+## Architecture workshop — Documentation that engineers can use
+
+Professional documentation is not a long list of screenshots. It should explain **what a system does, how it is connected, who owns it, how to change it safely and what to do when it fails**. Well-maintained docs reduce onboarding risk and allow teams to make decisions without relying on a single person's memory.
+
+### Diagram 1 — Document a system from purpose to operations
+
+```mermaid
+flowchart TB
+    REQ["Business purpose and requirements"] --> ARCH["System and data-flow architecture"]
+    ARCH --> INVENTORY["Components, identity and ownership"]
+    INVENTORY --> RUNBOOK["Operational runbooks and safe procedures"]
+    RUNBOOK --> TESTS["Verification and rollback evidence"]
+    TESTS --> REVIEW["Versioned peer review"]
+    REVIEW --> UPDATE["Update after approved changes"]
+    UPDATE --> ARCH
+```
+
+**How to read it:** A useful document describes the service in business terms, draws the system boundaries, lists dependencies, and explains what operators can verify. Documentation must be updated when a change invalidates an assumption. Diagram-only documentation is not enough if no one knows who owns the system.
+
+### Diagram 2 — Example application architecture for a runbook
+
+```mermaid
+flowchart LR
+    USER["User / browser"] --> DNS["DNS and approved entry"]
+    DNS --> APP["Application service"]
+    APP --> DB[("Restricted data store")]
+    APP -. "telemetry" .-> LOG["Logs and alerts"]
+    DB --> BACKUP["Managed backup and restore"]
+    TEAM["Application owner"] -. "change authority" .-> APP
+```
+
+**What it shows:** The user's request path, the private data dependency and supporting operational controls. Dotted links show ownership or telemetry relationships; they are not necessarily network requests.
+
+**Real-world use:** When a service appears down, an engineer should identify the first failing component, inspect health and relevant logs, and escalate to the correct owner. A trustworthy diagram reduces speculative changes.
+
+### Diagram 3 — Documentation-as-code review loop
+
+```mermaid
+flowchart LR
+    AUTHOR["Author change"] --> BRANCH["Version-control branch"]
+    BRANCH --> REVIEW["Peer review"]
+    REVIEW --> CHECKS["Links, build and content validation"]
+    CHECKS --> PUBLISH["Approved publication"]
+    PUBLISH --> FEEDBACK["Reader feedback and update"]
+    FEEDBACK --> AUTHOR
+```
+
+**How it works:** Markdown in Git can be reviewed alongside code, but documentation also needs technical ownership, periodic review and tested instructions. Publishing a page successfully does not prove that its commands or operational procedures are correct.
+
+### Guided exercise — Write an operational quick-start
+
+Use a *fictional* employee portal. No live system access is needed.
+
+1. Define audience (junior support engineer), purpose and application owner.
+2. Draw the system in Diagram 2 with a public entry and a restricted database.
+3. Write a five-step **read-only** troubleshooting procedure: symptoms, scope, status, logging and escalation.
+4. Add a **rollback and safety note**: which actions require approval, and what evidence should be preserved?
+5. Add a document version, review date and assumptions. Explain how changes would be reviewed.
+
+**Expected deliverable:** a one-page system diagram plus a reviewable runbook. Include a section titled “What this document does not cover” rather than pretending to know unverified production details.
+
+### Knowledge check
+
+1. **Why can't an architecture diagram replace a runbook?**
+
+   <details><summary>Suggested answer</summary>A diagram shows components and relationships; a runbook gives authorized, tested steps and conditions for operational decisions.</details>
+
+2. **What makes a screenshot inadequate as the only evidence of a tested procedure?**
+
+   <details><summary>Suggested answer</summary>It may lack environment, timestamp, scope, command, expected result, verification and limitations.</details>
+
+3. **Why is documentation review part of engineering change management?**
+
+   <details><summary>Suggested answer</summary>Changes may invalidate diagrams, access paths and recovery steps. Versioned review keeps operational knowledge aligned with the deployed system.</details>
+
+**Continue:** [Professional Report Writing](/foundation/gohackerscloud-foundation/13-professional-skills/02-report-writing/) · [IT Interview Preparation](/learning-hub/it-interview/) · [GHC Labs overview](/ghc-labs/). Use only authorized and sanitized evidence when documenting exercises.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -417,7 +496,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Technical documentation is a critical component of enterprise engineering. It enables organizations to preserve knowledge, improve collaboration, standardize operations, accelerate troubleshooting, and reduce operational risk.
 
@@ -425,7 +504,7 @@ Mastering documentation practices is an essential skill for Cloud Engineers, Clo
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 02 — Report Writing**
 
