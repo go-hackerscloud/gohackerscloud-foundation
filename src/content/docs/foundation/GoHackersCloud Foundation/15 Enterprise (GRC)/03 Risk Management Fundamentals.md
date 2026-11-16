@@ -38,7 +38,7 @@ Risk management helps organizations make informed decisions by understanding pot
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -53,7 +53,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Risk Management?
+## What is Risk Management?
 
 **Risk Management** is the continuous process of identifying, analyzing, evaluating, treating, monitoring, and reviewing risks that could affect an organization's objectives.
 
@@ -63,7 +63,7 @@ Instead, it enables organizations to make informed decisions by understanding wh
 
 ---
 
-# Why Risk Management Matters
+## Why Risk Management Matters
 
 Organizations use risk management to:
 
@@ -80,7 +80,7 @@ Risk management supports both business and security objectives.
 
 ---
 
-# What is Risk?
+## What is Risk?
 
 A **Risk** is the possibility that a threat could exploit a vulnerability and negatively impact an organization.
 
@@ -106,11 +106,11 @@ Managing risk means reducing either the likelihood of an event occurring or mini
 
 ---
 
-# Common Enterprise Risks
+## Common Enterprise Risks
 
 Organizations manage many categories of risk.
 
-### Cybersecurity Risks
+#### Cybersecurity Risks
 
 - Ransomware
 - Data Breaches
@@ -120,7 +120,7 @@ Organizations manage many categories of risk.
 
 ---
 
-### Cloud Risks
+#### Cloud Risks
 
 - Misconfigured Storage
 - Excessive IAM Permissions
@@ -130,7 +130,7 @@ Organizations manage many categories of risk.
 
 ---
 
-### Operational Risks
+#### Operational Risks
 
 - System Failures
 - Human Error
@@ -139,7 +139,7 @@ Organizations manage many categories of risk.
 
 ---
 
-### Business Risks
+#### Business Risks
 
 - Financial Loss
 - Reputation Damage
@@ -148,7 +148,7 @@ Organizations manage many categories of risk.
 
 ---
 
-### Compliance Risks
+#### Compliance Risks
 
 - Regulatory Violations
 - Audit Findings
@@ -157,7 +157,7 @@ Organizations manage many categories of risk.
 
 ---
 
-# Risk Management Lifecycle
+## Risk Management Lifecycle
 
 Enterprise risk management follows a structured process.
 
@@ -189,7 +189,7 @@ Risk management is continuous rather than a one-time activity.
 
 ---
 
-# Risk Identification
+## Risk Identification
 
 The first step is identifying potential risks.
 
@@ -208,7 +208,7 @@ The earlier risks are identified, the easier they are to manage.
 
 ---
 
-# Risk Analysis
+## Risk Analysis
 
 Risk analysis determines:
 
@@ -221,7 +221,7 @@ This helps prioritize organizational efforts.
 
 ---
 
-# Qualitative Risk Analysis
+## Qualitative Risk Analysis
 
 Qualitative analysis uses descriptive ratings.
 
@@ -238,7 +238,7 @@ This approach is commonly used for enterprise risk assessments.
 
 ---
 
-# Quantitative Risk Analysis
+## Quantitative Risk Analysis
 
 Quantitative analysis estimates financial impact.
 
@@ -253,7 +253,7 @@ This approach supports business investment decisions.
 
 ---
 
-# Risk Matrix
+## Risk Matrix
 
 A common risk matrix looks like:
 
@@ -267,7 +267,7 @@ Organizations use risk matrices to prioritize remediation activities.
 
 ---
 
-# Risk Appetite
+## Risk Appetite
 
 **Risk Appetite** is the amount of risk an organization is willing to accept while pursuing its business objectives.
 
@@ -280,7 +280,7 @@ Risk appetite is defined by executive leadership.
 
 ---
 
-# Risk Tolerance
+## Risk Tolerance
 
 **Risk Tolerance** defines the acceptable variation around the organization's risk appetite.
 
@@ -293,11 +293,11 @@ Tolerance helps guide operational decisions.
 
 ---
 
-# Risk Treatment Strategies
+## Risk Treatment Strategies
 
 Organizations generally choose one of four approaches.
 
-### Risk Avoidance
+#### Risk Avoidance
 
 Eliminate the activity causing the risk.
 
@@ -307,7 +307,7 @@ Do not deploy an unsupported application.
 
 ---
 
-### Risk Mitigation
+#### Risk Mitigation
 
 Reduce either the likelihood or impact.
 
@@ -320,7 +320,7 @@ Examples:
 
 ---
 
-### Risk Transfer
+#### Risk Transfer
 
 Transfer financial responsibility.
 
@@ -332,7 +332,7 @@ Examples:
 
 ---
 
-### Risk Acceptance
+#### Risk Acceptance
 
 Accept the remaining risk after evaluation.
 
@@ -340,7 +340,7 @@ Accepted risks should be formally documented and approved.
 
 ---
 
-# Residual Risk
+## Residual Risk
 
 Even after implementing controls, some risk remains.
 
@@ -360,7 +360,7 @@ Organizations decide whether the remaining risk is acceptable.
 
 ---
 
-# Risk Register
+## Risk Register
 
 Most organizations maintain a **Risk Register**.
 
@@ -380,7 +380,7 @@ The Risk Register provides visibility into enterprise risks.
 
 ---
 
-# Risk Ownership
+## Risk Ownership
 
 Every identified risk should have an assigned owner.
 
@@ -398,7 +398,7 @@ Clear ownership improves accountability.
 
 ---
 
-# Risk Management in Cloud Computing
+## Risk Management in Cloud Computing
 
 Cloud risk management includes:
 
@@ -415,7 +415,7 @@ Cloud environments require continuous risk assessment due to their dynamic natur
 
 ---
 
-# Risk Management in Cybersecurity
+## Risk Management in Cybersecurity
 
 Security teams regularly assess:
 
@@ -431,7 +431,7 @@ Continuous monitoring allows risks to be managed proactively.
 
 ---
 
-# Enterprise Risk Frameworks
+## Enterprise Risk Frameworks
 
 Organizations commonly follow:
 
@@ -446,7 +446,7 @@ These frameworks provide structured approaches to managing enterprise risk.
 
 ---
 
-# Common Risk Management Challenges
+## Common Risk Management Challenges
 
 Organizations often face:
 
@@ -462,7 +462,7 @@ A mature risk management program continuously adapts to these challenges.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Successful organizations:
 
@@ -479,7 +479,7 @@ Risk management should be embedded into daily operations rather than treated as 
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 CloudNova Technologies plans to deploy a new cloud-native application.
 
@@ -525,7 +525,54 @@ Because risks are identified and addressed early, CloudNova successfully deploys
 
 ---
 
-# Key Takeaways
+## Architecture workshop — Evidence-based risk decisions
+
+```mermaid
+flowchart TD
+    ASSET["Identify asset and business outcome"] --> THREAT["Describe threat or failure scenario"]
+    THREAT --> CONTEXT["Evaluate exposure, likelihood and impact"]
+    CONTEXT --> DECISION{"Choose risk treatment"}
+    DECISION --> REDUCE["Reduce through controls"]
+    DECISION --> AVOID["Avoid the risky activity"]
+    DECISION --> SHARE["Share / transfer where suitable"]
+    DECISION --> ACCEPT["Accept under approved authority"]
+    REDUCE --> REVIEW["Review evidence and residual risk"]
+    AVOID --> REVIEW
+    SHARE --> REVIEW
+    ACCEPT --> REVIEW
+    REVIEW --> ASSET
+```
+
+**Explanation:** A vulnerability is not the same as risk. Risk is a scenario that may affect a business objective, considering likelihood and consequences under the specific context. Risk acceptance requires a designated authority and documented rationale. Transfer rarely removes all remaining risk.
+
+### Worked example — A fictional cloud service
+
+A learning application depends on a third-party identity service. The team has an untested recovery pathway, limited sign-in monitoring and no documented contract review. Its risk cannot be determined from a single CVSS score.
+
+| Field | Worked example |
+|---|---|
+| Asset | Student sign-in service |
+| Risk scenario | External identity outage blocks learning access |
+| Business impact | Learners temporarily cannot access courses |
+| Existing controls | Monitoring and vendor service commitments |
+| Evidence gap | No tested fallback or business continuity tabletop |
+| Treatment option | Improve recovery design and test |
+| Owner | Application availability owner |
+| Review | Follow-up after recovery exercise |
+
+### Practice — Build a risk register
+
+Create three *invented* scenarios involving confidentiality, integrity and availability. For each, write: asset, triggering condition, impact, control, owner, evidence, proposed treatment and **residual uncertainty**.
+
+**Expected deliverable:** a traceable risk register with meaningful priorities and no fabricated likelihood statistics. You do not need to calculate a numeric risk score unless your rubric and assumptions are stated.
+
+### Knowledge check
+
+**Is risk acceptance the same as ignoring a problem?** No. Proper acceptance is a conscious, documented and authorized decision based on business context and review criteria.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -542,7 +589,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Risk Management enables organizations to make informed business decisions by identifying, evaluating, prioritizing, and treating risks before they negatively impact operations. Rather than attempting to eliminate all risk, mature organizations manage risk within acceptable levels while supporting innovation, growth, and resilience.
 
@@ -550,7 +597,7 @@ Mastering Risk Management prepares Cloud Engineers, Cloud Security Engineers, Se
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 04 — Security Policies, Standards, Procedures & Guidelines**
 
