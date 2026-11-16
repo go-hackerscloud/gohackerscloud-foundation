@@ -65,6 +65,7 @@ export default defineConfig({
             { label: 'Foundation Home', link: '/' },
             { label: 'Start Here', link: '/start-here/' },
             { label: 'Explore 16 Modules', link: '/curriculum/' },
+            { label: 'Core IT & DevOps Deep-Dive', link: '/core-it-devops/' },
             { label: '12-Week Study Plan', link: '/study-plan/' },
           ],
         },
