@@ -17,11 +17,15 @@
 .EXAMPLE
   .\scripts\sync-foundation-to-obsidian.ps1 -Scope CloudCyberUpdates -Apply -Overwrite
 .EXAMPLE
+  .\scripts\sync-foundation-to-obsidian.ps1 -Scope EnterpriseProUpdates
+.EXAMPLE
+  .\scripts\sync-foundation-to-obsidian.ps1 -Scope EnterpriseProUpdates -Apply -Overwrite
+.EXAMPLE
   .\scripts\sync-foundation-to-obsidian.ps1 -Scope All -IncludeHub -Apply -Overwrite
 #>
 [CmdletBinding()]
 param(
-  [ValidateSet('CoreUpdates','Core','CloudCyberUpdates','All')]
+  [ValidateSet('CoreUpdates','Core','CloudCyberUpdates','EnterpriseProUpdates','All')]
   [string]$Scope = 'CoreUpdates',
 
   [string]$RepoPath = 'C:\Projects\GoHackersCloud\gohackerscloud-foundation',
@@ -120,6 +124,27 @@ foreach ($mapping in $mappings) {
         'GoHackersCloud Foundation/08 Cybersecurity Fundamentals/12 Security Operations.md'
       )
       if ($matchPath -notin $allowedLessons) { continue }
+    }
+
+    if ($mapping.Name -eq 'Foundation' -and $Scope -eq 'EnterpriseProUpdates') {
+      # Narrow import: exactly the 12 Stage 03 original lesson files changed in PR.
+      # Only use -Apply -Overwrite after reviewing differences and vault backups.
+      $stagePath = $relativePath.Replace('\', '/')
+      $enterpriseAllowedLessons = @(
+        'GoHackersCloud Foundation/12 Enterprise Security Operations/01 Security Operations Center (SOC).md',
+        'GoHackersCloud Foundation/12 Enterprise Security Operations/03 Security Information and Event Management (SIEM).md',
+        'GoHackersCloud Foundation/12 Enterprise Security Operations/05 Vulnerability Management.md',
+        'GoHackersCloud Foundation/13 Professional Skills/01 Technical Documentation.md',
+        'GoHackersCloud Foundation/13 Professional Skills/02 Report Writing.md',
+        'GoHackersCloud Foundation/13 Professional Skills/03 Communication Skills.md',
+        'GoHackersCloud Foundation/14 AI Fundamentals/01 AI Concepts.md',
+        'GoHackersCloud Foundation/14 AI Fundamentals/03 Generative AI.md',
+        'GoHackersCloud Foundation/14 AI Fundamentals/09 Responsible AI & AI Governance.md',
+        'GoHackersCloud Foundation/15 Enterprise (GRC)/01 Introduction to GRC.md',
+        'GoHackersCloud Foundation/15 Enterprise (GRC)/03 Risk Management Fundamentals.md',
+        'GoHackersCloud Foundation/15 Enterprise (GRC)/07 Security Audits & Compliance Assessments.md'
+      )
+      if ($stagePath -notin $enterpriseAllowedLessons) { continue }
     }
 
     $target = Join-Path $destinationRoot $relativePath

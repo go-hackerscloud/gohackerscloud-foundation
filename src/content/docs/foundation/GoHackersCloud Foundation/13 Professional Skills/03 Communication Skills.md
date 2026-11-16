@@ -35,7 +35,7 @@ The ability to communicate clearly, professionally, and confidently is one of th
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -50,7 +50,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# Why Communication Matters
+## Why Communication Matters
 
 Strong communication helps organizations:
 
@@ -66,7 +66,7 @@ Many security incidents become worse because of poor communication rather than t
 
 ---
 
-# Types of Communication
+## Types of Communication
 
 Enterprise communication generally includes:
 
@@ -81,7 +81,7 @@ Each serves a different purpose.
 
 ---
 
-# Verbal Communication
+## Verbal Communication
 
 Verbal communication occurs during:
 
@@ -102,7 +102,7 @@ Good verbal communication should be:
 
 ---
 
-# Written Communication
+## Written Communication
 
 Written communication includes:
 
@@ -118,11 +118,11 @@ Good writing prevents confusion and creates a permanent record.
 
 ---
 
-# Technical vs Business Communication
+## Technical vs Business Communication
 
 Engineers often communicate with different audiences.
 
-### Technical Audience
+#### Technical Audience
 
 Use:
 
@@ -132,7 +132,7 @@ Use:
 - Logs
 - Configurations
 
-### Business Audience
+#### Business Audience
 
 Focus on:
 
@@ -146,7 +146,7 @@ Always adapt your communication to your audience.
 
 ---
 
-# Active Listening
+## Active Listening
 
 Communication is not just speaking—it is also listening.
 
@@ -162,7 +162,7 @@ Listening carefully reduces mistakes and improves collaboration.
 
 ---
 
-# Asking Effective Questions
+## Asking Effective Questions
 
 Good engineers ask questions such as:
 
@@ -177,7 +177,7 @@ Well-structured questions speed up troubleshooting.
 
 ---
 
-# Professional Email Writing
+## Professional Email Writing
 
 Professional emails should include:
 
@@ -211,7 +211,7 @@ Keep emails clear and actionable.
 
 ---
 
-# Communication During Incidents
+## Communication During Incidents
 
 During security incidents:
 
@@ -226,7 +226,7 @@ Accurate communication reduces confusion during high-pressure situations.
 
 ---
 
-# Status Updates
+## Status Updates
 
 Good status updates answer:
 
@@ -251,7 +251,7 @@ Regular updates build trust.
 
 ---
 
-# Meeting Best Practices
+## Meeting Best Practices
 
 Professional meetings should have:
 
@@ -266,7 +266,7 @@ Well-managed meetings save time and improve productivity.
 
 ---
 
-# Presenting Technical Information
+## Presenting Technical Information
 
 When presenting:
 
@@ -280,7 +280,7 @@ Avoid overwhelming audiences with unnecessary technical details.
 
 ---
 
-# Communicating Risk
+## Communicating Risk
 
 Rather than saying:
 
@@ -294,7 +294,7 @@ Communicate business risk, not just technical issues.
 
 ---
 
-# Collaboration
+## Collaboration
 
 Enterprise engineers regularly collaborate with:
 
@@ -311,7 +311,7 @@ Respectful collaboration improves outcomes.
 
 ---
 
-# Giving and Receiving Feedback
+## Giving and Receiving Feedback
 
 Professional feedback should be:
 
@@ -325,7 +325,7 @@ Accept feedback with an open mind and use it to grow professionally.
 
 ---
 
-# Conflict Resolution
+## Conflict Resolution
 
 Disagreements happen in every organization.
 
@@ -341,11 +341,11 @@ Professional behavior builds trust.
 
 ---
 
-# Communication in Cloud Projects
+## Communication in Cloud Projects
 
 Cloud engineers regularly communicate about:
 
-### AWS
+#### AWS
 
 - Infrastructure Deployments
 - IAM Changes
@@ -353,13 +353,13 @@ Cloud engineers regularly communicate about:
 - Cloud Costs
 - Architecture Reviews
 
-### Azure
+#### Azure
 
 - Resource Deployments
 - Security Policies
 - Identity Management
 
-### Google Cloud
+#### Google Cloud
 
 - Project Architecture
 - Security Reviews
@@ -369,7 +369,7 @@ Clear communication reduces operational risk.
 
 ---
 
-# Communication in DevSecOps
+## Communication in DevSecOps
 
 DevSecOps teams communicate through:
 
@@ -384,7 +384,7 @@ Effective communication supports faster and safer software delivery.
 
 ---
 
-# Common Communication Mistakes
+## Common Communication Mistakes
 
 Avoid:
 
@@ -400,7 +400,7 @@ Professional communication is proactive, respectful, and solution-oriented.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -417,7 +417,7 @@ These practices strengthen teamwork and operational effectiveness.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 CloudNova Technologies experiences a critical cloud security incident.
 
@@ -461,7 +461,37 @@ Clear communication ensures every stakeholder understands the situation, enablin
 
 ---
 
-# Key Takeaways
+## Architecture workshop — Communicate the same fact to different stakeholders
+
+```mermaid
+flowchart TB
+    FACT["Verified technical observation"] --> ENGINEER["Engineering team: evidence and fix"]
+    FACT --> LEAD["Incident / project lead: owner and timeline"]
+    FACT --> EXEC["Business leader: impact and decision"]
+    ENGINEER --> CHECK["Shared status and next update"]
+    LEAD --> CHECK
+    EXEC --> CHECK
+```
+
+**Explanation:** Stakeholders do not need identical amounts of detail, but messages must remain consistent. An engineer should share reproducible facts and configuration dependencies; a team lead needs scope, ownership and next steps; a business leader needs the operational impact, uncertainty, options and decision required.
+
+**Enterprise scenario:** A staging application has a misconfigured access policy. The engineer must not describe the finding as a confirmed production breach. The owner needs a reproducible test; the manager needs a remediation commitment; an executive needs the actual business exposure, not frightening language.
+
+### Practise the three-message technique
+
+Take this *invented* fact: “An authorized staging review found overly broad read permissions; production impact has not been assessed.”
+
+1. **Technical update (3–5 sentences):** identify the affected staging policy, expected restriction, current evidence and safe verification.
+2. **Project update (2–3 sentences):** describe priority, responsible team, planned assessment and next communication checkpoint.
+3. **Executive update (two sentences):** distinguish confirmed facts, possible business risk and the approval or decision needed.
+
+**Expected outcome:** all three messages remain factual, appropriately scoped and free of unsupported claims. Never include credentials or personally identifying data in a presentation or email.
+
+**Knowledge check:** If the evidence covers only staging, can you say that production data was exposed? **No**. State the limitation, assign a production review, and update conclusions only after collecting evidence.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -478,7 +508,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Communication is one of the most valuable professional skills in cloud computing and cybersecurity. Engineers who communicate clearly, collaborate effectively, and explain technical concepts in business language become trusted advisors and future leaders within their organizations.
 
@@ -486,7 +516,7 @@ Mastering communication skills is essential for Cloud Engineers, Cloud Security 
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 04 — Presentation Skills**
 

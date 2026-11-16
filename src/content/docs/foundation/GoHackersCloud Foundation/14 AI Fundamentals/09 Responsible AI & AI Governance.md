@@ -42,7 +42,7 @@ This is the purpose of **Responsible AI** and **AI Governance**.
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -57,7 +57,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Responsible AI?
+## What is Responsible AI?
 
 **Responsible AI** is the practice of designing, developing, deploying, and using Artificial Intelligence in a way that is:
 
@@ -74,7 +74,7 @@ Responsible AI ensures technology benefits people while minimizing potential har
 
 ---
 
-# Why AI Governance Matters
+## Why AI Governance Matters
 
 Organizations implement AI Governance to:
 
@@ -91,7 +91,7 @@ AI should align with both business objectives and ethical standards.
 
 ---
 
-# AI Governance Framework
+## AI Governance Framework
 
 Enterprise AI Governance typically follows this lifecycle:
 
@@ -135,7 +135,7 @@ Governance is an ongoing process throughout the AI lifecycle.
 
 ---
 
-# Core Principles of Responsible AI
+## Core Principles of Responsible AI
 
 Most enterprise AI programs are built on these principles:
 
@@ -152,7 +152,7 @@ Together, these principles create trustworthy AI systems.
 
 ---
 
-# Fairness
+## Fairness
 
 AI systems should make decisions without unfair discrimination.
 
@@ -168,7 +168,7 @@ Fair AI improves trust and supports ethical decision-making.
 
 ---
 
-# Transparency
+## Transparency
 
 Users should understand:
 
@@ -181,7 +181,7 @@ Transparent AI improves user confidence and accountability.
 
 ---
 
-# Explainability
+## Explainability
 
 Organizations should be able to explain:
 
@@ -194,7 +194,7 @@ Explainability is especially important for high-impact decisions.
 
 ---
 
-# Accountability
+## Accountability
 
 Organizations should clearly define:
 
@@ -208,7 +208,7 @@ Humans—not AI—remain accountable for business decisions.
 
 ---
 
-# Human Oversight
+## Human Oversight
 
 AI should support—not replace—human judgment.
 
@@ -225,7 +225,7 @@ Critical decisions should always involve qualified professionals.
 
 ---
 
-# AI Risk Management
+## AI Risk Management
 
 Organizations should identify risks such as:
 
@@ -242,7 +242,7 @@ Managing these risks is a core governance responsibility.
 
 ---
 
-# AI Privacy
+## AI Privacy
 
 AI systems often process sensitive information.
 
@@ -260,7 +260,7 @@ Privacy controls should follow organizational policies and applicable regulation
 
 ---
 
-# AI Security
+## AI Security
 
 Enterprise AI security includes:
 
@@ -277,7 +277,7 @@ AI systems should follow the same security standards as other enterprise systems
 
 ---
 
-# AI Compliance
+## AI Compliance
 
 Organizations may need to comply with regulations such as:
 
@@ -292,7 +292,7 @@ Compliance requirements vary depending on industry and geography.
 
 ---
 
-# AI Lifecycle Governance
+## AI Lifecycle Governance
 
 Governance applies throughout the AI lifecycle.
 
@@ -332,7 +332,7 @@ Every phase should include security and governance controls.
 
 ---
 
-# AI Monitoring
+## AI Monitoring
 
 Organizations continuously monitor:
 
@@ -349,11 +349,11 @@ Continuous monitoring helps identify emerging risks.
 
 ---
 
-# AI in Cloud Computing
+## AI in Cloud Computing
 
 Cloud providers offer governance capabilities.
 
-### AWS
+#### AWS
 
 - Amazon Bedrock Guardrails
 - IAM
@@ -361,14 +361,14 @@ Cloud providers offer governance capabilities.
 - AWS Config
 - Amazon CloudWatch
 
-### Microsoft Azure
+#### Microsoft Azure
 
 - Azure AI Foundry Governance
 - Microsoft Purview
 - Azure Policy
 - Microsoft Defender for Cloud
 
-### Google Cloud
+#### Google Cloud
 
 - Vertex AI Governance
 - Cloud Audit Logs
@@ -379,7 +379,7 @@ Cloud-native services help organizations govern AI responsibly.
 
 ---
 
-# AI in Cybersecurity
+## AI in Cybersecurity
 
 Security teams use governance to:
 
@@ -394,7 +394,7 @@ Governance ensures AI strengthens security without introducing unnecessary risk.
 
 ---
 
-# Common AI Governance Challenges
+## Common AI Governance Challenges
 
 Organizations often face:
 
@@ -410,7 +410,7 @@ Governance programs should evolve as AI capabilities change.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
 Avoid:
 
@@ -426,7 +426,7 @@ Responsible AI requires both technology and organizational processes.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -443,7 +443,7 @@ These practices help organizations adopt AI securely and responsibly.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 CloudNova Technologies launches an enterprise AI governance program.
 
@@ -487,7 +487,47 @@ By implementing governance, security, privacy controls, and continuous monitorin
 
 ---
 
-# Key Takeaways
+## Architecture workshop — Governing AI from idea to retirement
+
+```mermaid
+flowchart TD
+    REQUEST["Proposed AI use case"] --> RISK["Purpose, data and impact assessment"]
+    RISK --> APPROVE["Ownership and approval"]
+    APPROVE --> DESIGN["Technical and privacy controls"]
+    DESIGN --> TEST["Evaluate accuracy, bias, security and misuse"]
+    TEST --> GO{"Release criteria met?"}
+    GO -->|"No"| DESIGN
+    GO -->|"Yes"| DEPLOY["Controlled deployment"]
+    DEPLOY --> MONITOR["Monitor outcomes, incidents and drift"]
+    MONITOR --> REVIEW["Review changes, complaints and evidence"]
+    REVIEW --> RETIRE["Improve, suspend or retire"]
+```
+
+**Explanation:** Responsible AI is a governance and engineering lifecycle, not a disclaimer. Intended purpose, lawful data use, risk classification, evaluation, human accountability, change control and monitoring should be adapted to the system and its impact. The framework alone is not proof of legal compliance.
+
+### Example: an AI tool that drafts customer support messages
+
+A fictional company proposes an assistant that reads support tickets and drafts responses. The design team must define approved data categories, access controls, accuracy metrics, prompt-injection handling, escalation for sensitive cases, retention and customer-impact monitoring.
+
+| Review area | Question | Example evidence |
+|---|---|---|
+| Purpose and owner | Who is accountable for the decision? | Approved use-case description |
+| Data use | What input may be processed and retained? | Data classification and retention decision |
+| Reliability | How are incorrect suggestions found? | Evaluation cases and error review |
+| Security | Can untrusted inputs influence privileged actions? | Threat model and authorization tests |
+| Monitoring | What happens after an incident or model change? | Change log and response procedure |
+
+### Free governance exercise
+
+Choose the support-message assistant and write a **one-page risk register**: five plausible problems, affected people or data, controls, accountable owner and an evidence-based evaluation step. Include at least one fairness or accessibility consideration and a **human escalation path**.
+
+**Expected deliverable:** a governance decision record with limitations and review date. Never claim that completing this worksheet certifies an AI system or satisfies a particular law.
+
+**Continue:** [GRC Foundations](/foundation/gohackerscloud-foundation/15-enterprise-grc/01-introduction-to-grc/) to connect AI governance with enterprise policy, risk and audit evidence.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -504,7 +544,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Responsible AI and AI Governance ensure that Artificial Intelligence is developed, deployed, and used in a secure, ethical, transparent, and compliant manner. As AI becomes deeply integrated into cloud computing, cybersecurity, software development, and enterprise operations, organizations must combine technical controls with governance processes, human oversight, and regulatory compliance.
 
@@ -512,7 +552,7 @@ Mastering Responsible AI prepares Cloud Engineers, Cloud Security Engineers, AI 
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 10 — AI Trends & The Future of Work**
 

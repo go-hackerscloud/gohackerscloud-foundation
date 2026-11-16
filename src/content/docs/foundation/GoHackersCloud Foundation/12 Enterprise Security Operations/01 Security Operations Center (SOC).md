@@ -29,7 +29,7 @@ Whether protecting cloud infrastructure, enterprise networks, or web application
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -44,7 +44,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is a Security Operations Center?
+## What is a Security Operations Center?
 
 A **Security Operations Center (SOC)** is a centralized team responsible for continuously monitoring, detecting, investigating, and responding to cybersecurity threats.
 
@@ -60,7 +60,7 @@ The SOC operates 24×7 to protect:
 
 ---
 
-# Why SOCs Matter
+## Why SOCs Matter
 
 Enterprise SOCs help organizations:
 
@@ -75,7 +75,7 @@ Enterprise SOCs help organizations:
 
 ---
 
-# Primary Responsibilities
+## Primary Responsibilities
 
 SOC teams perform activities including:
 
@@ -92,7 +92,7 @@ SOC teams perform activities including:
 
 ---
 
-# SOC Operating Models
+## SOC Operating Models
 
 Organizations may operate:
 
@@ -107,7 +107,7 @@ The choice depends on business size, budget, and operational requirements.
 
 ---
 
-# SOC Team Structure
+## SOC Team Structure
 
 A typical enterprise SOC includes:
 
@@ -126,7 +126,7 @@ Each role contributes to the organization's ability to detect and respond to cyb
 
 ---
 
-# SOC Workflow
+## SOC Workflow
 
 ```text
 Security Logs
@@ -168,7 +168,7 @@ This workflow forms the foundation of modern incident response operations.
 
 ---
 
-# Security Data Sources
+## Security Data Sources
 
 A SOC collects telemetry from:
 
@@ -187,7 +187,7 @@ Centralized visibility improves threat detection.
 
 ---
 
-# Core SOC Technologies
+## Core SOC Technologies
 
 Modern SOCs commonly use:
 
@@ -204,11 +204,11 @@ These technologies work together to provide comprehensive security monitoring.
 
 ---
 
-# SOC in Cloud Environments
+## SOC in Cloud Environments
 
 Cloud SOC teams monitor services such as:
 
-### AWS
+#### AWS
 
 - CloudTrail
 - GuardDuty
@@ -218,13 +218,13 @@ Cloud SOC teams monitor services such as:
 - IAM
 - VPC Flow Logs
 
-### Microsoft Azure
+#### Microsoft Azure
 
 - Microsoft Defender for Cloud
 - Azure Monitor
 - Microsoft Sentinel
 
-### Google Cloud
+#### Google Cloud
 
 - Security Command Center
 - Cloud Logging
@@ -232,7 +232,7 @@ Cloud SOC teams monitor services such as:
 
 ---
 
-# Common Enterprise Use Cases
+## Common Enterprise Use Cases
 
 SOC teams investigate:
 
@@ -249,7 +249,7 @@ SOC teams investigate:
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid:
 
@@ -264,7 +264,7 @@ Effective SOC operations require consistent monitoring and thorough investigatio
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -281,7 +281,7 @@ These practices improve detection accuracy and response efficiency.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 CloudNova Technologies operates a hybrid SOC.
 
@@ -325,7 +325,97 @@ The SOC continuously monitors enterprise systems, enabling rapid detection and r
 
 ---
 
-# Key Takeaways
+## Architecture workshop — How a modern SOC operates
+
+A Security Operations Center is a **people, process and technology capability**. A SIEM can help collect and correlate telemetry, but the SOC must still decide whether an alert is meaningful, who is accountable and how to respond without creating unnecessary disruption.
+
+### Diagram 1 — Enterprise telemetry to security investigation
+
+```mermaid
+flowchart LR
+    CLOUD["Cloud audit activity"] --> COLLECT["Secure log collection"]
+    ID["Identity and sign-in events"] --> COLLECT
+    ENDPOINT["Endpoint security alerts"] --> COLLECT
+    APP["Application and API logs"] --> COLLECT
+    COLLECT --> SIEM["Normalize, correlate and retain"]
+    SIEM --> ALERT["Prioritized security alert"]
+    ALERT --> ANALYST["SOC triage and investigation"]
+    ANALYST --> CASE["Documented case and owner"]
+```
+
+**What this shows:** Signals originate in different systems, pass through controlled ingestion and correlation, and become evidence for an analyst. Logging coverage, data quality, retention and alert ownership are separate responsibilities. An alert is a **hypothesis requiring investigation**, not proof of compromise.
+
+**Real work:** A support engineer receives an identity alert after a deployment. The SOC compares the change window, sign-in context, identity privileges and subsequent actions before classifying the event.
+
+### Diagram 2 — A safe incident decision path
+
+```mermaid
+flowchart TD
+    START["Alert received"] --> CONTEXT["Identify asset, severity and scope"]
+    CONTEXT --> CHECK["Validate supporting evidence"]
+    CHECK --> DECISION{"Confirmed incident?"}
+    DECISION -->|"Not confirmed"| RECORD["Document disposition and detection tuning"]
+    DECISION -->|"Suspected or confirmed"| ESCALATE["Escalate under incident procedure"]
+    ESCALATE --> APPROVE["Approved containment decision"]
+    APPROVE --> RECOVER["Recovery and verification"]
+    RECOVER --> RETRO["Lessons learned"]
+    RECORD --> RETRO
+```
+
+**Why this matters:** A false positive and a verified incident should not trigger the same destructive action. Triage documents facts and uncertainties; approved responders contain the issue; recovery requires validation. Do not delete an affected system merely to clear an alert.
+
+### Diagram 3 — Responsibilities and handoffs
+
+```mermaid
+flowchart LR
+    L1["Analyst: receive and validate alert"] --> L2["Investigator: assess scope and evidence"]
+    L2 --> IR["Incident lead: coordinate response"]
+    IR --> PLATFORM["System owner: approved remediation"]
+    PLATFORM --> L1
+    IR --> BUSINESS["Business liaison: impact and updates"]
+```
+
+**What this shows:** Role boundaries are about **accountability**, not a universal job-title hierarchy. Smaller organizations may combine roles. Technical owners implement changes, incident leads coordinate decisions and business stakeholders receive factual impact updates.
+
+### Free self-study — A synthetic privileged-access alert
+
+Assume a fictional organization has a security alert at 02:15 showing a privileged role was used from an unfamiliar network. You have these **invented** details:
+
+| Field | Example observation |
+|---|---|
+| Alert | Privileged role assumption outside change window |
+| User | automation-deploy-role |
+| Time | 02:15 UTC |
+| Change ticket | Not yet confirmed |
+| Related events | Three configuration reads, one denied write |
+| Business impact | Unknown; no disruption confirmed |
+
+1. Write three **facts** and three **unanswered questions**.
+2. Identify the system owner and the next safe evidence source.
+3. Draft a short escalation message: scope, observation, priority, uncertainty and next action.
+4. List evidence you would preserve and a reason not to immediately revoke all production identities.
+
+**Expected deliverable:** a one-page SOC triage note and escalation path. It is not a real customer alert and does not require access to a SIEM.
+
+### Knowledge check
+
+1. **Can a SIEM alert alone establish that an account has been compromised?**
+
+   <details><summary>Suggested answer</summary>No. The alert must be validated against identity context, authorized activity, supporting events and other evidence.</details>
+
+2. **Why should a responder distinguish detection from containment?**
+
+   <details><summary>Suggested answer</summary>Detection signals a possible problem; containment changes system state and requires severity assessment, authority, coordination and evidence preservation.</details>
+
+3. **Who should approve a risky action during an incident?**
+
+   <details><summary>Suggested answer</summary>The designated incident authority and service owner under the organization's approved response procedure, with escalation as needed.</details>
+
+**Continue:** [Enterprise SIEM](/foundation/gohackerscloud-foundation/12-enterprise-security-operations/03-security-information-and-event-management-siem/) · [Vulnerability Management](/foundation/gohackerscloud-foundation/12-enterprise-security-operations/05-vulnerability-management/) · [GHC Labs overview](/ghc-labs/). Advanced hosted labs have separate terms.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -342,7 +432,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 A Security Operations Center (SOC) is the operational heart of an organization's cybersecurity program. By continuously monitoring systems, analyzing security events, investigating incidents, and coordinating responses, SOC teams help organizations reduce risk and maintain business continuity.
 
@@ -350,7 +440,7 @@ Understanding SOC operations is a foundational skill for Cloud Security Engineer
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 02 — Enterprise Logging & Monitoring**
 

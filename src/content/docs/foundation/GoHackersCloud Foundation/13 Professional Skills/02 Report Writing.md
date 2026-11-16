@@ -36,7 +36,7 @@ Enterprise security professionals spend a significant amount of time writing rep
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -51,7 +51,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# Why Report Writing Matters
+## Why Report Writing Matters
 
 Security professionals write reports to:
 
@@ -68,7 +68,7 @@ A well-written report often creates more business value than discovering the iss
 
 ---
 
-# Characteristics of a Good Report
+## Characteristics of a Good Report
 
 Professional reports should be:
 
@@ -85,7 +85,7 @@ Good reports focus on facts rather than opinions.
 
 ---
 
-# Common Types of Security Reports
+## Common Types of Security Reports
 
 Enterprise organizations commonly create:
 
@@ -103,7 +103,7 @@ Each report serves a different audience.
 
 ---
 
-# Typical Report Structure
+## Typical Report Structure
 
 A professional security report generally includes:
 
@@ -122,7 +122,7 @@ A consistent structure improves readability.
 
 ---
 
-# Executive Summary
+## Executive Summary
 
 The Executive Summary is written for management.
 
@@ -137,7 +137,7 @@ Avoid excessive technical detail in this section.
 
 ---
 
-# Scope
+## Scope
 
 The Scope defines what was included.
 
@@ -154,7 +154,7 @@ A clearly defined scope sets expectations.
 
 ---
 
-# Methodology
+## Methodology
 
 The Methodology explains how the assessment was performed.
 
@@ -171,7 +171,7 @@ Documenting the methodology improves transparency.
 
 ---
 
-# Findings
+## Findings
 
 Each finding should include:
 
@@ -187,9 +187,9 @@ Findings should be easy to understand and reproduce.
 
 ---
 
-# Example Finding
+## Example Finding
 
-## Public Amazon S3 Bucket
+### Public Amazon S3 Bucket
 
 **Risk Level:** High
 
@@ -210,7 +210,7 @@ Unauthorized individuals may access confidential company information, leading to
 
 ---
 
-# Risk Ratings
+## Risk Ratings
 
 Organizations commonly classify findings as:
 
@@ -226,7 +226,7 @@ Risk ratings help prioritize remediation.
 
 ---
 
-# Business Impact
+## Business Impact
 
 Technical findings should always be translated into business language.
 
@@ -244,7 +244,7 @@ Management makes decisions based on business impact.
 
 ---
 
-# Recommendations
+## Recommendations
 
 Recommendations should be:
 
@@ -266,7 +266,7 @@ Specific recommendations are easier to implement.
 
 ---
 
-# Evidence
+## Evidence
 
 Every finding should include supporting evidence.
 
@@ -284,19 +284,19 @@ Evidence increases credibility.
 
 ---
 
-# Common Security Reports
+## Common Security Reports
 
 Security professionals frequently write:
 
-### Vulnerability Assessment Report
+#### Vulnerability Assessment Report
 
 Documents identified vulnerabilities and remediation recommendations.
 
-### Penetration Testing Report
+#### Penetration Testing Report
 
 Explains attack paths, exploited weaknesses, business impact, and recommendations.
 
-### Incident Response Report
+#### Incident Response Report
 
 Documents:
 
@@ -307,17 +307,17 @@ Documents:
 - Recovery
 - Lessons Learned
 
-### Audit Report
+#### Audit Report
 
 Documents compliance findings and control effectiveness.
 
 ---
 
-# Cloud Security Reporting
+## Cloud Security Reporting
 
 Cloud security reports commonly include:
 
-### AWS
+#### AWS
 
 - IAM Findings
 - S3 Security
@@ -326,13 +326,13 @@ Cloud security reports commonly include:
 - Security Hub Findings
 - GuardDuty Alerts
 
-### Microsoft Azure
+#### Microsoft Azure
 
 - Microsoft Defender Findings
 - Azure Policy Compliance
 - Azure Identity Security
 
-### Google Cloud
+#### Google Cloud
 
 - Security Command Center Findings
 - IAM Review
@@ -342,11 +342,11 @@ Cloud-specific findings should align with provider best practices.
 
 ---
 
-# Writing for Different Audiences
+## Writing for Different Audiences
 
 Different stakeholders require different levels of detail.
 
-### Executives
+#### Executives
 
 Focus on:
 
@@ -355,7 +355,7 @@ Focus on:
 - Compliance
 - Recommendations
 
-### Engineers
+#### Engineers
 
 Focus on:
 
@@ -364,7 +364,7 @@ Focus on:
 - Evidence
 - Remediation Steps
 
-### Auditors
+#### Auditors
 
 Focus on:
 
@@ -377,7 +377,7 @@ Tailor reports to the intended audience.
 
 ---
 
-# Common Reporting Mistakes
+## Common Reporting Mistakes
 
 Avoid:
 
@@ -393,7 +393,7 @@ Professional reports reflect professional engineers.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -410,7 +410,7 @@ These practices improve report quality and stakeholder confidence.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 CloudNova Technologies performs an AWS Security Assessment.
 
@@ -454,7 +454,41 @@ The final report enables leadership to understand organizational risk, prioritiz
 
 ---
 
-# Key Takeaways
+## Architecture workshop — From evidence to actionable report
+
+```mermaid
+flowchart LR
+    SCOPE["Scope and objectives"] --> EVIDENCE["Verified observations"]
+    EVIDENCE --> ANALYSIS["Technical analysis"]
+    ANALYSIS --> IMPACT["Business impact and priority"]
+    IMPACT --> ACTION["Owner, remediation and due date"]
+    ACTION --> VERIFY["Retest and closure evidence"]
+    VERIFY --> SUMMARY["Executive summary and decision"]
+```
+
+**Explanation:** A professional finding should separate direct observation from interpretation. A report needs enough technical detail for engineers to reproduce a condition, plus concise risk context for business owners. Severity is not merely a tool-generated number: exposure, assets and compensating controls matter.
+
+### Worked finding — Synthetic storage exposure
+
+The exercise concerns a **fictional training environment**, not a real cloud account.
+
+| Report field | Example content |
+|---|---|
+| Scope | Synthetic storage configuration for a training application |
+| Observation | Sample policy permits broader read access than intended |
+| Risk | Sensitive files could be disclosed if the condition existed on a real asset |
+| Owner | Cloud platform owner |
+| Recommendation | Restrict policy to authorized identities and objects |
+| Verification | An expected-deny read plus a positive authorized-access test |
+| Limitation | No production system, customer data or actual compromise investigated |
+
+**Practice:** Write a **120-word executive summary** and a **technical appendix** using the same facts. The first must describe significance, owner and decision; the second must describe scope, configuration evidence and a testable remediation. Avoid claiming that exploitation occurred when you only observed a hypothetical policy.
+
+**Expected deliverable:** one finding with clear uncertainty, traceable evidence, remediation and retest criteria. Use this skill when later reporting results from [GHC Labs](/ghc-labs/) where access is permitted.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -471,7 +505,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Professional report writing is one of the most valuable skills for cybersecurity and cloud professionals. A well-written report transforms technical findings into actionable business decisions by clearly communicating risks, evidence, impact, and remediation recommendations.
 
@@ -479,7 +513,7 @@ Mastering report writing enables Cloud Security Engineers, Penetration Testers, 
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 03 — Communication Skills**
 
