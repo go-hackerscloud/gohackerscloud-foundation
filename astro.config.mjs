@@ -1,12 +1,30 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
+const foundationStructuredData = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'GoHackersCloud Foundation',
+  url: 'https://foundation.gohackerscloud.com/',
+  description: 'Free practical learning in Cloud, Cybersecurity, AI, DevOps and Enterprise IT.',
+  publisher: {
+    '@type': 'Organization',
+    name: 'GoHackersCloud',
+    url: 'https://gohackerscloud.com/',
+  },
+});
+
 export default defineConfig({
   site: 'https://foundation.gohackerscloud.com',
 
   integrations: [
     starlight({
       title: 'GoHackersCloud Foundation',
+
+      head: [
+        { tag: 'link', attrs: { rel: 'sitemap', href: '/sitemap-index.xml' } },
+        { tag: 'script', attrs: { type: 'application/ld+json' }, content: foundationStructuredData },
+      ],
 
       description:
         'Free practical learning in Cloud, Cybersecurity, AI, DevOps and Enterprise IT.',

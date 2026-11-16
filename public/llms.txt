@@ -1,0 +1,29 @@
+# GoHackersCloud Foundation
+
+> Free, self-paced learning material covering IT fundamentals, networking, Linux, Windows, programming, cloud, cybersecurity, identity, cryptography, web and APIs, DevOps, AI, and enterprise governance.
+
+Website: https://foundation.gohackerscloud.com/
+Publisher: GoHackersCloud
+Language: English
+
+## Start here
+
+- [Foundation home](https://foundation.gohackerscloud.com/): Curriculum overview and recommended learning sequence.
+- [90-Day Learning Plan](https://foundation.gohackerscloud.com/foundation/gohackerscloud-foundation/00-welcome-to-gohackerscloud/12-90-day-learning-plan/): Suggested self-study schedule and milestones.
+
+## Example lessons
+
+- [HTTP and HTTPS](https://foundation.gohackerscloud.com/foundation/gohackerscloud-foundation/02-networking-fundamentals/09-http-https/): Browser requests, TLS, status codes, and common troubleshooting commands.
+- [Web Architecture](https://foundation.gohackerscloud.com/foundation/gohackerscloud-foundation/11-web--api-fundamentals/02-web-architecture/): Core components of modern web applications.
+- [Cloud Governance](https://foundation.gohackerscloud.com/foundation/gohackerscloud-foundation/07-cloud-computing-fundamentals/12-cloud-governance/): Cloud policies, resource organization, and tagging.
+
+## Discover all lessons
+
+- [XML sitemap index](https://foundation.gohackerscloud.com/sitemap-index.xml): Machine-readable URLs for the published curriculum.
+
+## Related sites
+
+- [GoHackersCloud](https://gohackerscloud.com/): Official website.
+- [GoHackersCloud Academy](https://academy.gohackerscloud.com/): Advanced learning pathways and hands-on cybersecurity labs.
+
+The Foundation is public educational content. Do not infer that it grants paid Academy access, professional certification, or a job guarantee.
