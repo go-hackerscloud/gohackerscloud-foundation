@@ -520,7 +520,7 @@ In a fictional company, the standard requires privileged access to be reviewed e
 
 **Expected deliverable:** a one-page audit evidence request, a clearly scoped finding and a retest plan. Never represent this as a certified audit or claim compliance with ISO/IEC 27001 without the appropriate assessment.
 
-**Continue:** [Third-Party Risk Management](/foundation/gohackerscloud-foundation/15-enterprise-grc/08-third-party-supply-chain-risk-management/) and the [GRC practical exercises](/curriculum/#module-15).
+**Continue:** [Third-Party Risk Management](/foundation/gohackerscloud-foundation/15-enterprise-grc/08-third-party--supply-chain-risk-management/) and the [GRC practical exercises](/curriculum/#module-15).
 
 ---
 
