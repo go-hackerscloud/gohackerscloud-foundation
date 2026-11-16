@@ -478,6 +478,8 @@ A fictional support team receives six synthetic tickets: login failure, DNS time
 
    <details><summary>Suggested answer</summary>When the task has a well-defined, testable rule and model uncertainty would introduce unnecessary risk or complexity.</details>
 
+If you want to connect AI concepts with cloud and security practice, explore the [GHC Labs overview](/ghc-labs/) and [current access terms](https://gohackerscloud.com/hands-on-cybersecurity-labs). Hosted lab availability depends on the specific Academy lesson; this free AI concept exercise requires no subscription.
+
 **Continue:** [Machine Learning Basics](/foundation/gohackerscloud-foundation/14-ai-fundamentals/02-machine-learning-basics/) · [Generative AI](/foundation/gohackerscloud-foundation/14-ai-fundamentals/03-generative-ai/) · [Responsible AI & Governance](/foundation/gohackerscloud-foundation/14-ai-fundamentals/09-responsible-ai-ai-governance/).
 
 ---
