@@ -36,7 +36,7 @@ Whether you're pursuing a career in Cloud Engineering, DevOps, AI, Cybersecurity
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -51,7 +51,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Cloud Computing?
+## What is Cloud Computing?
 
 Cloud Computing is the delivery of computing services over the Internet.
 
@@ -72,7 +72,7 @@ Resources are available whenever they are needed and customers pay only for what
 
 ---
 
-# Evolution of Computing
+## Evolution of Computing
 
 Computing has evolved significantly over time.
 
@@ -104,7 +104,7 @@ Cloud Computing represents the next major evolution in enterprise IT.
 
 ---
 
-# Traditional IT Infrastructure
+## Traditional IT Infrastructure
 
 In traditional environments, organizations managed everything themselves.
 
@@ -142,7 +142,7 @@ Challenges included:
 
 ---
 
-# Cloud Computing Model
+## Cloud Computing Model
 
 Cloud providers manage the underlying infrastructure.
 
@@ -174,7 +174,7 @@ Organizations focus on their applications instead of managing physical hardware.
 
 ---
 
-# Essential Characteristics of Cloud Computing
+## Essential Characteristics of Cloud Computing
 
 According to the National Institute of Standards and Technology (NIST), Cloud Computing has five essential characteristics.
 
@@ -190,7 +190,7 @@ These characteristics distinguish cloud environments from traditional infrastruc
 
 ---
 
-# On-Demand Self-Service
+## On-Demand Self-Service
 
 Users can provision computing resources whenever they need them.
 
@@ -202,7 +202,7 @@ Automation accelerates software delivery.
 
 ---
 
-# Broad Network Access
+## Broad Network Access
 
 Cloud services are accessible over the Internet.
 
@@ -218,7 +218,7 @@ This enables global accessibility.
 
 ---
 
-# Resource Pooling
+## Resource Pooling
 
 Cloud providers share infrastructure across multiple customers while securely isolating workloads.
 
@@ -233,7 +233,7 @@ This model improves efficiency and reduces costs.
 
 ---
 
-# Rapid Elasticity
+## Rapid Elasticity
 
 Resources can automatically scale based on demand.
 
@@ -263,7 +263,7 @@ Organizations pay only for the resources they actually use.
 
 ---
 
-# Measured Service
+## Measured Service
 
 Cloud providers measure resource usage.
 
@@ -279,7 +279,7 @@ Billing is based on actual consumption.
 
 ---
 
-# Benefits of Cloud Computing
+## Benefits of Cloud Computing
 
 Organizations adopt cloud technologies because they provide:
 
@@ -296,7 +296,7 @@ Cloud Computing enables businesses to innovate rapidly.
 
 ---
 
-# Challenges of Cloud Computing
+## Challenges of Cloud Computing
 
 Despite its advantages, cloud adoption introduces challenges.
 
@@ -314,7 +314,7 @@ Understanding these challenges helps organizations adopt cloud technologies succ
 
 ---
 
-# Cloud Service Models
+## Cloud Service Models
 
 Cloud providers offer different service models.
 
@@ -328,7 +328,7 @@ These models will be explored in the following lessons.
 
 ---
 
-# Cloud Deployment Models
+## Cloud Deployment Models
 
 Organizations deploy cloud environments in different ways.
 
@@ -343,7 +343,7 @@ Each model addresses different business requirements.
 
 ---
 
-# Major Cloud Providers
+## Major Cloud Providers
 
 The largest cloud providers include:
 
@@ -357,7 +357,7 @@ Each provider offers a broad portfolio of cloud services.
 
 ---
 
-# Common Cloud Services
+## Common Cloud Services
 
 Examples of cloud services include:
 
@@ -374,7 +374,7 @@ These services form the foundation of cloud platforms.
 
 ---
 
-# Cloud Computing in Everyday Life
+## Cloud Computing in Everyday Life
 
 Many everyday applications rely on cloud infrastructure.
 
@@ -393,7 +393,7 @@ Cloud Computing powers billions of users worldwide.
 
 ---
 
-# Cloud Computing in Business
+## Cloud Computing in Business
 
 Organizations use cloud platforms for:
 
@@ -410,7 +410,7 @@ Cloud technologies support organizations of every size.
 
 ---
 
-# Cloud Computing in DevOps
+## Cloud Computing in DevOps
 
 DevOps Engineers use cloud platforms to:
 
@@ -424,7 +424,7 @@ Cloud platforms accelerate software delivery.
 
 ---
 
-# Cloud Computing in Cybersecurity
+## Cloud Computing in Cybersecurity
 
 Security teams leverage cloud services for:
 
@@ -439,7 +439,7 @@ Cloud-native security services simplify enterprise security operations.
 
 ---
 
-# Cloud Computing in Artificial Intelligence
+## Cloud Computing in Artificial Intelligence
 
 AI Engineers use cloud platforms for:
 
@@ -454,7 +454,7 @@ Cloud Computing enables scalable AI development.
 
 ---
 
-# Cloud Computing Best Practices
+## Cloud Computing Best Practices
 
 Organizations should:
 
@@ -471,7 +471,7 @@ Good cloud practices improve reliability and efficiency.
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid:
 
@@ -486,7 +486,7 @@ Cloud resources require proper planning and governance.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A startup launches a new web application.
 
@@ -524,7 +524,105 @@ Instead of spending months building a physical data center, the company deploys 
 
 ---
 
-# Key Takeaways
+## Architecture workshop — Understand how cloud systems fit together
+
+The diagrams below are **conceptual architectures**, not a prescription to deploy every service. Use them to recognize the service boundaries, identify the teams responsible for each layer and explain why cloud architecture differs from buying servers.
+
+### Diagram 1 — Traditional data center versus a cloud application
+
+```mermaid
+flowchart LR
+    subgraph O["Organization-owned data center"]
+        OA["Office / web users"] --> OF["Company firewall"]
+        OF --> OW["Web server"]
+        OW --> OAPP["Application server"]
+        OAPP --> ODB[("Company-managed database")]
+    end
+    subgraph C["Illustrative cloud deployment"]
+        CU["Web users"] --> CDNS["DNS / edge"]
+        CDNS --> CLB["Load balancer"]
+        CLB --> COMPUTE["Cloud compute / application"]
+        COMPUTE --> CDB[("Managed database")]
+    end
+```
+
+**What this diagram shows:** Both designs serve users through an application and data tier. The difference is how the infrastructure is provided and operated. In the traditional example, an organization manages the physical environment and usually the operating systems. In a cloud design, the provider operates underlying infrastructure; the customer still owns many identity, application, data and configuration decisions.
+
+**Why it matters at work:** A startup may need to serve unexpected traffic. A cloud platform can reduce the need to buy physical servers first, but engineers must still design authentication, backup, cost controls and fault tolerance.
+
+**Security question:** Which tier contains customer information, who can administer it, and where would you collect audit evidence?
+
+### Diagram 2 — IaaS, PaaS and SaaS responsibilities
+
+```mermaid
+flowchart TD
+    USER["Business or technical team"] --> CHOICE{"Choose a service model"}
+    CHOICE --> IAAS["IaaS: compute, storage, networks"]
+    CHOICE --> PAAS["PaaS: managed application platform"]
+    CHOICE --> SAAS["SaaS: ready-to-use application"]
+    IAAS --> IAASRESP["Customer: guest OS, applications, data and access"]
+    PAAS --> PAASRESP["Customer: app code, data and access configuration"]
+    SAAS --> SAASRESP["Customer: users, data choices and tenant settings"]
+    IAASRESP --> BASE["Provider: underlying infrastructure"]
+    PAASRESP --> BASE
+    SAASRESP --> BASE
+```
+
+**What this diagram shows:** A service model determines which layers the customer operates. IaaS offers flexibility and generally requires more OS-level work; PaaS reduces runtime administration; SaaS provides an application while leaving tenant configuration, user access and appropriate data-handling responsibilities with the customer.
+
+**Why it matters at work:** A team may choose IaaS for specialized operating-system control, PaaS for a managed application runtime or SaaS for collaboration. “Managed” does not mean “secure by default for every customer configuration.” [Study IaaS in Lesson 02](/foundation/gohackerscloud-foundation/07-cloud-computing-fundamentals/02-iaas/).
+
+### Diagram 3 — An enterprise cloud application and its operational controls
+
+```mermaid
+flowchart TB
+    USERS["Users"] --> ENTRY["DNS / approved public entry"]
+    ENTRY --> BALANCER["Load balancer or gateway"]
+    BALANCER --> APP["Application compute"]
+    APP --> DB[("Private data service")]
+    APP --> OBJECT["Object storage"]
+    ID["Identity provider and scoped roles"] -. "access control" .-> APP
+    ID -. "access control" .-> DB
+    APP -. "events" .-> LOG["Central logs / alerts"]
+    DB -. "audits" .-> LOG
+    DB --> BACKUP["Protected backup / recovery"]
+```
+
+**What this diagram shows:** A real service also depends on identities, restricted data access, monitoring and recoverability. The dotted lines represent supporting controls and telemetry, not unrestricted application traffic. Not all services need to be provisioned for every project.
+
+**Why it matters at work:** If the application stops serving requests, the team can separate an entry-point issue, application failure, database problem or capacity constraint. A security engineer asks whether IAM is scoped, logs arrive, backup restoration is tested and the data tier remains private.
+
+### Workplace exercise — Design a learning portal
+
+A fictional training platform wants to serve students around the world and preserve lesson progress securely. No cloud account or payment is required for this exercise.
+
+1. Redraw Diagram 3 using your own labels for users, web application, database and logs.
+2. Identify which component must accept public HTTPS requests and which must remain private.
+3. Describe one expected-allow connection and one expected-deny connection.
+4. Add a backup requirement and explain how the team would verify restoration.
+5. Write down three likely cost drivers, such as compute hours, storage use and network transfer.
+
+**Expected deliverable:** one readable architecture diagram, an access matrix with two flows, and a short operations/security review. Explain assumptions; do not present the fictional design as an actual customer deployment.
+
+### Knowledge check
+
+1. **Does using a managed database remove the need to control data access?**
+
+   <details><summary>Suggested answer</summary>No. The provider generally operates more of the database infrastructure, but customer identities, permissions, data classification and workload configuration still need controls.</details>
+
+2. **Why does an autoscaling group not guarantee a reliable application?**
+
+   <details><summary>Suggested answer</summary>Scaling compute does not automatically address database limits, faulty code, network paths, identity restrictions, resilience or tested recovery.</details>
+
+3. **What is the difference between a diagram and a tested architecture?**
+
+   <details><summary>Suggested answer</summary>A diagram records design intent. Tests provide evidence that security, functional and recovery requirements hold in an actual, authorized environment.</details>
+
+**Continue:** [IaaS foundations](/foundation/gohackerscloud-foundation/07-cloud-computing-fundamentals/02-iaas/) · [Shared responsibility](/foundation/gohackerscloud-foundation/07-cloud-computing-fundamentals/11-shared-responsibility/) · [GHC Labs overview](/ghc-labs/). Foundation remains free; hosted Academy labs have separate access terms.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -539,7 +637,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Cloud Computing has fundamentally transformed modern IT by providing scalable, reliable, and on-demand access to computing resources over the Internet.
 
@@ -549,7 +647,7 @@ A solid understanding of Cloud Computing forms the foundation for learning AWS, 
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 02 — Infrastructure as a Service (IaaS)**
 

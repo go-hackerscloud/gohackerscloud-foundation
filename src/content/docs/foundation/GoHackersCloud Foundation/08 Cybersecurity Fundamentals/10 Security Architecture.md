@@ -27,7 +27,7 @@ It forms the foundation of every mature cybersecurity program.
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -42,7 +42,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Security Architecture?
+## What is Security Architecture?
 
 **Security Architecture** is the structured design of systems, technologies, policies, and processes that protect an organization's information assets.
 
@@ -58,7 +58,7 @@ Security Architecture ensures security is built into systems rather than added l
 
 ---
 
-# Why Security Architecture Matters
+## Why Security Architecture Matters
 
 A well-designed architecture helps organizations:
 
@@ -74,7 +74,7 @@ Good architecture prevents many security problems before they occur.
 
 ---
 
-# Security by Design
+## Security by Design
 
 Modern organizations follow the principle of **Security by Design**.
 
@@ -90,7 +90,7 @@ Security becomes part of planning, development, deployment, and operations.
 
 ---
 
-# Core Principles of Security Architecture
+## Core Principles of Security Architecture
 
 Enterprise security architecture is built on principles such as:
 
@@ -107,7 +107,7 @@ These principles guide every architectural decision.
 
 ---
 
-# Trust Boundaries
+## Trust Boundaries
 
 A **Trust Boundary** separates areas with different security levels.
 
@@ -137,7 +137,7 @@ Every time information crosses a trust boundary, additional security validation 
 
 ---
 
-# Security Domains
+## Security Domains
 
 Organizations divide environments into logical security domains.
 
@@ -155,7 +155,7 @@ Each domain has its own security controls and policies.
 
 ---
 
-# Layered Enterprise Architecture
+## Layered Enterprise Architecture
 
 Enterprise Security Architecture commonly follows a layered approach.
 
@@ -195,7 +195,7 @@ Each layer contributes to overall security.
 
 ---
 
-# Identity Architecture
+## Identity Architecture
 
 Identity is the foundation of modern security.
 
@@ -211,7 +211,7 @@ Strong identity controls reduce unauthorized access.
 
 ---
 
-# Network Security Architecture
+## Network Security Architecture
 
 Enterprise networks include multiple security layers.
 
@@ -228,7 +228,7 @@ Segmentation limits attacker movement across the network.
 
 ---
 
-# Application Security Architecture
+## Application Security Architecture
 
 Applications should include security from the design phase.
 
@@ -246,7 +246,7 @@ Secure applications reduce exploitable vulnerabilities.
 
 ---
 
-# Data Security Architecture
+## Data Security Architecture
 
 Data should remain protected throughout its lifecycle.
 
@@ -263,7 +263,7 @@ Data protection supports confidentiality, integrity, and availability.
 
 ---
 
-# Cloud Security Architecture
+## Cloud Security Architecture
 
 Cloud environments require cloud-native security.
 
@@ -281,7 +281,7 @@ Security should be integrated into every cloud workload.
 
 ---
 
-# Kubernetes Security Architecture
+## Kubernetes Security Architecture
 
 Enterprise Kubernetes environments include:
 
@@ -297,7 +297,7 @@ Multiple security layers protect containerized workloads.
 
 ---
 
-# DevSecOps Architecture
+## DevSecOps Architecture
 
 DevSecOps integrates security into software delivery.
 
@@ -314,7 +314,7 @@ Security becomes part of continuous delivery.
 
 ---
 
-# AI Security Architecture
+## AI Security Architecture
 
 Artificial Intelligence platforms require secure architecture for:
 
@@ -330,7 +330,7 @@ AI security protects both data and machine learning systems.
 
 ---
 
-# Security Monitoring Architecture
+## Security Monitoring Architecture
 
 Organizations continuously monitor:
 
@@ -353,7 +353,7 @@ Monitoring enables rapid detection and response.
 
 ---
 
-# High Availability & Resilience
+## High Availability & Resilience
 
 Enterprise architectures are designed to withstand failures.
 
@@ -370,7 +370,7 @@ Resilient architectures minimize downtime.
 
 ---
 
-# Enterprise Security Frameworks
+## Enterprise Security Frameworks
 
 Security Architecture commonly aligns with:
 
@@ -386,7 +386,7 @@ These frameworks provide structured guidance for secure enterprise design.
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid:
 
@@ -401,7 +401,7 @@ Security should always be planned, not added later.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -418,7 +418,7 @@ These practices create scalable, secure, and resilient enterprise environments.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A multinational company designs a secure cloud platform.
 
@@ -466,7 +466,38 @@ Each architectural layer contributes to the organization's overall security post
 
 ---
 
-# Key Takeaways
+## Architecture diagram — Trust boundaries for an enterprise application
+
+```mermaid
+flowchart LR
+    USERS["Public users"] --> GATE["HTTPS gateway / optional WAF"]
+    GATE --> APP["Web application"]
+    APP --> API["Internal API"]
+    API --> DB[("Restricted customer database")]
+    IDP["Identity provider and MFA"] -. "user/session identity" .-> APP
+    APP -. "security events" .-> SIEM["Protected logging and detection"]
+    API -. "security events" .-> SIEM
+    DB --> BAK["Restricted backups"]
+```
+
+**Explanation:** The diagram separates public entry, application logic, internal API and customer data. Each transition is a trust boundary. Authentication confirms identity; authorization at the API and data layer must decide *which records* a user may access. WAF controls and network restrictions cannot replace record-level checks.
+
+### Worked design review
+
+A fictional online retailer launches a customer-account feature. During design review, identify at least four threats: stolen accounts, unrestricted API actions, public database exposure and missing audit trails.
+
+| Boundary | Required question | Evidence |
+|---|---|---|
+| Public → Application | Is HTTPS enforced and unsafe requests handled? | Security configuration and functional tests |
+| Application → API | Is authorization checked on every protected action? | Expected allow/deny test |
+| API → Database | Is data access limited to approved identities? | Scoped roles and logging |
+| Systems → Logs | Can critical events be changed or discarded? | Retention, access and alert validation |
+
+**Practical assignment:** sketch the system and label two trust boundaries, the asset owner and one negative authorization test. Use fictional data only. For guided authorized scenarios later, see the [GHC Labs overview](/ghc-labs/).
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -483,7 +514,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Security Architecture provides the blueprint for designing secure, scalable, and resilient enterprise environments.
 
@@ -493,7 +524,7 @@ Security Architecture is a core competency for Security Architects, Cloud Securi
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 11 — Secure Design**
 

@@ -35,7 +35,7 @@ IaaS is the foundation of every major cloud platform and is one of the first clo
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -50,7 +50,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Infrastructure as a Service (IaaS)?
+## What is Infrastructure as a Service (IaaS)?
 
 Infrastructure as a Service (IaaS) is a cloud computing model that provides virtualized computing resources over the Internet.
 
@@ -67,7 +67,7 @@ The cloud provider manages the physical infrastructure while customers manage th
 
 ---
 
-# Why IaaS Matters
+## Why IaaS Matters
 
 Organizations choose IaaS because it provides:
 
@@ -82,9 +82,9 @@ IaaS enables businesses to focus on applications rather than physical infrastruc
 
 ---
 
-# Traditional Infrastructure vs IaaS
+## Traditional Infrastructure vs IaaS
 
-## Traditional Infrastructure
+### Traditional Infrastructure
 
 ```text
 Purchase Hardware
@@ -110,7 +110,7 @@ Deployment may take weeks or months.
 
 ---
 
-## Infrastructure as a Service
+### Infrastructure as a Service
 
 ```text
 Cloud Console
@@ -136,7 +136,7 @@ Provisioning is much faster and more flexible.
 
 ---
 
-# Virtualization
+## Virtualization
 
 IaaS is built on **virtualization**.
 
@@ -166,7 +166,7 @@ Each virtual machine behaves like an independent computer.
 
 ---
 
-# Hypervisors
+## Hypervisors
 
 A **Hypervisor** creates and manages virtual machines.
 
@@ -181,7 +181,7 @@ Cloud providers use large-scale virtualization technologies to deliver IaaS serv
 
 ---
 
-# Virtual Machines (VMs)
+## Virtual Machines (VMs)
 
 A Virtual Machine is a software-based computer.
 
@@ -203,7 +203,7 @@ Virtual machines provide flexibility without requiring dedicated hardware.
 
 ---
 
-# Core Components of IaaS
+## Core Components of IaaS
 
 Infrastructure as a Service includes:
 
@@ -219,7 +219,7 @@ These components form the foundation of cloud infrastructure.
 
 ---
 
-# Compute Resources
+## Compute Resources
 
 Compute resources provide processing power.
 
@@ -233,7 +233,7 @@ Organizations choose instance sizes based on workload requirements.
 
 ---
 
-# Storage Resources
+## Storage Resources
 
 Cloud providers offer several storage options.
 
@@ -247,7 +247,7 @@ Storage solutions are designed for different use cases and performance requireme
 
 ---
 
-# Networking
+## Networking
 
 Cloud networking includes:
 
@@ -263,7 +263,7 @@ Networking securely connects cloud resources.
 
 ---
 
-# Load Balancers
+## Load Balancers
 
 Load Balancers distribute traffic across multiple servers.
 
@@ -289,7 +289,7 @@ This improves availability and scalability.
 
 ---
 
-# Auto Scaling
+## Auto Scaling
 
 Cloud platforms automatically increase or decrease resources based on demand.
 
@@ -323,7 +323,7 @@ Organizations only pay for resources in use.
 
 ---
 
-# Identity and Access Management
+## Identity and Access Management
 
 Access to infrastructure must be controlled securely.
 
@@ -339,18 +339,18 @@ Identity management protects cloud resources from unauthorized access.
 
 ---
 
-# Shared Responsibility Model
+## Shared Responsibility Model
 
 In IaaS, responsibilities are shared.
 
-## Cloud Provider
+### Cloud Provider
 
 - Physical Data Centers
 - Networking Hardware
 - Physical Servers
 - Hypervisors
 
-## Customer
+### Customer
 
 - Operating Systems
 - Applications
@@ -362,7 +362,7 @@ Understanding responsibilities is critical for cloud security.
 
 ---
 
-# Popular IaaS Services
+## Popular IaaS Services
 
 | Cloud Provider | IaaS Service |
 |----------------|-------------|
@@ -376,7 +376,7 @@ All major cloud providers offer Infrastructure as a Service.
 
 ---
 
-# Benefits of IaaS
+## Benefits of IaaS
 
 IaaS provides:
 
@@ -392,7 +392,7 @@ Organizations can quickly respond to changing business requirements.
 
 ---
 
-# Challenges of IaaS
+## Challenges of IaaS
 
 Common challenges include:
 
@@ -408,7 +408,7 @@ Proper governance is essential for successful cloud adoption.
 
 ---
 
-# IaaS in Cloud Computing
+## IaaS in Cloud Computing
 
 Cloud Engineers use IaaS to deploy:
 
@@ -423,7 +423,7 @@ IaaS forms the foundation of most cloud environments.
 
 ---
 
-# IaaS in DevOps
+## IaaS in DevOps
 
 DevOps Engineers use IaaS to:
 
@@ -437,7 +437,7 @@ Infrastructure automation improves consistency and deployment speed.
 
 ---
 
-# IaaS in Cybersecurity
+## IaaS in Cybersecurity
 
 Security teams use IaaS for:
 
@@ -451,7 +451,7 @@ Cloud infrastructure supports scalable security operations.
 
 ---
 
-# IaaS in Artificial Intelligence
+## IaaS in Artificial Intelligence
 
 AI teams deploy:
 
@@ -464,7 +464,7 @@ IaaS provides the computing power needed for AI workloads.
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid:
 
@@ -479,7 +479,7 @@ Effective management keeps infrastructure secure and cost-efficient.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -496,7 +496,7 @@ Following these practices improves security, reliability, and operational effici
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 An organization launches a new e-commerce platform.
 
@@ -530,7 +530,43 @@ The complete infrastructure is deployed within hours and can automatically scale
 
 ---
 
-# Key Takeaways
+## Architecture case study — The layers inside IaaS
+
+```mermaid
+flowchart TB
+    subgraph PROVIDER["Cloud provider operates"]
+        PH["Physical servers and disks"]
+        PN["Physical network and virtualization fabric"]
+    end
+    subgraph CUSTOMER["Customer configures and operates"]
+        VM["Virtual machine configuration"]
+        OS["Guest OS and patches"]
+        APP["Application and service permissions"]
+        DATA["Application data and backups"]
+    end
+    PH --> PN --> VM --> OS --> APP --> DATA
+```
+
+**Explanation:** IaaS provides building blocks such as virtual machines, virtual network options and storage. The provider operates physical facilities, hosts and underlying virtualization. The customer typically manages the VM guest operating system, the installed application and the data and access settings. Exact boundaries depend on the provider and individual service.
+
+**Enterprise scenario:** A company launches a cloud VM to host its billing application. Its cloud provider maintains the physical server. The customer's engineering team still selects a supported OS, applies updates, restricts ports, secures SSH/RDP access and determines how backups are validated.
+
+### Practice: responsibility mapping
+
+| Task | Usually handled by | Verification question |
+|---|---|---|
+| Replace failed host hardware | Provider | What availability commitments apply? |
+| Patch guest OS on a regular IaaS VM | Customer | Who approves and monitors patching? |
+| Restrict the application management port | Customer | Is an Internet-wide rule necessary? |
+| Manage access to stored customer records | Customer | Does each role have minimum privileges? |
+
+Draw a VM lifecycle diagram: image → provision → configure → monitor → patch → decommission. Label one security control and one recovery step for each phase.
+
+**Expected result:** an IaaS operations responsibility matrix, not a deployed cloud subscription. Read the [Shared Responsibility lesson](/foundation/gohackerscloud-foundation/07-cloud-computing-fundamentals/11-shared-responsibility/) before you assume every control is provider-managed.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -547,7 +583,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Infrastructure as a Service (IaaS) provides on-demand access to virtual computing resources without requiring organizations to purchase or maintain physical hardware.
 
@@ -557,7 +593,7 @@ Understanding IaaS is the foundation for learning advanced cloud technologies su
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 03 — Platform as a Service (PaaS)**
 

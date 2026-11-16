@@ -34,7 +34,7 @@ Security Operations serves as the organization's frontline defense against cyber
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -49,7 +49,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Security Operations?
+## What is Security Operations?
 
 **Security Operations (SecOps)** is the continuous process of monitoring, detecting, investigating, responding to, and recovering from cybersecurity events.
 
@@ -65,7 +65,7 @@ Unlike preventive controls, Security Operations focuses on identifying threats t
 
 ---
 
-# Why Security Operations Matters
+## Why Security Operations Matters
 
 Organizations implement Security Operations to:
 
@@ -80,7 +80,7 @@ Effective Security Operations reduces the time attackers remain undetected.
 
 ---
 
-# What is a Security Operations Center (SOC)?
+## What is a Security Operations Center (SOC)?
 
 A **Security Operations Center (SOC)** is a centralized team responsible for monitoring and defending an organization's IT environment.
 
@@ -98,7 +98,7 @@ The SOC operates 24×7 in many enterprise organizations.
 
 ---
 
-# Goals of a SOC
+## Goals of a SOC
 
 A Security Operations Center aims to:
 
@@ -113,7 +113,7 @@ The SOC serves as the organization's cyber defense command center.
 
 ---
 
-# Security Operations Lifecycle
+## Security Operations Lifecycle
 
 Enterprise Security Operations follows a continuous cycle.
 
@@ -153,7 +153,7 @@ Security Operations never stops.
 
 ---
 
-# Security Monitoring
+## Security Monitoring
 
 Continuous monitoring provides visibility into security events.
 
@@ -171,7 +171,7 @@ Monitoring helps identify suspicious behavior early.
 
 ---
 
-# Log Collection
+## Log Collection
 
 Security Operations relies heavily on log data.
 
@@ -189,7 +189,7 @@ Without logs, investigations become significantly more difficult.
 
 ---
 
-# Security Information and Event Management (SIEM)
+## Security Information and Event Management (SIEM)
 
 A **SIEM** platform collects, correlates, and analyzes security logs from multiple sources.
 
@@ -212,7 +212,7 @@ Examples:
 
 ---
 
-# Security Orchestration, Automation and Response (SOAR)
+## Security Orchestration, Automation and Response (SOAR)
 
 **SOAR** platforms automate repetitive security tasks.
 
@@ -228,7 +228,7 @@ Automation allows analysts to focus on complex investigations.
 
 ---
 
-# Threat Detection
+## Threat Detection
 
 SOC teams detect threats using:
 
@@ -242,7 +242,7 @@ Early detection minimizes organizational impact.
 
 ---
 
-# Security Investigation
+## Security Investigation
 
 When an alert occurs, analysts investigate:
 
@@ -256,7 +256,7 @@ Investigations determine whether an incident has occurred.
 
 ---
 
-# Incident Response
+## Incident Response
 
 If malicious activity is confirmed, the Incident Response process begins.
 
@@ -290,7 +290,7 @@ Effective response reduces downtime and limits damage.
 
 ---
 
-# Threat Hunting
+## Threat Hunting
 
 Threat Hunting is the proactive search for hidden attackers who may not have triggered alerts.
 
@@ -306,30 +306,30 @@ Threat Hunting helps uncover advanced attacks.
 
 ---
 
-# SOC Roles
+## SOC Roles
 
 Enterprise Security Operations teams typically include:
 
-### Tier 1 Analyst
+#### Tier 1 Analyst
 
 - Monitor alerts
 - Initial triage
 - Escalation
 
-### Tier 2 Analyst
+#### Tier 2 Analyst
 
 - Investigate incidents
 - Perform forensic analysis
 - Containment
 
-### Tier 3 Analyst
+#### Tier 3 Analyst
 
 - Advanced investigations
 - Threat hunting
 - Malware analysis
 - Detection engineering
 
-### SOC Manager
+#### SOC Manager
 
 - Team leadership
 - Metrics
@@ -340,7 +340,7 @@ Each role contributes to effective incident management.
 
 ---
 
-# Security Operations in Cloud Computing
+## Security Operations in Cloud Computing
 
 Cloud Security Operations includes monitoring:
 
@@ -356,7 +356,7 @@ Cloud-native logging provides visibility into cloud environments.
 
 ---
 
-# Security Operations in DevSecOps
+## Security Operations in DevSecOps
 
 DevSecOps integrates Security Operations into software delivery.
 
@@ -372,7 +372,7 @@ Security monitoring extends throughout the development lifecycle.
 
 ---
 
-# Security Operations in Artificial Intelligence
+## Security Operations in Artificial Intelligence
 
 AI supports Security Operations by:
 
@@ -386,7 +386,7 @@ AI improves efficiency but still requires human oversight.
 
 ---
 
-# Security Metrics
+## Security Metrics
 
 Organizations measure SOC performance using metrics such as:
 
@@ -401,7 +401,7 @@ These metrics support continuous improvement.
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid:
 
@@ -416,7 +416,7 @@ Continuous monitoring is essential.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -433,7 +433,7 @@ These practices strengthen enterprise cyber resilience.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A multinational company detects suspicious login activity.
 
@@ -473,7 +473,38 @@ Rapid detection and coordinated response prevent attackers from accessing sensit
 
 ---
 
-# Key Takeaways
+## Architecture diagram — A practical security operations feedback loop
+
+```mermaid
+flowchart LR
+    INVENTORY["Assets and risk context"] --> SIGNALS["Logs and telemetry"]
+    SIGNALS --> DETECT["Detections / alerts"]
+    DETECT --> TRIAGE["Validate and prioritize"]
+    TRIAGE --> DECIDE{"Confirmed incident?"}
+    DECIDE -- "No" --> TUNE["Document and tune detection"]
+    TUNE --> SIGNALS
+    DECIDE -- "Yes" --> RESPOND["Contain under approved procedure"]
+    RESPOND --> RECOVER["Recover and verify"]
+    RECOVER --> LEARN["Post-incident improvement"]
+    LEARN --> INVENTORY
+```
+
+**What this diagram shows:** Security teams maintain a continuous flow from asset knowledge and telemetry to detection, triage, response, recovery and lessons learned. Not every alert is an incident. Some require tuning or a documented non-incident disposition.
+
+**Real-world example (hypothetical):** An identity monitoring system alerts on an unfamiliar administrator login. An analyst confirms the principal, login context and subsequent API activity, checks whether the event is authorized, and escalates if investigation supports compromise.
+
+### Safe classroom activity
+
+1. Invent four **synthetic** events with timestamps, principal IDs and actions.
+2. Write one simple alert hypothesis, such as an administrator role being used outside a normal change window.
+3. Mark two events as needing review and explain what additional evidence is required.
+4. Draft a three-line incident handover: observed fact, uncertainty and next safe step.
+
+**Expected outcome:** a synthetic alert and investigation note, not a claim to have accessed a production SIEM. Advanced Academy SOC practice can be explored through [GHC Labs](/ghc-labs/) where supported.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -491,7 +522,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Security Operations is the continuous process of protecting an organization's digital environment through monitoring, detection, investigation, response, and recovery.
 
@@ -501,7 +532,7 @@ Security Operations is a critical capability for Cloud Security Engineers, SOC A
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 13 — Enterprise Cybersecurity**
 
