@@ -43,3 +43,5 @@ jobs:
         run: node scripts/verify-expanded-guides.mjs
       - name: Validate Core IT learning path and reverse-sync safety
         run: node scripts/verify-core-learning.mjs
+      - name: Validate architecture diagrams and original lesson URLs
+        run: node scripts/verify-cloud-cyber-mermaid.mjs
