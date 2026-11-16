@@ -27,7 +27,7 @@ A SIEM serves as the central nervous system of the Security Operations Center, h
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -42,7 +42,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is SIEM?
+## What is SIEM?
 
 **Security Information and Event Management (SIEM)** is a centralized platform that collects, stores, normalizes, correlates, analyzes, and monitors security events from multiple sources.
 
@@ -57,7 +57,7 @@ A SIEM helps organizations:
 
 ---
 
-# Why SIEM Matters
+## Why SIEM Matters
 
 Enterprise environments generate millions of events every day.
 
@@ -72,7 +72,7 @@ A SIEM brings all security telemetry together for centralized analysis.
 
 ---
 
-# SIEM Architecture
+## SIEM Architecture
 
 ```text
 Servers
@@ -118,7 +118,7 @@ The SIEM becomes the central repository for enterprise security events.
 
 ---
 
-# SIEM Components
+## SIEM Components
 
 A modern SIEM typically includes:
 
@@ -137,7 +137,7 @@ Each component contributes to security monitoring and incident detection.
 
 ---
 
-# Log Collection
+## Log Collection
 
 SIEM platforms collect logs from:
 
@@ -161,7 +161,7 @@ The broader the visibility, the better the detection capability.
 
 ---
 
-# Event Normalization
+## Event Normalization
 
 Different devices generate logs in different formats.
 
@@ -189,7 +189,7 @@ Normalization allows analysts to search and correlate events consistently.
 
 ---
 
-# Event Correlation
+## Event Correlation
 
 Correlation combines related events into a meaningful security incident.
 
@@ -219,7 +219,7 @@ Individual events may appear harmless, but together they reveal an attack.
 
 ---
 
-# Correlation Rules
+## Correlation Rules
 
 Correlation rules define suspicious patterns.
 
@@ -235,7 +235,7 @@ Well-designed rules improve detection accuracy.
 
 ---
 
-# Alerting
+## Alerting
 
 When correlation rules match suspicious behavior, the SIEM generates alerts.
 
@@ -251,7 +251,7 @@ SOC analysts prioritize investigations based on severity and business impact.
 
 ---
 
-# Dashboards
+## Dashboards
 
 SIEM dashboards provide real-time visibility into the security posture.
 
@@ -270,7 +270,7 @@ Dashboards help analysts quickly identify abnormal activity.
 
 ---
 
-# Threat Intelligence Integration
+## Threat Intelligence Integration
 
 Modern SIEM platforms integrate external threat intelligence.
 
@@ -286,11 +286,11 @@ Threat intelligence improves detection by adding external context to internal ev
 
 ---
 
-# SIEM in Cloud Computing
+## SIEM in Cloud Computing
 
 Cloud providers integrate with SIEM solutions.
 
-### AWS
+#### AWS
 
 - AWS CloudTrail
 - GuardDuty
@@ -299,14 +299,14 @@ Cloud providers integrate with SIEM solutions.
 - CloudWatch
 - AWS Config
 
-### Microsoft Azure
+#### Microsoft Azure
 
 - Azure Monitor
 - Microsoft Defender for Cloud
 - Microsoft Sentinel
 - Azure Activity Logs
 
-### Google Cloud
+#### Google Cloud
 
 - Cloud Logging
 - Cloud Monitoring
@@ -316,7 +316,7 @@ Cloud-native logs enrich SIEM visibility.
 
 ---
 
-# SIEM in Kubernetes
+## SIEM in Kubernetes
 
 Kubernetes security events include:
 
@@ -332,7 +332,7 @@ These events help detect attacks against containerized workloads.
 
 ---
 
-# SIEM in DevSecOps
+## SIEM in DevSecOps
 
 DevSecOps teams integrate SIEM with:
 
@@ -347,7 +347,7 @@ This provides visibility across the software development lifecycle.
 
 ---
 
-# Popular SIEM Platforms
+## Popular SIEM Platforms
 
 Common enterprise SIEM solutions include:
 
@@ -364,7 +364,7 @@ Each platform offers centralized monitoring, analytics, and threat detection cap
 
 ---
 
-# Common SIEM Use Cases
+## Common SIEM Use Cases
 
 Organizations use SIEM for:
 
@@ -382,7 +382,7 @@ SIEM supports both proactive and reactive security operations.
 
 ---
 
-# Common SIEM Challenges
+## Common SIEM Challenges
 
 Organizations often face:
 
@@ -397,7 +397,7 @@ Continuous tuning is essential for an effective SIEM deployment.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -414,7 +414,7 @@ These practices improve detection accuracy and analyst efficiency.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 CloudNova Technologies operates a centralized SIEM.
 
@@ -462,7 +462,41 @@ The SIEM automatically correlates events across cloud, network, and endpoint env
 
 ---
 
-# Key Takeaways
+## Architecture workshop — SIEM data quality before detection
+
+```mermaid
+flowchart LR
+    SOURCES["Identities, cloud, endpoints and applications"] --> INGEST["Collect with controlled access"]
+    INGEST --> PARSE["Parse and normalize event fields"]
+    PARSE --> CORRELATE["Apply detection hypotheses"]
+    CORRELATE --> QUEUE["Alert queue with context"]
+    QUEUE --> ANALYST["SOC analyst review"]
+    ANALYST --> FEEDBACK["Tuning and coverage feedback"]
+    FEEDBACK --> CORRELATE
+```
+
+**Explanation:** The SIEM pipeline depends on complete and trustworthy telemetry, normalized timestamps and useful event fields. A dashboard is not evidence that all devices are reporting. Detection tuning must preserve the behavior the rule is supposed to identify.
+
+**Enterprise scenario:** A suspicious sign-in rule never fires because one identity provider stopped shipping events. Security must monitor the health of the data pipeline as well as alert results.
+
+### Guided synthetic log exercise
+
+Suppose the following records are invented:
+
+| Timestamp | Principal | Action | Outcome |
+|---|---|---|---|
+| 10:01 | student-admin | console-login | failed |
+| 10:02 | student-admin | console-login | failed |
+| 10:03 | student-admin | console-login | success |
+| 10:04 | student-admin | policy-change | denied |
+
+Write a detection hypothesis covering failed logins followed by success; decide whether the denied policy change increases priority; and state which **additional** details you need before concluding compromise. Do not present these examples as real log exports.
+
+**Expected output:** hypothesis, required fields, triage steps, and at least two false-positive explanations. Compare with [SOC Fundamentals](/foundation/gohackerscloud-foundation/12-enterprise-security-operations/01-security-operations-center-soc/).
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -479,7 +513,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 A Security Information and Event Management (SIEM) platform is one of the most important technologies within a modern Security Operations Center. By collecting, normalizing, correlating, and analyzing events from across the enterprise, SIEM enables organizations to detect threats faster, investigate incidents more efficiently, and improve their overall security posture.
 
@@ -487,7 +521,7 @@ Mastering SIEM concepts is essential for Cloud Security Engineers, SOC Analysts,
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 04 — Change Management**
 
