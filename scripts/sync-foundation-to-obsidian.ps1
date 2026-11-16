@@ -108,7 +108,7 @@ foreach ($mapping in $mappings) {
     if ($mapping.Name -eq 'Foundation' -and $Scope -eq 'CloudCyberUpdates') {
       # Only the 8 reviewed Mermaid architecture lessons from this pull request.
       # Never overwrite unrelated modules when syncing cloud/security edits.
-      $matchPath = $relativePath.Replace('\\', '/')
+      $matchPath = $relativePath.Replace('\', '/')
       $allowedLessons = @(
         'GoHackersCloud Foundation/07 Cloud Computing Fundamentals/01 Cloud Computing.md',
         'GoHackersCloud Foundation/07 Cloud Computing Fundamentals/02 IaaS.md',
