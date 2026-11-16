@@ -2,6 +2,9 @@
 title: Lesson 01 — Git Fundamentals
 description: Learn the fundamentals of Git, the world's most popular distributed version control system. Understand repositories, commits, branches, staging, version history, and how Git is used by Cloud Engineers, DevOps Engineers, AI Engineers, and Cybersecurity Professionals.
 ---
+
+> **Foundation workshop:** [View the full Module 06 learning guide](/core-it-devops/module-06/) for prerequisite skills, a professional scenario, expected observations and exercises.
+
 ## Lesson Overview
 
 Imagine you're working on an enterprise cloud automation project.
@@ -35,7 +38,7 @@ Cloud Engineers, DevOps Engineers, Platform Engineers, Security Engineers, AI En
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -53,7 +56,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Version Control?
+## What is Version Control?
 
 A **Version Control System (VCS)** tracks changes made to files over time.
 
@@ -79,7 +82,7 @@ You can return to any previous version whenever needed.
 
 ---
 
-# Why Version Control Matters
+## Why Version Control Matters
 
 Version Control helps teams:
 
@@ -94,7 +97,7 @@ Modern software development depends on version control.
 
 ---
 
-# What is Git?
+## What is Git?
 
 Git is a **Distributed Version Control System (DVCS)** created by **Linus Torvalds** in 2005.
 
@@ -112,7 +115,7 @@ Today it is the industry standard for version control.
 
 ---
 
-# Why Was Git Created?
+## Why Was Git Created?
 
 Before Git, developers struggled with:
 
@@ -125,9 +128,9 @@ Git solved these challenges by introducing a distributed model where every devel
 
 ---
 
-# Centralized vs Distributed Version Control
+## Centralized vs Distributed Version Control
 
-## Centralized Version Control
+### Centralized Version Control
 
 ```text
 Developer
@@ -154,7 +157,7 @@ Disadvantages:
 
 ---
 
-## Distributed Version Control
+### Distributed Version Control
 
 ```text
 Developer A
@@ -189,7 +192,7 @@ Advantages:
 
 ---
 
-# Git Architecture
+## Git Architecture
 
 Git consists of three main areas:
 
@@ -209,7 +212,7 @@ Later, changes can be pushed to a remote repository such as GitHub.
 
 ---
 
-# Working Directory
+## Working Directory
 
 The **Working Directory** contains the files you're currently editing.
 
@@ -231,7 +234,7 @@ Any modifications begin here.
 
 ---
 
-# Staging Area
+## Staging Area
 
 The **Staging Area** acts as a preparation zone.
 
@@ -247,7 +250,7 @@ Git now knows this file should be included in the next commit.
 
 ---
 
-# Repository
+## Repository
 
 A **Repository (Repo)** stores:
 
@@ -261,7 +264,7 @@ Repositories are the heart of every Git project.
 
 ---
 
-# Installing Git
+## Installing Git
 
 Download Git from:
 
@@ -285,7 +288,7 @@ git version 2.49.0
 
 ---
 
-# Configuring Git
+## Configuring Git
 
 Before using Git, configure your identity.
 
@@ -303,7 +306,7 @@ git config --list
 
 ---
 
-# Creating a Repository
+## Creating a Repository
 
 Navigate to your project folder.
 
@@ -335,7 +338,7 @@ This folder stores all repository metadata.
 
 ---
 
-# Git Status
+## Git Status
 
 Check the current repository status.
 
@@ -355,7 +358,7 @@ No commits yet
 
 ---
 
-# Adding Files
+## Adding Files
 
 Create a file:
 
@@ -379,7 +382,7 @@ The files are now ready to be committed.
 
 ---
 
-# Creating a Commit
+## Creating a Commit
 
 A commit records a snapshot of your project.
 
@@ -396,7 +399,7 @@ Each commit has:
 
 ---
 
-# Viewing Commit History
+## Viewing Commit History
 
 Display previous commits.
 
@@ -420,7 +423,7 @@ A project's complete history is always available.
 
 ---
 
-# Git Commit Workflow
+## Git Commit Workflow
 
 ```text
 Modify File
@@ -442,7 +445,7 @@ This is the core Git workflow used by developers worldwide.
 
 ---
 
-# Viewing Differences
+## Viewing Differences
 
 See what has changed.
 
@@ -454,7 +457,7 @@ Git highlights additions and deletions before committing.
 
 ---
 
-# Removing Files
+## Removing Files
 
 Delete a tracked file.
 
@@ -466,7 +469,7 @@ Commit the change afterward.
 
 ---
 
-# Renaming Files
+## Renaming Files
 
 Rename a file.
 
@@ -478,7 +481,7 @@ Git tracks the rename operation.
 
 ---
 
-# Ignoring Files
+## Ignoring Files
 
 Create:
 
@@ -502,7 +505,7 @@ Ignored files are not tracked by Git.
 
 ---
 
-# Git Tags
+## Git Tags
 
 Tags identify important milestones.
 
@@ -520,7 +523,7 @@ Common uses:
 
 ---
 
-# Git History Example
+## Git History Example
 
 ```text
 Commit 1
@@ -542,7 +545,7 @@ Git allows you to inspect or restore any previous version.
 
 ---
 
-# Git in Cloud Computing
+## Git in Cloud Computing
 
 Cloud Engineers use Git to manage:
 
@@ -557,7 +560,7 @@ Infrastructure becomes version controlled and reproducible.
 
 ---
 
-# Git in DevOps
+## Git in DevOps
 
 DevOps Engineers use Git for:
 
@@ -572,7 +575,7 @@ Git is the foundation of DevOps workflows.
 
 ---
 
-# Git in Cybersecurity
+## Git in Cybersecurity
 
 Security teams manage:
 
@@ -587,7 +590,7 @@ Git provides change tracking and auditability.
 
 ---
 
-# Git in AI
+## Git in AI
 
 AI Engineers store:
 
@@ -601,7 +604,7 @@ Git supports reproducible AI workflows.
 
 ---
 
-# Common Git Commands
+## Common Git Commands
 
 | Command | Purpose |
 |----------|----------|
@@ -618,7 +621,7 @@ Git supports reproducible AI workflows.
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid these mistakes:
 
@@ -633,7 +636,7 @@ Small, meaningful commits make projects easier to maintain.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional development teams:
 
@@ -648,7 +651,7 @@ These practices improve collaboration and code quality.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A Cloud Engineer updates a Terraform configuration.
 
@@ -686,7 +689,75 @@ Every change is recorded, reviewed, and can be restored if necessary.
 
 ---
 
-# Key Takeaways
+### Extended Foundation Workshop — A reviewable Git change
+
+Git is useful beyond software development. Security teams use it to version-control detection rules, operational runbooks, investigation templates and configuration changes. A reviewer should always be able to answer: **what changed, why, how was it tested, and how will we undo it?**
+
+#### Workplace scenario
+
+A team wants to improve a troubleshooting procedure. Rather than editing a shared document without history, one engineer creates a focused change, checks what is staged and records a commit explaining the reason.
+
+#### Hands-on Git practice (local only)
+
+Run in Git Bash, Linux or macOS shell on your own computer:
+
+```bash
+mkdir foundation-operations-notes
+cd foundation-operations-notes
+git init -b main
+git config user.name "Foundation Learner"
+git config user.email "learner@example.invalid"
+printf '# Operations Notes\n' > README.md
+git status
+git add README.md
+git diff --cached
+git commit -m "docs: create operations learning notebook"
+git log -1 --oneline
+```
+
+The email shown is an intentionally invalid demonstration address. You do not need an online GitHub account for this exercise.
+
+**Expected observation:** a local repository with one tracked README file and a commit. The commit hash and timestamp vary by machine.
+
+#### Explain the workflow
+
+```text
+Edit files
+    |
+git status -> inspect what's changed
+    |
+git add -> stage intended changes
+    |
+git diff --cached -> review staged content
+    |
+git commit -> record a new snapshot
+    |
+Team review / CI / controlled deployment (separate steps)
+```
+
+A local commit **does not** automatically publish to GitHub or deploy a production application. That distinction is important when learning DevOps.
+
+#### Safety and professionalism
+
+Before `git add .`, inspect what the command would stage. Avoid committing `.env` files, secrets, tokens, personal data, customer information or sensitive internal diagrams. A `.gitignore` helps but does not erase previously committed secrets.
+
+#### Knowledge check
+
+1. **What does `git diff --cached` show?**
+
+   <details><summary>Suggested answer</summary>The changes already staged for the next commit, rather than all unstaged working-tree modifications.</details>
+
+2. **Does successful CI prove a production rollout is safe?**
+
+   <details><summary>Suggested answer</summary>No. Tests only validate their specified coverage. Release approvals, rollback planning, environment differences and monitoring still matter.</details>
+
+#### Portfolio deliverable
+
+Add a second commit with a network troubleshooting checklist. In a README, write a sample pull request description containing purpose, evidence, risks, tests and rollback. Then visit the [Module 06 workshop](/core-it-devops/module-06/), [Academy Projects](https://academy.gohackerscloud.com/tracks/projects/) and [GHC Labs overview](/ghc-labs/).
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -704,7 +775,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Git is the foundation of modern software development and infrastructure management.
 
@@ -714,7 +785,7 @@ Whether you're working in Cloud Computing, DevOps, Artificial Intelligence, or C
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 02 — GitHub**
 

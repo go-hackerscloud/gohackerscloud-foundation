@@ -1,202 +1,159 @@
 ---
-title: Lesson 01 — Welcome to the Academy
-description: Welcome to GoHackersCloud Academy and learn how your journey from beginner to professional will be structured.
----
-## Lesson Overview
-
-Welcome to **GoHackersCloud Academy**.
-
-We're excited to have you here.
-
-Whether you're taking your first step into IT, preparing for industry certifications, transitioning into Cloud or Cybersecurity, or advancing your existing career, you've joined a community built around one simple mission:
-
-> **Learn Real Skills. Build Real Careers.**
-
-GoHackersCloud Academy is designed to help you move beyond theory and develop practical, job-ready skills through structured learning, hands-on labs, enterprise projects, and real-world scenarios.
-
-This academy is built by industry professionals to prepare you for the skills companies expect today.
-
+title: "Lesson 01 — Welcome to GoHackersCloud Foundation"
+description: "Start free IT and cybersecurity foundations with a guided study method, real-world scenarios, independent practice and a clear path toward advanced GHC Labs."
 ---
 
-# Why GoHackersCloud Academy?
+**Module 00 · Lesson 01 · Level: New to IT · Recommended study time: 30–45 minutes**
 
-Many learners struggle because they:
+Welcome to **GoHackersCloud Foundation**, a free starting point for people who want to understand the technologies behind real businesses, cloud platforms, modern applications and cybersecurity.
 
-- Watch random YouTube tutorials without a clear plan.
-- Purchase multiple courses but never complete them.
-- Focus only on certifications instead of practical skills.
-- Don't know what to learn next.
-- Feel overwhelmed by the amount of information available.
+This is not a competition to memorize the largest number of commands. A working professional succeeds by asking the right question, understanding where a technology fits, validating an observation, respecting access boundaries and communicating decisions.
 
-GoHackersCloud Academy solves this problem by providing a structured roadmap that guides you from fundamentals to advanced concepts in a logical sequence.
+## Your first learning objective
 
-Every lesson, lab, assessment, and project has been carefully designed to build upon the previous one.
+By the end of this lesson, you should be able to:
 
----
+- Describe the difference between Foundation and the separate GoHackersCloud Academy.
+- Explain why IT, networking, operating systems, programming and DevOps form a useful learning sequence.
+- Create a personal learning plan with one measurable outcome.
+- Draw a simple application architecture and identify its main components.
+- Distinguish free independent practice from a subscription-based hosted lab.
 
-# What Makes This Academy Different?
+## What Foundation is — and what it is not
 
-Unlike traditional learning platforms, GoHackersCloud Academy focuses on practical learning.
+| Foundation gives you | Not automatically included |
+|---|---|
+| Free published lessons and subject explanations | A paid Academy membership |
+| Study paths, concepts and practice suggestions | Live instructor support for every page |
+| Independent exercises on your own computer or diagrams | A hosted GHC Lab for each Foundation lesson |
+| Review material and knowledge checks | An industry certification or guaranteed job |
+| Links to advanced Academy pathways | Automatic Academy dashboard progress for these free pages |
 
-Every learning path includes:
+Some older lessons may still mention Academy activities. The free Foundation curriculum stands on its own; hosted lab access has separate terms.
 
-- Structured lessons
-- Hands-on demonstrations
-- Practical labs
-- Enterprise projects
-- Professional runbooks
-- Knowledge assessments
-- Career guidance
-- Certification preparation
+**Where to begin:** [Start Here](/start-here/) · [See the full Core IT & DevOps roadmap](/core-it-devops/) · [Explore all 16 modules](/curriculum/).
 
-Our goal is to help you develop skills that can be applied immediately in real-world environments.
+For the detailed orientation case study and practice assignment, see [Module 00 — Foundation Orientation](/core-it-devops/module-00/).
 
----
+## Why we teach the foundations in this order
 
-# Learn Like an Engineer
+Imagine a student running a command that reports a website cannot be reached. Without the fundamentals, they may immediately blame a firewall. A more capable learner knows the failure could involve DNS, routing, a TCP port, TLS, server processes, a database dependency or a misconfigured deployment.
 
-Professional engineers don't simply memorize commands.
+Each module helps identify one part of the story:
 
-They understand:
+| Module | Question it helps answer |
+|---|---|
+| 01 IT Fundamentals | What resources and operating systems run the software? |
+| 02 Networking | How does information travel to the service? |
+| 03 Linux | How do Unix-like systems organize processes, files and permissions? |
+| 04 Windows | How do business systems manage services, events and enterprise identities? |
+| 05 Programming | How can we turn observations into safe, repeatable checks? |
+| 06 DevOps & Version Control | How can teams review, test and trace changes? |
 
-- Why a technology exists.
-- How it works.
-- Where it is used.
-- How to deploy it.
-- How to secure it.
-- How to troubleshoot it.
-- How to operate it in production.
+After these, cloud, cybersecurity, identity, cryptography, APIs, operations, AI and GRC will make more sense.
 
-Throughout this academy, you'll develop the mindset and practical approach used by experienced IT professionals.
+## A real-world case: the slow customer portal
 
----
+A fictional company has a small ecommerce portal. Users report intermittent slowness. A new IT graduate joins an investigation.
 
-# Our Learning Methodology
+### What the beginner might do
 
-Every learning path follows a consistent process:
+Restart the server immediately or increase its size. Either may disrupt customer orders, fail to solve the issue, or remove diagnostic evidence.
 
-## Step 1 — Learn
+### What an engineer should ask first
 
-Understand the concepts and build strong fundamentals.
+1. **Who is affected?** All customers, one office, mobile users or a single region?
+2. **Since when?** Was there a deployment or certificate change?
+3. **What is slow?** DNS lookup, connection, first response or page rendering?
+4. **What does the evidence show?** Application logs, network timeouts, storage or memory pressure?
+5. **Who can approve a change?** Which team owns the service, firewall or database?
 
-## Step 2 — Observe
+The professional approach is to test a hypothesis within your permissions, preserve facts, then escalate with a clear explanation.
 
-Watch practical demonstrations and real-world examples.
+### The architecture behind the problem
 
-## Step 3 — Practice
+```text
+    User browser
+         |
+       DNS
+         |
+   TCP + TLS (HTTPS)
+         |
+      Web server
+         |
+    Application/API
+         |
+       Database
 
-Complete guided hands-on labs.
+   Linux / Windows / Cloud
+         |
+      Logs + Monitoring
+         |
+      Git + DevOps
+```
 
-## Step 4 — Build
+This one diagram connects much of the Foundation curriculum. Later lessons explain each component in detail.
 
-Implement enterprise-level projects.
+## Your first free practical assignment
 
-## Step 5 — Troubleshoot
+**Goal:** show that you can explain a basic system before running a security tool.
 
-Solve realistic technical challenges.
+1. Draw the diagram above in your notebook, Obsidian, paper or a diagram application.
+2. Put a question mark beside three components you do not yet understand.
+3. Choose one: DNS, a server process, or Git. Write your best one-sentence explanation.
+4. Write a likely failure and one observation that would help investigate it.
+5. Label the work **Foundation self-study — hypothetical system**, not a production incident.
 
-## Step 6 — Master
+**Expected output:** one diagram, three learning questions and a five-line investigation note. There is no paid environment, required account or submission portal for this assignment.
 
-Apply your knowledge confidently in production environments.
+### Example evidence note
 
-Learning is a journey of continuous improvement. Each stage builds upon the previous one to help you gain confidence and practical experience.
+| Field | Example |
+|---|---|
+| Scenario | The portal does not load |
+| Hypothesis | DNS may be returning an old address |
+| Safe next check | Compare DNS resolution from two authorized client machines |
+| Evidence needed | Resolved addresses, timestamps, and client network context |
+| What remains unknown | Whether TCP and the application are available |
 
----
+## How to learn efficiently
 
-# What You'll Learn
+Use a simple cycle for every lesson:
 
-Depending on your chosen learning path, you'll gain expertise in areas such as:
+1. **Understand** why a technology exists.
+2. **Observe** a diagram, example, command or system behavior.
+3. **Practise** on your own machine or within an authorized learning environment.
+4. **Explain** the result without copying the lesson.
+5. **Review** what was confusing and revisit it later.
 
-- ☁️ Cloud Computing
-- 🔐 Cybersecurity
-- 🤖 Artificial Intelligence
-- ⚙️ DevOps
-- ☸️ Kubernetes
-- 🛡️ Cloud Security
-- 🔴 Cloud Penetration Testing
-- 🔵 Security Operations (SOC)
-- 📊 Governance, Risk & Compliance
-- 🚀 Platform Engineering
-- 💻 Programming & Automation
+Read the commands before running them. A good learner is comfortable saying “I do not know yet; here is how I would verify it.”
 
-Each roadmap is designed to take you from beginner to advanced through structured, practical learning.
+## Common beginner mistakes
 
----
+- Installing complex tools before learning networks and operating systems.
+- Treating a written example as proof that you personally tested a system.
+- Copying sensitive information into online tools or public repositories.
+- Mistaking a career roadmap for a promise of employment or certification.
+- Assuming a Foundation lesson automatically grants a hosted Academy lab.
 
-# How to Get the Most from This Academy
+## Knowledge check
 
-To maximize your learning experience, we recommend following these best practices:
+1. **What is the difference between Foundation and GHC Labs?**
 
-1. Watch every lesson carefully.
-2. Take notes during your learning.
-3. Complete every hands-on lab.
-4. Read every runbook.
-5. Attempt assessments honestly.
-6. Build your own practice environment.
-7. Review topics you find challenging.
-8. Practice consistently.
+   <details><summary>Suggested reasoning</summary>Foundation provides free conceptual and self-directed study. Hosted GHC Labs are separate Academy offerings with their own lesson scope, availability and access terms.</details>
 
-Remember:
+2. **What should you record before changing a failed service?**
 
-> **Consistency beats intensity.**
+   <details><summary>Suggested reasoning</summary>Business impact, symptoms, timing, affected users or systems, last known good state, initial observations and the owner who can authorize changes.</details>
 
-Studying a little every day is far more effective than studying occasionally for long hours.
+3. **How does a diagram help troubleshoot an application?**
 
----
+   <details><summary>Suggested reasoning</summary>It shows components, dependencies and trust boundaries so that tests can isolate a suspected failure rather than changing settings at random.</details>
 
-# What You Need to Succeed
+## Where hands-on GHC Labs becomes useful
 
-You don't need to know everything before you begin.
+Once you understand the basics, deliberately vulnerable web applications, cloud simulators and security-focused workbenches let you practise in controlled environments. **You do not need to subscribe to finish this free lesson.** When ready, explore the [GHC Labs demonstration and track overview](/ghc-labs/), or [check the official subscription and access page](https://gohackerscloud.com/hands-on-cybersecurity-labs).
 
-Bring:
+## Continue learning
 
-- A willingness to learn
-- Curiosity
-- Patience
-- Consistency
-- A problem-solving mindset
-
-We'll guide you through the technical knowledge and practical skills required for your chosen career path.
-
----
-
-# Your Career Journey Starts Here
-
-Every experienced professional started as a beginner.
-
-What separates successful learners is not talent—it's consistency, practice, and perseverance.
-
-Throughout your journey, you'll develop skills that can help you:
-
-- Prepare for industry certifications
-- Build practical experience
-- Create an impressive portfolio
-- Perform confidently in technical interviews
-- Solve real-world technical problems
-- Grow your career with confidence
-
-We're excited to be part of your learning journey.
-
-Welcome to **GoHackersCloud Academy**.
-
-Let's build your future together.
-
----
-
-# Key Takeaways
-
-After completing this lesson, you should understand:
-
-- The mission of GoHackersCloud Academy.
-- How the academy is structured.
-- What makes our learning approach different.
-- The importance of practical learning.
-- How to maximize your success throughout your journey.
-
----
-
-# Next Lesson
-
-➡️ **Lesson 02 — How to Use the Academy**
-
-In the next lesson, you'll learn how to navigate the academy, follow learning paths, complete labs, track your progress, and use all available learning resources effectively.
+**Your next lesson:** [How to Use GoHackersCloud Foundation](/foundation/gohackerscloud-foundation/00-welcome-to-gohackerscloud/02-how-to-use-the-academy/). Then begin [Module 01 — IT Fundamentals](/core-it-devops/module-01/) and return to the [seven-module Core IT pathway](/core-it-devops/) whenever you need direction.

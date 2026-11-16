@@ -2,6 +2,9 @@
 title: Lesson 01 — Networking Basics
 description: Learn the fundamentals of computer networking, understand how devices communicate, and build the foundation required for Cloud Computing, Cybersecurity, DevOps, and Enterprise IT.
 ---
+
+> **Foundation workshop:** [View the full Module 02 learning guide](/core-it-devops/module-02/) for prerequisite skills, a professional scenario, expected observations and exercises.
+
 ## Lesson Overview
 
 Every modern technology depends on networking.
@@ -24,7 +27,7 @@ This module builds the networking foundation that you'll use throughout every Go
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -37,7 +40,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Computer Networking?
+## What is Computer Networking?
 
 Computer networking is the process of connecting multiple devices so they can communicate and exchange information.
 
@@ -58,7 +61,7 @@ Networking allows these devices to send and receive information efficiently and 
 
 ---
 
-# Why Networking Matters
+## Why Networking Matters
 
 Modern businesses rely entirely on networking.
 
@@ -77,7 +80,7 @@ Every cloud platform—including AWS, Microsoft Azure, and Google Cloud—is bui
 
 ---
 
-# A Simple Networking Example
+## A Simple Networking Example
 
 Imagine two computers connected together.
 
@@ -101,7 +104,7 @@ That is modern networking.
 
 ---
 
-# How Information Travels
+## How Information Travels
 
 Whenever you visit a website, information travels through multiple networking devices.
 
@@ -141,11 +144,11 @@ This entire process usually happens in less than one second.
 
 ---
 
-# Types of Networks
+## Types of Networks
 
 Networks can be classified based on their size and purpose.
 
-## Personal Area Network (PAN)
+### Personal Area Network (PAN)
 
 A PAN connects devices around a single person.
 
@@ -158,7 +161,7 @@ Examples include:
 
 ---
 
-## Local Area Network (LAN)
+### Local Area Network (LAN)
 
 A LAN connects devices within a limited area.
 
@@ -176,7 +179,7 @@ Characteristics:
 
 ---
 
-## Wide Area Network (WAN)
+### Wide Area Network (WAN)
 
 A WAN connects multiple LANs across large geographic locations.
 
@@ -190,7 +193,7 @@ The Internet is the world's largest WAN.
 
 ---
 
-## Metropolitan Area Network (MAN)
+### Metropolitan Area Network (MAN)
 
 A MAN connects multiple locations within a city.
 
@@ -202,11 +205,11 @@ Examples:
 
 ---
 
-# Common Networking Devices
+## Common Networking Devices
 
 Modern networks use specialized devices.
 
-## Router
+### Router
 
 A router connects different networks together.
 
@@ -219,7 +222,7 @@ Responsibilities:
 
 ---
 
-## Switch
+### Switch
 
 A switch connects devices within the same network.
 
@@ -232,7 +235,7 @@ Responsibilities:
 
 ---
 
-## Firewall
+### Firewall
 
 A firewall protects networks.
 
@@ -247,7 +250,7 @@ Firewalls are one of the most important security controls in enterprise environm
 
 ---
 
-## Wireless Access Point
+### Wireless Access Point
 
 A Wireless Access Point (WAP) provides Wi-Fi connectivity.
 
@@ -259,11 +262,11 @@ Examples:
 
 ---
 
-# Clients and Servers
+## Clients and Servers
 
 Networking is based on communication between clients and servers.
 
-## Client
+### Client
 
 A client requests services.
 
@@ -275,7 +278,7 @@ Examples:
 
 ---
 
-## Server
+### Server
 
 A server provides services.
 
@@ -304,7 +307,7 @@ This client-server model powers almost every application on the Internet.
 
 ---
 
-# Enterprise Networking
+## Enterprise Networking
 
 Large organizations have much more complex networks.
 
@@ -344,7 +347,7 @@ Each component has a specific role in ensuring secure and reliable communication
 
 ---
 
-# Networking in Cloud Computing
+## Networking in Cloud Computing
 
 Cloud platforms are built entirely on networking.
 
@@ -362,7 +365,7 @@ As a Cloud Engineer, you'll configure these services regularly.
 
 ---
 
-# Networking in Cybersecurity
+## Networking in Cybersecurity
 
 Cybersecurity professionals rely on networking knowledge to:
 
@@ -377,7 +380,7 @@ Networking is one of the most important skills in cybersecurity.
 
 ---
 
-# Common Networking Terms
+## Common Networking Terms
 
 | Term | Description |
 |------|-------------|
@@ -395,7 +398,7 @@ These terms will appear throughout this module and your future learning paths.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Imagine you're opening **www.gohackerscloud.com**.
 
@@ -413,7 +416,7 @@ All of this happens in a matter of milliseconds.
 
 ---
 
-# Best Practices
+## Best Practices
 
 As an IT professional:
 
@@ -429,7 +432,78 @@ Strong networking knowledge makes every other IT skill easier to learn.
 
 ---
 
-# Key Takeaways
+### Extended Foundation Workshop — Trace an HTTPS request
+
+An IT or security professional should avoid treating every website error as a networking failure. This safe exercise shows how different technologies contribute to one familiar action: loading a web page.
+
+#### Workplace scenario
+
+Employees report that `https://example.com` opens on some devices but not others. You have permission to inspect your own workstation but not to change corporate DNS or firewall rules.
+
+#### The investigation flow
+
+```text
+Browser URL
+    |
+DNS hostname -> address
+    |
+IP route and network policy
+    |
+TCP connection on port 443
+    |
+TLS certificate and handshake
+    |
+HTTP request and response
+    |
+Browser renders document
+```
+
+A successful DNS lookup proves only that a resolver returned records. A completed TCP handshake does not prove that TLS trust succeeds; and a valid TLS session does not guarantee HTTP 200.
+
+#### Perform two harmless observations
+
+On Windows PowerShell:
+
+```powershell
+Resolve-DnsName example.com
+Test-NetConnection example.com -Port 443
+```
+
+On Linux or macOS (where supported):
+
+```bash
+nslookup example.com
+curl -I https://example.com
+```
+
+**Expected observations:** a name-resolution answer; and, if the network allows the request, a successful port test or HTTP headers. A response such as HTTP 200 or 301 is not the only possible outcome. Record errors as evidence without attempting to bypass network restrictions.
+
+#### Turn observations into professional reasoning
+
+| Symptom | Likely diagnostic layer | Safe next question |
+|---|---|---|
+| DNS returns NXDOMAIN | Naming | Is the hostname correct and publicly defined? |
+| Name resolves, TCP times out | Route, firewall, listener | Is port 443 reachable from this network? |
+| TCP works, TLS validation fails | Certificates and trust | Which certificate or trust condition failed? |
+| HTTP 503 | Application or upstream | What is the server's health and response history? |
+
+#### Knowledge check
+
+1. **Why does a DNS answer not establish HTTPS availability?**
+
+   <details><summary>Suggested answer</summary>DNS is only name resolution. Routing, TCP transport, TLS validation and HTTP application behavior must work separately.</details>
+
+2. **Can a firewall change be justified by a single failed browser request?**
+
+   <details><summary>Suggested answer</summary>No. Establish scope and evidence first; an unreviewed firewall change can expand exposure without addressing the root cause.</details>
+
+#### Deliverable and next stage
+
+Produce a **five-step browser connectivity runbook** containing the suspected layer, safe observation, expected result and escalation decision. Then review the [Module 02 guided workshop](/core-it-devops/module-02/) and explore [Network Security learning](https://academy.gohackerscloud.com/tracks/network/) when you want authorized, more advanced practice.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -442,7 +516,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Networking is the foundation of modern Information Technology.
 
@@ -452,7 +526,7 @@ By mastering networking fundamentals, you'll build a strong foundation that will
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 02 — The OSI Model**
 

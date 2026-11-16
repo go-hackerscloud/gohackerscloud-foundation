@@ -2,6 +2,9 @@
 title: Lesson 01 — Linux Introduction
 description: Learn what Linux is, why it powers the modern IT industry, understand Linux distributions, architecture, and discover why Linux is the foundation of Cloud Computing, Cybersecurity, DevOps, Kubernetes, and Enterprise Infrastructure.
 ---
+
+> **Foundation workshop:** [View the full Module 03 learning guide](/core-it-devops/module-03/) for prerequisite skills, a professional scenario, expected observations and exercises.
+
 ## Lesson Overview
 
 If networking is the backbone of Information Technology, **Linux is its operating system**.
@@ -28,7 +31,7 @@ This module provides the Linux foundation you'll build upon throughout the GoHac
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -42,7 +45,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Linux?
+## What is Linux?
 
 **Linux** is a free and open-source operating system based on the Unix operating system.
 
@@ -70,7 +73,7 @@ Linux is preferred in enterprise environments because it is:
 
 ---
 
-# Why Learn Linux?
+## Why Learn Linux?
 
 Almost every modern technology depends on Linux.
 
@@ -119,7 +122,7 @@ If you work in IT, you will almost certainly work with Linux.
 
 ---
 
-# A Brief History of Linux
+## A Brief History of Linux
 
 The Linux kernel was created in **1991** by **Linus Torvalds**, a computer science student from Finland.
 
@@ -131,7 +134,7 @@ Since then, Linux has become one of the most widely used operating systems in th
 
 ---
 
-# What is the Linux Kernel?
+## What is the Linux Kernel?
 
 The **Kernel** is the core component of the Linux operating system.
 
@@ -153,7 +156,7 @@ Applications never communicate directly with hardware—they communicate through
 
 ---
 
-# Linux Architecture
+## Linux Architecture
 
 A simplified Linux architecture looks like this:
 
@@ -173,7 +176,7 @@ Each layer has a specific role in managing the system.
 
 ---
 
-# Linux Distributions
+## Linux Distributions
 
 A **Linux Distribution (Distro)** is a complete operating system built around the Linux kernel.
 
@@ -196,7 +199,7 @@ Each distribution is optimized for different use cases.
 
 ---
 
-# Linux in Cloud Computing
+## Linux in Cloud Computing
 
 Linux powers nearly every public cloud platform.
 
@@ -228,7 +231,7 @@ Cloud Engineers spend most of their time managing Linux servers.
 
 ---
 
-# Linux in Cybersecurity
+## Linux in Cybersecurity
 
 Many cybersecurity tools run on Linux.
 
@@ -246,7 +249,7 @@ Most security assessments are performed from Linux systems.
 
 ---
 
-# Linux in DevOps
+## Linux in DevOps
 
 Linux is the preferred operating system for DevOps because it supports automation and scripting.
 
@@ -265,7 +268,7 @@ Most CI/CD pipelines execute on Linux servers.
 
 ---
 
-# Linux in Enterprise IT
+## Linux in Enterprise IT
 
 Organizations use Linux for:
 
@@ -282,7 +285,7 @@ Its reliability and scalability make it ideal for enterprise workloads.
 
 ---
 
-# Linux vs Windows
+## Linux vs Windows
 
 | Linux | Windows |
 |--------|----------|
@@ -297,7 +300,7 @@ Most enterprise environments use both operating systems.
 
 ---
 
-# Why IT Professionals Love Linux
+## Why IT Professionals Love Linux
 
 Linux offers many advantages.
 
@@ -314,7 +317,7 @@ These advantages make Linux the operating system of choice for enterprise infras
 
 ---
 
-# Common Linux Use Cases
+## Common Linux Use Cases
 
 Linux is commonly used for:
 
@@ -330,7 +333,7 @@ Linux is commonly used for:
 
 ---
 
-# Linux Career Opportunities
+## Linux Career Opportunities
 
 Learning Linux opens doors to many careers.
 
@@ -351,7 +354,7 @@ Linux knowledge is one of the most valuable technical skills in today's IT indus
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Imagine a customer visits the GoHackersCloud Academy website.
 
@@ -389,7 +392,7 @@ Every server in this workflow could be running Linux.
 
 ---
 
-# Best Practices
+## Best Practices
 
 As you begin learning Linux:
 
@@ -406,7 +409,68 @@ Consistent hands-on practice is the fastest way to become comfortable with Linux
 
 ---
 
-# Key Takeaways
+### Extended Foundation Workshop — Read-only Linux inspection
+
+Learning Linux is less about memorizing hundreds of commands and more about knowing which observation answers a technical question.
+
+#### Workplace scenario
+
+An application running in a Linux-based container is not responding as expected. A support engineer first identifies the process user, operating-system context and listening ports. A restarted container might erase the state needed for diagnosis, so the engineer begins with read-only checks.
+
+#### Commands to copy into your own Linux terminal
+
+```bash
+whoami
+id
+pwd
+cat /etc/os-release
+ps -eo pid,user,comm --sort=pid | head -12
+ss -ltn
+df -h
+```
+
+For a full Linux system using systemd, you may also inspect service state:
+
+```bash
+systemctl --failed
+journalctl --no-pager -n 15
+```
+
+**Expected observations:** an effective username, group IDs, working directory, OS details, process list, TCP listeners and filesystem capacity. A minimal container may not have `systemctl`; that does **not** make it broken.
+
+#### Map each command to a professional question
+
+| Command | Question answered |
+|---|---|
+| `whoami` and `id` | Which user and groups does this shell operate as? |
+| `ps` | Which processes are running, and under whose identities? |
+| `ss -ltn` | Which local TCP ports are listening? |
+| `df -h` | Which mounted filesystems are approaching capacity? |
+| `journalctl` | What relevant service or system messages were recorded, where available? |
+
+#### Practice reasoning
+
+Suppose the process list shows a service running as an unprivileged user but a configuration file can only be read by root. The right next step is to review file ownership, intended permissions and service account requirements—**not** make the file world-readable.
+
+A common mistake is treating `chmod 777` as a universal fix. It grants broad access, may create new exposure and fails to explain why the service identity was denied.
+
+#### Knowledge check
+
+1. **Why might systemd commands fail in a container?**
+
+   <details><summary>Suggested answer</summary>Many containers run the application or a supervisor directly as PID 1 rather than launching a full systemd init system.</details>
+
+2. **Does a process running as root prove that the application is secure?**
+
+   <details><summary>Suggested answer</summary>No. Elevated privileges generally increase the impact of compromise. Review minimal privileges, exposed resources, capabilities and service purpose.</details>
+
+#### Evidence to save
+
+Create a compact table of **command, expected observation, actual observation and interpretation**. Do not include passwords or internal tokens. Continue with [Module 03 deep-dive](/core-it-devops/module-03/) and, when relevant, the [CompTIA practical pathway](https://academy.gohackerscloud.com/tracks/comptia/).
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -420,7 +484,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Linux is one of the most important technologies in modern IT.
 
@@ -432,7 +496,7 @@ Throughout this module, you'll move from Linux fundamentals to practical adminis
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 02 — Linux Installation**
 

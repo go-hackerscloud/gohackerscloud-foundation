@@ -1,0 +1,95 @@
+---
+title: "Core IT & DevOps — Complete Beginner Learning Path"
+description: "A detailed first-stage learning path through technology fundamentals, networking, Linux, Windows, Python and Git/DevOps, with practical evidence and industry context."
+template: splash
+---
+
+# Core IT & DevOps — Learn how real systems work
+
+**Seven foundation modules · Beginner to early intermediate · Free conceptual study and self-directed practice**
+
+Most IT professionals are asked to solve problems that cross more than one technology. A website is not “a networking problem” or “a Linux problem”: its behavior depends on compute resources, operating systems, DNS, applications, identity, network paths and the change process. This pathway connects those pieces in the order you will need them at work.
+
+You do **not** need an expensive laptop or a GoHackersCloud subscription to complete the free lessons and worksheets. Use the read-only commands only on systems you own or may administer. Later, if you want supported hosted practical exercises, the separate [GHC Labs overview](/ghc-labs/) shows how Academy tracks and subscriptions work.
+
+## What you can build by the end
+
+A short **“investigate a slow and unreachable application”** portfolio case. It will contain a system diagram, a network troubleshooting decision tree, Linux and Windows read-only checks, a Python log summarizer, and Git history showing how your investigation notes evolved.
+
+This is a synthetic learning exercise, not proof of professional production experience.
+
+## Your seven-module journey
+
+| Stage | Module | Why it matters | Evidence to produce |
+|---|---|---|---|
+| 00 | [Foundation Orientation](/core-it-devops/module-00/) | Plan your learning, avoid tool overload | Study plan and personal goals |
+| 01 | [IT Fundamentals](/core-it-devops/module-01/) | Understand the systems that run software | Hardware/capacity diagram |
+| 02 | [Networking](/core-it-devops/module-02/) | Understand request paths and connectivity | DNS/HTTPS investigation |
+| 03 | [Linux](/core-it-devops/module-03/) | Learn commands and services used in cloud systems | Read-only troubleshooting notebook |
+| 04 | [Windows](/core-it-devops/module-04/) | Learn business endpoints and enterprise administration | PowerShell observations and event review |
+| 05 | [Programming](/core-it-devops/module-05/) | Work with scripts, JSON and automation | Synthetic log-analysis script |
+| 06 | [DevOps & Git](/core-it-devops/module-06/) | Understand repeatable, reviewed changes | Version-controlled project README |
+
+Each module overview contains a real-world scenario, hands-on steps, expected observations, questions and a transition to its existing Foundation lesson syllabus.
+
+## Architecture: how the modules connect
+
+```text
+                    User / browser
+                          |
+                   DNS + TCP + TLS
+                          |
+                    Web application
+                   /       |        \
+           Linux server  Windows   Managed service
+                 |          |           |
+                 +---- Logs and metrics +
+                          |
+                Python analysis script
+                          |
+              Git + reviewed DevOps change
+                          |
+                Evidence and retesting
+```
+
+Ask yourself: if the browser fails to load the application, how do you know whether the fault is DNS, TCP connectivity, a missing TLS certificate, a stopped process, disk pressure or an application error? The modules progressively answer those questions.
+
+## Example professional investigation
+
+A hypothetical retailer reports that the customer portal is sometimes slow, and users in one office cannot reach it. The junior engineer has no permission to change production settings.
+
+1. **Clarify:** which users, what time, what symptoms, and what changed?
+2. **Separate layers:** DNS answer, network path, TCP reachability, TLS, HTTP response, application dependencies.
+3. **Observe safely:** read-only OS and network commands; avoid blindly restarting services.
+4. **Document:** capture timestamps, commands, sanitized outputs, likely causes and unanswered questions.
+5. **Escalate:** communicate evidence and a reversible next test to an authorized owner.
+6. **Track changes:** use Git to preserve how the diagnosis evolved.
+
+The professional skill is not “running every command”; it is selecting the next test that distinguishes two possible causes.
+
+## A practical weekly routine
+
+| Session | Time | Goal |
+|---|---:|---|
+| Read concepts | 20–30 minutes | Learn definitions and architecture |
+| Try a safe example | 20–30 minutes | Inspect a real result |
+| Write evidence | 10–15 minutes | Record what happened and why |
+| Explain aloud | 10 minutes | Answer a scenario question without looking |
+| Review | 10 minutes | Correct a misconception and plan what is next |
+
+The suggested time is flexible. More complex modules may take several weeks. No paid access, certification or job outcome is guaranteed.
+
+## Progress checks
+
+- [ ] I can draw the flow from browser to server and name the network dependencies.
+- [ ] I can explain CPU, memory, storage and why each affects performance.
+- [ ] I can use basic Linux and Windows commands without modifying system state.
+- [ ] I can read and create a basic Python script that processes synthetic data.
+- [ ] I can explain what Git records and why review is important.
+- [ ] I can describe an incident using facts, assumptions and next tests.
+
+## Where GHC Labs fits
+
+Free Foundation builds **understanding and independent practice**. The separate [Academy](https://academy.gohackerscloud.com/tracks/) organizes technical tracks, and some lessons offer preconfigured browser-hosted labs. For a learner who wants to move from network diagrams into authorized network testing, or from HTTP theory into deliberately vulnerable applications, [explore the GHC Labs experience](/ghc-labs/) and then [review current subscription terms](https://gohackerscloud.com/hands-on-cybersecurity-labs).
+
+**Your next step:** [Begin Module 00 — Foundation Orientation](/core-it-devops/module-00/) or [go directly to IT Fundamentals](/core-it-devops/module-01/).

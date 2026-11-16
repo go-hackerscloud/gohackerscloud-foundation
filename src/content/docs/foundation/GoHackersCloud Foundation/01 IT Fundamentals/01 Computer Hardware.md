@@ -2,6 +2,9 @@
 title: Lesson 01 — Computer Hardware
 description: Learn the fundamentals of computer hardware, understand how computers work, and explore the core components that power modern enterprise IT environments.
 ---
+
+> **Foundation workshop:** [View the full Module 01 learning guide](/core-it-devops/module-01/) for prerequisite skills, a professional scenario, expected observations and exercises.
+
 ## Lesson Overview
 
 Every application, cloud service, website, virtual machine, and Artificial Intelligence model ultimately runs on physical hardware.
@@ -14,7 +17,7 @@ In this lesson, you'll learn how computers are built, how each hardware componen
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -26,7 +29,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Computer Hardware?
+## What is Computer Hardware?
 
 Computer hardware refers to the **physical components** of a computer system.
 
@@ -38,7 +41,7 @@ Without hardware, software cannot operate.
 
 ---
 
-# Hardware vs Software
+## Hardware vs Software
 
 Understanding the difference is fundamental.
 
@@ -58,7 +61,7 @@ Both are equally important.
 
 ---
 
-# Major Components of a Computer
+## Major Components of a Computer
 
 A modern computer consists of several core hardware components.
 
@@ -80,13 +83,13 @@ Each component performs a specific function.
 
 ---
 
-# Central Processing Unit (CPU)
+## Central Processing Unit (CPU)
 
 The CPU is often called the **brain of the computer**.
 
 It performs calculations, executes program instructions, and coordinates communication between all hardware components.
 
-### Responsibilities
+#### Responsibilities
 
 - Execute instructions
 - Perform calculations
@@ -94,15 +97,15 @@ It performs calculations, executes program instructions, and coordinates communi
 - Coordinate hardware
 - Manage system operations
 
-### Common CPU Manufacturers
+#### Common CPU vendors and architectures
 
-- Intel
-- AMD
-- ARM
+- Intel and AMD are major x86 CPU manufacturers.
+- ARM is an instruction-set architecture licensed by multiple chip designers, not a single CPU manufacturer.
+- Apple, Qualcomm and Ampere are examples of companies that design ARM-based processors.
 
 ---
 
-# Random Access Memory (RAM)
+## Random Access Memory (RAM)
 
 RAM is the computer's short-term working memory.
 
@@ -110,7 +113,7 @@ Applications currently running store their active data in RAM for quick access.
 
 When the computer is powered off, RAM is cleared.
 
-### Why RAM Matters
+#### Why RAM Matters
 
 More RAM allows a computer to:
 
@@ -131,7 +134,7 @@ Enterprise servers often contain hundreds of gigabytes or even terabytes of memo
 
 ---
 
-# Storage
+## Storage
 
 Storage permanently stores data, operating systems, applications, and user files.
 
@@ -148,7 +151,7 @@ Modern enterprise environments primarily use SSD and NVMe storage because of the
 
 ---
 
-# Motherboard
+## Motherboard
 
 The motherboard connects every hardware component together.
 
@@ -166,7 +169,7 @@ Think of the motherboard as the city's transportation network connecting every b
 
 ---
 
-# Graphics Processing Unit (GPU)
+## Graphics Processing Unit (GPU)
 
 Originally designed for graphics rendering, GPUs have become essential for:
 
@@ -186,7 +189,7 @@ Cloud providers now offer GPU instances specifically designed for AI and high-pe
 
 ---
 
-# Network Interface Card (NIC)
+## Network Interface Card (NIC)
 
 A Network Interface Card enables computers to communicate across networks.
 
@@ -203,7 +206,7 @@ Without networking, computers cannot communicate with other systems.
 
 ---
 
-# Power Supply Unit (PSU)
+## Power Supply Unit (PSU)
 
 The Power Supply Unit converts electrical power from a wall outlet into the voltages required by computer components.
 
@@ -217,7 +220,7 @@ These features improve reliability and reduce downtime.
 
 ---
 
-# Cooling Systems
+## Cooling Systems
 
 Hardware generates heat during operation.
 
@@ -234,7 +237,7 @@ Proper cooling improves performance and extends hardware lifespan.
 
 ---
 
-# Input and Output Devices
+## Input and Output Devices
 
 Input devices allow users to interact with computers.
 
@@ -259,7 +262,7 @@ In enterprise servers, many of these devices are replaced by remote management t
 
 ---
 
-# Enterprise Hardware vs Personal Computers
+## Enterprise Hardware vs Personal Computers
 
 Enterprise environments use specialized hardware designed for reliability, scalability, and continuous operation.
 
@@ -276,7 +279,7 @@ Understanding this difference is important as you move into Cloud Computing and 
 
 ---
 
-# How Hardware Supports Modern IT
+## How Hardware Supports Modern IT
 
 Every technology you'll learn throughout GoHackersCloud Academy ultimately relies on hardware.
 
@@ -295,7 +298,7 @@ Even cloud computing is simply someone else's hardware managed at massive scale.
 
 ---
 
-# Common Hardware Terminology
+## Common Hardware Terminology
 
 | Term | Meaning |
 |------|---------|
@@ -314,7 +317,7 @@ These terms appear frequently throughout your IT career.
 
 ---
 
-# Best Practices
+## Best Practices
 
 As an IT professional, always remember:
 
@@ -329,7 +332,75 @@ Strong hardware knowledge makes troubleshooting much easier.
 
 ---
 
-# Key Takeaways
+### Extended Foundation Workshop — Hardware capacity and evidence
+
+A professional engineer is expected to distinguish a resource bottleneck from a guess. Use the following *hypothetical* support case to connect hardware concepts with a meaningful task.
+
+#### Workplace scenario
+
+A training room contains ten laptops. Several students report slow response while opening a browser and a local virtual machine. One administrator assumes the Internet connection is the cause. Your assignment is to test that hypothesis without changing any system settings.
+
+#### Decide what each resource can explain
+
+| Observation | What it may indicate | What it does not establish |
+|---|---|---|
+| CPU near saturation during the delay | Compute contention | Whether the application code is correct |
+| Very little available RAM and heavy swapping | Memory pressure | That buying memory is the only remedy |
+| High disk latency | Slow storage or busy background I/O | That network performance is poor |
+| Plenty of free disk space | Storage capacity is available | That disk I/O is fast |
+| Browser page waits on an API | Application or service dependency | That the workstation CPU is at fault |
+
+#### Read-only practice on your own machine
+
+Choose the commands for your platform. A cloud lab or powerful personal laptop is **not required**.
+
+Windows PowerShell:
+
+```powershell
+Get-CimInstance Win32_ComputerSystem | Select-Object Model,TotalPhysicalMemory
+Get-CimInstance Win32_Processor | Select-Object Name,NumberOfLogicalProcessors
+Get-PSDrive -PSProvider FileSystem
+```
+
+Linux terminal:
+
+```bash
+lscpu
+free -h
+df -h
+```
+
+**Expected observations:** processor model or core information, memory capacity or usage, and volumes with available storage. Numbers vary across physical hosts, virtual machines and containers, so do not copy example values as your own results.
+
+#### Interpret the evidence
+
+Write three sentences:
+
+1. Which resource can you measure from the commands above?
+2. Which additional metric would be needed to diagnose *latency* rather than *capacity*?
+3. What is the next safe observation before recommending a hardware upgrade?
+
+**Instructor perspective:** a VM can be slow because of host contention even when the guest reports spare disk space. Understanding the distinction is useful when later using preconfigured learning environments.
+
+#### Knowledge check
+
+1. **Why might a system with plenty of free disk space still be slow?**
+
+   <details><summary>Suggested answer</summary>Free capacity and disk I/O throughput or latency are different. Storage contention, applications and other dependencies may still cause delays.</details>
+
+2. **Does a high physical-core count guarantee a VM will have the same number of cores?**
+
+   <details><summary>Suggested answer</summary>No. The hypervisor or runtime assigns virtual CPU resources, and scheduling can introduce contention.</details>
+
+#### Save your portfolio evidence
+
+Create a one-page resource report with **environment, observed output, explanation, limitations and next test**. Label it self-directed practice, not an actual customer investigation.
+
+**Go further:** [Module 01 deeper guide](/core-it-devops/module-01/) · [CompTIA practical track](https://academy.gohackerscloud.com/tracks/comptia/) · [GHC Labs overview](/ghc-labs/). A subscription is optional and has separate access terms.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -341,7 +412,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Computer hardware forms the foundation of every modern technology platform.
 
@@ -351,7 +422,7 @@ Understanding these fundamentals will help you troubleshoot systems, design bett
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 02 — Operating Systems**
 
