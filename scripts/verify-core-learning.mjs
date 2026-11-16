@@ -59,7 +59,7 @@ for(const theme of ['logo-light','logo-dark']){
   assert.ok(!svg.includes('>ACADEMY</text>'));
 }
 const sync=read('scripts/sync-foundation-to-obsidian.ps1');
-assert.ok(sync.includes("Scope = 'Core'"));
+assert.ok(sync.includes("Scope = 'CoreUpdates'"));
 assert.ok(sync.includes("if (-not $Apply)"));
 assert.ok(sync.includes("if ($state -eq 'Changed' -and -not $Overwrite)"));
 assert.ok(sync.includes('foundation-obsidian-sync-backups'));
