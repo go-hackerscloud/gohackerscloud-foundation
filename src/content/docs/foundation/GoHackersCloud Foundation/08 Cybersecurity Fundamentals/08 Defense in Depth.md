@@ -32,7 +32,7 @@ It is one of the most important principles used by Security Engineers, Cloud Eng
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -47,7 +47,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Defense in Depth?
+## What is Defense in Depth?
 
 **Defense in Depth** is a cybersecurity strategy that uses multiple layers of security controls to protect systems, applications, networks, and data.
 
@@ -59,7 +59,7 @@ The objective is simple:
 
 ---
 
-# Why Defense in Depth Matters
+## Why Defense in Depth Matters
 
 Modern cyber attacks are sophisticated.
 
@@ -77,7 +77,7 @@ Layered security significantly reduces the likelihood of a successful attack.
 
 ---
 
-# Defense in Depth Architecture
+## Defense in Depth Architecture
 
 A simplified enterprise architecture looks like this:
 
@@ -121,7 +121,7 @@ Every layer contributes to overall security.
 
 ---
 
-# Layer 1 — Physical Security
+## Layer 1 — Physical Security
 
 Physical security protects infrastructure.
 
@@ -138,7 +138,7 @@ Physical protection prevents unauthorized access to critical facilities.
 
 ---
 
-# Layer 2 — Administrative Security
+## Layer 2 — Administrative Security
 
 Administrative controls guide how people work securely.
 
@@ -155,7 +155,7 @@ These controls reduce human-related risks.
 
 ---
 
-# Layer 3 — Identity Security
+## Layer 3 — Identity Security
 
 Identity is the first technical security layer.
 
@@ -171,7 +171,7 @@ Strong identity controls reduce unauthorized access.
 
 ---
 
-# Layer 4 — Network Security
+## Layer 4 — Network Security
 
 Network security protects communication between systems.
 
@@ -188,7 +188,7 @@ Network controls help stop attackers before they reach applications.
 
 ---
 
-# Layer 5 — Endpoint Security
+## Layer 5 — Endpoint Security
 
 Endpoints include:
 
@@ -210,7 +210,7 @@ Endpoints remain one of the most common attack targets.
 
 ---
 
-# Layer 6 — Application Security
+## Layer 6 — Application Security
 
 Applications require dedicated protection.
 
@@ -227,7 +227,7 @@ Application security reduces software vulnerabilities.
 
 ---
 
-# Layer 7 — Data Security
+## Layer 7 — Data Security
 
 Protecting data is one of the primary goals of cybersecurity.
 
@@ -244,7 +244,7 @@ Sensitive information should remain protected throughout its lifecycle.
 
 ---
 
-# Layer 8 — Monitoring & Detection
+## Layer 8 — Monitoring & Detection
 
 Organizations continuously monitor for suspicious activity.
 
@@ -261,7 +261,7 @@ Early detection significantly reduces business impact.
 
 ---
 
-# Layer 9 — Backup & Recovery
+## Layer 9 — Backup & Recovery
 
 Organizations prepare for security incidents by implementing recovery controls.
 
@@ -277,7 +277,7 @@ Recovery controls minimize downtime and data loss.
 
 ---
 
-# Defense in Depth in Cloud Computing
+## Defense in Depth in Cloud Computing
 
 Cloud environments implement layered security using:
 
@@ -293,7 +293,7 @@ Every cloud service should be protected by multiple security controls.
 
 ---
 
-# Defense in Depth in Kubernetes
+## Defense in Depth in Kubernetes
 
 Kubernetes environments commonly use:
 
@@ -309,7 +309,7 @@ Each layer protects the cluster from different attack vectors.
 
 ---
 
-# Defense in Depth in DevSecOps
+## Defense in Depth in DevSecOps
 
 DevSecOps introduces security throughout the software lifecycle.
 
@@ -326,7 +326,7 @@ Security becomes continuous rather than reactive.
 
 ---
 
-# Defense in Depth in Artificial Intelligence
+## Defense in Depth in Artificial Intelligence
 
 AI platforms require multiple layers of protection.
 
@@ -343,7 +343,7 @@ AI systems should follow the same layered security principles as traditional app
 
 ---
 
-# Defense in Depth and Zero Trust
+## Defense in Depth and Zero Trust
 
 Defense in Depth complements the **Zero Trust** model.
 
@@ -357,7 +357,7 @@ Together, they provide a strong enterprise security architecture.
 
 ---
 
-# Enterprise Security Frameworks
+## Enterprise Security Frameworks
 
 Defense in Depth is supported by industry frameworks such as:
 
@@ -372,7 +372,7 @@ These frameworks recommend layered security across people, processes, and techno
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid:
 
@@ -387,7 +387,7 @@ Layered security is essential because no individual control is perfect.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -404,7 +404,7 @@ These practices improve resilience against modern cyber threats.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A multinational company secures its cloud infrastructure using multiple layers.
 
@@ -452,7 +452,37 @@ Even if one control is bypassed, additional layers continue protecting the organ
 
 ---
 
-# Key Takeaways
+## Architecture diagram — Defense in depth is not one perimeter
+
+```mermaid
+flowchart TB
+    WORKLOAD["Sensitive application and data"]
+    IAM["MFA / scoped identity access"] --> WORKLOAD
+    NET["Network isolation and minimal ingress"] --> WORKLOAD
+    APP["Application validation and object authorization"] --> WORKLOAD
+    KEY["Encryption and controlled keys"] --> WORKLOAD
+    DET["Audit logs, alert triage and incident response"] --> WORKLOAD
+    RESTORE["Protected backup and verified recovery"] --> WORKLOAD
+```
+
+**What this diagram shows:** Security safeguards overlap around a business asset. The diagram is **not an ordered attack path**: attackers do not necessarily move through these controls one by one. A secure design combines prevention, detection and recoverability.
+
+**Enterprise case:** A malicious party obtains a valid password. MFA may block sign-in, scoped permissions may limit damage, API authorization may reject access to a different user's data, and logging may alert the security team. Backups help recovery if data is corrupted. None of these independently guarantees protection.
+
+### Mini assessment
+
+1. Name a control that helps **prevent** unauthorized data access.
+2. Name a control that helps **detect** a suspicious access attempt.
+3. Name a control that improves **recovery** after destructive activity.
+4. Explain why a firewall does not validate record-level permissions.
+
+<details><summary>Suggested reasoning</summary>Examples: scoped IAM or API authorization, centrally monitored audit trails, protected and tested backups, and the distinction between network reachability and application authorization.</details>
+
+**Deliverable:** a control map showing what each control does, who operates it and how it is tested. See [Security Architecture](/foundation/gohackerscloud-foundation/08-cybersecurity-fundamentals/10-security-architecture/) for trust boundaries.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -470,7 +500,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Defense in Depth is one of the most fundamental strategies in enterprise cybersecurity.
 
@@ -482,7 +512,7 @@ Defense in Depth is a foundational principle for Cloud Security, DevSecOps, Secu
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 09 — Zero Trust**
 
