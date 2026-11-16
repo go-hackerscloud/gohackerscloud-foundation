@@ -34,6 +34,25 @@ A hypervisor runs separate guest operating systems; containers typically share a
 
 Redundant power, disks, high availability, backups and monitoring address different failure risks. A second disk is not the same as an independent backup; two servers are not enough if they depend on the same single database.
 
+## Architecture diagram — How real hardware supports an application
+
+```mermaid
+flowchart TB
+    CLIENT["User or client application"] --> SERVICE["Application service"]
+    SERVICE --> GUEST["Guest OS / service runtime"]
+    GUEST --> HOST["Virtualization or host OS"]
+    HOST --> CPU["CPU scheduling"]
+    HOST --> RAM["Memory allocation"]
+    HOST --> DISK["Persistent storage"]
+    HOST --> NIC["Network interface"]
+```
+
+**How to interpret it:** Application reliability depends on multiple physical and virtual resources. Bottlenecks can appear in CPU scheduling, memory, storage or networking.
+
+**Diagram exercise:** Draw where a VM or container sits in the stack, then state which metric you would check for a slow request.
+
+**Expected evidence:** A labeled architecture or flowchart plus one safe verification step. This is independent Foundation study; no paid Academy lab is required.
+
 ## Enterprise case study (hypothetical)
 
 A training platform runs 20 small virtual machines. Some students see slow desktops although the Internet connection is fine. The engineer compares host CPU scheduling, available memory, disk latency and guest processes. They record evidence before requesting more capacity or restarting workloads.
