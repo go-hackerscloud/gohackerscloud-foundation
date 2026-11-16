@@ -41,6 +41,11 @@ const sourceLessonCount = countMarkdown(contentRoot);
 const directoryLinks = [...curriculum.matchAll(/class="foundation-directory-link"\s+href="([^"]+)"/g)]
   .map(match => match[1].replaceAll('&amp;', '&'));
 const moduleDetails = (curriculum.match(/data-foundation-directory-module/g) || []).length;
+console.log('Directory diagnostic', JSON.stringify({
+  renderedLessonItems:(curriculum.match(/foundation-directory-lesson/g)||[]).length,
+  renderedLinkSample:(curriculum.match(/foundation-directory-link[^>]{0,190}/g)||[]).slice(0,2),
+  renderedModuleSample:(curriculum.match(/data-foundation-directory-module[^>]{0,190}/g)||[]).slice(0,2),
+}));
 assert.equal(moduleDetails, 16, 'Full lesson directory must contain all 16 modules');
 assert.equal(directoryLinks.length, sourceLessonCount, 'Lesson directory must include every published Foundation lesson');
 assert.equal(new Set(directoryLinks).size, sourceLessonCount, 'Lesson directory has duplicate URLs');
