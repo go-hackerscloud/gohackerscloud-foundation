@@ -56,6 +56,71 @@ After completing this lesson, you will be able to:
 
 ---
 
+## Architecture and workplace practice — Git history and controlled release
+
+These are **conceptual** diagrams for the free Foundation lesson. They help you reason about an enterprise system; they are not records of a production deployment.
+
+### The Git working-tree to commit lifecycle
+
+```mermaid
+flowchart LR
+    WORK["Working directory changes"] --> REVIEW["Inspect git status and diff"]
+    REVIEW --> STAGE["Stage intended files"]
+    STAGE --> CHECK["Review staged diff"]
+    CHECK --> COMMIT["Commit snapshot locally"]
+    COMMIT --> HISTORY["Traceable repository history"]
+```
+
+**How to read the diagram:** Git separates working files, the staging index and recorded commits. A commit does not automatically upload code or trigger a deployment.
+
+### Pull request to safe deployment
+
+```mermaid
+flowchart TD
+    BRANCH["Feature branch and scoped change"] --> PR["Open pull request"]
+    PR --> CI["Build, tests and security checks"]
+    CI --> READY{"Tests and review approved?"}
+    READY -->|"No"| FIX["Repair and retest"]
+    FIX --> CI
+    READY -->|"Yes"| MERGE["Merge approved change"]
+    MERGE --> DEPLOY["Controlled deployment"]
+    DEPLOY --> MONITOR["Monitor, verify and roll back if needed"]
+```
+
+**How to read the diagram:** A passing CI run is one release gate, not a guarantee of security. Teams also need approvals, rollback plans and operational validation.
+
+### Workplace scenario
+
+A developer updates a troubleshooting runbook and wants to publish it safely. A reviewer checks exact changes, test results and that no tokens or sensitive screenshots entered the commit.
+
+### Independent exercise
+
+Create a local Git practice repository, commit a harmless README, inspect the staged diff, then write a simulated pull-request description with tests and rollback.
+
+**Expected evidence:** A local commit history, PR checklist and a release lifecycle diagram. No GitHub account or production deployment required.
+
+### Check your understanding
+
+- **D**
+
+  <details><summary>Show suggested reasoning</summary>o</details>
+
+- **N**
+
+  <details><summary>Show suggested reasoning</summary>o</details>
+
+- **D**
+
+  <details><summary>Show suggested reasoning</summary>o</details>
+
+- **N**
+
+  <details><summary>Show suggested reasoning</summary>o</details>
+
+**Continue learning:** [Open the Module 06 deep-dive](/core-it-devops/module-06/) or [see GHC Labs and its optional advanced practice](/ghc-labs/). Foundation lessons remain free; hosted labs have separate access terms.
+
+---
+
 ## What is Version Control?
 
 A **Version Control System (VCS)** tracks changes made to files over time.

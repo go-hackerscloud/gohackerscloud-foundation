@@ -52,6 +52,73 @@ Each module helps identify one part of the story:
 
 After these, cloud, cybersecurity, identity, cryptography, APIs, operations, AI and GRC will make more sense.
 
+## Architecture and workplace practice — Your Foundation learning and evidence workflow
+
+These are **conceptual** diagrams for the free Foundation lesson. They help you reason about an enterprise system; they are not records of a production deployment.
+
+### Seven-module technical learning map
+
+```mermaid
+flowchart LR
+    START["Start here and define goals"] --> HW["IT hardware and operating systems"]
+    HW --> NETWORK["Networking and request paths"]
+    NETWORK --> OS["Linux and Windows"]
+    OS --> CODE["Programming and data formats"]
+    CODE --> GIT["Git, DevOps and reviewed changes"]
+    GIT --> EVIDENCE["Document and explain evidence"]
+    EVIDENCE --> NEXT["Choose cloud or cybersecurity specialization"]
+```
+
+**How to read the diagram:** The sequence connects how computers work to how services communicate, run, change and recover. It is a recommended learning order, not a compulsory subscription path.
+
+### Professional troubleshooting thought process
+
+```mermaid
+flowchart TD
+    REPORT["User reports an issue"] --> SCOPE["Clarify impact, timing and affected users"]
+    SCOPE --> MODEL["Map components and dependencies"]
+    MODEL --> HYP["List likely causes"]
+    HYP --> CHECK["Choose one safe observation"]
+    CHECK --> PROOF{"Evidence supports hypothesis?"}
+    PROOF -->|"No"| HYP
+    PROOF -->|"Yes"| OWNER["Record findings and consult service owner"]
+    OWNER --> RETEST["Verify and communicate outcome"]
+```
+
+**How to read the diagram:** Engineers distinguish assumptions from facts. Safe observation and documented ownership come before production changes.
+
+### Workplace scenario
+
+A fictional college portal becomes slow after a routine update. A student draws the service path, chooses whether to inspect a network or application signal, and prepares a concise escalation instead of restarting anything.
+
+### Independent exercise
+
+Draw your own learning path, choose one measurable outcome for networking and one for operating systems, then prepare a four-column note: observation, hypothesis, safe check, next owner.
+
+**Expected evidence:** A personal seven-stage roadmap and one hypothetical troubleshooting worksheet. No paid lab, system scanning or privileged access is required.
+
+### Check your understanding
+
+- **W**
+
+  <details><summary>Show suggested reasoning</summary>h</details>
+
+- **B**
+
+  <details><summary>Show suggested reasoning</summary>e</details>
+
+- **W**
+
+  <details><summary>Show suggested reasoning</summary>h</details>
+
+- **W**
+
+  <details><summary>Show suggested reasoning</summary>h</details>
+
+**Continue learning:** [Open the Module 00 deep-dive](/core-it-devops/module-00/) or [see GHC Labs and its optional advanced practice](/ghc-labs/). Foundation lessons remain free; hosted labs have separate access terms.
+
+---
+
 ## A real-world case: the slow customer portal
 
 A fictional company has a small ecommerce portal. Users report intermittent slowness. A new IT graduate joins an investigation.

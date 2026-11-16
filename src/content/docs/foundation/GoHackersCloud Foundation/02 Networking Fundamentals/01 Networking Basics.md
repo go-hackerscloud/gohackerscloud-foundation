@@ -40,6 +40,71 @@ After completing this lesson, you will be able to:
 
 ---
 
+## Architecture and workplace practice — How a browser reaches a service
+
+These are **conceptual** diagrams for the free Foundation lesson. They help you reason about an enterprise system; they are not records of a production deployment.
+
+### End-to-end request path
+
+```mermaid
+flowchart LR
+    CLIENT["Student browser"] --> RESOLVER["DNS name resolution"]
+    RESOLVER --> ROUTER["Client route and network policy"]
+    ROUTER --> TLS["TCP connection and TLS handshake"]
+    TLS --> GATEWAY["Public application entry"]
+    GATEWAY --> API["Application or API"]
+    API --> DATA[("Restricted database")]
+```
+
+**How to read the diagram:** The diagram separates naming, transport, encrypted communication and application requests. A successful DNS answer does not prove TCP/HTTPS or the application is healthy.
+
+### Connectivity diagnostic decision path
+
+```mermaid
+flowchart TD
+    FAILURE["Website cannot be reached"] --> DNS{"Does DNS resolve?"}
+    DNS -->|"No"| NAME["Check hostname and resolver"]
+    DNS -->|"Yes"| PORT{"Is TCP port reachable?"}
+    PORT -->|"No"| PATH["Inspect route, filtering and listener"]
+    PORT -->|"Yes"| TLS{"Does TLS validate?"}
+    TLS -->|"No"| CERT["Inspect certificate and trust"]
+    TLS -->|"Yes"| HTTP["Inspect HTTP status and service logs"]
+```
+
+**How to read the diagram:** Each safe observation narrows a different fault domain. An HTTP 503 response is different from a DNS failure or a TLS certificate validation error.
+
+### Workplace scenario
+
+Students on one office network cannot access a training portal, while mobile users can. A technician records DNS and HTTPS observations and escalates only the relevant failure layer.
+
+### Independent exercise
+
+On a device you control, run a DNS lookup for example.com and a harmless HTTPS header request; draw where each observation fits on the diagram.
+
+**Expected evidence:** A simple fault tree identifying DNS, transport, TLS and HTTP separately, with actual or sample observations clearly labeled.
+
+### Check your understanding
+
+- **D**
+
+  <details><summary>Show suggested reasoning</summary>o</details>
+
+- **N**
+
+  <details><summary>Show suggested reasoning</summary>o</details>
+
+- **W**
+
+  <details><summary>Show suggested reasoning</summary>h</details>
+
+- **C**
+
+  <details><summary>Show suggested reasoning</summary>o</details>
+
+**Continue learning:** [Open the Module 02 deep-dive](/core-it-devops/module-02/) or [see GHC Labs and its optional advanced practice](/ghc-labs/). Foundation lessons remain free; hosted labs have separate access terms.
+
+---
+
 ## What is Computer Networking?
 
 Computer networking is the process of connecting multiple devices so they can communicate and exchange information.

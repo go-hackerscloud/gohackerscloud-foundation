@@ -29,6 +29,74 @@ After completing this lesson, you will be able to:
 
 ---
 
+## Architecture and workplace practice — Physical computing and virtualization architecture
+
+These are **conceptual** diagrams for the free Foundation lesson. They help you reason about an enterprise system; they are not records of a production deployment.
+
+### From physical hardware to virtualized application
+
+```mermaid
+flowchart TB
+    PHYS["Physical CPU, RAM, disks and network adapters"] --> HOST["Host operating system or hypervisor"]
+    HOST --> VM1["Virtual machine A: guest OS and app"]
+    HOST --> VM2["Virtual machine B: guest OS and app"]
+    HOST --> CONTAINER["Container runtime: isolated processes"]
+    VM1 --> SERVICES["Application and data services"]
+    VM2 --> SERVICES
+    CONTAINER --> SERVICES
+```
+
+**How to read the diagram:** Physical resources support hypervisors and operating systems. The diagram compares hosting options; containers typically share a host kernel, while virtual machines have guest operating systems.
+
+### Resource-pressure troubleshooting map
+
+```mermaid
+flowchart TD
+    SLOW["Slow workstation or VM"] --> BASE["Record timing and resource baseline"]
+    BASE --> CPU{"CPU saturated?"}
+    CPU -->|"Yes"| RUN["Inspect active processes and CPU demand"]
+    CPU -->|"No"| MEMORY{"Memory pressure or swapping?"}
+    MEMORY -->|"Yes"| MEM["Inspect workload and memory limits"]
+    MEMORY -->|"No"| DISK["Inspect storage latency and application dependency"]
+    RUN --> FIND["Record evidence and propose safe next test"]
+    MEM --> FIND
+    DISK --> FIND
+```
+
+**How to read the diagram:** CPU, memory and storage performance are distinct. Low free disk space is not identical to high disk latency, and high CPU alone does not identify the failing application.
+
+### Workplace scenario
+
+A classroom workstation struggles when a browser and a local virtual machine run together. Support checks CPU load, memory pressure and disk performance before suggesting a purchase.
+
+### Independent exercise
+
+Sketch the relationship between RAM, CPU, storage, OS and VM; use an authorized device to inspect resource usage; write one likely symptom for each bottleneck.
+
+**Expected evidence:** One architecture diagram, a simple resource table and a justified next observation; no changes to system configuration.
+
+### Check your understanding
+
+- **D**
+
+  <details><summary>Show suggested reasoning</summary>o</details>
+
+- **N**
+
+  <details><summary>Show suggested reasoning</summary>o</details>
+
+- **W**
+
+  <details><summary>Show suggested reasoning</summary>h</details>
+
+- **A**
+
+  <details><summary>Show suggested reasoning</summary>v</details>
+
+**Continue learning:** [Open the Module 01 deep-dive](/core-it-devops/module-01/) or [see GHC Labs and its optional advanced practice](/ghc-labs/). Foundation lessons remain free; hosted labs have separate access terms.
+
+---
+
 ## What is Computer Hardware?
 
 Computer hardware refers to the **physical components** of a computer system.

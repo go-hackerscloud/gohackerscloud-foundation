@@ -44,6 +44,73 @@ After completing this lesson, you will be able to:
 
 ---
 
+## Architecture and workplace practice — Programming logic and safe data processing
+
+These are **conceptual** diagrams for the free Foundation lesson. They help you reason about an enterprise system; they are not records of a production deployment.
+
+### From input through logic to verified result
+
+```mermaid
+flowchart LR
+    INPUT["Synthetic input records"] --> VALIDATE["Validate fields and types"]
+    VALIDATE --> LOGIC["Conditions, loops and functions"]
+    LOGIC --> OUTPUT["Calculated summary"]
+    OUTPUT --> TEST["Compare with expected test result"]
+    TEST --> REVIEW["Explain limitations and failure cases"]
+```
+
+**How to read the diagram:** Reliable programs handle untrusted or malformed inputs and produce observable results. The developer verifies behavior with tests rather than assuming syntactically valid code is correct.
+
+### Decision path for an event summarizer
+
+```mermaid
+flowchart TD
+    EVENT["Read a record"] --> FORMAT{"Is status an integer?"}
+    FORMAT -->|"No"| ERROR["Record malformed input without sensitive data"]
+    FORMAT -->|"Yes"| CLASS{"Status class?"}
+    CLASS -->|"2xx"| OK["Increment successful count"]
+    CLASS -->|"4xx"| CLIENT["Increment client error count"]
+    CLASS -->|"5xx"| SERVER["Increment server error count"]
+    OK --> NEXT["Continue with next record"]
+    CLIENT --> NEXT
+    SERVER --> NEXT
+    ERROR --> NEXT
+```
+
+**How to read the diagram:** This is logic for synthetic training events. A production implementation must also handle missing keys, empty inputs, other status classes and privacy requirements.
+
+### Workplace scenario
+
+A support team needs a status-code summary from synthetic API records. The beginner writes a small Python program and confirms how it handles both normal and malformed data.
+
+### Independent exercise
+
+Draw the data flow, run the synthetic Python example in the lesson, add a missing status field and describe a safe validation strategy.
+
+**Expected evidence:** A flowchart, observed counts, one negative test and a short explanation of what the script does not prove.
+
+### Check your understanding
+
+- **W**
+
+  <details><summary>Show suggested reasoning</summary>h</details>
+
+- **M**
+
+  <details><summary>Show suggested reasoning</summary>a</details>
+
+- **D**
+
+  <details><summary>Show suggested reasoning</summary>o</details>
+
+- **N**
+
+  <details><summary>Show suggested reasoning</summary>o</details>
+
+**Continue learning:** [Open the Module 05 deep-dive](/core-it-devops/module-05/) or [see GHC Labs and its optional advanced practice](/ghc-labs/). Foundation lessons remain free; hosted labs have separate access terms.
+
+---
+
 ## What is Programming?
 
 Programming is the process of writing instructions that tell a computer what to do.
