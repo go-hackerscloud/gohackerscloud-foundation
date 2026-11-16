@@ -61,6 +61,7 @@ if ($IncludeHub) {
   # Reference copies are visible in Obsidian but NOT exported by publish-foundation.ps1.
   # Keep edits to these in GitHub unless an explicit single-source publishing plan is adopted.
   $mappings += @(
+    [pscustomobject]@{ Name='Core IT & DevOps Reference'; Source='core-it-devops'; Destination='99 Foundation Published References\core-it-devops' },
     [pscustomobject]@{ Name='Learning Hub Reference'; Source='learning-hub'; Destination='99 Foundation Published References\learning-hub' },
     [pscustomobject]@{ Name='GHC Labs Reference'; Source='ghc-labs'; Destination='99 Foundation Published References\ghc-labs' }
   )
