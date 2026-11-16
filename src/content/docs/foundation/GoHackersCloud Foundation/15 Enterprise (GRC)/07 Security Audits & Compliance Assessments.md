@@ -40,7 +40,7 @@ Audits provide independent assurance that security controls are implemented corr
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -55,7 +55,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is a Security Audit?
+## What is a Security Audit?
 
 A **Security Audit** is a formal, independent examination of an organization's security controls, policies, procedures, and operations.
 
@@ -71,7 +71,7 @@ Audits provide confidence to management, customers, and regulators.
 
 ---
 
-# Why Security Audits Matter
+## Why Security Audits Matter
 
 Organizations perform audits to:
 
@@ -88,7 +88,7 @@ Audits validate that security programs work as intended.
 
 ---
 
-# Audit vs Assessment
+## Audit vs Assessment
 
 Although similar, they have different purposes.
 
@@ -104,11 +104,11 @@ Both activities complement one another.
 
 ---
 
-# Types of Security Audits
+## Types of Security Audits
 
 Organizations commonly perform:
 
-### Internal Audit
+#### Internal Audit
 
 Conducted by internal audit teams.
 
@@ -120,7 +120,7 @@ Purpose:
 
 ---
 
-### External Audit
+#### External Audit
 
 Conducted by independent third-party auditors.
 
@@ -134,7 +134,7 @@ External audits provide independent assurance.
 
 ---
 
-### Regulatory Audit
+#### Regulatory Audit
 
 Performed by regulators or supervisory authorities.
 
@@ -148,7 +148,7 @@ These audits verify legal compliance.
 
 ---
 
-### Customer Audit
+#### Customer Audit
 
 Enterprise customers may perform audits before awarding contracts.
 
@@ -164,7 +164,7 @@ Customer audits help establish trust.
 
 ---
 
-# What is a Compliance Assessment?
+## What is a Compliance Assessment?
 
 A **Compliance Assessment** measures how well an organization meets the requirements of a specific framework or regulation.
 
@@ -181,7 +181,7 @@ Unlike an audit, assessments are often used internally to identify improvement o
 
 ---
 
-# Security Audit Lifecycle
+## Security Audit Lifecycle
 
 A typical audit follows this process.
 
@@ -225,7 +225,7 @@ Audits are cyclical and support continuous improvement.
 
 ---
 
-# Audit Scope
+## Audit Scope
 
 Clearly defining scope is essential.
 
@@ -244,7 +244,7 @@ A well-defined scope ensures focused and efficient audits.
 
 ---
 
-# Audit Evidence
+## Audit Evidence
 
 Auditors require objective evidence.
 
@@ -265,7 +265,7 @@ Evidence demonstrates that controls are implemented and operating effectively.
 
 ---
 
-# Interviews
+## Interviews
 
 Auditors commonly interview personnel to verify understanding and implementation.
 
@@ -281,7 +281,7 @@ Interviews help validate documented processes.
 
 ---
 
-# Reviewing Security Controls
+## Reviewing Security Controls
 
 Auditors verify controls such as:
 
@@ -298,7 +298,7 @@ Controls should operate consistently across the enterprise.
 
 ---
 
-# Audit Findings
+## Audit Findings
 
 Findings are usually categorized.
 
@@ -314,7 +314,7 @@ Organizations prioritize remediation based on business risk.
 
 ---
 
-# Audit Report
+## Audit Report
 
 A professional audit report typically contains:
 
@@ -332,7 +332,7 @@ Reports should be clear, factual, and business focused.
 
 ---
 
-# Remediation Management
+## Remediation Management
 
 After the audit:
 
@@ -364,7 +364,7 @@ Effective remediation is just as important as identifying issues.
 
 ---
 
-# Continuous Compliance
+## Continuous Compliance
 
 Leading organizations continuously monitor compliance rather than preparing only before audits.
 
@@ -380,7 +380,7 @@ Continuous compliance reduces audit preparation effort.
 
 ---
 
-# Cloud Security Audits
+## Cloud Security Audits
 
 Cloud Security Engineers commonly audit:
 
@@ -397,7 +397,7 @@ Cloud environments require frequent review because they change rapidly.
 
 ---
 
-# Compliance Framework Mapping
+## Compliance Framework Mapping
 
 Security controls often satisfy multiple frameworks.
 
@@ -414,7 +414,7 @@ Control mapping reduces duplicated effort.
 
 ---
 
-# Common Audit Challenges
+## Common Audit Challenges
 
 Organizations often experience:
 
@@ -430,7 +430,7 @@ Strong governance minimizes these challenges.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Successful organizations:
 
@@ -447,7 +447,7 @@ Audits should validate operational maturity—not become annual emergency projec
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 CloudNova Technologies prepares for its annual ISO 27001 surveillance audit.
 
@@ -491,7 +491,40 @@ Because CloudNova maintains continuous compliance and accurate documentation, th
 
 ---
 
-# Key Takeaways
+## Architecture workshop — Audit evidence from scope to closure
+
+```mermaid
+flowchart LR
+    SCOPE["Define audit scope and criteria"] --> CONTROL["Identify expected controls and owners"]
+    CONTROL --> EVIDENCE["Collect approved, dated evidence"]
+    EVIDENCE --> TEST["Assess design and operating effectiveness"]
+    TEST --> FINDING["Document findings and limitations"]
+    FINDING --> ACTION["Remediation owner and deadline"]
+    ACTION --> RETEST["Independent or authorized retest"]
+    RETEST --> REPORT["Closure and management reporting"]
+```
+
+**Explanation:** An audit compares evidence against **stated criteria and scope**. Evidence may support a control, reveal a gap or be insufficient for a conclusion. A screenshot without date, context, permission or method often has limited assurance value.
+
+**Enterprise example:** A cloud team claims privileged access is reviewed quarterly. An auditor checks review scope, sampled identities, approvals, reviewer independence, exception decisions and proof that removals were completed. A dashboard showing MFA enabled does not itself establish that quarterly reviews occurred.
+
+### Free audit walkthrough
+
+In a fictional company, the standard requires privileged access to be reviewed every quarter.
+
+1. Write the exact **control assertion** and identify the accountable owner.
+2. List necessary evidence: group membership, reviewer sign-off, date range, exceptions, tickets and closure outcomes.
+3. Create one fictional **conforming** example and one example with a missing approval.
+4. Draft a finding using: criteria, condition, cause if known, potential impact, recommendation and owner.
+5. Define a retest step and explain how you would protect personal or confidential evidence.
+
+**Expected deliverable:** a one-page audit evidence request, a clearly scoped finding and a retest plan. Never represent this as a certified audit or claim compliance with ISO/IEC 27001 without the appropriate assessment.
+
+**Continue:** [Third-Party Risk Management](/foundation/gohackerscloud-foundation/15-enterprise-grc/08-third-party-supply-chain-risk-management/) and the [GRC practical exercises](/curriculum/#module-15/).
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -508,7 +541,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Security Audits and Compliance Assessments provide independent assurance that enterprise security controls are properly designed, implemented, and operating effectively. By conducting regular audits, collecting objective evidence, remediating findings, and continuously monitoring compliance, organizations strengthen governance, reduce risk, and demonstrate trust to customers, regulators, and stakeholders.
 
@@ -516,7 +549,7 @@ Mastering Security Audits & Compliance Assessments prepares Cloud Engineers, Clo
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 08 — Third-Party & Supply Chain Risk Management**
 
