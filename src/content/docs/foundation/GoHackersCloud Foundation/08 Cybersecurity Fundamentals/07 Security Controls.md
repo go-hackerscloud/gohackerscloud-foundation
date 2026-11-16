@@ -36,7 +36,7 @@ Security Controls are the building blocks of every cybersecurity program and are
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -50,7 +50,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What are Security Controls?
+## What are Security Controls?
 
 Security Controls are safeguards implemented to reduce risks and protect organizational assets.
 
@@ -68,7 +68,7 @@ Security Controls support every aspect of the CIA Triad.
 
 ---
 
-# Why Security Controls Matter
+## Why Security Controls Matter
 
 Organizations implement controls to:
 
@@ -83,7 +83,7 @@ No single control is sufficient on its own.
 
 ---
 
-# Categories of Security Controls
+## Categories of Security Controls
 
 Security Controls are commonly grouped into three categories:
 
@@ -95,7 +95,7 @@ Together, they provide comprehensive protection.
 
 ---
 
-# Administrative Controls
+## Administrative Controls
 
 Administrative controls are policies, procedures, and governance practices.
 
@@ -113,7 +113,7 @@ Administrative controls guide how people work securely.
 
 ---
 
-# Technical Controls
+## Technical Controls
 
 Technical controls use technology to protect systems.
 
@@ -131,7 +131,7 @@ These controls automatically enforce security.
 
 ---
 
-# Physical Controls
+## Physical Controls
 
 Physical controls protect buildings and hardware.
 
@@ -149,11 +149,11 @@ Physical security protects the infrastructure that supports digital systems.
 
 ---
 
-# Functional Types of Security Controls
+## Functional Types of Security Controls
 
 Security controls can also be classified by their purpose.
 
-## Preventive Controls
+### Preventive Controls
 
 Prevent attacks before they occur.
 
@@ -166,7 +166,7 @@ Examples:
 
 ---
 
-## Detective Controls
+### Detective Controls
 
 Identify suspicious or malicious activity.
 
@@ -180,7 +180,7 @@ Examples:
 
 ---
 
-## Corrective Controls
+### Corrective Controls
 
 Reduce the impact of an incident after it occurs.
 
@@ -193,7 +193,7 @@ Examples:
 
 ---
 
-## Deterrent Controls
+### Deterrent Controls
 
 Discourage attackers from attempting an attack.
 
@@ -206,7 +206,7 @@ Examples:
 
 ---
 
-## Recovery Controls
+### Recovery Controls
 
 Restore operations after an incident.
 
@@ -219,7 +219,7 @@ Examples:
 
 ---
 
-## Compensating Controls
+### Compensating Controls
 
 Alternative controls used when the primary control cannot be implemented.
 
@@ -229,7 +229,7 @@ If MFA is temporarily unavailable, additional monitoring and restricted access m
 
 ---
 
-# Defense in Layers
+## Defense in Layers
 
 Enterprise organizations implement multiple overlapping controls.
 
@@ -269,7 +269,7 @@ Multiple layers reduce the likelihood of successful attacks.
 
 ---
 
-# Security Controls in Cloud Computing
+## Security Controls in Cloud Computing
 
 Cloud environments commonly use:
 
@@ -284,7 +284,7 @@ Cloud environments commonly use:
 
 ---
 
-# Security Controls in DevOps
+## Security Controls in DevOps
 
 DevSecOps teams implement:
 
@@ -299,7 +299,7 @@ Security becomes part of software delivery.
 
 ---
 
-# Security Controls in Artificial Intelligence
+## Security Controls in Artificial Intelligence
 
 AI environments require controls such as:
 
@@ -312,7 +312,7 @@ AI environments require controls such as:
 
 ---
 
-# Enterprise Security Frameworks
+## Enterprise Security Frameworks
 
 Security Controls are organized using frameworks including:
 
@@ -327,7 +327,7 @@ These frameworks help organizations implement consistent and measurable security
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid:
 
@@ -340,7 +340,7 @@ Avoid:
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -355,7 +355,7 @@ Professional organizations:
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A multinational company protects its cloud environment using multiple security controls.
 
@@ -391,7 +391,43 @@ Each control works together to reduce risk and improve resilience.
 
 ---
 
-# Key Takeaways
+## Architecture workshop — Controls that prevent, detect and recover
+
+```mermaid
+flowchart TB
+    PROTECT["Business application and sensitive records"]
+    IAM["Prevent: identity and authorization"] --> PROTECT
+    NETWORK["Prevent: minimal network exposure"] --> PROTECT
+    DETECT["Detect: logs, alerts and reviews"] -. "observe" .-> PROTECT
+    RESTORE["Recover: tested backups and incident procedure"] --> PROTECT
+    POLICY["People, policies and ownership"] -. "govern" .-> IAM
+    POLICY -. "govern" .-> DETECT
+    POLICY -. "govern" .-> RESTORE
+```
+
+**What this shows:** Control functions overlap. Prevention restricts unwanted actions; detection produces evidence of unusual behavior; correction and recovery restore the intended state. No one layer makes a system immune.
+
+### Hypothetical workplace example
+
+A university portal uses MFA, per-record access checks, monitored audit events and a tested backup plan.
+
+### Safe independent exercise
+
+Create a table of two preventive, two detective and two recovery/corrective controls, indicating what test could verify each.
+
+**Expected output:** A control-to-evidence matrix appropriate for a beginner self-assessment.
+
+### Knowledge check
+
+**Will a backup stop an attacker reading live student records?**
+
+<details><summary>Suggested reasoning</summary>No. Backup and restore are primarily recovery capabilities; identity and data authorization are separate.</details>
+
+**Next:** [Full Foundation curriculum](/curriculum/) · [Optional GHC Labs practice](/ghc-labs/). The free exercise requires no membership.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -408,7 +444,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Security Controls are the foundation of every cybersecurity program.
 
@@ -420,7 +456,7 @@ Understanding Security Controls prepares you for advanced topics in Cloud Securi
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 08 — Defense in Depth**
 
