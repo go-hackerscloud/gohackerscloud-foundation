@@ -43,10 +43,10 @@ If Git reports local modifications or a failed fast-forward, **resolve those cha
 ### 2 — Preview the reverse sync (no writes)
 
 ```powershell
-.\scripts\sync-foundation-to-obsidian.ps1 -Scope Core
+.\scripts\sync-foundation-to-obsidian.ps1 -Scope CoreUpdates
 ```
 
-This inspects all published Foundation Markdown under modules 00–06 and reports three states:
+This defaults to the **eight edited lesson files** from this PR (Orientation lessons 01–02 and the first lesson of Modules 01–06), preserving all other local notes. To inspect all 88 Core module documents instead, explicitly use `-Scope Core`. It reports three states:
 
 - **Same:** matching content already exists in Obsidian.
 - **New:** published file is not present locally.
@@ -59,7 +59,7 @@ The preview does not modify or remove anything.
 If the preview shows that GitHub includes the intended latest edits and your existing Obsidian notes are backed up, run:
 
 ```powershell
-.\scripts\sync-foundation-to-obsidian.ps1 -Scope Core -Apply -Overwrite
+.\scripts\sync-foundation-to-obsidian.ps1 -Scope CoreUpdates -Apply -Overwrite
 ```
 
 Existing differing notes are backed up automatically to a timestamped folder under:
@@ -72,7 +72,7 @@ The backup sits **outside your Obsidian vault**, so the publisher will not accid
 
 ### 4 — Optionally import the rest of the existing Foundation and the new guides
 
-To import all four Obsidian-published document categories:
+To inspect or import **all 88 Core documents**, use `-Scope Core` with the same preview → `-Apply -Overwrite` sequence. To import all four Obsidian-published document categories:
 
 ```powershell
 .\scripts\sync-foundation-to-obsidian.ps1 -Scope All
@@ -82,8 +82,8 @@ To import all four Obsidian-published document categories:
 To also copy new GitHub-maintained guide pages into Obsidian as a reference:
 
 ```powershell
-.\scripts\sync-foundation-to-obsidian.ps1 -Scope Core -IncludeHub
-.\scripts\sync-foundation-to-obsidian.ps1 -Scope Core -IncludeHub -Apply -Overwrite
+.\scripts\sync-foundation-to-obsidian.ps1 -Scope CoreUpdates -IncludeHub
+.\scripts\sync-foundation-to-obsidian.ps1 -Scope CoreUpdates -IncludeHub -Apply -Overwrite
 ```
 
 The `-IncludeHub` option stores copies under `99 Foundation Published References` in the vault. **These are reference notes; `publish-foundation.ps1` does not publish that directory**. The guides under `src/content/docs/core-it-devops/`, `learning-hub/` and `ghc-labs/` remain GitHub-owned until a single-source publishing plan for them is explicitly adopted.
