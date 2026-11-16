@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import mermaid from 'astro-mermaid';
 import { foundationModules } from './src/data/foundation-modules.mjs';
 
 const foundationStructuredData = JSON.stringify({
@@ -24,7 +25,14 @@ const moduleLinks = (category) => foundationModules
 export default defineConfig({
   site: 'https://foundation.gohackerscloud.com',
 
+  markdown: {
+    syntaxHighlight: {
+      type: 'shiki',
+      excludeLangs: ['mermaid'],
+    },
+  },
   integrations: [
+    mermaid({theme: 'neutral',autoTheme: true,enableLog: false}),
     starlight({
       title: 'GoHackersCloud Foundation',
 
