@@ -3,8 +3,6 @@ title: "AWS Certified Cloud Practitioner (CLF-C02) — Complete Study Guide"
 description: "Four-domain AWS CLF-C02 exam preparation with 14 study chapters, original practice questions, AWS service comparisons and a revision plan."
 ---
 
-# AWS Certified Cloud Practitioner (CLF-C02)
-
 This free study guide teaches the concepts, service choices and decision patterns used in AWS's foundational Cloud Practitioner certification. **It is not an AWS-endorsed course, exam voucher, official question bank or passing guarantee.**
 
 ## Current exam blueprint
