@@ -105,7 +105,7 @@ export const foundationChallengeDays = [
     "evidence": "A small table with process/user observations (or a clearly labeled synthetic example), plus a note about permissions.",
     "questions": [
       {
-        "prompt": "What does the Linux kernel do?",
+        "prompt": "What is the primary role of the Linux kernel in an operating system?",
         "options": [
           "Mediates core operating-system resources and hardware interactions.",
           "Only draws windows on the desktop.",
@@ -289,7 +289,7 @@ export const foundationChallengeDays = [
     "evidence": "A small Git workflow diagram (or paper simulation), a five-sentence reflection and your next learning goal.",
     "questions": [
       {
-        "prompt": "What does git add usually do?",
+        "prompt": "In a local repository, what does the Git command git add usually do?",
         "options": [
           "Deploy directly to production.",
           "Delete repository history.",
