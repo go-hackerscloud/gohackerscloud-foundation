@@ -11,7 +11,7 @@ const page=route=>{
 };
 const catalogRoute='/about-gohackerscloud/catalog/';
 const labRoute='/about-gohackerscloud/lab-directory/';
-const catalogSource=source('src/content/docs'+catalogRoute+'index.mdx'.replace('/catalog/index.mdx','/catalog.mdx'));
+const catalogSource=source('src/content/docs/about-gohackerscloud/catalog.mdx');
 const labSource=source('src/content/docs/about-gohackerscloud/lab-directory.mdx');
 const catalog=page(catalogRoute);
 const labPage=page(labRoute);
@@ -65,7 +65,7 @@ for(const tr of ghcLabTracks){
 for(const name of [
  'GRC & Compliance','Vulnerability Management','Cloud Security','SOC & Managed Security',
  'Application Security','Identity & PAM','Incident Response','vCISO & Leadership'
-])assert.ok(catalog.includes(name),'Service module missing: '+name);
+])assert.ok(catalogSource.includes(name),'Service module missing: '+name);
 const items=(labSource.match(/^- \*\*[^*\n]+?\*\*/gm)||[]).length;
 assert.equal(items,90,'Expected 90 dedicated GHC Labs curriculum titles');
 assert.ok(labSource.includes('**398**'),'Extended lab-related documents count missing');
