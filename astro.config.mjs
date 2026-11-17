@@ -72,6 +72,7 @@ export default defineConfig({
           items: [
             { label: 'Foundation Home', link: '/' },
             { label: 'About GoHackersCloud', link: '/about-gohackerscloud/' },
+            { label: 'Complete Promotional Catalog', link: '/about-gohackerscloud/catalog/' },
             { label: 'Courses & Bundles', link: '/about-gohackerscloud/courses/' },
             { label: 'Test Engine & Mock Exams', link: '/about-gohackerscloud/test-engine/' },
             { label: 'Cybersecurity Services', link: '/about-gohackerscloud/cybersecurity-services/' },
