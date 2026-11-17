@@ -68,10 +68,15 @@ export default defineConfig({
 
       sidebar: [
         {
-          label: 'Start Learning',
+          label: 'Explore GoHackersCloud',
           items: [
             { label: 'Foundation Home', link: '/' },
-            { label: 'Start Here', link: '/start-here/' },
+            { label: 'About GoHackersCloud', link: '/about-gohackerscloud/' },
+            { label: 'Courses & Bundles', link: '/about-gohackerscloud/courses/' },
+            { label: 'Test Engine & Mock Exams', link: '/about-gohackerscloud/test-engine/' },
+            { label: 'Cybersecurity Services', link: '/about-gohackerscloud/cybersecurity-services/' },
+            { label: 'GHC Labs & Academy', link: '/ghc-labs/' },
+            { label: 'Start Here · Free Foundation', link: '/start-here/' },
             { label: 'Explore 16 Modules', link: '/curriculum/' },
             { label: 'Core IT & DevOps Deep-Dive', link: '/core-it-devops/' },
             { label: '12-Week Study Plan', link: '/study-plan/' },

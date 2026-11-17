@@ -1,0 +1,87 @@
+---
+const offerings = [
+  {
+    eyebrow: '01 · PLATFORM OVERVIEW',
+    title: 'What is GoHackersCloud?',
+    description: 'Understand our full ecosystem: free learning, courses, exam preparation, practical Academy labs and separate business services.',
+    href: '/about-gohackerscloud/',
+    action: 'Discover the platform',
+    featured: true,
+  },
+  {
+    eyebrow: '02 · COURSES & BUNDLES',
+    title: 'Structured learning',
+    description: 'Explore course families, certification-oriented preparation, study resources and links to the current offers catalog.',
+    href: '/about-gohackerscloud/courses/',
+    action: 'Explore courses',
+  },
+  {
+    eyebrow: '03 · TEST ENGINE',
+    title: 'Practice and review',
+    description: 'Understand free tests, exam-style practice, mock assessments and how to learn from answer explanations.',
+    href: '/about-gohackerscloud/test-engine/',
+    action: 'Explore exam practice',
+  },
+  {
+    eyebrow: '04 · ACADEMY & LABS',
+    title: 'Learn by doing',
+    description: 'Explore 13 Academy tracks, permitted hands-on labs, a demo area and separate membership terms.',
+    href: '/ghc-labs/',
+    action: 'Explore GHC Labs',
+  },
+  {
+    eyebrow: '05 · CYBERSECURITY SERVICES',
+    title: 'Security for organizations',
+    description: 'Discover the business-facing service pathway for security reviews, scoped assessments and remediation support.',
+    href: '/about-gohackerscloud/cybersecurity-services/',
+    action: 'Explore services',
+  },
+  {
+    eyebrow: '06 · FREE FOUNDATION',
+    title: 'Start with the fundamentals',
+    description: 'Begin our free 16-module introduction to IT, cloud, security, AI, DevOps and enterprise concepts.',
+    href: '/start-here/',
+    action: 'Start free learning',
+  },
+];
+---
+<section class="ghc-ecosystem-section" aria-labelledby="ghc-ecosystem-heading">
+  <div class="ghc-ecosystem-heading">
+    <span class="ghc-ecosystem-eyebrow">THE GOHACKERSCLOUD ECOSYSTEM</span>
+    <h2 id="ghc-ecosystem-heading">Learn, prepare, practise and grow.</h2>
+    <p>Discover all the ways GoHackersCloud supports learners and organizations. These are distinct offerings: free Foundation lessons don't require a paid product, and Academy labs and business services have their own access terms.</p>
+  </div>
+  <div class="ghc-ecosystem-grid">
+    {offerings.map(offer => (
+      <a href={offer.href}
+        class:list={['ghc-ecosystem-card', {'ghc-ecosystem-featured': offer.featured}]}
+        aria-label={offer.action}>
+        <span class="ghc-ecosystem-type">{offer.eyebrow}</span>
+        <strong>{offer.title}</strong>
+        <p>{offer.description}</p>
+        <span class="ghc-ecosystem-action">{offer.action} <span aria-hidden="true">↗</span></span>
+      </a>
+    ))}
+  </div>
+  <p class="ghc-ecosystem-footnote">Individual offers, prices, exam products, live lab access and service availability should always be confirmed on the linked official pages.</p>
+</section>
+<style>
+.ghc-ecosystem-section{margin:2.25rem 0 2.7rem}
+.ghc-ecosystem-heading{max-width:75ch;margin-bottom:1.35rem}
+.ghc-ecosystem-eyebrow{font-size:.72rem;font-weight:850;letter-spacing:.11em;color:var(--sl-color-accent-high)}
+.ghc-ecosystem-heading h2{font-size:clamp(1.55rem,2.8vw,2.25rem);letter-spacing:-.038em;line-height:1.14;margin:.5rem 0 .65rem!important}
+.ghc-ecosystem-heading p{font-size:.92rem;line-height:1.7;color:var(--sl-color-gray-2);margin:0}
+.ghc-ecosystem-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.ghc-ecosystem-card{display:flex;flex-direction:column;gap:.7rem;min-width:0;padding:1.3rem;border:1px solid var(--sl-color-gray-5);border-radius:16px;background:var(--sl-color-bg-nav);color:var(--sl-color-text)!important;text-decoration:none!important;transition:border-color .18s ease,transform .18s ease}
+.ghc-ecosystem-card:hover{border-color:var(--sl-color-accent);transform:translateY(-2px)}
+.ghc-ecosystem-card:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+.ghc-ecosystem-featured{border-color:var(--sl-color-accent)}
+.ghc-ecosystem-type{font-size:.66rem;letter-spacing:.085em;font-weight:800;color:var(--sl-color-accent-high)}
+.ghc-ecosystem-card strong{font-size:1.14rem;line-height:1.25}
+.ghc-ecosystem-card p{font-size:.84rem;line-height:1.64;flex:1;color:var(--sl-color-gray-2);margin:0}
+.ghc-ecosystem-action{font-size:.83rem;font-weight:780;color:var(--sl-color-accent-high)}
+.ghc-ecosystem-footnote{font-size:.77rem;color:var(--sl-color-gray-3);margin:1rem 0 0;line-height:1.55}
+@media(max-width:1050px){.ghc-ecosystem-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.ghc-ecosystem-grid{grid-template-columns:1fr}.ghc-ecosystem-card{padding:1.2rem}}
+@media(prefers-reduced-motion:reduce){.ghc-ecosystem-card{transition:none}}
+</style>
