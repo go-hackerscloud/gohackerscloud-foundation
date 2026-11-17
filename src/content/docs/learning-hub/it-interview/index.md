@@ -3,8 +3,6 @@ title: "IT Interview Preparation — Complete Technical Handbook"
 description: "A 14-chapter guide to IT, cloud and security interviews with model answers, scenarios and mock interview rubrics."
 ---
 
-# IT Interview Preparation Handbook
-
 This free handbook helps you explain technical concepts, reason through problems and present truthful evidence. It does **not** promise a job offer.
 
 ## Choose your role
