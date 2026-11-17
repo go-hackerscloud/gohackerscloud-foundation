@@ -51,3 +51,5 @@ jobs:
         run: node scripts/verify-stage01-stage02-mermaid.mjs
       - name: Validate platform overview and offerings navigation
         run: node scripts/verify-platform-offerings.mjs
+      - name: Validate unified promotional catalog and Academy lab inventory
+        run: node scripts/verify-unified-catalog.mjs
