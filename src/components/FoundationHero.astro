@@ -1,24 +1,25 @@
 ---
 const steps = [
-  {number:'01',label:'Choose a starting point'},
-  {number:'02',label:'Understand the concepts'},
-  {number:'03',label:'Practise independently'},
-  {number:'04',label:'Review and grow'},
+  {number:'01',label:'Pick a free learning path'},
+  {number:'02',label:'Explore a Foundation module'},
+  {number:'03',label:'Try a safe practical exercise'},
+  {number:'04',label:'Save evidence and keep learning'},
 ];
 ---
 <section class="foundation-hero" aria-label="Welcome to GoHackersCloud Foundation">
   <div class="foundation-hero-copy">
     <span class="foundation-eyebrow">GOHACKERSCLOUD FOUNDATION · FREE LEARNING</span>
-    <h2>Build the foundations.<br /><span>Find your direction.</span></h2>
-    <p>Start with IT, networking and operating systems. Progress into cloud, cybersecurity, DevOps, AI and professional skills—with a clear learning sequence you can follow at your own pace.</p>
+    <h2>Learn IT, Cloud, Cybersecurity & AI.<br /><span>Free, at your own pace.</span></h2>
+    <p>Explore 16 structured Foundation modules with clear explanations, architecture diagrams and safe independent practice. Start as a beginner or choose a focused route for your professional goals.</p>
     <div class="foundation-hero-actions">
-      <a class="foundation-primary" href="/start-here/">Start learning for free <span aria-hidden="true">→</span></a>
-      <a class="foundation-secondary" href="/curriculum/">Explore the 16 modules <span aria-hidden="true">↗</span></a>
+      <a class="foundation-primary" href="/start-here/">Start free learning <span aria-hidden="true">→</span></a>
+      <a class="foundation-secondary" href="/#choose-your-path">Choose your path <span aria-hidden="true">↗</span></a>
     </div>
+    <p class="foundation-hero-preview">Want to try a real lesson first? <a href="/foundation/gohackerscloud-foundation/01-it-fundamentals/01-computer-hardware/">Open IT Fundamentals</a>.</p>
     <ul class="foundation-points" aria-label="Foundation benefits">
-      <li>Free self-paced lessons</li>
-      <li>Beginner-friendly progression</li>
-      <li>No subscription required for Foundation pages</li>
+      <li>16 free learning modules</li>
+      <li>Practical, beginner-friendly examples</li>
+      <li>No paid subscription for Foundation lessons</li>
     </ul>
   </div>
   <div class="foundation-hero-graphic" aria-label="Four-step learning process">
@@ -43,6 +44,9 @@ const steps = [
 .foundation-hero-actions .foundation-secondary{color:#fff;background:#ffffff12}
 .foundation-hero-actions a:hover{filter:brightness(1.09)}
 .foundation-hero-actions a:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.foundation-hero-preview{font-size:.81rem!important;color:#d2e0ec!important;margin:-.7rem 0 1.3rem!important}
+.foundation-hero-preview a{color:#9debf9;text-decoration:underline;text-underline-offset:3px;font-weight:750}
+.foundation-hero-preview a:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .foundation-points{display:flex;flex-wrap:wrap;gap:.5rem 1rem;list-style:none;padding:0;margin:0;color:#c0d8e5;font-size:.77rem}
 .foundation-points li::before{content:'✓';color:#66e0bc;margin-right:.35rem}
 .foundation-hero-graphic{min-width:0}
