@@ -79,6 +79,8 @@ export default defineConfig({
             { label: 'GHC Labs & Academy', link: '/ghc-labs/' },
             { label: 'Academy Lab Lesson Directory', link: '/about-gohackerscloud/lab-directory/' },
             { label: 'Start Here · Free Foundation', link: '/start-here/' },
+            { label: 'Student Learning Path', link: '/paths/students/' },
+            { label: 'Professional Upskilling Path', link: '/paths/professionals/' },
             { label: 'Explore 16 Modules', link: '/curriculum/' },
             { label: 'Core IT & DevOps Deep-Dive', link: '/core-it-devops/' },
             { label: '12-Week Study Plan', link: '/study-plan/' },
