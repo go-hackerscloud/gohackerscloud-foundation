@@ -34,6 +34,26 @@ Local users and groups differ from Active Directory domain accounts. Authenticat
 
 Windows event logs record many system and application events. An event's severity and ID need the source, timeframe and system context before being treated as the root cause.
 
+## Architecture diagram — Windows authentication and authorization
+
+```mermaid
+flowchart LR
+    USER["Employee"] --> SIGN["Windows or domain sign-in"]
+    SIGN --> SESSION["Authenticated session"]
+    SESSION --> RESOURCE["Request shared file or app"]
+    RESOURCE --> SHARE{"Share / resource rights?"}
+    SHARE -->|"Allowed"| NTFS{"File-system rights?"}
+    SHARE -->|"Denied"| FAIL["Explain and escalate"]
+    NTFS -->|"Allowed"| FILE["Resource opened"]
+    NTFS -->|"Denied"| FAIL
+```
+
+**How to interpret it:** Signing in is different from having permissions for a specific enterprise resource. Permissions may be layered, including share and file-system checks.
+
+**Diagram exercise:** Write a safe diagnostic explanation for a user who signs in successfully but cannot open an approved share.
+
+**Expected evidence:** A labeled architecture or flowchart plus one safe verification step. This is independent Foundation study; no paid Academy lab is required.
+
 ## Enterprise case study (hypothetical)
 
 An employee can sign into Windows but cannot access an approved departmental shared folder. An administrator must consider network access, domain/group state, share permissions and NTFS authorization instead of repeatedly resetting passwords.

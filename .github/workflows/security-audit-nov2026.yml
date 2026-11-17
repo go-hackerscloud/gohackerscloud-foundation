@@ -47,3 +47,5 @@ jobs:
         run: node scripts/verify-cloud-cyber-mermaid.mjs
       - name: Validate Stage 03 enterprise and professional Mermaid lessons
         run: node scripts/verify-enterprise-professional-mermaid.mjs
+      - name: Validate Stage 01 and 02 diagrams and Obsidian sync
+        run: node scripts/verify-stage01-stage02-mermaid.mjs

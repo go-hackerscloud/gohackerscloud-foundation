@@ -34,6 +34,24 @@ JSON is a common format for API and log data. Never assume optional keys exist o
 
 Keep tokens out of code and logs, use read-only operations by default, and use synthetic datasets for initial practice. Automation can make an incorrect assumption at high speed.
 
+## Architecture diagram — Safe automation from test data
+
+```mermaid
+flowchart LR
+    DATA["Synthetic input"] --> VALIDATE["Validate fields and type"]
+    VALIDATE --> LOGIC["Apply documented rules"]
+    LOGIC --> SUMMARY["Produce status summary"]
+    SUMMARY --> TESTS["Positive and negative tests"]
+    TESTS --> REPORT["Save output and assumptions"]
+    REPORT --> REVIEW["Peer review before wider use"]
+```
+
+**How to interpret it:** A useful script is understandable, verifiable and safe with unexpected input. Production changes require additional authorization and change controls.
+
+**Diagram exercise:** Add one malformed event to the exercise and describe how a robust program should handle it.
+
+**Expected evidence:** A labeled architecture or flowchart plus one safe verification step. This is independent Foundation study; no paid Academy lab is required.
+
 ## Enterprise case study (hypothetical)
 
 A support engineer needs to summarize HTTP response codes from a synthetic log so a team can tell whether failures are increasing. A small Python script counts response classes and prints an understandable summary without uploading customer logs anywhere.

@@ -45,6 +45,71 @@ After completing this lesson, you will be able to:
 
 ---
 
+## Architecture and workplace practice — Linux processes, files and services
+
+These are **conceptual** diagrams for the free Foundation lesson. They help you reason about an enterprise system; they are not records of a production deployment.
+
+### Linux layers and permissions
+
+```mermaid
+flowchart TB
+    HUMAN["Administrator or authorized user"] --> SHELL["Shell and programs in user space"]
+    SHELL --> SYSCALL["System call boundary"]
+    SYSCALL --> KERNEL["Linux kernel"]
+    KERNEL --> CPU["CPU, RAM, storage and network"]
+    SHELL --> SERVICE["Application process / service"]
+    SERVICE --> FILES["Files, configuration and logs"]
+```
+
+**How to read the diagram:** Applications use kernel services for files, memory, processes and networking. The process identity and filesystem permissions determine which resources are available.
+
+### Safe Linux service investigation
+
+```mermaid
+flowchart TD
+    ALERT["Service appears unhealthy"] --> ID["Identify process and effective user"]
+    ID --> STATE["Inspect process and listener state"]
+    STATE --> LOG["Review permitted logs and configuration"]
+    LOG --> CHECK{"Enough evidence?"}
+    CHECK -->|"No"| CONTEXT["Confirm container, VM or host context"]
+    CONTEXT --> STATE
+    CHECK -->|"Yes"| OWNER["Record findings and seek approved next action"]
+```
+
+**How to read the diagram:** The right checks vary between a full Linux host and a minimal container; systemd is not necessarily present inside a container.
+
+### Workplace scenario
+
+A Docker-hosted web service fails to bind to a port. The engineer inspects the process identity, listener, configuration and logs before restarting the service.
+
+### Independent exercise
+
+On authorized Linux, WSL or a prepared lab, run whoami, id, ps and ss (where installed). Note one command per architectural layer and describe one limitation.
+
+**Expected evidence:** A command-to-purpose table and a process/kernel/service diagram. No root privileges or network scanning required.
+
+### Check your understanding
+
+- **D**
+
+  <details><summary>Show suggested reasoning</summary>o</details>
+
+- **N**
+
+  <details><summary>Show suggested reasoning</summary>o</details>
+
+- **W**
+
+  <details><summary>Show suggested reasoning</summary>h</details>
+
+- **I**
+
+  <details><summary>Show suggested reasoning</summary>t</details>
+
+**Continue learning:** [Open the Module 03 deep-dive](/core-it-devops/module-03/) or [see GHC Labs and its optional advanced practice](/ghc-labs/). Foundation lessons remain free; hosted labs have separate access terms.
+
+---
+
 ## What is Linux?
 
 **Linux** is a free and open-source operating system based on the Unix operating system.

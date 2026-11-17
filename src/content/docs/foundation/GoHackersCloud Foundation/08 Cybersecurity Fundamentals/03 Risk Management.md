@@ -32,7 +32,7 @@ Every Security Engineer, Cloud Engineer, Security Architect, CISO, and Complianc
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -47,7 +47,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Risk?
+## What is Risk?
 
 A **Risk** is the possibility that a threat will exploit a vulnerability and negatively impact an organization's business operations.
 
@@ -73,7 +73,7 @@ Risk combines both the likelihood of an event occurring and the impact it could 
 
 ---
 
-# Why Risk Management Matters
+## Why Risk Management Matters
 
 Organizations use Risk Management to:
 
@@ -89,11 +89,11 @@ Without Risk Management, security efforts become reactive instead of proactive.
 
 ---
 
-# Understanding the Relationship
+## Understanding the Relationship
 
 Cybersecurity uses three related concepts.
 
-## Threat
+### Threat
 
 Something capable of causing harm.
 
@@ -106,7 +106,7 @@ Examples:
 
 ---
 
-## Vulnerability
+### Vulnerability
 
 A weakness that can be exploited.
 
@@ -119,7 +119,7 @@ Examples:
 
 ---
 
-## Risk
+### Risk
 
 The likelihood that a threat successfully exploits a vulnerability.
 
@@ -143,7 +143,7 @@ Business Loss
 
 ---
 
-# Risk Management Lifecycle
+## Risk Management Lifecycle
 
 Enterprise organizations typically follow this process:
 
@@ -179,7 +179,7 @@ Risk Management is continuous.
 
 ---
 
-# Asset Identification
+## Asset Identification
 
 Before protecting systems, organizations identify their assets.
 
@@ -197,7 +197,7 @@ Understanding what needs protection is the first step.
 
 ---
 
-# Risk Identification
+## Risk Identification
 
 Organizations identify potential risks by asking:
 
@@ -216,7 +216,7 @@ Examples:
 
 ---
 
-# Risk Assessment
+## Risk Assessment
 
 Risk Assessment evaluates:
 
@@ -242,9 +242,9 @@ This helps prioritize security efforts.
 
 ---
 
-# Qualitative vs Quantitative Risk Assessment
+## Qualitative vs Quantitative Risk Assessment
 
-### Qualitative Assessment
+#### Qualitative Assessment
 
 Uses ratings such as:
 
@@ -257,7 +257,7 @@ Easy to perform and widely used.
 
 ---
 
-### Quantitative Assessment
+#### Quantitative Assessment
 
 Uses financial values.
 
@@ -271,7 +271,7 @@ Useful for business decision-making.
 
 ---
 
-# Risk Matrix
+## Risk Matrix
 
 Organizations commonly visualize risks using a matrix.
 
@@ -293,7 +293,7 @@ This helps prioritize remediation activities.
 
 ---
 
-# Risk Treatment Strategies
+## Risk Treatment Strategies
 
 Once risks are assessed, organizations choose how to respond.
 
@@ -301,7 +301,7 @@ There are four common strategies.
 
 ---
 
-## 1. Risk Mitigation
+### 1. Risk Mitigation
 
 Reduce the likelihood or impact.
 
@@ -314,7 +314,7 @@ Examples:
 
 ---
 
-## 2. Risk Avoidance
+### 2. Risk Avoidance
 
 Stop the activity creating the risk.
 
@@ -324,7 +324,7 @@ Do not deploy unsupported software.
 
 ---
 
-## 3. Risk Transfer
+### 3. Risk Transfer
 
 Transfer the financial impact.
 
@@ -336,7 +336,7 @@ Examples:
 
 ---
 
-## 4. Risk Acceptance
+### 4. Risk Acceptance
 
 Accept the risk because the cost of mitigation exceeds the potential impact.
 
@@ -344,7 +344,7 @@ Accepted risks should always be documented and approved.
 
 ---
 
-# Business Impact Analysis (BIA)
+## Business Impact Analysis (BIA)
 
 Business Impact Analysis identifies:
 
@@ -375,7 +375,7 @@ BIA supports Disaster Recovery and Business Continuity planning.
 
 ---
 
-# Risk Register
+## Risk Register
 
 Organizations maintain a Risk Register.
 
@@ -391,7 +391,7 @@ A Risk Register helps track and manage risks over time.
 
 ---
 
-# Enterprise Risk Management
+## Enterprise Risk Management
 
 Large organizations integrate cybersecurity risks into overall business risk management.
 
@@ -408,7 +408,7 @@ Security supports overall business objectives.
 
 ---
 
-# Common Risk Management Frameworks
+## Common Risk Management Frameworks
 
 Organizations use internationally recognized frameworks such as:
 
@@ -423,7 +423,7 @@ These frameworks provide structured approaches to managing risk.
 
 ---
 
-# Risk Management in Cloud Computing
+## Risk Management in Cloud Computing
 
 Cloud Engineers assess risks such as:
 
@@ -437,7 +437,7 @@ Risk Management improves cloud security posture.
 
 ---
 
-# Risk Management in DevOps
+## Risk Management in DevOps
 
 DevSecOps teams identify risks in:
 
@@ -451,7 +451,7 @@ Security reviews occur throughout the software development lifecycle.
 
 ---
 
-# Risk Management in Artificial Intelligence
+## Risk Management in Artificial Intelligence
 
 AI introduces unique risks, including:
 
@@ -465,7 +465,7 @@ AI governance includes ongoing risk assessments.
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid:
 
@@ -480,7 +480,7 @@ Risk Management is a continuous process.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -497,7 +497,7 @@ These practices improve organizational resilience.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A financial services company discovers that a cloud storage bucket containing customer documents is publicly accessible.
 
@@ -543,7 +543,47 @@ By identifying and mitigating the risk early, the organization prevents a potent
 
 ---
 
-# Key Takeaways
+## Architecture workshop — Risk discovery and accountable treatment
+
+```mermaid
+flowchart TD
+    ASSET["Asset and business outcome"] --> EVENT["Threat and failure scenario"]
+    EVENT --> CONTEXT["Exposure, likelihood and impact"]
+    CONTEXT --> OWNER["Risk owner and priority"]
+    OWNER --> DECISION{"Choose treatment"}
+    DECISION -->|"Reduce"| CONTROL["Implement and test control"]
+    DECISION -->|"Avoid"| CHANGE["Change activity"]
+    DECISION -->|"Accept"| ACCEPT["Document approved acceptance"]
+    DECISION -->|"Share"| TRANSFER["Contract or financial treatment"]
+    CONTROL --> RECHECK["Review residual risk"]
+    CHANGE --> RECHECK
+    ACCEPT --> RECHECK
+    TRANSFER --> RECHECK
+```
+
+**What this shows:** Risk is a business-impact scenario, not just the severity of a software vulnerability. Decisions must have authorized owners, control evidence and follow-up.
+
+### Hypothetical workplace example
+
+A fictional learning service discovers a broad deployment role. The organization considers which resources are accessible, potential consequences and existing safeguards.
+
+### Safe independent exercise
+
+Record three risk scenarios with affected assets, owners, current controls, treatment, evidence and unresolved uncertainty.
+
+**Expected output:** A small risk register with explanations, not invented numerical probabilities.
+
+### Knowledge check
+
+**Who may accept residual risk?**
+
+<details><summary>Suggested reasoning</summary>A person authorized under the organization's risk governance policy, not automatically a technical analyst.</details>
+
+**Next:** [Full Foundation curriculum](/curriculum/) · [Optional GHC Labs practice](/ghc-labs/). The free exercise requires no membership.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -560,7 +600,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Risk Management is one of the most important disciplines in cybersecurity.
 
@@ -572,7 +612,7 @@ Risk Management serves as the foundation for Security Operations, Cloud Security
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 04 — Threats**
 

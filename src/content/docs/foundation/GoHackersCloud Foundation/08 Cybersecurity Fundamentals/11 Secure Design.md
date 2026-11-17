@@ -28,7 +28,7 @@ Secure Design reduces vulnerabilities, minimizes attack surfaces, and creates sy
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -43,7 +43,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Secure Design?
+## What is Secure Design?
 
 **Secure Design** is the practice of designing systems that are secure from the beginning rather than attempting to secure them after deployment.
 
@@ -60,7 +60,7 @@ Every design decision considers potential security risks.
 
 ---
 
-# Why Secure Design Matters
+## Why Secure Design Matters
 
 Secure Design helps organizations:
 
@@ -76,7 +76,7 @@ Building security early is significantly less expensive than fixing vulnerabilit
 
 ---
 
-# Security by Design
+## Security by Design
 
 Security should be integrated into every stage of system development.
 
@@ -112,7 +112,7 @@ This approach is often called **Shift Left Security**.
 
 ---
 
-# Principle 1 — Least Privilege
+## Principle 1 — Least Privilege
 
 Every user, application, and service should receive only the permissions required to perform its task.
 
@@ -126,7 +126,7 @@ Least Privilege reduces the impact of compromised accounts.
 
 ---
 
-# Principle 2 — Separation of Duties
+## Principle 2 — Separation of Duties
 
 Critical tasks should be divided among multiple individuals.
 
@@ -152,7 +152,7 @@ No single individual should control every stage of a critical process.
 
 ---
 
-# Principle 3 — Defense in Depth
+## Principle 3 — Defense in Depth
 
 Security should include multiple independent layers.
 
@@ -169,7 +169,7 @@ If one control fails, others continue protecting the environment.
 
 ---
 
-# Principle 4 — Fail Secure
+## Principle 4 — Fail Secure
 
 When failures occur, systems should remain secure.
 
@@ -181,7 +181,7 @@ Secure failure prevents accidental exposure.
 
 ---
 
-# Principle 5 — Secure Defaults
+## Principle 5 — Secure Defaults
 
 Systems should be secure immediately after installation.
 
@@ -197,7 +197,7 @@ Users should not need to manually secure new deployments.
 
 ---
 
-# Principle 6 — Economy of Mechanism
+## Principle 6 — Economy of Mechanism
 
 Security designs should remain simple.
 
@@ -212,7 +212,7 @@ Complexity often increases security risks.
 
 ---
 
-# Principle 7 — Open Design
+## Principle 7 — Open Design
 
 Security should never rely on secrecy.
 
@@ -227,7 +227,7 @@ Security should remain effective even if the design is publicly known.
 
 ---
 
-# Principle 8 — Complete Mediation
+## Principle 8 — Complete Mediation
 
 Every request should be verified before access is granted.
 
@@ -242,7 +242,7 @@ Authorization should never be assumed.
 
 ---
 
-# Principle 9 — Least Common Mechanism
+## Principle 9 — Least Common Mechanism
 
 Minimize shared resources wherever possible.
 
@@ -257,7 +257,7 @@ Isolation limits the impact of compromise.
 
 ---
 
-# Principle 10 — Psychological Acceptability
+## Principle 10 — Psychological Acceptability
 
 Security should be easy to use.
 
@@ -272,7 +272,7 @@ Usable security encourages compliance.
 
 ---
 
-# Secure Design in Cloud Computing
+## Secure Design in Cloud Computing
 
 Cloud Engineers apply Secure Design by:
 
@@ -287,7 +287,7 @@ Security becomes part of every cloud deployment.
 
 ---
 
-# Secure Design in Kubernetes
+## Secure Design in Kubernetes
 
 Secure Kubernetes environments include:
 
@@ -302,7 +302,7 @@ Security is integrated throughout the cluster architecture.
 
 ---
 
-# Secure Design in DevSecOps
+## Secure Design in DevSecOps
 
 DevSecOps teams implement Secure Design through:
 
@@ -317,7 +317,7 @@ Security becomes continuous throughout software delivery.
 
 ---
 
-# Secure Design in Artificial Intelligence
+## Secure Design in Artificial Intelligence
 
 AI platforms require secure design for:
 
@@ -332,7 +332,7 @@ Responsible AI begins with secure architecture.
 
 ---
 
-# Secure Design and Zero Trust
+## Secure Design and Zero Trust
 
 Secure Design complements Zero Trust.
 
@@ -348,7 +348,7 @@ Together they provide a strong enterprise security foundation.
 
 ---
 
-# Enterprise Secure Development Lifecycle (SSDLC)
+## Enterprise Secure Development Lifecycle (SSDLC)
 
 Organizations integrate security into development.
 
@@ -384,7 +384,7 @@ Security remains active throughout the software lifecycle.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -401,7 +401,7 @@ These practices improve long-term security and resilience.
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid:
 
@@ -416,7 +416,7 @@ Secure Design begins before the first line of code is written.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A fintech company develops a new online banking platform.
 
@@ -454,7 +454,43 @@ By integrating security into every phase of development, the company reduces vul
 
 ---
 
-# Key Takeaways
+## Architecture workshop — Threat modeling before implementation
+
+```mermaid
+flowchart TD
+    GOALS["Purpose, assets and scope"] --> FLOWS["Draw data flow and trust boundaries"]
+    FLOWS --> THREATS["Identify plausible abuse and failure cases"]
+    THREATS --> CONTROLS["Design layered, proportionate safeguards"]
+    CONTROLS --> TESTS["Specify positive and negative tests"]
+    TESTS --> REVIEW{"Design reviewed and risks addressed?"}
+    REVIEW -->|"No"| CONTROLS
+    REVIEW -->|"Yes"| RELEASE["Approved release and monitoring"]
+    RELEASE --> REASSESS["Review after changes"]
+```
+
+**What this shows:** Secure design is an iterative decision process. Threat modeling reveals how data and privileges move; control tests demonstrate whether the design works in practice.
+
+### Hypothetical workplace example
+
+A fictional file-upload API accepts documents from students. Engineers must plan restricted access, safe file processing, logging and retention.
+
+### Safe independent exercise
+
+Draw browser-to-API-to-storage boundaries, identify three potential abuse cases and write one expected-deny test.
+
+**Expected output:** A threat/control table and secure-design checklist without interacting with a real website.
+
+### Knowledge check
+
+**Can a WAF fully replace per-file API authorization?**
+
+<details><summary>Suggested reasoning</summary>No. HTTP filtering is only one layer; business authorization must be enforced where records and files are accessed.</details>
+
+**Next:** [Full Foundation curriculum](/curriculum/) · [Optional GHC Labs practice](/ghc-labs/). The free exercise requires no membership.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -471,7 +507,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Secure Design is the practice of building security into systems from the very beginning.
 
@@ -481,7 +517,7 @@ Secure Design forms the foundation of modern cybersecurity and is essential for 
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 12 — Security Operations**
 

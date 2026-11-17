@@ -33,7 +33,7 @@ IAM is one of the most important cloud security services and forms the foundatio
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -48,7 +48,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is IAM?
+## What is IAM?
 
 Identity and Access Management (IAM) is a framework of policies, technologies, and processes used to manage:
 
@@ -62,7 +62,7 @@ IAM ensures that the **right people have the right level of access to the right 
 
 ---
 
-# Why IAM Matters
+## Why IAM Matters
 
 Without IAM:
 
@@ -76,7 +76,7 @@ IAM is the first layer of cloud security.
 
 ---
 
-# Identity vs Access
+## Identity vs Access
 
 An **Identity** answers:
 
@@ -103,7 +103,7 @@ Example:
 
 ---
 
-# Authentication vs Authorization
+## Authentication vs Authorization
 
 Authentication verifies identity.
 
@@ -132,7 +132,7 @@ Remember:
 
 ---
 
-# IAM Components
+## IAM Components
 
 Cloud IAM commonly includes:
 
@@ -149,7 +149,7 @@ These components work together to protect cloud resources.
 
 ---
 
-# IAM Users
+## IAM Users
 
 A **User** represents an individual person or application.
 
@@ -164,7 +164,7 @@ Each user receives unique credentials.
 
 ---
 
-# IAM Groups
+## IAM Groups
 
 Groups simplify permission management.
 
@@ -186,7 +186,7 @@ Assign permissions to the group instead of each individual user.
 
 ---
 
-# IAM Roles
+## IAM Roles
 
 Roles provide temporary permissions.
 
@@ -202,7 +202,7 @@ Roles improve security by eliminating long-term credentials.
 
 ---
 
-# IAM Policies
+## IAM Policies
 
 Policies define permissions.
 
@@ -228,7 +228,7 @@ Policies specify:
 
 ---
 
-# Permissions
+## Permissions
 
 Permissions determine what actions identities may perform.
 
@@ -245,7 +245,7 @@ Permissions should always be granted carefully.
 
 ---
 
-# Principle of Least Privilege
+## Principle of Least Privilege
 
 One of the most important security principles is:
 
@@ -259,7 +259,7 @@ Least Privilege minimizes security risks.
 
 ---
 
-# Multi-Factor Authentication (MFA)
+## Multi-Factor Authentication (MFA)
 
 MFA requires more than one authentication factor.
 
@@ -288,7 +288,7 @@ MFA significantly reduces account compromise.
 
 ---
 
-# Password Best Practices
+## Password Best Practices
 
 Strong passwords should be:
 
@@ -307,7 +307,7 @@ Organizations should encourage password managers.
 
 ---
 
-# Identity Federation
+## Identity Federation
 
 Identity Federation allows users to authenticate using an existing identity provider.
 
@@ -322,7 +322,7 @@ Users authenticate once and access multiple cloud services.
 
 ---
 
-# Single Sign-On (SSO)
+## Single Sign-On (SSO)
 
 Single Sign-On enables users to access multiple applications after one successful login.
 
@@ -348,7 +348,7 @@ SSO improves both user experience and security.
 
 ---
 
-# Temporary Credentials
+## Temporary Credentials
 
 Cloud providers recommend temporary credentials over permanent access keys.
 
@@ -363,7 +363,7 @@ Temporary credentials are widely used for applications and automation.
 
 ---
 
-# IAM in AWS
+## IAM in AWS
 
 AWS IAM includes:
 
@@ -379,7 +379,7 @@ IAM controls access to all AWS services.
 
 ---
 
-# IAM in Microsoft Azure
+## IAM in Microsoft Azure
 
 Azure provides:
 
@@ -393,7 +393,7 @@ Azure integrates identity across cloud and on-premises environments.
 
 ---
 
-# IAM in Google Cloud
+## IAM in Google Cloud
 
 Google Cloud IAM includes:
 
@@ -407,7 +407,7 @@ Permissions are managed using predefined and custom roles.
 
 ---
 
-# IAM in Kubernetes
+## IAM in Kubernetes
 
 Kubernetes uses:
 
@@ -420,7 +420,7 @@ These mechanisms control access to Kubernetes resources.
 
 ---
 
-# IAM in DevOps
+## IAM in DevOps
 
 DevOps Engineers use IAM to secure:
 
@@ -434,7 +434,7 @@ Automation should use roles instead of long-lived credentials.
 
 ---
 
-# IAM in Cybersecurity
+## IAM in Cybersecurity
 
 Security teams use IAM for:
 
@@ -449,7 +449,7 @@ Identity security is central to Zero Trust architectures.
 
 ---
 
-# IAM in Artificial Intelligence
+## IAM in Artificial Intelligence
 
 AI platforms require IAM to protect:
 
@@ -463,7 +463,7 @@ Proper IAM prevents unauthorized access to valuable AI assets.
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid:
 
@@ -478,7 +478,7 @@ These mistakes are common causes of cloud security incidents.
 
 ---
 
-# Enterprise Best Practices
+## Enterprise Best Practices
 
 Professional organizations:
 
@@ -495,7 +495,7 @@ Identity security should be continuously reviewed and improved.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 An enterprise implements secure access to its cloud environment.
 
@@ -527,7 +527,43 @@ Employees receive only the permissions required for their job, while all access 
 
 ---
 
-# Key Takeaways
+## Architecture workshop — Authentication, policy evaluation and audit
+
+```mermaid
+flowchart TD
+    PRINCIPAL["User or workload identity"] --> AUTHN["Authenticate"]
+    AUTHN --> SESSION["Short-lived session or assumed role"]
+    SESSION --> REQUEST["Request action on resource"]
+    REQUEST --> DECISION{"Effective policy and conditions permit?"}
+    DECISION -->|"Allow"| RESOURCE["Approved cloud operation"]
+    DECISION -->|"Deny"| BLOCK["Reject request"]
+    RESOURCE -. "activity evidence" .-> AUDIT["Protected audit records"]
+    BLOCK -. "activity evidence" .-> AUDIT
+```
+
+**How to read it:** Authentication proves identity; authorization determines an action on a resource under conditions. Permissions may involve several identity and resource policy layers.
+
+### Enterprise scenario
+
+A fictional reporting service must read one storage prefix but has no reason to delete other users' objects or change access policies.
+
+### Independent practical exercise
+
+Create a minimal access matrix for a human learner and a report workload, then write one expected-allow and one expected-deny case.
+
+**Expected evidence:** A least-privilege policy description with clear ownership and no real credentials.
+
+### Check your understanding
+
+**Does MFA provide authorization to every resource?**
+
+<details><summary>Suggested reasoning</summary>No. MFA strengthens authentication, while effective permissions and resource rules govern access.</details>
+
+**Next step:** [Review the 16-module curriculum](/curriculum/) or [explore optional GHC Labs practice](/ghc-labs/). This Foundation exercise is free and self-directed.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -546,7 +582,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Identity & Access Management (IAM) is the foundation of cloud security.
 
@@ -556,7 +592,7 @@ Strong IAM practices—including least privilege, Multi-Factor Authentication, r
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 11 — Shared Responsibility Model**
 

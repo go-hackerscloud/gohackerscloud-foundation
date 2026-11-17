@@ -41,6 +41,71 @@ After completing this lesson, you will be able to:
 
 ---
 
+## Architecture and workplace practice — Windows operating system and enterprise access
+
+These are **conceptual** diagrams for the free Foundation lesson. They help you reason about an enterprise system; they are not records of a production deployment.
+
+### Windows userspace to kernel and services
+
+```mermaid
+flowchart TB
+    USER["Employee or administrator"] --> APP["Desktop and business applications"]
+    APP --> USERMODE["User mode services and processes"]
+    USERMODE --> API["Windows system APIs"]
+    API --> KERNEL["Windows kernel and drivers"]
+    KERNEL --> HARDWARE["Hardware and virtual devices"]
+    USERMODE --> EVENTS["Event logs and operational telemetry"]
+```
+
+**How to read the diagram:** A business application normally runs in user mode and uses operating-system services. The kernel mediates access to hardware and core resources; logs provide supporting observations.
+
+### Enterprise sign-in and resource authorization
+
+```mermaid
+flowchart LR
+    EMP["Employee identity"] --> AUTH["Authenticate with an identity system"]
+    AUTH --> SESSION["Signed-in session"]
+    SESSION --> ACCESS["Attempt access to file or service"]
+    ACCESS --> POLICY{"Permission and policy allow?"}
+    POLICY -->|"Yes"| RESOURCE["Authorized resource"]
+    POLICY -->|"No"| DENY["Access denied and recorded"]
+    RESOURCE --> AUDIT["Audit and operational evidence"]
+```
+
+**How to read the diagram:** Authentication confirms identity; authorization separately checks rights to a particular resource. Successful workstation sign-in never guarantees access to every shared folder or enterprise application.
+
+### Workplace scenario
+
+An employee can sign in but cannot open a departmental share. The engineer investigates network path, group membership, share and NTFS permissions without resetting credentials unnecessarily.
+
+### Independent exercise
+
+Inspect local Windows processes/services using read-only PowerShell, then write a two-stage sign-in versus access decision tree for a hypothetical share.
+
+**Expected evidence:** An OS architecture diagram and a short file-access troubleshooting plan. Do not modify domain policies or user accounts.
+
+### Check your understanding
+
+- **I**
+
+  <details><summary>Show suggested reasoning</summary>s</details>
+
+- **N**
+
+  <details><summary>Show suggested reasoning</summary>o</details>
+
+- **W**
+
+  <details><summary>Show suggested reasoning</summary>h</details>
+
+- **R**
+
+  <details><summary>Show suggested reasoning</summary>e</details>
+
+**Continue learning:** [Open the Module 04 deep-dive](/core-it-devops/module-04/) or [see GHC Labs and its optional advanced practice](/ghc-labs/). Foundation lessons remain free; hosted labs have separate access terms.
+
+---
+
 ## What is Windows?
 
 Windows is a graphical operating system developed by Microsoft.

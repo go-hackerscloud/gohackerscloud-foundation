@@ -34,6 +34,26 @@ Processes have PIDs and run with privileges. Services may be managed by systemd 
 
 Resource readings, process lists and service logs help distinguish host, application and dependency failures. Collect evidence first, then make only authorized, reversible changes.
 
+## Architecture diagram — Linux service dependencies and evidence
+
+```mermaid
+flowchart TB
+    REQUEST["Incoming approved request"] --> PORT["Listening process / socket"]
+    PORT --> SERVICE["Service process identity"]
+    SERVICE --> CONFIG["Configuration and environment"]
+    SERVICE --> PERMS["Filesystem permissions"]
+    SERVICE --> LOGS["Logs and journal"]
+    CONFIG --> DIAG["Diagnosis and owner approval"]
+    PERMS --> DIAG
+    LOGS --> DIAG
+```
+
+**How to interpret it:** Process identity, permissions, open ports and logs interact when a Linux service starts or fails. Containers and full hosts may expose different administration tools.
+
+**Diagram exercise:** Map whoami, id, ps and ss to the appropriate boxes; explain why restarting early may hide evidence.
+
+**Expected evidence:** A labeled architecture or flowchart plus one safe verification step. This is independent Foundation study; no paid Academy lab is required.
+
 ## Enterprise case study (hypothetical)
 
 A containerized web service becomes unhealthy after an image update. The operator checks its process user, environment, filesystem permissions and port listener, while remembering that `systemctl` may be unavailable inside an isolated container.

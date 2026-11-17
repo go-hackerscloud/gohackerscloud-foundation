@@ -32,7 +32,7 @@ Understanding Cloud Networking is essential for Cloud Engineers, DevOps Engineer
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this lesson, you will be able to:
 
@@ -48,7 +48,7 @@ After completing this lesson, you will be able to:
 
 ---
 
-# What is Cloud Networking?
+## What is Cloud Networking?
 
 Cloud Networking is the process of connecting cloud resources using virtual networking technologies.
 
@@ -69,7 +69,7 @@ Cloud networking enables secure communication between cloud resources.
 
 ---
 
-# Why Cloud Networking Matters
+## Why Cloud Networking Matters
 
 Cloud Networking enables organizations to:
 
@@ -84,9 +84,9 @@ Every cloud deployment depends on a well-designed network.
 
 ---
 
-# Traditional Network vs Cloud Network
+## Traditional Network vs Cloud Network
 
-## Traditional Network
+### Traditional Network
 
 ```text
 Users
@@ -106,7 +106,7 @@ Servers
 
 ---
 
-## Cloud Network
+### Cloud Network
 
 ```text
 Users
@@ -136,7 +136,7 @@ Cloud networking replaces physical devices with software-defined networking.
 
 ---
 
-# Virtual Private Cloud (VPC)
+## Virtual Private Cloud (VPC)
 
 AWS uses the concept of a **Virtual Private Cloud (VPC).**
 
@@ -172,7 +172,7 @@ Each VPC has its own IP address range and networking configuration.
 
 ---
 
-# Azure Virtual Network (VNet)
+## Azure Virtual Network (VNet)
 
 Microsoft Azure provides **Virtual Networks (VNets).**
 
@@ -188,7 +188,7 @@ VNets serve the same purpose as AWS VPCs.
 
 ---
 
-# Google Cloud VPC
+## Google Cloud VPC
 
 Google Cloud Platform also provides Virtual Private Clouds.
 
@@ -196,7 +196,7 @@ Unlike AWS, Google Cloud VPCs are global by default, allowing resources in multi
 
 ---
 
-# Subnets
+## Subnets
 
 Subnets divide large networks into smaller logical sections.
 
@@ -222,7 +222,7 @@ Subnets improve security and organization.
 
 ---
 
-# Public Subnets
+## Public Subnets
 
 Public subnets contain resources accessible from the Internet.
 
@@ -236,7 +236,7 @@ Public resources typically have public IP addresses.
 
 ---
 
-# Private Subnets
+## Private Subnets
 
 Private subnets contain internal resources.
 
@@ -251,7 +251,7 @@ Private resources are protected from direct Internet access.
 
 ---
 
-# CIDR Blocks
+## CIDR Blocks
 
 Cloud networks use CIDR notation to define IP ranges.
 
@@ -275,7 +275,7 @@ CIDR planning is essential for scalable cloud architectures.
 
 ---
 
-# Route Tables
+## Route Tables
 
 Route Tables determine where network traffic should travel.
 
@@ -301,7 +301,7 @@ Proper routing ensures efficient communication between resources.
 
 ---
 
-# Internet Gateway
+## Internet Gateway
 
 An Internet Gateway connects a VPC to the public Internet.
 
@@ -325,7 +325,7 @@ Without an Internet Gateway, public resources cannot communicate with external n
 
 ---
 
-# NAT Gateway
+## NAT Gateway
 
 Private resources sometimes require Internet access for updates while remaining inaccessible from the Internet.
 
@@ -347,7 +347,7 @@ The Internet cannot initiate connections back to the private resource.
 
 ---
 
-# Security Groups
+## Security Groups
 
 Security Groups act as virtual firewalls.
 
@@ -369,7 +369,7 @@ Security Groups control inbound and outbound traffic at the resource level.
 
 ---
 
-# Network ACLs
+## Network ACLs
 
 Network Access Control Lists (NACLs) provide subnet-level security.
 
@@ -381,7 +381,7 @@ NACLs protect entire subnets.
 
 ---
 
-# Load Balancers
+## Load Balancers
 
 Load Balancers distribute traffic across multiple servers.
 
@@ -405,7 +405,7 @@ Load balancing improves availability and scalability.
 
 ---
 
-# DNS
+## DNS
 
 DNS translates domain names into IP addresses.
 
@@ -427,7 +427,7 @@ Without DNS, users would need to remember IP addresses instead of domain names.
 
 ---
 
-# VPN Connectivity
+## VPN Connectivity
 
 VPNs securely connect:
 
@@ -453,7 +453,7 @@ VPNs provide encrypted communication over the Internet.
 
 ---
 
-# Direct Connectivity
+## Direct Connectivity
 
 Large organizations often use dedicated private connections.
 
@@ -471,7 +471,7 @@ These services provide:
 
 ---
 
-# Cloud Networking in AWS
+## Cloud Networking in AWS
 
 Common AWS networking services include:
 
@@ -486,7 +486,7 @@ Common AWS networking services include:
 
 ---
 
-# Cloud Networking in Azure
+## Cloud Networking in Azure
 
 Azure networking services include:
 
@@ -499,7 +499,7 @@ Azure networking services include:
 
 ---
 
-# Cloud Networking in Google Cloud
+## Cloud Networking in Google Cloud
 
 Google Cloud networking includes:
 
@@ -512,7 +512,7 @@ Google Cloud networking includes:
 
 ---
 
-# Cloud Networking Best Practices
+## Cloud Networking Best Practices
 
 Professional organizations:
 
@@ -527,7 +527,7 @@ Professional organizations:
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 Avoid:
 
@@ -540,7 +540,7 @@ Avoid:
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 An enterprise deploys a secure three-tier application.
 
@@ -572,7 +572,45 @@ Only the web servers are accessible from the Internet, while application servers
 
 ---
 
-# Key Takeaways
+## Architecture workshop — Cloud VPC entry and private data path
+
+```mermaid
+flowchart TD
+    INTERNET["Web users"] --> ENTRY["Approved HTTPS endpoint"]
+    subgraph VPC["Virtual private cloud"]
+        APP["Application tier"]
+        DB[("Private database")]
+        NAT["Controlled outbound access"]
+    end
+    ENTRY -->|"Application traffic"| APP
+    APP -->|"Required database port"| DB
+    APP --> NAT
+    APP -. "events" .-> MON["Monitoring"]
+```
+
+**How to read it:** A public endpoint and a private database have different network exposure. Routes, security groups/ACLs and application permissions protect different boundaries.
+
+### Enterprise scenario
+
+A training application accepts HTTPS from students but must not permit direct Internet connections to its student-record database.
+
+### Independent practical exercise
+
+Create a network table for source, destination, port, expected allow/deny and evidence. Include one negative test for database exposure.
+
+**Expected evidence:** A network policy worksheet and trust-boundary diagram.
+
+### Check your understanding
+
+**Is a private subnet sufficient to guarantee database security?**
+
+<details><summary>Suggested reasoning</summary>No. Identity, application authorization, secrets, configuration and encryption still matter.</details>
+
+**Next step:** [Review the 16-module curriculum](/curriculum/) or [explore optional GHC Labs practice](/ghc-labs/). This Foundation exercise is free and self-directed.
+
+---
+
+## Key Takeaways
 
 After completing this lesson, you should understand:
 
@@ -591,7 +629,7 @@ After completing this lesson, you should understand:
 
 ---
 
-# Summary
+## Summary
 
 Cloud Networking is the foundation of every cloud deployment.
 
@@ -601,7 +639,7 @@ Networking skills are essential for Cloud Engineers, DevOps Engineers, Security 
 
 ---
 
-# Next Lesson
+## Next Lesson
 
 ➡️ **Lesson 09 — Cloud Storage**
 
