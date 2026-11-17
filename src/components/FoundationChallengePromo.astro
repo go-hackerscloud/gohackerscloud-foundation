@@ -1,0 +1,38 @@
+---
+const challengeTopics = ['IT Systems','Networking','Linux','Windows','Cloud','Security','Git & Reporting'];
+---
+<section class="challenge-promo" aria-labelledby="challenge-promo-heading">
+  <div class="challenge-promo-copy">
+    <span class="challenge-promo-eyebrow">FREE STARTER CHALLENGE · NO SIGN-UP REQUIRED</span>
+    <h2 id="challenge-promo-heading">Try seven days of real technical learning.</h2>
+    <p>Follow a free lesson each day, make one small architecture or evidence note, and answer three original questions with explanations. It's a practical way to discover your strengths before choosing a career track.</p>
+    <div class="challenge-promo-actions">
+      <a class="challenge-promo-primary" href="/7-day-challenge/">Start the free 7-day challenge <span aria-hidden="true">→</span></a>
+      <span>21 knowledge-check questions · Optional browser-only progress</span>
+    </div>
+  </div>
+  <div class="challenge-promo-timeline" aria-label="The seven challenge topics">
+    {challengeTopics.map((topic,i)=>(
+      <div class="challenge-promo-day"><span>0{i+1}</span><strong>{topic}</strong><span aria-hidden="true">✓</span></div>
+    ))}
+  </div>
+</section>
+<style>
+.challenge-promo{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(240px,.7fr);gap:1.6rem;align-items:center;border:1px solid var(--sl-color-accent);border-radius:17px;padding:clamp(1.25rem,3vw,2.15rem);background:var(--sl-color-bg-nav);margin:1.4rem 0 2.6rem}
+.challenge-promo-eyebrow{font-size:.7rem;letter-spacing:.08em;font-weight:850;color:var(--sl-color-accent-high)}
+.challenge-promo-copy h2{font-size:clamp(1.45rem,2.6vw,2.15rem);line-height:1.18;letter-spacing:-.035em;margin:.55rem 0 .65rem!important}
+.challenge-promo-copy p{font-size:.9rem;line-height:1.72;color:var(--sl-color-gray-2);margin:0}
+.challenge-promo-actions{display:flex;flex-direction:column;align-items:flex-start;gap:.65rem;margin-top:1.3rem}
+.challenge-promo-primary{display:inline-flex;gap:.6rem;align-items:center;justify-content:center;padding:.8rem 1rem;min-height:46px;border-radius:10px;background:var(--sl-color-accent);color:var(--sl-color-black)!important;text-decoration:none!important;font-weight:800;font-size:.87rem}
+.challenge-promo-primary:hover{filter:brightness(1.09)}
+.challenge-promo-actions>span{font-size:.75rem;color:var(--sl-color-gray-2);line-height:1.5}
+.challenge-promo-timeline{display:grid;gap:.25rem;padding:.75rem;border:1px solid var(--sl-color-gray-5);border-radius:13px}
+.challenge-promo-day{display:grid;grid-template-columns:25px 1fr 20px;align-items:center;gap:.7rem;padding:.42rem .65rem;min-width:0;border-bottom:1px solid var(--sl-color-gray-5)}
+.challenge-promo-day:last-child{border-bottom:0}
+.challenge-promo-day span{font-size:.7rem;color:var(--sl-color-accent-high);font-weight:800}
+.challenge-promo-day strong{font-size:.78rem;font-weight:700}
+.challenge-promo-primary:focus-visible{outline:3px solid var(--sl-color-accent-high);outline-offset:4px}
+@media(max-width:850px){.challenge-promo{grid-template-columns:1fr}.challenge-promo-timeline{grid-template-columns:repeat(2,minmax(0,1fr))}.challenge-promo-day:nth-last-child(2){border-bottom:0}}
+@media(max-width:530px){.challenge-promo-timeline{grid-template-columns:1fr}.challenge-promo-day:nth-last-child(2){border-bottom:1px solid var(--sl-color-gray-5)}.challenge-promo-primary{width:100%}}
+@media(prefers-reduced-motion:reduce){.challenge-promo-primary{transition:none}}
+</style>
