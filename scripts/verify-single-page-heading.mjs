@@ -9,6 +9,7 @@ const githubOwnedFolders=[
   'curriculum',
   'ghc-labs',
   'learning-hub',
+  'paths',
   'study-plan',
 ];
 const rootFiles=['index.mdx','start-here.mdx'];
