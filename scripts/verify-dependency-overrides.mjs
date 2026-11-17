@@ -8,8 +8,8 @@ const lock=JSON.parse(readFileSync('package-lock.json','utf8'));
 
 assert.equal(pkg.overrides?.katex,'0.18.2',
   'Patched KaTeX version must stay pinned pending upstream Mermaid support');
-assert.equal(lock.packages['']?.overrides?.katex,'0.18.2',
-  'package-lock must agree with the reviewed override');
+// npm package-lock v3 records resolved package versions, not the root overrides
+// object. The exact version is verified against each resolved KaTeX entry below.
 
 const katexEntries=Object.entries(lock.packages).filter(([name])=>
   name==='node_modules/katex' || name.endsWith('/node_modules/katex')
