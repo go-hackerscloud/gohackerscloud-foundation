@@ -29,7 +29,7 @@ jobs:
           node --input-type=module -e '
             import fs from "node:fs";
             const lock=JSON.parse(fs.readFileSync("package-lock.json","utf8"));
-            const katex=Object.entries(lock.packages).filter(([name])=>/node_modules\\/katex$/.test(name));
+            const katex=Object.entries(lock.packages).filter(([name])=>name==="node_modules/katex" || name.endsWith("/node_modules/katex"));
             if(katex.length<1 || katex.some(([,pkg])=>pkg.version!=="0.18.2")) {
               console.error("Not all KaTeX dependency entries are the approved 0.18.2 version",katex);
               process.exit(1);
