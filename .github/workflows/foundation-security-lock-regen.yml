@@ -1,0 +1,58 @@
+name: Security lockfile refresh (review branch only)
+on:
+  push:
+    branches:
+      - security/foundation-katex-and-dependency-audit-2026-11
+    paths:
+      - package.json
+      - .github/workflows/foundation-security-lock-regen.yml
+permissions:
+  contents: write
+jobs:
+  refresh-reviewed-lockfile:
+    if: github.repository == 'go-hackerscloud/gohackerscloud-foundation'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: security/foundation-katex-and-dependency-audit-2026-11
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Regenerate lockfile for exact patched KaTeX override
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Verify the patch is effective in the exact lockfile
+        run: |
+          node --input-type=module -e '
+            import fs from "node:fs";
+            const lock=JSON.parse(fs.readFileSync("package-lock.json","utf8"));
+            const katex=Object.entries(lock.packages).filter(([name])=>/node_modules\\/katex$/.test(name));
+            if(katex.length<1 || katex.some(([,pkg])=>pkg.version!=="0.18.2")) {
+              console.error("Not all KaTeX dependency entries are the approved 0.18.2 version",katex);
+              process.exit(1);
+            }
+            console.log("Verified patched KaTeX entries:",katex.map(([p,v])=>p+"@"+v.version));
+          '
+      - name: Install reviewed versions from lockfile
+        run: npm ci --no-audit --no-fund
+      - name: Build entire static Foundation site
+        run: npm run build
+      - name: Run all existing Foundation content checks
+        run: |
+          set -euo pipefail
+          for test in scripts/verify-*.mjs; do node "$test"; done
+      - name: Commit lockfile-only changes back to security feature branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          if git diff --cached --quiet; then
+            echo "Lockfile already matches override."
+          else
+            git commit -m "security(lock): resolve patched KaTeX without changing other direct dependencies"
+            git push origin HEAD:security/foundation-katex-and-dependency-audit-2026-11
+          fi
