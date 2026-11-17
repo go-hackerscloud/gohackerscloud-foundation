@@ -53,3 +53,5 @@ jobs:
         run: node scripts/verify-platform-offerings.mjs
       - name: Validate unified promotional catalog and Academy lab inventory
         run: node scripts/verify-unified-catalog.mjs
+      - name: Check single page titles across Foundation public pages
+        run: node scripts/verify-single-page-heading.mjs
