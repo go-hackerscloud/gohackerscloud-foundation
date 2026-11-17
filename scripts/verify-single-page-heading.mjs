@@ -12,7 +12,7 @@ const githubOwnedFolders=[
   'paths',
   'study-plan',
 ];
-const rootFiles=['index.mdx','start-here.mdx'];
+const rootFiles=['index.mdx','start-here.mdx','7-day-challenge.mdx'];
 const routes=[
   '/about-gohackerscloud/',
   '/about-gohackerscloud/catalog/',
