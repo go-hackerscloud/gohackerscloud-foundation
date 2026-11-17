@@ -58,7 +58,7 @@ assert.equal((built.match(/<h1(?:\s|>)/g)||[]).length,1,'Page should render only
 assert.ok(built.includes('name="description"'),'Challenge page lacks SEO meta');
 assert.equal((built.match(/data-day="0[1-7]"/g)||[]).length,7,'Seven interactive challenge panels required');
 assert.equal((built.match(/<fieldset[^>]*\bdata-question(?=[\s>])/g)||[]).length,21,'Twenty-one accessible fieldsets required');
-assert.equal((built.match(/type="radio"/g)||[]).length,84,'Every question should have four radio choices');
+assert.equal((built.match(/<input[^>]*\btype="radio"/g)||[]).length,84,'Every question should have four radio choices');
 assert.equal((built.match(/<form[^>]*\bdata-challenge-form(?=[\s>])/g)||[]).length,7,'Missing quiz forms');
 assert.equal((built.match(/<button[^>]*\bdata-mark-day(?=[\s>])/g)||[]).length,7,'Missing gated review buttons');
 assert.ok(built.includes('data-save-progress'),'Explicit opt-in control missing');
