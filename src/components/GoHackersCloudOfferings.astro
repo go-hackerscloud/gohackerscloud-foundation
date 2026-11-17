@@ -63,6 +63,14 @@ const offerings = [
       </a>
     ))}
   </div>
+  <a class="ghc-catalog-feature" href="/about-gohackerscloud/catalog/" aria-label="Explore the complete GoHackersCloud promotional catalog">
+    <span>
+      <span class="ghc-catalog-kicker">EXPLORE THE COMPLETE CATALOG</span>
+      <strong>Courses · Bundles · Test Engine · GHC Labs · Cloud & Security Services</strong>
+      <small>Browse identified course bundles, 13 Academy tracks, 90 dedicated lab documents and eight service modules, with learning diagrams and video references.</small>
+    </span>
+    <b>Browse full catalog <span aria-hidden="true">↗</span></b>
+  </a>
   <p class="ghc-ecosystem-footnote">Individual offers, prices, exam products, live lab access and service availability should always be confirmed on the linked official pages.</p>
 </section>
 <style>
@@ -84,4 +92,13 @@ const offerings = [
 @media(max-width:1050px){.ghc-ecosystem-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.ghc-ecosystem-grid{grid-template-columns:1fr}.ghc-ecosystem-card{padding:1.2rem}}
 @media(prefers-reduced-motion:reduce){.ghc-ecosystem-card{transition:none}}
+.ghc-catalog-feature{display:flex;justify-content:space-between;align-items:center;gap:1.3rem;margin-top:1rem;padding:1.4rem;border-radius:15px;border:1px solid var(--sl-color-accent);background:var(--sl-color-bg-nav);color:var(--sl-color-text)!important;text-decoration:none!important}
+.ghc-catalog-feature>span{display:flex;flex-direction:column;gap:.4rem;min-width:0}
+.ghc-catalog-feature strong{font-size:1.05rem;line-height:1.36}
+.ghc-catalog-feature small{font-size:.8rem;color:var(--sl-color-gray-2);line-height:1.5}
+.ghc-catalog-kicker{font-size:.7rem;letter-spacing:.075em;font-weight:800;color:var(--sl-color-accent-high)}
+.ghc-catalog-feature b{flex-shrink:0;font-size:.83rem;color:var(--sl-color-accent-high)}
+.ghc-catalog-feature:hover{border-color:var(--sl-color-accent-high)}
+.ghc-catalog-feature:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:720px){.ghc-catalog-feature{flex-direction:column;align-items:flex-start;padding:1.1rem}}
 </style>
