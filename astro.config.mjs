@@ -80,6 +80,7 @@ export default defineConfig({
             { label: 'Academy Lab Lesson Directory', link: '/about-gohackerscloud/lab-directory/' },
             { label: 'Start Here · Free Foundation', link: '/start-here/' },
             { label: '7-Day Free Foundation Challenge', link: '/7-day-challenge/' },
+            { label: 'Career & Portfolio Hub', link: '/portfolio/' },
             { label: 'Student Learning Path', link: '/paths/students/' },
             { label: 'Professional Upskilling Path', link: '/paths/professionals/' },
             { label: 'Explore 16 Modules', link: '/curriculum/' },
