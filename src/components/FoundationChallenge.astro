@@ -25,7 +25,7 @@ import { foundationChallengeDays } from '../data/foundation-challenge.mjs';
   </section>
   <div class="challenge-days">
     {foundationChallengeDays.map((day,dayIndex) => (
-      <details class="challenge-day" data-day={day.id} open={dayIndex===0}>
+      <details class="challenge-day" id={'challenge-day-'+day.id} data-day={day.id} open={dayIndex===0}>
         <summary>
           <span class="challenge-day-number">DAY {day.id}</span>
           <span class="challenge-day-title"><strong>{day.title}</strong><small>{day.topic}</small></span>
@@ -88,6 +88,8 @@ import { foundationChallengeDays } from '../data/foundation-challenge.mjs';
     const storageStatus = root.querySelector('[data-storage-status]');
     const progressBar = root.querySelector('[data-progress-bar]');
     const progressCount = root.querySelector('[data-progress-count]');
+    const railCount = document.querySelector('[data-challenge-rail-count]');
+    const railBar = document.querySelector('[data-challenge-rail-bar]');
     const sections = [...root.querySelectorAll('[data-day]')];
     const validIds = new Set(sections.map(section => section.dataset.day));
     let progress = {};
@@ -128,6 +130,12 @@ import { foundationChallengeDays } from '../data/foundation-challenge.mjs';
         const record = progress[day];
         const status = section.querySelector('[data-day-status]');
         const mark = section.querySelector('[data-mark-day]');
+        const railLink = document.querySelector('[data-challenge-day-link="'+day+'"]');
+        if (railLink) {
+          railLink.dataset.reviewed = record?.reviewed ? 'true' : 'false';
+          railLink.setAttribute('aria-label', 'Day '+day+': '+section.querySelector('.challenge-day-title strong').textContent+
+            (record?.reviewed ? ', self-reviewed' : ', not yet reviewed'));
+        }
         if (record?.reviewed) {
           reviewed++;
           status.textContent = 'Reviewed · '+record.score+'/3';
@@ -145,6 +153,8 @@ import { foundationChallengeDays } from '../data/foundation-challenge.mjs';
       }
       progressBar.value = reviewed;
       progressCount.textContent = reviewed+' of 7 days reviewed';
+      if (railCount) railCount.textContent = reviewed+' / 7';
+      if (railBar) railBar.value = reviewed;
     }
 
     root.addEventListener('submit', event => {
@@ -215,6 +225,24 @@ import { foundationChallengeDays } from '../data/foundation-challenge.mjs';
       renderProgress();
     });
 
+    // A sidebar shortcut opens the corresponding day before the anchor scrolls.
+    const rail = document.querySelector('.ghc-challenge-rail');
+    if (rail) rail.addEventListener('click', event => {
+      const link = event.target.closest('a[data-challenge-day-link]');
+      if (!link) return;
+      const target = document.getElementById('challenge-day-'+link.dataset.challengeDayLink);
+      if (target?.matches('details[data-day]')) target.open = true;
+    });
+
+    function openLinkedDay() {
+      const id = window.location.hash.substring(1);
+      if (!/^challenge-day-0[1-7]$/.test(id)) return;
+      const target = document.getElementById(id);
+      if (target?.matches('details[data-day]')) target.open = true;
+    }
+    openLinkedDay();
+    window.addEventListener('hashchange', openLinkedDay);
+
     root.querySelector('[data-clear-progress]').addEventListener('click', () => {
       if (!window.confirm('Clear all self-check scores and review checkmarks on this page and in this browser?')) return;
       progress = {};
@@ -256,7 +284,7 @@ import { foundationChallengeDays } from '../data/foundation-challenge.mjs';
 .challenge-progress [data-storage-status]{font-size:.78rem;margin:.85rem 0 .4rem}
 .challenge-privacy{font-size:.75rem;line-height:1.65;margin:0;color:var(--sl-color-gray-2)}
 .challenge-days{display:grid;gap:.85rem}
-.challenge-day{border:1px solid var(--sl-color-gray-5);background:var(--sl-color-bg-nav);border-radius:13px;overflow:hidden}
+.challenge-day{border:1px solid var(--sl-color-gray-5);background:var(--sl-color-bg-nav);border-radius:13px;overflow:hidden;scroll-margin-top:6.4rem}
 .challenge-day[open]{border-color:var(--sl-color-accent)}
 .challenge-day summary{display:flex;gap:.75rem;align-items:center;cursor:pointer;padding:1rem 1.15rem;list-style:none}
 .challenge-day summary::-webkit-details-marker{display:none}
