@@ -102,6 +102,18 @@ export default defineConfig({
           items: [{autogenerate: {directory: 'foundation'}}],
         },
         {
+          label: 'Portfolio Projects',
+          collapsed: true,
+          items: [
+            {label: 'System Architecture & Inventory', link: '/portfolio/projects/system-architecture/'},
+            {label: 'Network Troubleshooting', link: '/portfolio/projects/network-troubleshooting/'},
+            {label: 'Cloud IAM Least Privilege', link: '/portfolio/projects/cloud-iam-review/'},
+            {label: 'API Authorization Test Plan', link: '/portfolio/projects/api-authorization/'},
+            {label: 'SOC Alert Triage', link: '/portfolio/projects/soc-alert-triage/'},
+            {label: 'Git & DevSecOps Review', link: '/portfolio/projects/git-devsecops-review/'},
+          ],
+        },
+        {
           label: 'Career Roadmaps',
           collapsed: true,
           items: [
