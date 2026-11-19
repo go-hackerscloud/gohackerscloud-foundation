@@ -24,6 +24,8 @@ jobs:
           cache: npm
       - name: Install exactly the reviewed versions
         run: npm ci --no-audit --no-fund
+      - name: Confirm patched KaTeX override and math compatibility
+        run: node scripts/verify-dependency-overrides.mjs
       - name: Fail on high/critical issues in all dependencies
         run: npm audit --audit-level=high
       - name: Fail on high/critical production dependency issues
