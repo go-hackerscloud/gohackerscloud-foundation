@@ -1,0 +1,39 @@
+name: Foundation functional build and content checks
+on:
+  pull_request:
+    paths:
+      - src/**
+      - scripts/**
+      - astro.config.mjs
+      - package.json
+      - package-lock.json
+      - .github/workflows/foundation-functional-validation.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-content:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install reviewed lockfile without changing dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build Foundation static site
+        run: npm run build
+      - name: Validate all current Foundation content and routes
+        run: |
+          set -euo pipefail
+          for test in scripts/verify-*.mjs; do
+            echo "::group::$test"
+            node "$test"
+            echo "::endgroup::"
+          done
+      - name: State security gate remains separate and required
+        run: |
+          echo "Functional success does NOT mean a clean dependency audit."
+          echo "Do not merge until the existing dependency security workflow is green."

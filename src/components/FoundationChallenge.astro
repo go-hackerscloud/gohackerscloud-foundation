@@ -1,0 +1,300 @@
+---
+import { foundationChallengeDays } from '../data/foundation-challenge.mjs';
+---
+<section class="ghc-challenge" data-ghc-challenge aria-labelledby="challenge-journey-heading">
+  <div class="challenge-intro">
+    <span class="challenge-kicker">SEVEN FREE DAYS · SEVEN EXERCISES · 21 ORIGINAL QUESTIONS</span>
+    <h2 id="challenge-journey-heading">Your seven-day learning journey</h2>
+    <p>Open any day, read its Foundation lesson, create a small piece of evidence, and answer three questions. Learn at your own pace—there is no pass mark, deadline, account or paid subscription requirement.</p>
+  </div>
+  <section class="challenge-progress" aria-labelledby="challenge-progress-heading">
+    <div class="challenge-progress-head">
+      <strong id="challenge-progress-heading">My self-reviewed progress</strong>
+      <span data-progress-count aria-live="polite">0 of 7 days reviewed</span>
+    </div>
+    <progress data-progress-bar value="0" max="7" aria-label="Self-reviewed days out of seven">0 of 7</progress>
+    <div class="challenge-progress-actions">
+      <label class="challenge-save">
+        <input type="checkbox" data-save-progress autocomplete="off" />
+        <span><strong>Remember progress in this browser</strong><small>Optional · no login or account required</small></span>
+      </label>
+      <button type="button" data-clear-progress>Clear my progress</button>
+    </div>
+    <p data-storage-status role="status">Browser saving is off. Results and checkmarks will be lost when you reload.</p>
+    <p class="challenge-privacy">When enabled, this feature stores only self-check scores and review checkmarks in this browser's local storage. No answers or progress are sent to GoHackersCloud servers. Progress does not sync across devices. Turning saving off deletes the local record; use “Clear my progress” to reset the page too.</p>
+  </section>
+  <div class="challenge-days">
+    {foundationChallengeDays.map((day,dayIndex) => (
+      <details class="challenge-day" data-day={day.id} open={dayIndex===0}>
+        <summary>
+          <span class="challenge-day-number">DAY {day.id}</span>
+          <span class="challenge-day-title"><strong>{day.title}</strong><small>{day.topic}</small></span>
+          <span class="challenge-day-status" data-day-status>Not attempted</span>
+        </summary>
+        <div class="challenge-day-content">
+          <p><strong>Learning objective:</strong> {day.objective}</p>
+          <p class="challenge-links">
+            <a href={day.lesson}>Read free lesson: {day.lessonLabel}</a>
+            <a href={day.optionalLesson}>Optional deeper reading</a>
+          </p>
+          <div class="challenge-exercise">
+            <h4>Practical exercise</h4>
+            <p>{day.assignment}</p>
+            <p><strong>Evidence to save for yourself:</strong> {day.evidence}</p>
+          </div>
+          <form data-challenge-form novalidate>
+            <h4>Three-question self-check</h4>
+            <p class="challenge-hint">Choose an answer for each question. Explanations appear when you check your answers; you may retry.</p>
+            {day.questions.map((question,qIndex)=>(
+              <fieldset data-question data-answer={question.correct} data-explanation={question.explanation}>
+                <legend>Q{qIndex+1}. {question.prompt}</legend>
+                <div class="challenge-options">
+                  {question.options.map((option,optionIndex)=>(
+                    <label class="challenge-option">
+                      <input type="radio" name={'ghc-'+day.id+'-q'+(qIndex+1)} value={String(optionIndex)} />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            ))}
+            <div class="challenge-buttons">
+              <button type="submit" class="challenge-check">Check my answers</button>
+              <button type="button" data-mark-day disabled>Mark day reviewed</button>
+            </div>
+            <div class="challenge-feedback" data-feedback role="status" aria-live="polite" hidden></div>
+            <p class="challenge-disclaimer">“Reviewed” is your own learning checkmark, not verified lesson completion, a certificate or a score reported to Academy.</p>
+          </form>
+        </div>
+      </details>
+    ))}
+  </div>
+  <div class="challenge-next">
+    <h3>What comes after day seven?</h3>
+    <p>Keep your best original diagram or learning note and choose a next goal. Foundation remains free, and Academy/GHC Labs are an optional separate offering—not a condition for finishing this challenge.</p>
+    <div>
+      <a href="/curriculum/">All 16 free modules</a>
+      <a href="/learning-hub/cloud-security-roadmap/">Cloud security career roadmap</a>
+      <a href="/ghc-labs/">Optional GHC Labs</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector('[data-ghc-challenge]');
+  if (root) {
+    const key = 'ghc-foundation-seven-day-challenge-v1';
+    const save = root.querySelector('[data-save-progress]');
+    const storageStatus = root.querySelector('[data-storage-status]');
+    const progressBar = root.querySelector('[data-progress-bar]');
+    const progressCount = root.querySelector('[data-progress-count]');
+    const sections = [...root.querySelectorAll('[data-day]')];
+    const validIds = new Set(sections.map(section => section.dataset.day));
+    let progress = {};
+    let saving = false;
+
+    // Browser storage is not read until the learner opts in.
+    function loadSaved() {
+      try {
+        const raw = window.localStorage.getItem(key);
+        if (!raw) return {};
+        const data = JSON.parse(raw);
+        if (data?.version !== 1 || typeof data.days !== 'object' || !data.days) return {};
+        const valid = {};
+        for (const [day, value] of Object.entries(data.days)) {
+          if (!validIds.has(day) || !value || typeof value !== 'object') continue;
+          if (!Number.isInteger(value.score) || value.score < 0 || value.score > 3) continue;
+          valid[day] = {score: value.score, reviewed: value.reviewed === true};
+        }
+        return valid;
+      } catch { return {}; }
+    }
+
+    function writeSaved() {
+      if (!saving) return;
+      try {
+        window.localStorage.setItem(key, JSON.stringify({version:1, days:progress}));
+      } catch {
+        saving = false;
+        save.checked = false;
+        storageStatus.textContent = 'Local saving is unavailable. Your current results will remain until this page reloads.';
+      }
+    }
+
+    function renderProgress() {
+      let reviewed = 0;
+      for (const section of sections) {
+        const day = section.dataset.day;
+        const record = progress[day];
+        const status = section.querySelector('[data-day-status]');
+        const mark = section.querySelector('[data-mark-day]');
+        if (record?.reviewed) {
+          reviewed++;
+          status.textContent = 'Reviewed · '+record.score+'/3';
+          mark.disabled = true;
+          mark.textContent = 'Day marked reviewed';
+        } else if (record) {
+          status.textContent = 'Quiz '+record.score+'/3';
+          mark.disabled = false;
+          mark.textContent = 'Mark day reviewed';
+        } else {
+          status.textContent = 'Not attempted';
+          mark.disabled = true;
+          mark.textContent = 'Mark day reviewed';
+        }
+      }
+      progressBar.value = reviewed;
+      progressCount.textContent = reviewed+' of 7 days reviewed';
+    }
+
+    root.addEventListener('submit', event => {
+      const form = event.target.closest('[data-challenge-form]');
+      if (!form) return;
+      event.preventDefault();
+      const section = form.closest('[data-day]');
+      const fields = [...form.querySelectorAll('[data-question]')];
+      const feedback = form.querySelector('[data-feedback]');
+      if (fields.some(field => !field.querySelector('input[type="radio"]:checked'))) {
+        feedback.textContent = 'Please answer all three questions before checking your score.';
+        feedback.hidden = false;
+        return;
+      }
+      let correct = 0;
+      const messages = [];
+      for (const [index, field] of fields.entries()) {
+        const selected = Number(field.querySelector('input[type="radio"]:checked').value);
+        const answer = Number(field.dataset.answer);
+        if (selected === answer) correct++;
+        const labels = [...field.querySelectorAll('label')];
+        const answerText = labels[answer]?.textContent?.trim() || 'Read the linked lesson';
+        const paragraph = document.createElement('p');
+        paragraph.textContent = 'Q'+(index+1)+': '+(selected===answer?'Correct. ':'Review this concept. ')+
+          'Suggested answer: '+answerText+'. '+field.dataset.explanation;
+        messages.push(paragraph);
+      }
+      const day = section.dataset.day;
+      progress[day] = {score:correct, reviewed:progress[day]?.reviewed===true};
+      const summary = document.createElement('strong');
+      summary.textContent = 'Day '+day+': '+correct+' of 3 correct. '+(correct===3?
+        'Explain the reasoning in your own words.':'Review the explanations and try again whenever you wish.');
+      feedback.replaceChildren(summary,...messages);
+      feedback.hidden = false;
+      writeSaved();
+      renderProgress();
+    });
+
+    root.addEventListener('click', event => {
+      const mark = event.target.closest('[data-mark-day]');
+      if (!mark || mark.disabled) return;
+      const day = mark.closest('[data-day]').dataset.day;
+      if (!progress[day]) return;
+      progress[day] = {...progress[day], reviewed:true};
+      writeSaved();
+      renderProgress();
+    });
+
+    save.checked = false;
+    save.addEventListener('change', () => {
+      if (save.checked) {
+        try {
+          const restored = loadSaved();
+          progress = {...restored, ...progress};
+          window.localStorage.setItem(key, JSON.stringify({version:1, days:progress}));
+          saving = true;
+          storageStatus.textContent = 'Saving is on for this browser. Any existing saved results have been restored.';
+        } catch {
+          saving = false;
+          save.checked = false;
+          storageStatus.textContent = 'Your browser does not allow local saving. You can still complete all the quizzes.';
+        }
+      } else {
+        saving = false;
+        try { window.localStorage.removeItem(key); } catch {}
+        storageStatus.textContent = 'Saving is off and the saved browser record was cleared. Current session results remain until reload.';
+      }
+      renderProgress();
+    });
+
+    root.querySelector('[data-clear-progress]').addEventListener('click', () => {
+      if (!window.confirm('Clear all self-check scores and review checkmarks on this page and in this browser?')) return;
+      progress = {};
+      saving = false;
+      save.checked = false;
+      try { window.localStorage.removeItem(key); } catch {}
+      for (const section of sections) {
+        section.querySelector('form').reset();
+        const feedback = section.querySelector('[data-feedback]');
+        feedback.hidden = true;
+        feedback.replaceChildren();
+      }
+      storageStatus.textContent = 'Progress cleared. Browser saving is off.';
+      renderProgress();
+    });
+
+    renderProgress();
+  }
+</script>
+
+<style>
+.ghc-challenge{margin:1.5rem 0 3rem}
+.challenge-intro{max-width:73ch;margin-bottom:1.4rem}
+.challenge-kicker{font-size:.7rem;letter-spacing:.09em;font-weight:850;color:var(--sl-color-accent-high)}
+.challenge-intro h2{font-size:clamp(1.55rem,2.7vw,2.25rem);margin:.45rem 0 .6rem!important;line-height:1.2;letter-spacing:-.035em}
+.challenge-intro p{font-size:.91rem;line-height:1.7;color:var(--sl-color-gray-2)}
+.challenge-progress{padding:1.3rem;border:1px solid var(--sl-color-accent);border-radius:16px;background:var(--sl-color-bg-nav);margin-bottom:1.5rem}
+.challenge-progress-head{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:center}
+.challenge-progress-head strong{font-size:1.02rem}
+.challenge-progress-head span{font-size:.84rem;color:var(--sl-color-accent-high);font-weight:750}
+.challenge-progress progress{display:block;width:100%;height:14px;margin:.7rem 0 1rem;accent-color:var(--sl-color-accent)}
+.challenge-progress-actions{display:flex;justify-content:space-between;gap:1rem;align-items:center;flex-wrap:wrap}
+.challenge-save{display:flex;gap:.65rem;align-items:center;cursor:pointer}
+.challenge-save input{width:19px;height:19px;accent-color:var(--sl-color-accent)}
+.challenge-save span{display:grid;gap:.12rem}
+.challenge-save strong{font-size:.83rem}
+.challenge-save small{font-size:.74rem;color:var(--sl-color-gray-2)}
+.challenge-progress-actions button{font:inherit;font-size:.8rem;background:var(--sl-color-bg);color:var(--sl-color-text);border:1px solid var(--sl-color-gray-5);border-radius:9px;min-height:42px;padding:.55rem .8rem;cursor:pointer}
+.challenge-progress [data-storage-status]{font-size:.78rem;margin:.85rem 0 .4rem}
+.challenge-privacy{font-size:.75rem;line-height:1.65;margin:0;color:var(--sl-color-gray-2)}
+.challenge-days{display:grid;gap:.85rem}
+.challenge-day{border:1px solid var(--sl-color-gray-5);background:var(--sl-color-bg-nav);border-radius:13px;overflow:hidden}
+.challenge-day[open]{border-color:var(--sl-color-accent)}
+.challenge-day summary{display:flex;gap:.75rem;align-items:center;cursor:pointer;padding:1rem 1.15rem;list-style:none}
+.challenge-day summary::-webkit-details-marker{display:none}
+.challenge-day summary::after{content:'▾';margin-left:.3rem;color:var(--sl-color-gray-2);transform:rotate(-90deg)}
+.challenge-day[open] summary::after{transform:none}
+.challenge-day-number{font-weight:850;font-size:.71rem;color:var(--sl-color-accent-high);white-space:nowrap}
+.challenge-day-title{display:grid;gap:.15rem;flex:1}
+.challenge-day-title strong{font-size:1.03rem;line-height:1.35}
+.challenge-day-title small{font-size:.74rem;color:var(--sl-color-gray-2)}
+.challenge-day-status{font-size:.72rem;color:var(--sl-color-accent-high);white-space:nowrap}
+.challenge-day-content{border-top:1px solid var(--sl-color-gray-5);padding:1.25rem}
+.challenge-day-content>p{font-size:.87rem;line-height:1.65;margin:0 0 1rem}
+.challenge-links{display:flex;gap:.7rem 1.3rem;flex-wrap:wrap}
+.challenge-links a{font-size:.83rem;font-weight:730}
+.challenge-exercise{padding:1rem;border-left:3px solid var(--sl-color-accent);border-radius:0 9px 9px 0;background:var(--sl-color-bg);margin:1.2rem 0}
+.challenge-exercise h4,.challenge-day form h4{font-size:1rem;margin:0 0 .6rem!important}
+.challenge-exercise p{font-size:.84rem;line-height:1.7;margin:.4rem 0}
+.challenge-hint{font-size:.8rem;color:var(--sl-color-gray-2);margin:0 0 1.1rem}
+.challenge-day fieldset{padding:0;margin:0 0 1.25rem;border:0;min-width:0}
+.challenge-day legend{font-size:.9rem;font-weight:750;line-height:1.5;margin-bottom:.6rem}
+.challenge-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem}
+.challenge-option{display:flex;align-items:flex-start;gap:.55rem;border:1px solid var(--sl-color-gray-5);border-radius:9px;padding:.72rem;cursor:pointer;font-size:.82rem;line-height:1.52}
+.challenge-option:hover{border-color:var(--sl-color-accent)}
+.challenge-option input{flex-shrink:0;accent-color:var(--sl-color-accent);margin-top:.17rem}
+.challenge-buttons{display:flex;gap:.65rem;flex-wrap:wrap}
+.challenge-buttons button{font:inherit;font-size:.83rem;font-weight:800;min-height:44px;padding:.64rem 1rem;border-radius:9px;border:1px solid var(--sl-color-accent);cursor:pointer}
+.challenge-check{background:var(--sl-color-accent);color:var(--sl-color-black)}
+.challenge-buttons [data-mark-day]{background:var(--sl-color-bg);color:var(--sl-color-text)}
+.challenge-buttons button:disabled{cursor:not-allowed;opacity:.5}
+.challenge-feedback{border:1px solid var(--sl-color-gray-5);border-radius:10px;background:var(--sl-color-bg);padding:1rem;margin-top:1rem}
+.challenge-feedback[hidden]{display:none}
+.challenge-feedback strong{display:block;margin-bottom:.45rem;font-size:.88rem}
+.challenge-feedback p{font-size:.81rem;line-height:1.65;margin:.5rem 0}
+.challenge-disclaimer{color:var(--sl-color-gray-2);font-size:.74rem;margin:1rem 0 0!important;line-height:1.65}
+.challenge-next{border:1px solid var(--sl-color-gray-5);border-radius:14px;padding:1.3rem;background:var(--sl-color-bg-nav);margin-top:1.75rem}
+.challenge-next h3{font-size:1.1rem;margin:0 0 .5rem!important}
+.challenge-next p{font-size:.85rem;line-height:1.65;margin:0 0 1rem}
+.challenge-next>div{display:flex;flex-wrap:wrap;gap:.7rem 1.2rem;font-size:.81rem}
+.challenge-day summary:focus-visible,.ghc-challenge a:focus-visible,.ghc-challenge button:focus-visible,.challenge-save input:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:720px){.challenge-options{grid-template-columns:1fr}.challenge-day-content{padding:1rem}.challenge-day summary{padding:.86rem}.challenge-day-status{font-size:.67rem}}
+</style>
