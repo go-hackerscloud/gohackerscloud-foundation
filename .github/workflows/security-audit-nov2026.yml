@@ -61,5 +61,7 @@ jobs:
         run: node scripts/verify-learner-first-homepage.mjs
       - name: Validate seven-day free challenge, 21 quizzes and optional progress
         run: node scripts/verify-seven-day-challenge.mjs
+      - name: Validate seven-day study sidebar, day anchors and responsive layout
+        run: node scripts/verify-challenge-page-layout.mjs
       - name: Validate free career portfolio projects, diagrams and downloadable worksheets
         run: node scripts/verify-career-portfolio-hub.mjs
