@@ -10,6 +10,7 @@ const githubOwnedFolders=[
   'ghc-labs',
   'learning-hub',
   'paths',
+  'portfolio',
   'study-plan',
 ];
 const rootFiles=['index.mdx','start-here.mdx','7-day-challenge.mdx'];

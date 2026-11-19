@@ -80,6 +80,7 @@ export default defineConfig({
             { label: 'Academy Lab Lesson Directory', link: '/about-gohackerscloud/lab-directory/' },
             { label: 'Start Here · Free Foundation', link: '/start-here/' },
             { label: '7-Day Free Foundation Challenge', link: '/7-day-challenge/' },
+            { label: 'Career & Portfolio Hub', link: '/portfolio/' },
             { label: 'Student Learning Path', link: '/paths/students/' },
             { label: 'Professional Upskilling Path', link: '/paths/professionals/' },
             { label: 'Explore 16 Modules', link: '/curriculum/' },
@@ -99,6 +100,18 @@ export default defineConfig({
           label: 'All Foundation Lessons',
           collapsed: true,
           items: [{autogenerate: {directory: 'foundation'}}],
+        },
+        {
+          label: 'Portfolio Projects',
+          collapsed: true,
+          items: [
+            {label: 'System Architecture & Inventory', link: '/portfolio/projects/system-architecture/'},
+            {label: 'Network Troubleshooting', link: '/portfolio/projects/network-troubleshooting/'},
+            {label: 'Cloud IAM Least Privilege', link: '/portfolio/projects/cloud-iam-review/'},
+            {label: 'API Authorization Test Plan', link: '/portfolio/projects/api-authorization/'},
+            {label: 'SOC Alert Triage', link: '/portfolio/projects/soc-alert-triage/'},
+            {label: 'Git & DevSecOps Review', link: '/portfolio/projects/git-devsecops-review/'},
+          ],
         },
         {
           label: 'Career Roadmaps',
