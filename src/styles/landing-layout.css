@@ -1,0 +1,35 @@
+/* GoHackersCloud public landing pages: fuller desktop canvas, readable prose.
+   Starlight sets data-has-sidebar on documentation pages. Scope this rule to
+   sidebar-free (splash) pages so original Foundation lessons remain 45rem wide. */
+html:not([data-has-sidebar]) .content-panel .sl-container {
+  max-width: min(88rem, 100%);
+}
+
+/* Keep paragraph line length readable even when cards and tables use the
+   expanded canvas. Intro sections with two-column designs control their own
+   typographic measure. */
+html:not([data-has-sidebar]) .sl-markdown-content > p {
+  max-width: min(88ch, 100%);
+  line-height: 1.72;
+}
+
+/* Let informational tables occupy the available width instead of becoming
+   isolated, left-aligned blocks. Starlight handles overflow for narrow screens. */
+html:not([data-has-sidebar]) .sl-markdown-content > table {
+  width: 100%;
+}
+
+/* Prevent oversized headings in splash content from spanning the entire
+   display width. The actual page H1 continues to come from Starlight. */
+html:not([data-has-sidebar]) .sl-markdown-content > h2 {
+  max-width: 28ch;
+  text-wrap: balance;
+}
+
+/* Respect the content width on compact viewports, even when users zoom or
+   increase font size. All grids are managed by their local components. */
+@media (max-width: 48rem) {
+  html:not([data-has-sidebar]) .content-panel .sl-container {
+    max-width: 100%;
+  }
+}
