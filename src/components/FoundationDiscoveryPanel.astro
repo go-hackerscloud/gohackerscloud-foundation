@@ -1,0 +1,89 @@
+---
+/* Lightweight discovery navigation only: links to existing resources, no
+   inventory, pricing, entitlement, exam-score or lab-access claims. */
+const variant = Astro.props.variant === 'tests' ? 'tests' : 'courses';
+const data = {
+  courses: {
+    eyebrow: 'COURSE DISCOVERY',
+    title: 'Find your next learning path',
+    summary: 'Choose a subject, compare the published listings and check the current product details before enrolling.',
+    asideLabel: 'Course discovery shortcuts',
+    action: 'Browse current course listings',
+    url: 'https://www.gohackerscloud.org/courses',
+    note: 'Exact bundles, pricing and access are determined by current product listings.',
+    cards: [
+      {eyebrow:'START WITH THE BASICS',title:'Free Foundation modules',description:'Build confidence across cloud, networking, Linux and security before choosing a course.',url:'/curriculum/',action:'Explore free modules'},
+      {eyebrow:'CERTIFICATION STUDY',title:'Courses & learning bundles',description:'Compare currently published course offerings and learning bundles on the official storefront.',url:'https://gohackerscloud.com/ghc-offers',action:'View current offers'},
+      {eyebrow:'GO DEEPER',title:'AWS certification study guide',description:'Explore a structured, free AWS Cloud Practitioner study resource.',url:'/learning-hub/aws-clf-c02/',action:'Read the study guide'},
+    ],
+  },
+  tests: {
+    eyebrow: 'EXAM READINESS',
+    title: 'Measure your understanding',
+    summary: 'Start with a free concept check, find available practice tests or revisit the foundations behind each question.',
+    asideLabel: 'Practice and revision shortcuts',
+    action: 'Explore free practice tests',
+    url: 'https://www.gohackerscloud.org/freetest',
+    note: 'Free tests and separate paid exam-preparation products may have different features and access terms.',
+    cards: [
+      {eyebrow:'CHECK YOUR BASICS',title:'Foundation self-checks',description:'Review introductory concepts alongside the Foundation lessons and assessments.',url:'/curriculum/',action:'Explore free modules'},
+      {eyebrow:'PRACTISE QUESTIONS',title:'Available free tests',description:'Find the free practice tests currently published by GoHackersCloud.',url:'https://www.gohackerscloud.org/freetest',action:'Open free tests'},
+      {eyebrow:'REVIEW YOUR GAPS',title:'Study guides & courses',description:'Revisit learning resources before another practice attempt.',url:'/about-gohackerscloud/courses/',action:'Explore study resources'},
+    ],
+  },
+}[variant];
+---
+<section class:list={['ghc-discovery', 'ghc-discovery--'+variant]} aria-label={variant === 'courses' ? 'Course and certification discovery' : 'Exam practice and test discovery'}>
+  <div class="ghc-discovery-intro">
+    <div class="ghc-discovery-message">
+      <span class="ghc-discovery-eyebrow">{data.eyebrow}</span>
+      <h2>{variant === 'courses' ? 'Choose how you learn' : 'Choose how you practise'}</h2>
+      <p>{variant === 'courses' ? 'Find a starting point for courses, certification study and structured learning.' : 'Pick the right next step for practice questions, revision and foundational knowledge.'}</p>
+    </div>
+    <aside class="ghc-discovery-aside" aria-label={data.asideLabel}>
+      <span class="ghc-discovery-aside-kicker">{data.eyebrow}</span>
+      <h3>{data.title}</h3>
+      <p>{data.summary}</p>
+      <a class="ghc-discovery-primary" href={data.url}>{data.action} <span aria-hidden="true">↗</span></a>
+      <small>{data.note}</small>
+    </aside>
+  </div>
+  <div class="ghc-discovery-cards" aria-label="Recommended learning resources">
+    {data.cards.map(card => (
+      <a class="ghc-discovery-card" href={card.url} aria-label={card.action}>
+        <span class="ghc-discovery-card-kicker">{card.eyebrow}</span>
+        <strong>{card.title}</strong>
+        <span class="ghc-discovery-card-desc">{card.description}</span>
+        <span class="ghc-discovery-card-go">{card.action} <span aria-hidden="true">→</span></span>
+      </a>
+    ))}
+  </div>
+</section>
+<style>
+.ghc-discovery{display:grid;gap:.95rem;margin:1.35rem 0 2rem;min-width:0}
+.ghc-discovery-intro{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(15rem,.9fr);gap:clamp(.9rem,2vw,1.35rem);align-items:stretch}
+.ghc-discovery-message{min-width:0;padding:1rem .25rem .7rem 0;align-self:center}
+.ghc-discovery-eyebrow,.ghc-discovery-aside-kicker,.ghc-discovery-card-kicker{display:block;font-size:.68rem;font-weight:850;letter-spacing:.08em;line-height:1.45;color:var(--sl-color-accent-high)}
+.ghc-discovery-message h2{font-size:clamp(1.4rem,2.3vw,1.85rem)!important;line-height:1.25;letter-spacing:-.025em;margin:.55rem 0 .6rem!important;padding:0!important;border:0!important}
+.ghc-discovery-message p{font-size:.9rem;line-height:1.7;color:var(--sl-color-gray-2);margin:0!important}
+.ghc-discovery-aside{min-width:0;display:flex;flex-direction:column;gap:.75rem;border-radius:15px;border:1px solid var(--sl-color-gray-5);padding:clamp(1rem,2vw,1.35rem);background:var(--sl-color-bg-nav)}
+.ghc-discovery-aside h3{font-size:1.28rem!important;line-height:1.27;letter-spacing:-.025em;margin:0!important}
+.ghc-discovery-aside p{font-size:.83rem;line-height:1.65;color:var(--sl-color-gray-2);margin:0!important}
+.ghc-discovery-aside small{font-size:.7rem;line-height:1.6;color:var(--sl-color-gray-2)}
+.ghc-discovery-primary{display:flex;justify-content:space-between;align-items:center;gap:.7rem;min-height:44px;border-radius:9px;padding:.7rem .8rem;text-decoration:none!important;font-size:.82rem;font-weight:850;margin-top:auto;background:var(--sl-color-accent-low);color:var(--sl-color-accent-high)!important;border:1px solid var(--sl-color-accent)}
+.ghc-discovery-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;align-items:stretch}
+.ghc-discovery-card{min-width:0;display:flex;flex-direction:column;gap:.65rem;padding:1rem;border:1px solid var(--sl-color-gray-5);border-radius:13px;background:var(--sl-color-bg-nav);text-decoration:none!important;color:var(--sl-color-text)!important;transition:transform .15s ease,border-color .15s ease}
+.ghc-discovery-card strong{font-size:1.02rem;line-height:1.35;color:var(--sl-color-text)}
+.ghc-discovery-card-desc{font-size:.8rem;line-height:1.6;color:var(--sl-color-gray-2)}
+.ghc-discovery-card-go{font-size:.79rem;font-weight:800;color:var(--sl-color-accent-high);margin-top:auto}
+.ghc-discovery-card:hover{transform:translateY(-2px);border-color:var(--sl-color-accent)}
+.ghc-discovery a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+.ghc-discovery--courses .ghc-discovery-aside{background:linear-gradient(135deg,#0a1c32,#143650);border-color:#42657e;color:#fff}
+.ghc-discovery--courses .ghc-discovery-aside-kicker{color:#84e7f4}
+.ghc-discovery--courses .ghc-discovery-aside h3{color:#fff}
+.ghc-discovery--courses .ghc-discovery-aside p,.ghc-discovery--courses .ghc-discovery-aside small{color:#d0e1ee}
+.ghc-discovery--courses .ghc-discovery-primary{background:#83e3f1;color:#08273a!important;border-color:#83e3f1}
+@media(max-width:50rem){.ghc-discovery-intro{grid-template-columns:1fr}.ghc-discovery-message{padding:.5rem 0 0}.ghc-discovery-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.ghc-discovery-card:last-child{grid-column:1/-1}}
+@media(max-width:38rem){.ghc-discovery-cards{grid-template-columns:1fr}.ghc-discovery-card:last-child{grid-column:auto}}
+@media(prefers-reduced-motion:reduce){.ghc-discovery-card{transition:none}}
+</style>
