@@ -240,6 +240,36 @@ assert.equal(exactAnchors(built('/curriculum/'),'foundation-module-card').length
 assert.ok(!p3Panel.includes('fetch(') && !p3Panel.includes('sendBeacon('),
   'P3 panels must not collect learner information');
 
+// P4: Guidance navigation belongs only on the four free learner-planning
+// pages, with exactly three real links and no change to hosted lab access.
+const nextSteps=read('src/components/FoundationGuidedNextSteps.astro');
+assert.ok(nextSteps.includes('@media(max-width:48rem)'),
+  'Guided next-step cards must stack on mobile devices');
+assert.ok(!['fetch(', 'sendBeacon(', 'XMLHttpRequest('].some(call=>nextSteps.includes(call)),
+  'Guided links must not collect or submit learner information');
+for(const [route,file,variant] of [
+  ['/start-here/','src/content/docs/start-here.mdx','start'],
+  ['/paths/students/','src/content/docs/paths/students.mdx','student'],
+  ['/paths/professionals/','src/content/docs/paths/professionals.mdx','professional'],
+  ['/study-plan/','src/content/docs/study-plan/index.mdx','plan'],
+]){
+  const html=built(route);
+  assert.ok(read(file).includes('<FoundationGuidedNextSteps variant="'+variant+'" />'),
+    'Missing learner-guidance component in '+file);
+  assert.ok(html.includes('ghc-guided-next'),
+    'Missing learner-guidance navigation on '+route);
+  const links=[...html.matchAll(/<a\b[^>]*class="([^"]*)"/g)]
+    .filter(([,classList])=>classList.split(/\s+/).includes('ghc-guided-next-link'));
+  assert.equal(links.length,3,
+    'Expected exactly three learner-guidance cards on '+route);
+  assert.equal(h1(html),1,'Do not add a second title on '+route);
+}
+assert.ok(!built('/').includes('ghc-guided-next') &&
+  !built('/about-gohackerscloud/catalog/').includes('ghc-guided-next'),
+  'Guidance navigation must not spread to promotional or home pages');
+assert.ok(css.includes('--sl-content-width: 60rem'),
+  'P4 must preserve the existing Foundation content width');
+
 const challenge=built('/7-day-challenge/');
 assert.ok(challenge.includes('ghc-challenge-rail')&&
   challenge.includes('data-save-progress')&&challenge.includes('data-clear-progress'),
