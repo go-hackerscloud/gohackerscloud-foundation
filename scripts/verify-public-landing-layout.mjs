@@ -43,10 +43,16 @@ assert.ok(config.includes("'./src/styles/landing-layout.css'"),'Missing Foundati
 assert.ok(css.includes('body:has(.foundation-hero)'),'Academy-style width must be scoped to home');
 assert.ok(css.includes('body:has(.ghc-about-lead)'),'Academy-style width must include About');
 assert.ok(css.includes('--sl-content-width: 78rem'),
-  'Academy-like 78rem content width should be scoped to the two flagship pages');
+  'Academy-like 78rem content width should remain standard');
 assert.ok(!css.includes('88rem'),'Reject the oversized PR #19 desktop layout');
-assert.ok(!css.includes('html:not([data-has-sidebar]) .content-panel .sl-container'),
-  'Do not widen every splash page and leave large blank areas');
+assert.ok(css.includes('html:not([data-has-sidebar]) body'),
+  'Every public splash page must use Academy width');
+assert.ok(css.includes('body:has(.ghc-study-plan-marker)'),
+  'Study Plan must share the Academy width without changing other lessons');
+assert.ok(css.includes('overscroll-behavior-x: contain'),
+  'Wide public tables must scroll locally rather than overflow the viewport');
+assert.ok(read('src/content/docs/study-plan/index.mdx').includes('ghc-study-plan-marker'),
+  'Study Plan style marker must be present');
 assert.ok(css.includes('max-width: 70ch'),
   'Long paragraph lines must remain readable on wide hero pages');
 assert.ok(css.includes('@media (max-width: 48rem)'),'Mobile layout fallback is required');
@@ -55,7 +61,7 @@ const compiledCss=readdirSync('dist/_astro',{recursive:true})
   .filter(f=>f.endsWith('.css')).map(f=>read(join('dist/_astro',f))).join('\n');
 assert.ok(compiledCss.includes('78rem')&&compiledCss.includes('foundation-hero')&&
   compiledCss.includes('ghc-about-lead'),
-  'Academy-style scoped width must compile into the actual CSS assets');
+  'Academy-style shared width must compile into the actual CSS assets');
 
 const h1=html=>(html.match(/<h1(?:\s|>)/g)||[]).length;
 const cards=(html,name)=>(html.match(new RegExp('class="[^"]*\\b'+name+'\\b[^"]*"','g'))||[]).length;
@@ -134,6 +140,6 @@ assert.ok(challenge.includes('ghc-challenge-rail')&&
   challenge.includes('data-save-progress')&&challenge.includes('data-clear-progress'),
   'Previous challenge sidebar and privacy settings must remain intact');
 
-console.log('Academy-style Foundation layout QA passed: 12 splash routes, scoped 78rem home/About, '+ 
+console.log('Academy-style Foundation layout QA passed: 12 splash routes at 78rem plus Study Plan, '+ 
  '3 lesson + 4 pathway + 3 portfolio cards, 5 learning-stage + 6 site cards, '+ 
  'Mermaid and existing free lesson/challenge navigation.');

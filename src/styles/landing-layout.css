@@ -1,12 +1,16 @@
-/* GoHackersCloud Academy uses a 78rem Starlight landing canvas and teal
-   accents scoped to its hero/track workspaces. Apply the same visual tokens
-   exclusively to Foundation's three showcase pages, not every splash page
-   or original Obsidian-owned lesson. */
+/* Match Academy's 78rem responsive landing canvas across Foundation
+   public splash pages. Keep lesson/sidebar reading pages at Starlight's
+   original measure, except the Explore section's 12-week Study Plan. */
 
+html:not([data-has-sidebar]) body,
+body:has(.ghc-study-plan-marker) {
+  --sl-content-width: 78rem;
+}
+
+/* Keep flagship brand accents without changing instructional pages. */
 body:has(.foundation-hero),
 body:has(.ghc-about-lead),
 body:has(.ghc-catalog-hero) {
-  --sl-content-width: 78rem;
   --sl-color-accent-low: #e4f6fb;
   --sl-color-accent: #1381a8;
   --sl-color-accent-high: #086386;
@@ -57,13 +61,31 @@ body:has(.ghc-catalog-hero) .sl-markdown-content > h3 {
   scroll-margin-top: 6.2rem;
 }
 
+/* Prevent any wide tables or long names from forcing the entire
+   page outside the viewport. Tables may scroll in their own region. */
+html:not([data-has-sidebar]) .content-panel,
+body:has(.ghc-study-plan-marker) .content-panel,
+html:not([data-has-sidebar]) .content-panel .sl-container,
+body:has(.ghc-study-plan-marker) .content-panel .sl-container {
+  min-width: 0;
+  max-width: 100%;
+}
+html:not([data-has-sidebar]) .sl-markdown-content > table,
+body:has(.ghc-study-plan-marker) .sl-markdown-content > table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+body:has(.ghc-study-plan-marker) .content-panel h1 {
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
 @media (max-width: 48rem) {
-  body:has(.foundation-hero),
-  body:has(.ghc-about-lead),
-  body:has(.ghc-catalog-hero) {
+  html:not([data-has-sidebar]) body,
+  body:has(.ghc-study-plan-marker) {
     --sl-content-width: 100%;
   }
 }
 
-/* All other Foundation public landing pages and technical lesson pages
-   intentionally retain their original Starlight reading dimensions. */
+/* Remaining technical lessons preserve their original reading width. */
