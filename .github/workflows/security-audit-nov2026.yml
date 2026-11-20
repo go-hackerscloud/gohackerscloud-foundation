@@ -65,3 +65,5 @@ jobs:
         run: node scripts/verify-challenge-page-layout.mjs
       - name: Validate free career portfolio projects, diagrams and downloadable worksheets
         run: node scripts/verify-career-portfolio-hub.mjs
+      - name: Validate responsive public landing layouts without widening Foundation lessons
+        run: node scripts/verify-public-landing-layout.mjs

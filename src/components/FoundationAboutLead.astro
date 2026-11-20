@@ -1,0 +1,95 @@
+<section class="ghc-about-lead" aria-labelledby="ghc-about-intro-heading">
+  <div class="ghc-about-story">
+    <span class="ghc-about-eyebrow">THE GOHACKERSCLOUD ECOSYSTEM</span>
+    <h2 id="ghc-about-intro-heading">Learn the concepts. Put them to work.</h2>
+    <p class="ghc-about-tagline"><strong>Learn the fundamentals. Study a specialization. Measure your understanding. Practise in authorized environments. Apply skills to real-world problems.</strong></p>
+    <p>GoHackersCloud brings together practical technology education and cybersecurity-focused professional services. Our learning resources span IT, networking, Linux, cloud platforms, security, AI and enterprise engineering. Rather than treating a certification, a video course or a laboratory as the entire journey, we connect different ways to develop and demonstrate technical skills.</p>
+    <p>This <strong>Foundation</strong> website is the <strong>free entry point</strong>. Courses and bundles, the test engine, hosted Academy labs and business cybersecurity services are <strong>distinct offerings</strong> accessed through their respective official pages.</p>
+    <p>Explore the unified <a href="/about-gohackerscloud/catalog/">GoHackersCloud promotional catalog</a> for named course bundle families, the AWS nine-course learning set, exam preparation, all 13 Academy tracks, the documented lab curriculum, eight service modules and previously shared video links. Prices and currently active checkout availability are managed by the official storefronts.</p>
+  </div>
+  <aside class="ghc-about-start" aria-labelledby="ghc-about-start-heading">
+    <span class="ghc-about-start-eyebrow">START HERE · 100% FREE FOUNDATION</span>
+    <h2 id="ghc-about-start-heading">Discover what you can learn today</h2>
+    <p>Pick a lesson or try a practical exercise. No paid Academy membership is required for these Foundation resources.</p>
+    <div class="ghc-about-stats" aria-label="Current free Foundation learning resources">
+      <div><strong>16</strong><span>free modules</span></div>
+      <div><strong>7</strong><span>challenge days</span></div>
+      <div><strong>6</strong><span>guided projects</span></div>
+    </div>
+    <nav class="ghc-about-start-links" aria-label="Start learning with GoHackersCloud">
+      <a href="/start-here/"><span>Start free learning</span><span aria-hidden="true">→</span></a>
+      <a href="/7-day-challenge/"><span>Take the 7-day challenge</span><span aria-hidden="true">→</span></a>
+      <a href="/portfolio/"><span>Build a technical portfolio</span><span aria-hidden="true">→</span></a>
+    </nav>
+    <p class="ghc-about-start-note">Looking for courses, hosted labs or enterprise security work? <a href="/about-gohackerscloud/catalog/">Explore the complete catalog</a>.</p>
+  </aside>
+</section>
+<style>
+.ghc-about-lead{
+  display:grid;
+  grid-template-columns:minmax(0,1.65fr) minmax(18rem,.85fr);
+  gap:clamp(1.5rem,3.5vw,3.6rem);
+  align-items:start;
+  margin:0 0 2.75rem;
+}
+.ghc-about-story{min-width:0;max-width:84ch}
+.ghc-about-eyebrow{
+  display:block;font-size:.7rem;letter-spacing:.105em;font-weight:850;
+  color:var(--sl-color-accent-high);margin-bottom:.4rem;
+}
+.ghc-about-story h2{
+  font-size:clamp(1.5rem,2.7vw,2.25rem);
+  line-height:1.2;letter-spacing:-.035em;
+  margin:0 0 1rem!important;
+}
+.ghc-about-story p{font-size:.96rem;line-height:1.75;margin:.65rem 0 1rem}
+.ghc-about-story .ghc-about-tagline{line-height:1.6;margin-bottom:1.1rem}
+.ghc-about-story a:focus-visible,.ghc-about-start a:focus-visible{
+  outline:3px solid var(--sl-color-accent);outline-offset:3px;
+}
+.ghc-about-start{
+  min-width:0;
+  padding:clamp(1.2rem,2.6vw,1.9rem);
+  border:1px solid var(--sl-color-accent);
+  border-radius:17px;
+  background:var(--sl-color-bg-nav);
+}
+.ghc-about-start-eyebrow{font-size:.68rem;font-weight:850;letter-spacing:.08em;color:var(--sl-color-accent-high)}
+.ghc-about-start h2{
+  font-size:clamp(1.25rem,2.1vw,1.65rem);
+  line-height:1.24;letter-spacing:-.02em;
+  margin:.55rem 0 .65rem!important;
+  padding:0!important;border:0!important;
+}
+.ghc-about-start > p{font-size:.84rem;line-height:1.65;color:var(--sl-color-gray-2);margin:0 0 1rem}
+.ghc-about-stats{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:.45rem;margin:1.2rem 0;
+  padding:.8rem 0;
+  border-block:1px solid var(--sl-color-gray-5);
+}
+.ghc-about-stats div{display:grid;gap:.2rem;min-width:0}
+.ghc-about-stats strong{font-size:1.6rem;font-weight:850;color:var(--sl-color-accent-high);line-height:1.1}
+.ghc-about-stats span{font-size:.7rem;color:var(--sl-color-gray-2);line-height:1.4}
+.ghc-about-start-links{display:grid;gap:.5rem;margin-top:.85rem}
+.ghc-about-start-links a{
+  display:flex;justify-content:space-between;align-items:center;gap:.8rem;
+  min-height:44px;border-radius:9px;padding:.65rem .8rem;
+  font-size:.84rem;font-weight:750;text-decoration:none!important;
+  background:var(--sl-color-bg);border:1px solid var(--sl-color-gray-5);
+  color:var(--sl-color-text)!important;
+}
+.ghc-about-start-links a:first-child{border-color:var(--sl-color-accent)}
+.ghc-about-start-links a:hover{border-color:var(--sl-color-accent-high)}
+.ghc-about-start-links a span:last-child{color:var(--sl-color-accent-high);font-size:1rem}
+.ghc-about-start .ghc-about-start-note{font-size:.73rem;line-height:1.55;margin:1.1rem 0 0}
+@media(max-width:58rem){
+  .ghc-about-lead{grid-template-columns:1fr;gap:1.15rem}
+  .ghc-about-story{max-width:80ch}
+  .ghc-about-start{max-width:100%}
+}
+@media(max-width:36rem){
+  .ghc-about-start{padding:1rem}
+  .ghc-about-story p{font-size:.9rem}
+}
+</style>

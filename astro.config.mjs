@@ -64,6 +64,7 @@ export default defineConfig({
         './src/styles/common.css',
         './src/styles/components.css',
         './src/styles/foundation.css',
+        './src/styles/landing-layout.css',
       ],
 
       sidebar: [
