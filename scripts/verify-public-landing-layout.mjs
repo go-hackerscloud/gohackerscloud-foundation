@@ -153,6 +153,36 @@ for(const route of ['/curriculum/','/ghc-labs/','/7-day-challenge/','/portfolio/
  '/about-gohackerscloud/catalog/']){
   assert.equal(h1(built(route)),1,'Keep Starlight H1 on '+route);
 }
+// PR 2: discovery panels must render on only the selected learning-product
+// pages; preserve page headings, canonical links and noninteractive disclaimers.
+const discovery=read('src/components/FoundationDiscoveryPanel.astro');
+assert.ok(discovery.includes('@media(max-width:50rem)') &&
+  discovery.includes('@media(max-width:38rem)'),
+  'Discovery banners and resource cards must stack on tablet/mobile');
+assert.ok(discovery.includes('grid-template-columns:repeat(3,minmax(0,1fr))'),
+  'Discovery cards should form a balanced desktop row');
+assert.ok(!/\\b(?:fetch|sendBeacon|XMLHttpRequest)\\s*\\(/.test(discovery),
+  'Discovery navigation must not collect learner data');
+for(const [route,variant,expectedLink] of [
+  ['/about-gohackerscloud/courses/','courses','https://www.gohackerscloud.org/courses'],
+  ['/about-gohackerscloud/test-engine/','tests','https://www.gohackerscloud.org/freetest'],
+]){
+  const html=built(route);
+  const mdx=read('src/content/docs'+route.replace(/\\/$/,'')+'.mdx');
+  assert.ok(mdx.includes('<FoundationDiscoveryPanel variant="'+variant+'" />'),
+    'Expected contextual panel on '+route);
+  assert.ok(html.includes('ghc-discovery--'+variant),
+    'Discovery panel missing from built route '+route);
+  assert.equal(cards(html,'ghc-discovery-card'),3,
+    'Exactly three navigable resource cards expected on '+route);
+  assert.ok(html.includes(expectedLink),
+    'Canonical current resource destination missing on '+route);
+  assert.equal(h1(html),1,'Discovery panel must not create another H1 on '+route);
+}
+assert.ok(!built('/').includes('ghc-discovery--tests') &&
+  !built('/about-gohackerscloud/').includes('ghc-discovery--courses'),
+  'Discovery banners must remain limited to their intended pages');
+
 const challenge=built('/7-day-challenge/');
 assert.ok(challenge.includes('ghc-challenge-rail')&&
   challenge.includes('data-save-progress')&&challenge.includes('data-clear-progress'),
