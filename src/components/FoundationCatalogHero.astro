@@ -1,0 +1,119 @@
+---
+const sections=[
+  {id:'catalog-experiences',number:'01',title:'Choose a path'},
+  {id:'catalog-courses',number:'02',title:'Courses & bundles'},
+  {id:'catalog-tests',number:'03',title:'Exam practice'},
+  {id:'catalog-tracks',number:'04',title:'Academy tracks'},
+  {id:'catalog-services',number:'05',title:'Security services'},
+  {id:'catalog-videos',number:'06',title:'Video links'},
+  {id:'catalog-next',number:'07',title:'Next steps'},
+];
+---
+<section class="ghc-catalog-hero" aria-label="GoHackersCloud catalog introduction">
+  <div class="ghc-catalog-copy">
+    <span class="ghc-catalog-eyebrow">GOHACKERSCLOUD · COURSES, LEARNING & SECURITY</span>
+    <p class="ghc-catalog-headline">One ecosystem.<br /><span>Choose your next step.</span></p>
+    <p>Learn the concepts. Prepare for certifications. Practise in authorized environments. Build evidence. Improve enterprise security.</p>
+    <div class="ghc-catalog-actions">
+      <a class="ghc-catalog-primary" href="/start-here/">Start free Foundation learning <span aria-hidden="true">→</span></a>
+      <a class="ghc-catalog-secondary" href="https://www.gohackerscloud.org/courses">Explore current course listings <span aria-hidden="true">↗</span></a>
+    </div>
+    <p class="ghc-catalog-access">Foundation lessons are free. Courses, mock tests, Academy labs and enterprise services have separate access and commercial terms.</p>
+  </div>
+  <div class="ghc-catalog-snapshot" aria-label="Catalog coverage from published GoHackersCloud learning sources">
+    <span class="ghc-catalog-window-label"><span class="ghc-catalog-dot" aria-hidden="true"></span> PUBLISHED CATALOG SNAPSHOT</span>
+    <div class="ghc-catalog-facts">
+      <div><strong>09</strong><span>AWS bundle topic areas*</span></div>
+      <div><strong>13</strong><span>Academy learning tracks</span></div>
+      <div><strong>08</strong><span>Service categories</span></div>
+      <div><strong>02</strong><span>Previously supplied video links</span></div>
+    </div>
+    <small>*Previously documented AWS bundle, not confirmation of current storefront inventory or hosted lab availability.</small>
+  </div>
+</section>
+<nav class="ghc-catalog-index" aria-label="Catalog section shortcuts">
+  <div class="ghc-catalog-index-header">
+    <strong>Explore this catalog</strong>
+    <span>Jump to the information relevant to your goal</span>
+  </div>
+  <div class="ghc-catalog-index-links">
+    {sections.map(item=>(
+      <a href={'#'+item.id}>
+        <span>{item.number}</span>{item.title}
+      </a>
+    ))}
+  </div>
+</nav>
+<p class="ghc-catalog-disclosure">This page is a <strong>promotional overview and reference snapshot</strong>, not a checkout page. Current availability, inclusions, pricing and eligibility must be confirmed through the official <a href="https://www.gohackerscloud.org/courses">Course Catalog</a> and <a href="https://gohackerscloud.com/ghc-offers">Offers page</a>. Some previously promoted products are labeled historical because live storefront inventory has not been independently verified.</p>
+<style>
+.ghc-catalog-hero{
+  display:grid;grid-template-columns:minmax(0,1.2fr) minmax(16rem,.8fr);
+  align-items:center;gap:clamp(1.25rem,3.5vw,3.5rem);
+  overflow:hidden;margin:1rem 0 1.35rem;
+  padding:clamp(1.35rem,3.5vw,3rem);
+  border:1px solid #294463;border-radius:21px;
+  background:radial-gradient(circle at 90% 8%,rgba(31,180,223,.18),transparent 40%),radial-gradient(circle at 0 95%,rgba(87,84,244,.18),transparent 45%),linear-gradient(145deg,#081629,#0b2037 60%,#07182a);
+  color:#f6fbff;
+}
+.ghc-catalog-copy{min-width:0}
+.ghc-catalog-eyebrow{display:block;color:#8fe3f0;font-size:.67rem;font-weight:850;letter-spacing:.11em;line-height:1.5}
+.ghc-catalog-headline{
+  font-size:clamp(1.8rem,3.6vw,3.25rem)!important;letter-spacing:-.045em;
+  line-height:1.12;margin:1rem 0 1rem!important;color:#fff!important;font-weight:850;
+}
+.ghc-catalog-headline span{color:#79e4f2}
+.ghc-catalog-copy>p:not(.ghc-catalog-headline):not(.ghc-catalog-access){
+  max-width:63ch;color:#c1d4e4;font-size:.94rem;line-height:1.65;margin:0 0 1.2rem!important;
+}
+.ghc-catalog-actions{display:flex;flex-wrap:wrap;gap:.65rem}
+.ghc-catalog-actions a{
+  display:inline-flex;align-items:center;justify-content:center;gap:.65rem;
+  min-height:44px;border-radius:9px;border:1px solid transparent;padding:.7rem 1rem;
+  font-size:.83rem;font-weight:800;text-decoration:none!important;
+}
+.ghc-catalog-actions a.ghc-catalog-primary{background:#66dbf2;color:#072238!important}
+.ghc-catalog-actions a.ghc-catalog-secondary{background:rgba(255,255,255,.045);border-color:#547994;color:#fff!important}
+.ghc-catalog-access{color:#b6cbdc;font-size:.74rem;line-height:1.6;margin:1rem 0 0!important}
+.ghc-catalog-snapshot{
+  display:grid;gap:1rem;min-width:0;padding:1.25rem;
+  border:1px solid rgba(122,214,238,.3);border-radius:14px;
+  background:rgba(8,30,52,.86);box-shadow:0 16px 35px rgba(0,0,0,.16);
+}
+.ghc-catalog-window-label{display:flex;align-items:center;gap:.6rem;color:#a7eaf6;font-weight:850;letter-spacing:.09em;font-size:.61rem}
+.ghc-catalog-dot{width:7px;height:7px;border-radius:50%;background:#48e4b9;box-shadow:0 0 0 4px rgba(72,228,185,.12)}
+.ghc-catalog-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.ghc-catalog-facts>div{border:1px solid #284c66;background:#12324b;border-radius:10px;padding:1rem .85rem;min-width:0;display:grid;gap:.35rem}
+.ghc-catalog-facts strong{color:#92edfa;font-size:1.65rem;line-height:1;letter-spacing:-.04em}
+.ghc-catalog-facts span{color:#d1e3ee;line-height:1.5;font-size:.71rem}
+.ghc-catalog-snapshot small{font-size:.66rem;line-height:1.55;color:#bdd0df}
+.ghc-catalog-index{border:1px solid var(--sl-color-gray-5);border-radius:15px;padding:1rem 1.2rem;background:var(--sl-color-bg-nav);margin:1.25rem 0}
+.ghc-catalog-index-header{display:flex;flex-wrap:wrap;gap:.35rem 1rem;justify-content:space-between;align-items:baseline;margin-bottom:.85rem}
+.ghc-catalog-index-header strong{font-size:.95rem}
+.ghc-catalog-index-header span{font-size:.75rem;color:var(--sl-color-gray-2)}
+.ghc-catalog-index-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.45rem}
+.ghc-catalog-index-links a{
+  display:flex;align-items:center;gap:.5rem;min-width:0;
+  min-height:40px;background:var(--sl-color-bg);border:1px solid var(--sl-color-gray-5);
+  border-radius:8px;padding:.55rem .65rem;text-decoration:none!important;
+  color:var(--sl-color-text)!important;font-size:.76rem;font-weight:750;line-height:1.35;
+}
+.ghc-catalog-index-links a:hover{border-color:var(--sl-color-accent)}
+.ghc-catalog-index-links a span{font-size:.66rem;color:var(--sl-color-accent-high);font-weight:850}
+.ghc-catalog-disclosure{
+  padding:1rem 1.1rem;border-left:3px solid var(--sl-color-accent);
+  background:var(--sl-color-bg-nav);border-radius:0 10px 10px 0;
+  font-size:.78rem!important;line-height:1.65!important;
+  color:var(--sl-color-gray-2);margin:0 0 2rem!important;
+}
+.ghc-catalog-hero a:focus-visible,.ghc-catalog-index a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:63rem){
+  .ghc-catalog-hero{grid-template-columns:1fr}
+  .ghc-catalog-index-links{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:42rem){
+  .ghc-catalog-index-links{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ghc-catalog-facts{gap:.55rem}
+  .ghc-catalog-actions a{width:100%}
+}
+@media(max-width:28rem){.ghc-catalog-index-links{grid-template-columns:1fr}}
+</style>

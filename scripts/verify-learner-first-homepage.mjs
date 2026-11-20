@@ -49,8 +49,9 @@ assert.ok(homeSource.includes('## Learn by doing'),
   'Independent practice message missing');
 assert.ok(homeSource.includes('## Explore GoHackersCloud'),
   'Separate offering overview must remain accessible');
-assert.ok(homeSource.includes('16-module free curriculum'),
-  'Homepage must explain free module coverage');
+assert.ok(homepage.includes('16-module free curriculum') &&
+  homeSource.includes('<FoundationSectionIntro variant="modules" />'),
+  'Rendered homepage must explain the 16 free modules in its linked section introduction');
 
 const classes=[
   'foundation-hero',

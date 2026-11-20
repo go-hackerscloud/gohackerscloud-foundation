@@ -6,6 +6,7 @@ template: splash
 
 import FoundationAboutLead from '../../../components/FoundationAboutLead.astro';
 import FoundationAboutCards from '../../../components/FoundationAboutCards.astro';
+import FoundationAboutDiagram from '../../../components/FoundationAboutDiagram.astro';
 
 <FoundationAboutLead />
 
@@ -23,6 +24,8 @@ import FoundationAboutCards from '../../../components/FoundationAboutCards.astro
 
 ## How the learning ecosystem fits together
 
+<FoundationAboutDiagram>
+
 ```mermaid
 flowchart TD
     GOAL["Learner or organization defines a goal"] --> CHOICE{"Choose a path"}
@@ -38,6 +41,8 @@ flowchart TD
     CHOICE --> BUSINESS["Business cybersecurity services"]
     BUSINESS --> DELIVER["Scoped assessment, findings and remediation"]
 ```
+
+</FoundationAboutDiagram>
 
 The diagram shows **possible pathways**, not mandatory purchases or a guaranteed sequence. A beginner can complete free Foundation exercises without subscribing to anything else. A working professional may go directly to a relevant exam-preparation product or Academy track. A business seeking an assessment should use the service enquiry path rather than a student lab.
 

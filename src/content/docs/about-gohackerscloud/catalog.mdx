@@ -1,14 +1,15 @@
 ---
-title: "GoHackersCloud Catalog — Courses, Labs & Services"
+title: "GoHackersCloud Complete Catalog"
 description: "A unified promotional catalog of GoHackersCloud course and bundle families, AWS bundle contents, exam practice, Academy tracks, lab lessons, cloud security services and video walkthroughs."
 template: splash
 ---
 
-**Learn the concepts. Prepare for certifications. Practise in authorized environments. Build evidence. Improve enterprise security.**
+import FoundationCatalogHero from '../../../components/FoundationCatalogHero.astro';
+import FoundationCatalogChoices from '../../../components/FoundationCatalogChoices.astro';
 
-Explore GoHackersCloud's connected ecosystem of **free Foundation study, self-paced courses, certification bundles, exam-style practice, Academy learning tracks, GHC Labs and separately scoped business cybersecurity services**.
+<FoundationCatalogHero />
 
-This is a *promotional overview and verified reference snapshot*, not a checkout page. Product availability, individual course inclusions, current pricing, account eligibility and refund terms must be confirmed on the official [Course Catalog](https://www.gohackerscloud.org/courses) and [Offers page](https://gohackerscloud.com/ghc-offers). Some storefront records were not accessible to automated review, so historical product references are clearly marked rather than presented as verified live inventory.
+<div class="ghc-catalog-anchor" id="catalog-experiences" aria-hidden="true"></div>
 
 ## 1. Choose your GoHackersCloud experience
 
@@ -27,13 +28,9 @@ flowchart TD
     BUSINESS --> SCOPE["Approved scope, deliverables and remediation"]
 ```
 
-| Offering | For whom | Primary action |
-|---|---|---|
-| **Free Foundation** | Students, beginners and career switchers | [Start the 16 free modules](/curriculum/) |
-| **Courses and bundles** | Learners preparing for cloud, cybersecurity, AI and related certification topics | [Browse all current courses](https://www.gohackerscloud.org/courses) |
-| **Test Engine** | Learners measuring exam-style understanding | [Explore Free Tests](https://www.gohackerscloud.org/freetest) |
-| **GHC Academy & Labs** | Learners ready to follow guided, authorized practice | [View Academy learning tracks](/ghc-labs/track-selection/) |
-| **Cloud & Cybersecurity Services** | Organizations exploring separately scoped security work | [Business services](https://gohackerscloud.com/cybersecurity-services) |
+<FoundationCatalogChoices />
+
+<div class="ghc-catalog-anchor" id="catalog-courses" aria-hidden="true"></div>
 
 ## 2. Course bundles & certification preparation
 
@@ -85,6 +82,8 @@ A course bundle is **not automatically** an Academy membership, a hosted lab ent
 
 **[Course Catalog](https://www.gohackerscloud.org/courses)** · **[Offers & Bundles](https://gohackerscloud.com/ghc-offers)** · [How the Test Engine fits in](/about-gohackerscloud/test-engine/)
 
+<div class="ghc-catalog-anchor" id="catalog-tests" aria-hidden="true"></div>
+
 ## 3. Test Engine & exam-style practice
 
 GoHackersCloud describes practice questions and certification preparation across **AWS, Microsoft Azure, Google Cloud, CompTIA and broader cybersecurity learning**. The exact active question banks, simulator features, number of questions and paid/free eligibility vary by product.
@@ -101,6 +100,8 @@ GoHackersCloud describes practice questions and certification preparation across
 **[Explore Free Tests](https://www.gohackerscloud.org/freetest)** · **[View Test Engine overview](/about-gohackerscloud/test-engine/)** · **[Browse exam-preparation courses](https://www.gohackerscloud.org/courses)**
 
 The mock exam experience is preparation material; it is not an official vendor examination or a guarantee of certification.
+
+<div class="ghc-catalog-anchor" id="catalog-tracks" aria-hidden="true"></div>
 
 ## 4. GHC Academy — all 13 published learning tracks
 
@@ -155,6 +156,8 @@ flowchart TD
 
 **[Watch the existing GHC Labs overview and demo area](/ghc-labs/)** · **[See official subscription/access terms](https://gohackerscloud.com/hands-on-cybersecurity-labs)**
 
+<div class="ghc-catalog-anchor" id="catalog-services" aria-hidden="true"></div>
+
 ## 5. Enterprise cloud & cybersecurity service catalog
 
 GoHackersCloud's cybersecurity services project defines **eight business-facing modules**. These are service categories and potential engagement capabilities; actual scope, staffing, eligibility, accreditations and deliverables require a formal discussion rather than an automatic website entitlement.
@@ -188,6 +191,8 @@ flowchart LR
 
 An assessment or preparatory review does **not** automatically grant a vendor certification, formal compliance attestation, PCI DSS QSA designation or other regulated authorization.
 
+<div class="ghc-catalog-anchor" id="catalog-videos" aria-hidden="true"></div>
+
 ## 6. GoHackersCloud promotional video links
 
 Videos help potential learners see an actual course offering before making decisions. The two links below were previously supplied for GoHackersCloud course promotion; **public watch-page access was not independently confirmed** through the available search tools.
@@ -203,6 +208,8 @@ Videos help potential learners see an actual course offering before making decis
 | **Interactive GHC Labs product demo** | Awaiting official public video | [Reserved demo area](/ghc-labs/) |
 
 Where a video has not been verified, this catalog provides the related official offering rather than inventing a video ID or embedding a broken player. An administrator can replace a pending entry with a verified public watch URL when it is published.
+
+<div class="ghc-catalog-anchor" id="catalog-next" aria-hidden="true"></div>
 
 ## 7. Choose your next step
 

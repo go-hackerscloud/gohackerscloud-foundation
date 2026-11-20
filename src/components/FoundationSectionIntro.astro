@@ -1,0 +1,93 @@
+---
+const variants={
+  modules:{
+    eyebrow:'EXPLORE YOUR FREE CURRICULUM',
+    description:'Start with what you need to learn today. These beginner-friendly modules include explanations, architecture diagrams, workplace examples and safe exercises. The featured lessons preview the full 16-module free curriculum.',
+    metric:'16',
+    metricLabel:'free modules',
+    hint:'Use the complete module explorer to find a topic for your next study session.',
+    href:'/curriculum/',
+    action:'Browse all modules',
+  },
+  practice:{
+    eyebrow:'APPLY ONE CONCEPT AT A TIME',
+    description:'Foundation is designed for understanding, not copying commands without context. Try one of the three exercises below in a notebook or on a computer you own, and keep your original diagram or evidence note.',
+    metric:'03',
+    metricLabel:'practical starters',
+    hint:'Ready for a structured first week? Seven lesson-linked activities are available for free.',
+    href:'/7-day-challenge/',
+    action:'Try the 7-day challenge',
+  },
+  pathways:{
+    eyebrow:'CHOOSE YOUR STUDY ROUTE',
+    description:'Choose a path that matches your experience. All 16 Foundation modules remain open to everyone; these guides help you focus your study and build a practical understanding of each subject.',
+    metric:'04',
+    metricLabel:'guided starting routes',
+    hint:'Start with IT & DevOps, follow a study plan or select a student or professional pathway.',
+    href:'/start-here/',
+    action:'Explore where to start',
+  },
+  portfolio:{
+    eyebrow:'MAKE LEARNING VISIBLE',
+    description:'Move from reading to explaining decisions. Use safe synthetic scenarios and downloadable reporting worksheets to show your reasoning without claiming unverified professional experience.',
+    metric:'06',
+    metricLabel:'guided project cases',
+    hint:'Seven editable Markdown worksheets support an original, evidence-based technical portfolio.',
+    href:'/portfolio/',
+    action:'Browse portfolio projects',
+  },
+  offerings:{
+    eyebrow:'FREE FOUNDATION · OPTIONAL NEXT STEPS',
+    description:'Foundation lessons, independent exercises and portfolio worksheets are free. Courses, Test Engine products, hosted Academy labs and business services are separate offerings with their own access and commercial terms.',
+    metric:'05',
+    metricLabel:'ways to explore',
+    hint:'Find the official course, exam, Academy and enterprise service resources in one place.',
+    href:'/about-gohackerscloud/catalog/',
+    action:'Browse the full catalog',
+  },
+};
+const variant=Astro.props.variant || 'modules';
+const item=variants[variant] ?? variants.modules;
+---
+<div class="ghc-section-intro" data-showcase-intro={variant}>
+  <div class="ghc-section-intro-main">
+    <span class="ghc-section-intro-eyebrow">{item.eyebrow}</span>
+    <p>{item.description}</p>
+  </div>
+  <aside class="ghc-section-intro-next" aria-label={item.metricLabel}>
+    <span class="ghc-section-intro-number">{item.metric} <small>{item.metricLabel}</small></span>
+    <p>{item.hint}</p>
+    <a href={item.href}>{item.action} <span aria-hidden="true">↗</span></a>
+  </aside>
+</div>
+<style>
+.ghc-section-intro{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(14rem,.38fr);
+  gap:clamp(.85rem,2vw,1.7rem);align-items:stretch;
+  margin:.8rem 0 1.5rem;
+}
+.ghc-section-intro-main{
+  padding:clamp(1.05rem,2.2vw,1.65rem);
+  border:1px solid var(--sl-color-gray-5);border-radius:15px;
+  background:linear-gradient(110deg,rgba(24,145,176,.075),transparent 75%),var(--sl-color-bg-nav);
+  display:flex;flex-direction:column;justify-content:center;gap:.75rem;min-width:0;
+}
+.ghc-section-intro-eyebrow{
+  color:var(--sl-color-accent-high);font-size:.66rem;font-weight:850;letter-spacing:.105em;
+}
+.ghc-section-intro-main p{margin:0!important;font-size:.91rem;line-height:1.72;max-width:76ch;color:var(--sl-color-text)}
+.ghc-section-intro-next{
+  display:grid;align-content:center;gap:.6rem;min-width:0;
+  border:1px solid var(--sl-color-gray-5);border-radius:15px;
+  background:var(--sl-color-bg-nav);
+  padding:1.1rem 1.25rem;
+}
+.ghc-section-intro-number{display:flex;flex-wrap:wrap;align-items:baseline;gap:.55rem;font-size:1.7rem;font-weight:850;letter-spacing:-.04em;line-height:1.2;color:var(--sl-color-accent-high)}
+.ghc-section-intro-number small{font-size:.74rem;letter-spacing:0;color:var(--sl-color-text);font-weight:750}
+.ghc-section-intro-next p{margin:0!important;font-size:.76rem;line-height:1.6;color:var(--sl-color-gray-2)}
+.ghc-section-intro-next a{font-size:.81rem;font-weight:800;line-height:1.45;text-decoration:none!important;color:var(--sl-color-accent-high)}
+.ghc-section-intro-next a:hover{text-decoration:underline!important;text-underline-offset:4px}
+.ghc-section-intro-next a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:4px}
+@media(max-width:54rem){.ghc-section-intro{grid-template-columns:1fr}.ghc-section-intro-next{grid-template-columns:minmax(0,1fr) auto;align-items:center}.ghc-section-intro-next a{grid-column:2;grid-row:1 / 3}.ghc-section-intro-next p{max-width:65ch}}
+@media(max-width:38rem){.ghc-section-intro-next{grid-template-columns:1fr}.ghc-section-intro-next a{grid-column:auto;grid-row:auto}}
+</style>

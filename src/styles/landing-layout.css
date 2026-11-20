@@ -1,39 +1,69 @@
-/* Academy-style content layout for Foundation's two flagship entry pages.
-   Academy uses a 78rem Starlight width specifically for its hero/track pages.
-   Foundation applies that same capped measure only where new content cards
-   make the space useful; all other public pages return to Starlight defaults. */
+/* GoHackersCloud Academy uses a 78rem Starlight landing canvas and teal
+   accents scoped to its hero/track workspaces. Apply the same visual tokens
+   exclusively to Foundation's three showcase pages, not every splash page
+   or original Obsidian-owned lesson. */
 
 body:has(.foundation-hero),
-body:has(.ghc-about-lead) {
+body:has(.ghc-about-lead),
+body:has(.ghc-catalog-hero) {
   --sl-content-width: 78rem;
+  --sl-color-accent-low: #e4f6fb;
+  --sl-color-accent: #1381a8;
+  --sl-color-accent-high: #086386;
+}
+
+:root[data-theme="dark"] body:has(.foundation-hero),
+:root[data-theme="dark"] body:has(.ghc-about-lead),
+:root[data-theme="dark"] body:has(.ghc-catalog-hero) {
+  --sl-color-accent-low: #12374b;
+  --sl-color-accent: #66dbf2;
+  --sl-color-accent-high: #a3e9f5;
 }
 
 body:has(.foundation-hero) .sl-markdown-content,
-body:has(.ghc-about-lead) .sl-markdown-content {
+body:has(.ghc-about-lead) .sl-markdown-content,
+body:has(.ghc-catalog-hero) .sl-markdown-content {
   line-height: 1.64;
 }
 
-/* Keep prose comfortable to read; the responsive card components themselves
-   use the available width and are responsible for their own mobile layout. */
+/* Keep paragraph measure readable while components, tables and diagrams
+   use the full responsive width when that improves comprehension. */
 body:has(.foundation-hero) .sl-markdown-content > p,
-body:has(.ghc-about-lead) .sl-markdown-content > p {
+body:has(.ghc-about-lead) .sl-markdown-content > p,
+body:has(.ghc-catalog-hero) .sl-markdown-content > p:not(.ghc-catalog-disclosure) {
   max-width: 70ch;
   line-height: 1.72;
 }
 
-/* Structured tables may use the available landing canvas but can still
-   horizontally scroll on smaller screens using Starlight's table styling. */
 body:has(.foundation-hero) .sl-markdown-content > table,
-body:has(.ghc-about-lead) .sl-markdown-content > table {
+body:has(.ghc-about-lead) .sl-markdown-content > table,
+body:has(.ghc-catalog-hero) .sl-markdown-content > table {
   width: 100%;
+}
+
+/* The catalog is a long reference directory, so it benefits from a
+   navigable hierarchy without changing any inventory or external links. */
+body:has(.ghc-catalog-hero) .sl-markdown-content > h2 {
+  margin-top: clamp(2.4rem,4.5vw,4rem);
+  padding-bottom: .7rem;
+  border-bottom: 1px solid var(--sl-color-gray-5);
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+body:has(.ghc-catalog-hero) .sl-markdown-content > h3 {
+  margin-top: 1.8rem;
+}
+.ghc-catalog-anchor {
+  scroll-margin-top: 6.2rem;
 }
 
 @media (max-width: 48rem) {
   body:has(.foundation-hero),
-  body:has(.ghc-about-lead) {
+  body:has(.ghc-about-lead),
+  body:has(.ghc-catalog-hero) {
     --sl-content-width: 100%;
   }
 }
 
-/* No changes to Obsidian-owned lessons, portfolio project pages or other
-   Starlight content widths. */
+/* All other Foundation public landing pages and technical lesson pages
+   intentionally retain their original Starlight reading dimensions. */

@@ -1,0 +1,65 @@
+<div class="ghc-about-diagram-layout">
+  <div class="ghc-about-diagram-panel">
+    <div class="ghc-about-diagram-eyebrow">YOUR LEARNING & SERVICES ECOSYSTEM</div>
+    <slot />
+  </div>
+  <aside class="ghc-about-diagram-companion" aria-label="Choose a practical GoHackersCloud next step">
+    <span class="ghc-about-companion-eyebrow">WHERE TO BEGIN</span>
+    <h3>Choose the experience that fits your goal</h3>
+    <div class="ghc-about-companion-links">
+      <a href="/7-day-challenge/">
+        <strong>Learning something new?</strong>
+        <span>Try seven free lesson-linked challenges <b aria-hidden="true">↗</b></span>
+      </a>
+      <a href="/portfolio/">
+        <strong>Building career evidence?</strong>
+        <span>Create an original technical project <b aria-hidden="true">↗</b></span>
+      </a>
+      <a href="/ghc-labs/">
+        <strong>Looking for hosted practice?</strong>
+        <span>Understand Academy Lab access and terms <b aria-hidden="true">↗</b></span>
+      </a>
+      <a href="/about-gohackerscloud/cybersecurity-services/">
+        <strong>Representing a business?</strong>
+        <span>Explore a separately scoped security review <b aria-hidden="true">↗</b></span>
+      </a>
+    </div>
+    <p>Foundation reading and self-directed exercises are free. Hosted labs and enterprise engagements are separate offerings.</p>
+  </aside>
+</div>
+<style>
+.ghc-about-diagram-layout{
+  display:grid;grid-template-columns:minmax(0,1.5fr) minmax(15rem,.75fr);
+  gap:1.1rem;align-items:start;margin:1rem 0 1.2rem;
+}
+.ghc-about-diagram-panel{
+  min-width:0;overflow-x:auto;border:1px solid var(--sl-color-gray-5);
+  border-radius:15px;background:var(--sl-color-bg-nav);padding:1.15rem;
+}
+.ghc-about-diagram-eyebrow{
+  font-weight:850;letter-spacing:.09em;font-size:.66rem;
+  color:var(--sl-color-accent-high);margin-bottom:.7rem;
+}
+.ghc-about-diagram-panel :global(pre.mermaid){margin:0;max-width:100%}
+.ghc-about-diagram-panel :global(.mermaid){min-width:0}
+.ghc-about-diagram-companion{
+  border:1px solid var(--sl-color-gray-5);border-radius:15px;
+  padding:1.15rem;background:var(--sl-color-bg-nav);display:grid;gap:.75rem;min-width:0;
+}
+.ghc-about-companion-eyebrow{font-size:.66rem;font-weight:850;letter-spacing:.09em;color:var(--sl-color-accent-high)}
+.ghc-about-diagram-companion h3{font-size:1.15rem!important;letter-spacing:-.02em;line-height:1.28;margin:0!important}
+.ghc-about-companion-links{display:grid;gap:.4rem}
+.ghc-about-companion-links a{
+  display:grid;gap:.2rem;border:1px solid var(--sl-color-gray-5);
+  border-radius:9px;background:var(--sl-color-bg);
+  padding:.65rem .7rem;color:var(--sl-color-text)!important;text-decoration:none!important;
+}
+.ghc-about-companion-links a:hover{border-color:var(--sl-color-accent)}
+.ghc-about-companion-links strong{font-size:.79rem}
+.ghc-about-companion-links span{font-size:.72rem;color:var(--sl-color-gray-2);line-height:1.5}
+.ghc-about-companion-links b{color:var(--sl-color-accent-high)}
+.ghc-about-diagram-companion p{margin:0!important;font-size:.72rem;line-height:1.58;color:var(--sl-color-gray-2)}
+.ghc-about-diagram-companion a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:65rem){.ghc-about-diagram-layout{grid-template-columns:1fr}.ghc-about-diagram-companion{max-width:none}.ghc-about-companion-links{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:37rem){.ghc-about-companion-links{grid-template-columns:1fr}}
+</style>
