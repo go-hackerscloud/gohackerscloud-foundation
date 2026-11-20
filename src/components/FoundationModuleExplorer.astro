@@ -7,7 +7,7 @@ const groups = foundationGroups.map(group=>({
   modules: foundationModules.filter(module=>module.category===group.id && (!featured || featuredIds.has(module.id))),
 })).filter(group=>group.modules.length);
 ---
-<div class="foundation-explorer" data-foundation-explorer id="foundation-modules">
+<div class:list={["foundation-explorer",{"foundation-explorer-featured": featured}]} data-foundation-explorer id="foundation-modules">
   {!featured && (
     <div class="foundation-controls">
       <label for="foundation-module-search">Find a Foundation module</label>
@@ -27,7 +27,7 @@ const groups = foundationGroups.map(group=>({
         <h2>{group.title}</h2>
         <p>{group.description}</p>
       </header>
-      <div class="foundation-module-grid">
+      <div class="foundation-module-grid" data-module-count={group.modules.length}>
         {group.modules.map(module=>(
           <a class="foundation-module-card" data-module-card data-module-category={module.category} data-module-query={`${module.id} ${module.title} ${module.description}`.toLowerCase()} href={module.link} aria-label={`Start module ${module.id}: ${module.title}`}>
             <span class="foundation-module-tag"><span>MODULE {module.id}</span><span>FREE</span></span>
@@ -86,7 +86,8 @@ for (const root of document.querySelectorAll('[data-foundation-explorer]')) {
 .foundation-group{margin:2.2rem 0 0}
 .foundation-group-heading h2{font-size:clamp(1.4rem,2.2vw,1.85rem);margin:0 0 .4rem!important;letter-spacing:-.025em}
 .foundation-group-heading p{margin:0 0 1.2rem;color:var(--sl-color-gray-2);font-size:.91rem;line-height:1.6}
-.foundation-module-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.foundation-module-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16.5rem),1fr));gap:1rem}
+.foundation-explorer-featured .foundation-module-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .foundation-module-card{display:flex;flex-direction:column;gap:.7rem;min-width:0;padding:1.3rem;border:1px solid var(--sl-color-gray-5);border-radius:14px;background:var(--sl-color-bg-nav);color:var(--sl-color-text)!important;text-decoration:none!important;transition:transform .16s ease,border-color .16s ease}
 .foundation-module-card:hover{transform:translateY(-2px);border-color:var(--sl-color-accent)}
 .foundation-module-tag{display:flex;justify-content:space-between;align-items:center;gap:.5rem;font-size:.66rem;font-weight:850;letter-spacing:.08em;color:var(--sl-color-accent-high)}
@@ -98,7 +99,14 @@ for (const root of document.querySelectorAll('[data-foundation-explorer]')) {
 .foundation-empty{padding:1rem;border:1px solid var(--sl-color-gray-5);border-radius:10px}
 .foundation-all-link a{display:inline-flex;font-weight:800;text-decoration:none;margin-top:1.35rem}
 [data-module-card][hidden],[data-module-group][hidden],.foundation-empty[hidden]{display:none!important}
+/* Four featured foundation cards form one balanced row on wide displays.
+   The two cloud/security cards fill two equal columns, never a half-empty 3-card row. */
+@media(min-width:1280px){
+  .foundation-explorer-featured .foundation-module-grid[data-module-count="4"]{
+    grid-template-columns:repeat(4,minmax(0,1fr))
+  }
+}
 @media(max-width:1050px){.foundation-module-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){.foundation-module-grid{grid-template-columns:1fr}.foundation-controls{padding:1rem}}
+@media(max-width:600px){.foundation-module-grid,.foundation-explorer-featured .foundation-module-grid{grid-template-columns:1fr}.foundation-controls{padding:1rem}}
 @media(prefers-reduced-motion:reduce){.foundation-module-card{transition:none}}
 </style>
