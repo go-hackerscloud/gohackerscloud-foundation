@@ -1,0 +1,82 @@
+---
+const variant = Astro.props.variant || 'journey';
+const steps=[
+ {number:'01',title:'Learn',kind:'FREE FOUNDATION',description:'Build foundations in systems, networks, identities, applications and cloud concepts.',href:'/start-here/',action:'Start with free lessons'},
+ {number:'02',title:'Prepare',kind:'COURSES & GUIDES',description:'Choose a focused course, certification guide, study notes or memory map where offered.',href:'/about-gohackerscloud/courses/',action:'Explore learning options'},
+ {number:'03',title:'Assess',kind:'TEST ENGINE',description:'Practise relevant questions and learn from answer explanations to identify gaps.',href:'/about-gohackerscloud/test-engine/',action:'Review practice options'},
+ {number:'04',title:'Apply',kind:'AUTHORIZED PRACTICE',description:'Use your own permitted environment or a separately accessed Academy lab, then record observations.',href:'/ghc-labs/',action:'Understand how labs work'},
+ {number:'05',title:'Communicate',kind:'FREE PORTFOLIO PROJECTS',description:'Turn technical work into an original diagram, troubleshooting note or professional report.',href:'/portfolio/',action:'Start a portfolio project'},
+];
+const websites=[
+  {eyebrow:'PLATFORM',title:'Main GoHackersCloud',description:'Overview of the wider GoHackersCloud offering and business information.',href:'https://gohackerscloud.com/',action:'Visit platform'},
+  {eyebrow:'FREE LEARNING',title:'Foundation',description:'Read 16 free modules, try the seven-day challenge and build a technical portfolio.',href:'/start-here/',action:'Start learning free'},
+  {eyebrow:'COURSES & EXAM STUDY',title:'Course Catalog',description:'Browse published course listings and exam-preparation products.',href:'https://www.gohackerscloud.org/courses',action:'Browse current courses'},
+  {eyebrow:'COURSE BUNDLES',title:'GoHackersCloud Offers',description:'Check currently published bundles, terms and checkout availability.',href:'https://gohackerscloud.com/ghc-offers',action:'Explore current offers'},
+  {eyebrow:'HOSTED PRACTICE',title:'Academy & GHC Labs',description:'Explore career tracks and lab workflows. Member-only lessons may require access.',href:'/ghc-labs/',action:'Learn about Academy Labs'},
+  {eyebrow:'FOR ORGANIZATIONS',title:'Cybersecurity Services',description:'Explore separately scoped security assessments and service enquiries.',href:'https://gohackerscloud.com/cybersecurity-services',action:'Explore business services'},
+];
+---
+{variant==='journey' && (
+  <section class="ghc-method-grid" aria-label="Five steps to learn, practise and communicate skills">
+    {steps.map((step,index)=>(
+      <a class="ghc-method-card" href={step.href} aria-label={step.action}>
+        <div class="ghc-method-top"><span>{step.number}</span><small>{step.kind}</small></div>
+        <h3>{step.title}</h3>
+        <p>{step.description}</p>
+        <strong>{step.action} <span aria-hidden="true">↗</span></strong>
+      </a>
+    ))}
+  </section>
+)}
+{variant==='websites' && (
+  <section class="ghc-sites-grid" aria-label="Official GoHackersCloud resources and learning destinations">
+    {websites.map(site=>(
+      <a class="ghc-site-card" href={site.href} aria-label={site.action}>
+        <span class="ghc-sites-kicker">{site.eyebrow}</span>
+        <h3>{site.title}</h3>
+        <p>{site.description}</p>
+        <strong>{site.action} <span aria-hidden="true">↗</span></strong>
+      </a>
+    ))}
+  </section>
+)}
+<style>
+.ghc-method-grid,.ghc-sites-grid{display:grid;gap:.95rem;margin:1.4rem 0 2rem}
+.ghc-method-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+.ghc-method-card{
+  grid-column:span 2;
+  display:flex;flex-direction:column;gap:.7rem;min-width:0;
+  border:1px solid var(--sl-color-gray-5);
+  border-radius:14px;background:var(--sl-color-bg-nav);
+  padding:1.3rem;color:var(--sl-color-text)!important;text-decoration:none!important;
+  transition:transform .16s ease,border-color .16s ease;
+}
+.ghc-method-card:nth-child(n+4){grid-column:span 3}
+.ghc-method-top{display:flex;align-items:center;justify-content:space-between;gap:.65rem}
+.ghc-method-top>span{font-size:.82rem;font-weight:850;color:var(--sl-color-accent-high)}
+.ghc-method-top small{font-size:.62rem;font-weight:800;color:var(--sl-color-accent-high);letter-spacing:.055em;text-align:end}
+.ghc-method-card h3,.ghc-site-card h3{font-size:1.18rem!important;line-height:1.3;margin:0!important;letter-spacing:-.02em}
+.ghc-method-card p,.ghc-site-card p{font-size:.84rem;line-height:1.7;color:var(--sl-color-gray-2);margin:0!important}
+.ghc-method-card strong,.ghc-site-card strong{font-size:.81rem;color:var(--sl-color-accent-high);margin-top:auto}
+.ghc-sites-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ghc-site-card{
+  display:flex;flex-direction:column;gap:.65rem;min-width:0;
+  background:var(--sl-color-bg-nav);border:1px solid var(--sl-color-gray-5);
+  border-radius:14px;padding:1.2rem;color:var(--sl-color-text)!important;text-decoration:none!important;
+  transition:transform .16s ease,border-color .16s ease;
+}
+.ghc-sites-kicker{font-size:.66rem;font-weight:850;letter-spacing:.08em;color:var(--sl-color-accent-high)}
+.ghc-method-card:hover,.ghc-site-card:hover{border-color:var(--sl-color-accent);transform:translateY(-2px)}
+.ghc-method-card:focus-visible,.ghc-site-card:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:59rem){
+  .ghc-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ghc-method-card,.ghc-method-card:nth-child(n+4){grid-column:span 1}
+  .ghc-method-card:last-child{grid-column:1/-1}
+  .ghc-sites-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:39rem){
+  .ghc-method-grid,.ghc-sites-grid{grid-template-columns:1fr}
+  .ghc-method-card,.ghc-method-card:nth-child(n+4),.ghc-method-card:last-child{grid-column:auto}
+}
+@media(prefers-reduced-motion:reduce){.ghc-method-card,.ghc-site-card{transition:none}}
+</style>
