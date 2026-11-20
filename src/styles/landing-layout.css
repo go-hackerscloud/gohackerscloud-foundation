@@ -65,11 +65,20 @@ body:has(.ghc-catalog-hero) .sl-markdown-content > h3 {
 /* Prevent any wide tables or long names from forcing the entire
    page outside the viewport. Tables may scroll in their own region. */
 html:not([data-has-sidebar]) .content-panel,
-body:has(.ghc-study-plan-marker) .content-panel,
-html:not([data-has-sidebar]) .content-panel .sl-container,
-body:has(.ghc-study-plan-marker) .content-panel .sl-container {
+body:has(.ghc-study-plan-marker) .content-panel {
   min-width: 0;
   max-width: 100%;
+}
+
+/* Starlight caps .sl-container with --sl-content-width. The former
+   max-width:100% rule overrode that cap and made 60rem ineffective.
+   Reinstate the cap on the actual content container, not just body. */
+html:not([data-has-sidebar]) .content-panel > .sl-container,
+body:has(.ghc-study-plan-marker) .content-panel > .sl-container {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: min(100%, 60rem);
+  margin-inline: auto;
 }
 html:not([data-has-sidebar]) .sl-markdown-content > table,
 body:has(.ghc-study-plan-marker) .sl-markdown-content > table {
