@@ -44,6 +44,12 @@ assert.ok(css.includes('body:has(.foundation-hero)'),'Flagship homepage selector
 assert.ok(css.includes('body:has(.ghc-about-lead)'),'Academy-style width must include About');
 assert.ok(css.includes('--sl-content-width: 60rem'),
   'Public Foundation pages should use the reduced 60rem canvas');
+assert.ok(css.includes('max-width: min(100%, 60rem)'),
+  'Actual Starlight content container must be capped at 60rem, not just a CSS variable');
+assert.ok(css.includes('.content-panel > .sl-container') && css.includes('margin-inline: auto'),
+  'Reduced Foundation content must be centered in the actual content panel');
+assert.ok(!/\.content-panel \.sl-container,\s*body:has\(\.ghc-study-plan-marker\) \.content-panel \.sl-container\s*\{\s*min-width:\s*0;\s*max-width:\s*100%/.test(css),
+  'Do not reintroduce a max-width:100% override on Starlight sl-container');
 assert.ok(!css.includes('88rem'),'Reject the oversized PR #19 desktop layout');
 assert.ok(css.includes('html:not([data-has-sidebar]) body'),
   'Every public splash page must use Academy width');
