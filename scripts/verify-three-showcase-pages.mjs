@@ -29,8 +29,14 @@ const academyStyle=[
 for(const marker of academyStyle)
  assert.ok(css.includes(marker),'Three showcase pages must share Academy visual tokens: '+marker);
 assert.ok(!css.includes('88rem'),'Do not reintroduce excessive desktop width');
-assert.ok(!css.includes('html:not([data-has-sidebar]) .content-panel .sl-container'),
- 'Technical lessons and other splash pages must keep their default widths');
+assert.ok(css.includes('html:not([data-has-sidebar]) body') &&
+ css.includes('body:has(.ghc-study-plan-marker)'),
+ 'Public splash pages and Study Plan must share Academy width');
+assert.ok(!css.includes('html[data-has-sidebar] body {') &&
+ !css.includes('body:has(.ghc-lesson-context) {'),
+ 'Standard technical lesson pages must not inherit Academy landing width');
+assert.ok(css.includes('overscroll-behavior-x: contain'),
+ 'Wide tables must scroll within their page instead of causing horizontal overflow');
 assert.ok(css.includes('body:has(.ghc-catalog-hero) .sl-markdown-content > table'),
  'Catalog tables need usable width');
 assert.ok(css.includes('.ghc-catalog-anchor'),'Stable catalog anchors need offset for sticky header');
