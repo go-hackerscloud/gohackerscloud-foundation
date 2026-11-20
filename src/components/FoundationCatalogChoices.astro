@@ -1,0 +1,85 @@
+---
+const options=[
+  {
+    type:'FREE · START HERE',
+    title:'Foundation Learning',
+    description:'Study IT, cloud, security and DevOps fundamentals using 16 free modules and independent exercises.',
+    audience:'Beginners, students and career switchers',
+    href:'/curriculum/',
+    action:'Explore free modules',
+  },
+  {
+    type:'COURSES · CHECK CURRENT LISTINGS',
+    title:'Courses & Bundles',
+    description:'Browse self-paced learning and previously promoted certification and cloud bundle families.',
+    audience:'Learners following a structured study plan',
+    href:'https://www.gohackerscloud.org/courses',
+    action:'Open course catalog',
+  },
+  {
+    type:'KNOWLEDGE CHECKS',
+    title:'Exam-Style Practice',
+    description:'Use original practice questions and review explanations to identify topics that need more study.',
+    audience:'Learners preparing for certification topics',
+    href:'https://www.gohackerscloud.org/freetest',
+    action:'Explore free tests',
+  },
+  {
+    type:'AUTHORIZED PRACTICE',
+    title:'Academy & GHC Labs',
+    description:'Explore 13 Academy learning tracks and the documented lab curriculum. Hosted environments depend on access.',
+    audience:'Learners seeking hands-on guidance',
+    href:'/ghc-labs/track-selection/',
+    action:'View Academy tracks',
+  },
+  {
+    type:'FOR ORGANIZATIONS',
+    title:'Cloud & Security Services',
+    description:'Discuss separately scoped security assessments, remediation, cloud security and governance services.',
+    audience:'Businesses and institutional teams',
+    href:'https://gohackerscloud.com/cybersecurity-services',
+    action:'View enterprise services',
+  },
+];
+---
+<div class="ghc-catalog-choices" aria-label="Five GoHackersCloud learning and services pathways">
+  {options.map(option=>(
+    <a class="ghc-catalog-choice" href={option.href} aria-label={option.action}>
+      <span class="ghc-catalog-choice-type">{option.type}</span>
+      <h3>{option.title}</h3>
+      <p>{option.description}</p>
+      <span class="ghc-catalog-choice-audience">{option.audience}</span>
+      <strong>{option.action} <span aria-hidden="true">↗</span></strong>
+    </a>
+  ))}
+</div>
+<style>
+.ghc-catalog-choices{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1rem;margin:1.4rem 0 2.7rem}
+.ghc-catalog-choice{
+  grid-column:span 2;
+  display:flex;flex-direction:column;gap:.75rem;min-width:0;
+  border:1px solid var(--sl-color-gray-5);
+  border-radius:16px;padding:clamp(1.1rem,2.1vw,1.5rem);
+  background:linear-gradient(130deg,rgba(16,161,184,.065),transparent 60%),var(--sl-color-bg-nav);
+  color:var(--sl-color-text)!important;text-decoration:none!important;
+  transition:transform .16s ease,border-color .16s ease;
+}
+.ghc-catalog-choice:nth-child(n+4){grid-column:span 3}
+.ghc-catalog-choice:hover{transform:translateY(-2px);border-color:var(--sl-color-accent)}
+.ghc-catalog-choice-type{color:var(--sl-color-accent-high);font-size:.66rem;font-weight:850;letter-spacing:.07em;line-height:1.45}
+.ghc-catalog-choice h3{margin:0!important;font-size:1.2rem!important;line-height:1.3;letter-spacing:-.02em}
+.ghc-catalog-choice p{font-size:.83rem;color:var(--sl-color-gray-2);line-height:1.65;margin:0!important}
+.ghc-catalog-choice-audience{font-size:.72rem;color:var(--sl-color-gray-2);margin-top:auto;padding-top:.6rem;border-top:1px solid var(--sl-color-gray-5)}
+.ghc-catalog-choice strong{color:var(--sl-color-accent-high);font-size:.83rem;font-weight:850}
+.ghc-catalog-choice:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:4px}
+@media(max-width:59rem){
+  .ghc-catalog-choices{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ghc-catalog-choice,.ghc-catalog-choice:nth-child(n+4){grid-column:auto}
+  .ghc-catalog-choice:last-child{grid-column:1/-1}
+}
+@media(max-width:38rem){
+  .ghc-catalog-choices{grid-template-columns:1fr}
+  .ghc-catalog-choice,.ghc-catalog-choice:nth-child(n+4),.ghc-catalog-choice:last-child{grid-column:auto}
+}
+@media(prefers-reduced-motion:reduce){.ghc-catalog-choice{transition:none}}
+</style>
