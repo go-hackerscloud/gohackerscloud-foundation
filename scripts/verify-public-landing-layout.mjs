@@ -185,6 +185,61 @@ assert.ok(!built('/').includes('ghc-discovery--tests') &&
   !built('/about-gohackerscloud/').includes('ghc-discovery--courses'),
   'Discovery banners must remain limited to their intended pages');
 
+// P3: Validate contextual panels, exact nav cards, and 7 accessible
+// directory anchors. Never confuse curriculum documents with live lab slots.
+const p3Panel=read('src/components/FoundationExperiencePanel.astro');
+const p3DirectoryNav=read('src/components/FoundationLabDirectoryNav.astro');
+const p3TrackDirectory=read('src/components/GhcLabsTrackDirectory.astro');
+const p3ModuleExplorer=read('src/components/FoundationModuleExplorer.astro');
+const p3LabMdx=read('src/content/docs/ghc-labs/index.mdx');
+const p3ServiceMdx=read('src/content/docs/about-gohackerscloud/cybersecurity-services.mdx');
+const p3DirectoryMdx=read('src/content/docs/about-gohackerscloud/lab-directory.mdx');
+const exactAnchors=(html,className)=>[...html.matchAll(/<a\b[^>]*class="([^"]*)"/g)]
+  .filter(([,classList])=>classList.split(/\s+/).includes(className));
+assert.ok(p3Panel.includes('@media(max-width:50rem)') &&
+  p3Panel.includes('@media(max-width:38rem)'),
+  'P3 panels and card navigation must stack responsively');
+assert.ok(p3LabMdx.includes('<FoundationExperiencePanel variant="labs" />') &&
+  p3ServiceMdx.includes('<FoundationExperiencePanel variant="services" />'),
+  'Only targeted pages should include P3 contextual panels');
+for(const [route,variant,cta] of [
+  ['/ghc-labs/','labs','https://gohackerscloud.com/hands-on-cybersecurity-labs'],
+  ['/about-gohackerscloud/cybersecurity-services/','services','https://gohackerscloud.com/contact-gohackerscloud'],
+]){
+  const html=built(route);
+  assert.ok(html.includes('ghc-experience--'+variant) && html.includes(cta),
+    'P3 discovery and correct official link missing from '+route);
+  assert.equal(exactAnchors(html,'ghc-experience-card').length,3,
+    'Exactly three navigable cards required on '+route);
+  assert.equal(h1(html),1,'Panel must not create a duplicate title on '+route);
+}
+const p3LabHtml=built('/about-gohackerscloud/lab-directory/');
+const labSectionIds=[
+  'lab-section-ceh','lab-section-webapp','lab-section-api',
+  'lab-section-network','lab-section-oscp','lab-section-aws','lab-section-projects'
+];
+assert.ok(p3DirectoryMdx.includes('<FoundationLabDirectoryNav />'),
+  'Lab Directory category navigation component missing');
+assert.equal(exactAnchors(p3LabHtml,'ghc-lab-index-link').length,7,
+  'Expected seven Lab Directory category jump links');
+for(const id of labSectionIds){
+  assert.ok(p3DirectoryMdx.includes('id="'+id+'"') &&
+    p3LabHtml.includes('id="'+id+'"') && p3LabHtml.includes('href="#'+id+'"'),
+    'Lab Directory section link or anchor missing: '+id);
+}
+assert.ok(p3DirectoryNav.includes('90 dedicated curriculum documents') &&
+  p3LabHtml.includes('not necessarily a unique hosted environment'),
+  'Lab directory must distinguish documents from active environments');
+assert.ok(p3TrackDirectory.includes('grid-template-columns:repeat(2,minmax(0,1fr))') &&
+  p3ModuleExplorer.includes('grid-template-columns:repeat(2,minmax(0,1fr))'),
+  'Track and module cards must use balanced two-column desktop grids');
+assert.equal(exactAnchors(built('/ghc-labs/'),'ghc-labs-track-card').length,13,
+  'All 13 Academy tracks must remain navigable');
+assert.equal(exactAnchors(built('/curriculum/'),'foundation-module-card').length,16,
+  'All 16 free Foundation modules must remain navigable');
+assert.ok(!p3Panel.includes('fetch(') && !p3Panel.includes('sendBeacon('),
+  'P3 panels must not collect learner information');
+
 const challenge=built('/7-day-challenge/');
 assert.ok(challenge.includes('ghc-challenge-rail')&&
   challenge.includes('data-save-progress')&&challenge.includes('data-clear-progress'),
