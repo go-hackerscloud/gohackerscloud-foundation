@@ -8,8 +8,11 @@ const built=route=>{
  assert.ok(existsSync(file),'Missing published route '+route);
  return source(file);
 };
+// Match exact whitespace-delimited class tokens, not class name prefixes:
+ // "ghc-section-intro" must not also count "ghc-section-intro-main".
 const countClass=(html,klass)=>
- (html.match(new RegExp('class="[^"]*\\b'+klass+'\\b[^"]*"','g'))||[]).length;
+ [...html.matchAll(/class="([^"]*)"/g)].filter(([,value])=>
+  value.split(/\s+/).includes(klass)).length;
 const countMermaid=html=>
  (html.match(/<pre[^>]*\bclass="[^"]*\bmermaid\b[^"]*"/g)||[]).length;
 const h1=html=>(html.match(/<h1(?:\s|>)/g)||[]).length;
