@@ -1,10 +1,11 @@
-/* Match Academy's 78rem responsive landing canvas across Foundation
-   public splash pages. Keep lesson/sidebar reading pages at Starlight's
-   original measure, except the Explore section's 12-week Study Plan. */
+/* Narrow and center Foundation public pages to a 60rem reading canvas.
+   The Academy's 78rem hero setting is intentionally not copied: the user
+   wants the tighter reading-page proportions, not a wider landing canvas.
+   Technical lessons retain their Starlight reading widths. */
 
 html:not([data-has-sidebar]) body,
 body:has(.ghc-study-plan-marker) {
-  --sl-content-width: 78rem;
+  --sl-content-width: 60rem;
 }
 
 /* Keep flagship brand accents without changing instructional pages. */
