@@ -40,10 +40,10 @@ assert.equal(files('src/content/docs').filter(file=>/^template:\s*splash\s*$/m.t
 const css=read('src/styles/landing-layout.css');
 const config=read('astro.config.mjs');
 assert.ok(config.includes("'./src/styles/landing-layout.css'"),'Missing Foundation layout CSS');
-assert.ok(css.includes('body:has(.foundation-hero)'),'Academy-style width must be scoped to home');
+assert.ok(css.includes('body:has(.foundation-hero)'),'Home branding selector must remain present');
 assert.ok(css.includes('body:has(.ghc-about-lead)'),'Academy-style width must include About');
-assert.ok(css.includes('--sl-content-width: 78rem'),
-  'Academy-like 78rem content width should remain standard');
+assert.ok(css.includes('--sl-content-width: 60rem'),
+  'Reduced 60rem Foundation content width should remain standard');
 assert.ok(!css.includes('88rem'),'Reject the oversized PR #19 desktop layout');
 assert.ok(css.includes('html:not([data-has-sidebar]) body'),
   'Every public splash page must use Academy width');
@@ -59,7 +59,7 @@ assert.ok(css.includes('@media (max-width: 48rem)'),'Mobile layout fallback is r
 
 const compiledCss=readdirSync('dist/_astro',{recursive:true})
   .filter(f=>f.endsWith('.css')).map(f=>read(join('dist/_astro',f))).join('\n');
-assert.ok(compiledCss.includes('78rem')&&compiledCss.includes('foundation-hero')&&
+assert.ok(compiledCss.includes('60rem')&&compiledCss.includes('foundation-hero')&&
   compiledCss.includes('ghc-about-lead'),
   'Academy-style shared width must compile into the actual CSS assets');
 
@@ -140,6 +140,6 @@ assert.ok(challenge.includes('ghc-challenge-rail')&&
   challenge.includes('data-save-progress')&&challenge.includes('data-clear-progress'),
   'Previous challenge sidebar and privacy settings must remain intact');
 
-console.log('Academy-style Foundation layout QA passed: 12 splash routes at 78rem plus Study Plan, '+ 
+console.log('Academy-style Foundation layout QA passed: 12 splash routes at 60rem plus Study Plan, '+ 
  '3 lesson + 4 pathway + 3 portfolio cards, 5 learning-stage + 6 site cards, '+ 
  'Mermaid and existing free lesson/challenge navigation.');
