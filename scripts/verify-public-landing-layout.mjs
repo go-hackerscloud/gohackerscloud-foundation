@@ -161,14 +161,14 @@ assert.ok(discovery.includes('@media(max-width:50rem)') &&
   'Discovery banners and resource cards must stack on tablet/mobile');
 assert.ok(discovery.includes('grid-template-columns:repeat(3,minmax(0,1fr))'),
   'Discovery cards should form a balanced desktop row');
-assert.ok(!/\\b(?:fetch|sendBeacon|XMLHttpRequest)\\s*\\(/.test(discovery),
+assert.ok(!['fetch(', 'sendBeacon(', 'XMLHttpRequest('].some(call => discovery.includes(call)),
   'Discovery navigation must not collect learner data');
 for(const [route,variant,expectedLink] of [
   ['/about-gohackerscloud/courses/','courses','https://www.gohackerscloud.org/courses'],
   ['/about-gohackerscloud/test-engine/','tests','https://www.gohackerscloud.org/freetest'],
 ]){
   const html=built(route);
-  const mdx=read('src/content/docs'+route.replace(/\\/$/,'')+'.mdx');
+  const mdx=read('src/content/docs'+route.slice(0,-1)+'.mdx');
   assert.ok(mdx.includes('<FoundationDiscoveryPanel variant="'+variant+'" />'),
     'Expected contextual panel on '+route);
   assert.ok(html.includes('ghc-discovery--'+variant),
