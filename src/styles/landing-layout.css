@@ -71,6 +71,9 @@ body:has(.ghc-catalog-hero) .sl-markdown-content > h3 {
 .ghc-catalog-anchor {
   scroll-margin-top: 6.2rem;
 }
+/* Category links on the long Lab Directory land below the sticky header. */
+.ghc-lab-directory-anchor { display:block;scroll-margin-top:6rem; }
+
 
 /* Prevent any wide tables or long names from forcing the entire
    page outside the viewport. Tables may scroll in their own region. */

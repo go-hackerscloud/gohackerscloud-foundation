@@ -1,0 +1,86 @@
+---
+/* Simple navigation only. Never presents Academy labs as free, available or
+   included with Foundation, nor implies an enterprise assessment is booked. */
+const variant = Astro.props.variant === 'services' ? 'services' : 'labs';
+const options = {
+  labs: {
+    eyebrow:'AUTHORIZED HANDS-ON PRACTICE',
+    heading:'From concepts to real practice',
+    summary:'Explore Academy learning tracks and see how hosted sessions work before choosing an access option.',
+    link:'https://gohackerscloud.com/hands-on-cybersecurity-labs',
+    action:'View GHC Labs access options',
+    note:'Hosted labs have separate access requirements. A track listing does not guarantee a running instance.',
+    cards:[
+      {title:'Choose a track',description:'Browse the 13 curated Academy learning tracks.',href:'/ghc-labs/track-selection/',label:'Explore tracks'},
+      {title:'Understand the workflow',description:'Learn how guided sessions and lab safety work.',href:'/ghc-labs/how-it-works/',label:'How labs work'},
+      {title:'Read the lesson directory',description:'Browse the documented Academy lab curriculum by category.',href:'/about-gohackerscloud/lab-directory/',label:'Browse documents'},
+    ],
+  },
+  services: {
+    eyebrow:'FOR ORGANIZATIONS',
+    heading:'Discuss your security priorities',
+    summary:'Explore scoping, authorization and suitable review areas before requesting an enterprise consultation.',
+    link:'https://gohackerscloud.com/contact-gohackerscloud',
+    action:'Contact the services team',
+    note:'A conversation is not an engagement or accreditation claim. Scope and qualifications require confirmation.',
+    cards:[
+      {title:'Review service categories',description:'See current cybersecurity services and enquiry information.',href:'https://gohackerscloud.com/cybersecurity-services',label:'Explore services'},
+      {title:'Understand the ecosystem',description:'Compare business services with learning, labs and courses.',href:'/about-gohackerscloud/catalog/',label:'View catalog'},
+      {title:'Learning instead?',description:'Use free Foundation materials for personal study.',href:'/curriculum/',label:'Explore free modules'},
+    ],
+  },
+};
+const data=options[variant];
+---
+<section class:list={['ghc-experience','ghc-experience--'+variant]} aria-label={variant==='labs'?'Academy lab discovery and access':'Enterprise cybersecurity service discovery'}>
+  <div class="ghc-experience-lead">
+    <div class="ghc-experience-copy">
+      <span class="ghc-experience-kicker">{data.eyebrow}</span>
+      <h2>{variant==='labs'?'Explore your practical learning options':'Start with a scoped conversation'}</h2>
+      <p>{variant==='labs'?'Foundation reading is free. Academy tracks and hosted labs are separate experiences with their own access conditions.':'Enterprise cybersecurity assessments are independent from student courses, learning tracks and hosted practice labs.'}</p>
+    </div>
+    <aside class="ghc-experience-panel">
+      <span class="ghc-experience-kicker">{data.eyebrow}</span>
+      <h3>{data.heading}</h3>
+      <p>{data.summary}</p>
+      <a class="ghc-experience-cta" href={data.link}>{data.action} <span aria-hidden="true">↗</span></a>
+      <small>{data.note}</small>
+    </aside>
+  </div>
+  <nav class="ghc-experience-cards" aria-label={variant==='labs'?'Lab discovery shortcuts':'Cybersecurity service shortcuts'}>
+    {data.cards.map(card=>(
+      <a class="ghc-experience-card" href={card.href}>
+        <strong>{card.title}</strong>
+        <span>{card.description}</span>
+        <b>{card.label} <span aria-hidden="true">→</span></b>
+      </a>
+    ))}
+  </nav>
+</section>
+<style>
+.ghc-experience{display:grid;gap:.85rem;margin:1.2rem 0 1.8rem;min-width:0}
+.ghc-experience-lead{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(15rem,.9fr);gap:1rem;align-items:stretch}
+.ghc-experience-copy{align-self:center;min-width:0}
+.ghc-experience-kicker{font-size:.66rem;line-height:1.5;font-weight:850;letter-spacing:.075em;color:var(--sl-color-accent-high)}
+.ghc-experience-copy h2{font-size:clamp(1.35rem,2.4vw,1.8rem)!important;line-height:1.25;margin:.55rem 0!important;padding:0!important;border:0!important}
+.ghc-experience-copy p{font-size:.87rem;line-height:1.65;color:var(--sl-color-gray-2);margin:0!important}
+.ghc-experience-panel{display:flex;flex-direction:column;gap:.65rem;min-width:0;padding:1.25rem;background:var(--sl-color-bg-nav);border:1px solid var(--sl-color-gray-5);border-radius:15px}
+.ghc-experience-panel h3{font-size:1.2rem!important;line-height:1.3;margin:0!important}
+.ghc-experience-panel p{font-size:.82rem;line-height:1.65;color:var(--sl-color-gray-2);margin:0!important}
+.ghc-experience-panel small{font-size:.69rem;line-height:1.55;color:var(--sl-color-gray-2)}
+.ghc-experience-cta{display:flex;align-items:center;justify-content:space-between;gap:.6rem;min-height:44px;padding:.7rem .8rem;margin-top:auto;border-radius:9px;background:var(--sl-color-accent-low);border:1px solid var(--sl-color-accent);color:var(--sl-color-accent-high)!important;text-decoration:none!important;font-size:.8rem;font-weight:800}
+.ghc-experience--services .ghc-experience-panel{background:linear-gradient(135deg,#0b1e35,#15364f);border-color:#3a627d;color:#fff}
+.ghc-experience--services .ghc-experience-panel .ghc-experience-kicker{color:#86e7f3}
+.ghc-experience--services .ghc-experience-panel h3{color:#fff}
+.ghc-experience--services .ghc-experience-panel p,.ghc-experience--services .ghc-experience-panel small{color:#d2e3ed}
+.ghc-experience--services .ghc-experience-cta{background:#87e3f1;border-color:#87e3f1;color:#082438!important}
+.ghc-experience-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}
+.ghc-experience-card{display:flex;flex-direction:column;gap:.55rem;min-width:0;padding:1rem;border:1px solid var(--sl-color-gray-5);border-radius:12px;background:var(--sl-color-bg-nav);text-decoration:none!important;color:var(--sl-color-text)!important}
+.ghc-experience-card strong{font-size:.96rem;line-height:1.35}
+.ghc-experience-card>span{font-size:.78rem;line-height:1.6;color:var(--sl-color-gray-2)}
+.ghc-experience-card b{font-size:.78rem;color:var(--sl-color-accent-high);margin-top:auto}
+.ghc-experience-card:hover{border-color:var(--sl-color-accent)}
+.ghc-experience a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:50rem){.ghc-experience-lead{grid-template-columns:1fr}.ghc-experience-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.ghc-experience-card:last-child{grid-column:1/-1}}
+@media(max-width:38rem){.ghc-experience-cards{grid-template-columns:1fr}.ghc-experience-card:last-child{grid-column:auto}}
+</style>

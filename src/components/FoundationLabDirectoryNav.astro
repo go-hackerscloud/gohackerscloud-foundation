@@ -1,0 +1,42 @@
+---
+/* Counts and section labels match the documented November 17, 2026
+   Academy curriculum snapshot; these are documents, not live lab slots. */
+const categories=[
+ {id:'lab-section-ceh',title:'Ethical Hacking',count:16},
+ {id:'lab-section-webapp',title:'Web Application',count:20},
+ {id:'lab-section-api',title:'API Security',count:8},
+ {id:'lab-section-network',title:'Network Testing',count:10},
+ {id:'lab-section-oscp',title:'OSCP-Style',count:19},
+ {id:'lab-section-aws',title:'AWS Security',count:12},
+ {id:'lab-section-projects',title:'Projects & Capstones',count:5},
+];
+---
+<nav class="ghc-lab-index" aria-label="Jump to an Academy lab document category">
+  <div class="ghc-lab-index-header">
+    <div><span class="ghc-lab-index-eyebrow">DOCUMENT DIRECTORY</span><h2>Browse by security specialty</h2></div>
+    <p>90 dedicated curriculum documents across seven categories. Choose a section below to review the titles; hosted lab availability is separate.</p>
+  </div>
+  <div class="ghc-lab-index-links">
+    {categories.map(category=>(
+      <a href={'#'+category.id} class="ghc-lab-index-link" aria-label={category.title+', '+category.count+' curriculum documents'}>
+        <strong>{category.title}</strong>
+        <span>{category.count} documents <span aria-hidden="true">↓</span></span>
+      </a>
+    ))}
+  </div>
+</nav>
+<style>
+.ghc-lab-index{display:grid;gap:1rem;margin:1.3rem 0 1.6rem;min-width:0;padding:1.15rem;background:var(--sl-color-bg-nav);border:1px solid var(--sl-color-gray-5);border-radius:15px}
+.ghc-lab-index-header{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:1rem;align-items:end}
+.ghc-lab-index-eyebrow{font-size:.68rem;font-weight:850;letter-spacing:.08em;color:var(--sl-color-accent-high)}
+.ghc-lab-index-header h2{font-size:clamp(1.35rem,2.2vw,1.65rem)!important;margin:.25rem 0 0!important;border:0!important;padding:0!important;line-height:1.2}
+.ghc-lab-index-header p{font-size:.8rem;color:var(--sl-color-gray-2);line-height:1.6;margin:0!important}
+.ghc-lab-index-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem}
+.ghc-lab-index-link{display:flex;flex-direction:column;justify-content:space-between;gap:.65rem;min-width:0;padding:.85rem;border:1px solid var(--sl-color-gray-5);border-radius:10px;background:var(--sl-color-bg);color:var(--sl-color-text)!important;text-decoration:none!important}
+.ghc-lab-index-link strong{font-size:.85rem;line-height:1.3}
+.ghc-lab-index-link>span{display:flex;justify-content:space-between;gap:.5rem;font-size:.72rem;color:var(--sl-color-gray-2)}
+.ghc-lab-index-link:hover{border-color:var(--sl-color-accent)}
+.ghc-lab-index-link:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:2px}
+@media(max-width:48rem){.ghc-lab-index-header{grid-template-columns:1fr}.ghc-lab-index-links{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:34rem){.ghc-lab-index-links{grid-template-columns:1fr}}
+</style>
