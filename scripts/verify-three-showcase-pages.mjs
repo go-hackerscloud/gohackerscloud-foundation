@@ -22,12 +22,12 @@ const academyStyle=[
  'body:has(.foundation-hero)',
  'body:has(.ghc-about-lead)',
  'body:has(.ghc-catalog-hero)',
- '--sl-content-width: 78rem',
+ '--sl-content-width: 60rem',
  '--sl-color-accent: #1381a8',
  '--sl-color-accent: #66dbf2',
 ];
 for(const marker of academyStyle)
- assert.ok(css.includes(marker),'Three showcase pages must share Academy visual tokens: '+marker);
+ assert.ok(css.includes(marker),'Showcase pages must retain existing brand tokens: '+marker);
 assert.ok(!css.includes('88rem'),'Do not reintroduce excessive desktop width');
 assert.ok(css.includes('html:not([data-has-sidebar]) body') &&
  css.includes('body:has(.ghc-study-plan-marker)'),
@@ -145,4 +145,4 @@ assert.ok(challenge.includes('data-save-progress')&&challenge.includes('ghc-chal
 assert.equal(countMermaid(challenge),1,'Existing seven-day learning diagram missing');
 const docs=built('/foundation/gohackerscloud-foundation/01-it-fundamentals/01-computer-hardware/');
 assert.equal(h1(docs),1,'Original Obsidian learning route must not be modified');
-console.log('Three-showcase alignment QA passed: Academy-style 78rem design system, 5 balanced home intros, About diagram+companion, 5 catalog choices, 7 jump shortcuts, all 4 catalog Mermaid diagrams and original free learning routes.');
+console.log('Three-showcase alignment QA passed: Academy-style 60rem design system, 5 balanced home intros, About diagram+companion, 5 catalog choices, 7 jump shortcuts, all 4 catalog Mermaid diagrams and original free learning routes.');
