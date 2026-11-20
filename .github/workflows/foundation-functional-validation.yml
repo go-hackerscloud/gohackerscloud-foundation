@@ -33,6 +33,14 @@ jobs:
             node "$test"
             echo "::endgroup::"
           done
+      - name: Generate P5 static experience audit report (non-blocking findings)
+        run: node scripts/audit-foundation-experience.mjs
+      - name: Upload P5 static audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: foundation-p5-static-audit
+          path: dist/foundation-p5-audit.json
+          if-no-files-found: error
       - name: State security gate remains separate and required
         run: |
           echo "Functional success does NOT mean a clean dependency audit."
