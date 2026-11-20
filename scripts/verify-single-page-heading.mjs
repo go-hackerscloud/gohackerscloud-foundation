@@ -78,7 +78,7 @@ for(const route of routes){
 }
 
 const catalog=readFileSync(join(root,'about-gohackerscloud/catalog.mdx'),'utf8');
-assert.ok(catalog.includes('title: "GoHackersCloud Catalog — Courses, Labs & Services"'),
+assert.ok(catalog.includes('title: "GoHackersCloud Complete Catalog"'),
   'Concise promotional title was not retained');
 assert.ok(catalog.includes('## 1. Choose your GoHackersCloud experience'),
   'Core promotional sections were accidentally removed');
