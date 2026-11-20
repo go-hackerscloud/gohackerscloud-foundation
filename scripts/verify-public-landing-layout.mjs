@@ -116,7 +116,7 @@ for(const value of [
 }
 assert.ok(home.includes('data-module-count="4"')&&home.includes('data-module-count="2"'),
   'Four core and two security featured modules must form balanced rows');
-const homeResourceCards=(home.match(/class="foundation-resource-card"/g)||[]).length;
+const homeResourceCards=(home.match(/class="[^"]*\bfoundation-resource-card\b[^"]*"/g)||[]).length;
 assert.equal(homeResourceCards,6,
   'Homepage learning resource section needs six evenly distributed cards');
 assert.ok(home.includes('href="/7-day-challenge/"'),
