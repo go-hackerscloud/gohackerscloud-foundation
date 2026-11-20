@@ -48,9 +48,19 @@ body:has(.ghc-catalog-hero) .sl-markdown-content > table {
 
 /* The catalog is a long reference directory, so it benefits from a
    navigable hierarchy without changing any inventory or external links. */
+/* Trim the oversized global heading spacing on the two showcase pages,
+   without changing technical lesson headings or the public 60rem canvas. */
+body:has(.ghc-about-lead) .sl-markdown-content > h2 {
+  margin-top: 2rem;
+  padding-top: .45rem;
+}
+body:has(.ghc-about-lead) .sl-markdown-content > .ghc-about-diagram-layout + p {
+  margin-top: .85rem;
+}
 body:has(.ghc-catalog-hero) .sl-markdown-content > h2 {
-  margin-top: clamp(2.4rem,4.5vw,4rem);
-  padding-bottom: .7rem;
+  margin-top: clamp(1.9rem,3vw,2.65rem);
+  padding-top: .45rem;
+  padding-bottom: .55rem;
   border-bottom: 1px solid var(--sl-color-gray-5);
   letter-spacing: -.025em;
   text-wrap: balance;
