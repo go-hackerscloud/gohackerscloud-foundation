@@ -99,13 +99,14 @@ for (const root of document.querySelectorAll('[data-foundation-explorer]')) {
 .foundation-empty{padding:1rem;border:1px solid var(--sl-color-gray-5);border-radius:10px}
 .foundation-all-link a{display:inline-flex;font-weight:800;text-decoration:none;margin-top:1.35rem}
 [data-module-card][hidden],[data-module-group][hidden],.foundation-empty[hidden]{display:none!important}
-/* Four featured foundation cards form one balanced row on wide displays.
-   The two cloud/security cards fill two equal columns, never a half-empty 3-card row. */
-@media(min-width:1280px){
-  .foundation-explorer-featured .foundation-module-grid[data-module-count="4"]{
-    grid-template-columns:repeat(4,minmax(0,1fr))
-  }
+/* Match the Academy's centered landing canvas: featured module cards
+   stay in balanced, readable two-column rows at every desktop width.
+   Avoid four narrow cards stretching across the 78rem canvas. */
+.foundation-explorer-featured .foundation-module-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:stretch;
 }
+.foundation-explorer-featured .foundation-module-card{height:100%;}
 @media(max-width:1050px){.foundation-module-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.foundation-module-grid,.foundation-explorer-featured .foundation-module-grid{grid-template-columns:1fr}.foundation-controls{padding:1rem}}
 @media(prefers-reduced-motion:reduce){.foundation-module-card{transition:none}}
