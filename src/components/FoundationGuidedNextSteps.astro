@@ -1,0 +1,78 @@
+---
+/* Free learning navigation only. No grades, tracking, account requirements
+   or promises of hosted access. Content pages stay the source of truth. */
+const variant = ['start','student','professional','plan'].includes(Astro.props.variant) ? Astro.props.variant : 'start';
+const routes = {
+  start: {
+    label:'PICK YOUR FIRST STEP',
+    title:'Choose a free learning route',
+    description:'Begin with the basics or follow a learning plan that suits your experience.',
+    links:[
+      {title:'Start the first module',description:'Orientation and practical study habits',href:'/foundation/gohackerscloud-foundation/00-welcome-to-gohackerscloud/01-welcome-to-the-academy/'},
+      {title:'Try the 7-day challenge',description:'Seven lessons with safe activities and self-checks',href:'/7-day-challenge/'},
+      {title:'Browse all 16 modules',description:'Choose subjects at your current skill level',href:'/curriculum/'},
+    ],
+  },
+  student: {
+    label:'STUDENT LEARNING GUIDE',
+    title:'Pick a manageable starting point',
+    description:'Use free lessons, practise safely and build your first original technical note.',
+    links:[
+      {title:'Start the first lesson',description:'Build basic concepts before specializing',href:'/foundation/gohackerscloud-foundation/00-welcome-to-gohackerscloud/01-welcome-to-the-academy/'},
+      {title:'Complete the 7-day challenge',description:'Apply concepts to small independent exercises',href:'/7-day-challenge/'},
+      {title:'Build a portfolio sample',description:'Turn your notes into a guided technical project',href:'/portfolio/'},
+    ],
+  },
+  professional: {
+    label:'PROFESSIONAL LEARNING GUIDE',
+    title:'Target a specific skill gap',
+    description:'Refresh the essentials and document a focused, workplace-style exercise.',
+    links:[
+      {title:'Review all 16 modules',description:'Select the knowledge areas you want to refresh',href:'/curriculum/'},
+      {title:'Explore Core IT & DevOps',description:'Connect systems, networking, automation and change',href:'/core-it-devops/'},
+      {title:'Create portfolio evidence',description:'Draft a practical technical report from a safe scenario',href:'/portfolio/'},
+    ],
+  },
+  plan: {
+    label:'12-WEEK STUDY COMPANION',
+    title:'Make the schedule your own',
+    description:'This is an example pacing guide, not a graded course or guaranteed timeline.',
+    links:[
+      {title:'Browse the free modules',description:'Find the lessons for this week’s subject',href:'/curriculum/'},
+      {title:'Return to Start Here',description:'Review the basics and choose a study routine',href:'/start-here/'},
+      {title:'Try the 7-day challenge',description:'Practise a small set of guided self-checks',href:'/7-day-challenge/'},
+    ],
+  },
+};
+const data=routes[variant];
+---
+<nav class="ghc-guided-next" aria-label={data.label}>
+  <header class="ghc-guided-next-heading">
+    <div><span class="ghc-guided-next-kicker">{data.label}</span><h2>{data.title}</h2></div>
+    <p>{data.description}</p>
+  </header>
+  <div class="ghc-guided-next-links">
+    {data.links.map(link=>(
+      <a class="ghc-guided-next-link" href={link.href}>
+        <strong>{link.title}</strong>
+        <span>{link.description}</span>
+        <b aria-hidden="true">→</b>
+      </a>
+    ))}
+  </div>
+</nav>
+<style>
+.ghc-guided-next{display:grid;gap:.85rem;min-width:0;margin:1.3rem 0 1.75rem;padding:1rem;border:1px solid var(--sl-color-gray-5);border-radius:14px;background:var(--sl-color-bg-nav)}
+.ghc-guided-next-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:.8rem;align-items:end}
+.ghc-guided-next-kicker{display:block;font-size:.67rem;letter-spacing:.08em;font-weight:850;color:var(--sl-color-accent-high)}
+.ghc-guided-next-heading h2{margin:.3rem 0 0!important;padding:0!important;border:0!important;font-size:clamp(1.25rem,2vw,1.6rem)!important;line-height:1.25}
+.ghc-guided-next-heading p{margin:0!important;color:var(--sl-color-gray-2);font-size:.82rem;line-height:1.6}
+.ghc-guided-next-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem}
+.ghc-guided-next-link{display:grid;grid-template-rows:auto 1fr auto;gap:.5rem;min-width:0;padding:.9rem;border-radius:10px;border:1px solid var(--sl-color-gray-5);background:var(--sl-color-bg);color:var(--sl-color-text)!important;text-decoration:none!important}
+.ghc-guided-next-link strong{font-size:.85rem;line-height:1.35}
+.ghc-guided-next-link>span{font-size:.75rem;line-height:1.55;color:var(--sl-color-gray-2)}
+.ghc-guided-next-link b{justify-self:end;color:var(--sl-color-accent-high)}
+.ghc-guided-next-link:hover{border-color:var(--sl-color-accent)}
+.ghc-guided-next-link:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:2px}
+@media(max-width:48rem){.ghc-guided-next-heading{grid-template-columns:1fr}.ghc-guided-next-links{grid-template-columns:1fr}}
+</style>
