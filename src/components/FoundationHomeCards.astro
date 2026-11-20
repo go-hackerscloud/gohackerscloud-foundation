@@ -1,0 +1,180 @@
+---
+const variant = Astro.props.variant || 'evidence';
+
+const exercises = [
+  {
+    code:'01 / SYSTEMS',
+    title:'IT Fundamentals',
+    description:'Identify CPU, memory, operating system and storage in a labeled system diagram.',
+    evidence:'One original architecture sketch',
+    href:'/foundation/gohackerscloud-foundation/01-it-fundamentals/01-computer-hardware/',
+    action:'Open Computer Hardware lesson',
+  },
+  {
+    code:'02 / NETWORKS',
+    title:'Networking Basics',
+    description:'Trace DNS, TCP/TLS and the web application, then explain each network boundary.',
+    evidence:'A clear request-flow diagram',
+    href:'/foundation/gohackerscloud-foundation/02-networking-fundamentals/01-networking-basics/',
+    action:'Open Networking Basics lesson',
+  },
+  {
+    code:'03 / SECURITY',
+    title:'Cybersecurity Mindset',
+    description:'Choose a fictional business asset, identify a realistic risk and propose a control.',
+    evidence:'An asset–risk–control worksheet',
+    href:'/foundation/gohackerscloud-foundation/08-cybersecurity-fundamentals/01-security-mindset/',
+    action:'Open Security Mindset lesson',
+  },
+];
+const pathways=[
+  {
+    code:'LEARNING PATH / 01',
+    title:'Core IT & DevOps',
+    description:'Understand systems, networking, Linux, Windows, Python and Git as connected workplace skills.',
+    href:'/core-it-devops/',
+    action:'Explore the deep-dive',
+  },
+  {
+    code:'LEARNING PATH / 02',
+    title:'12-Week Study Plan',
+    description:'Follow a realistic weekly sequence and revisit the topics that need more practice.',
+    href:'/study-plan/',
+    action:'View the study plan',
+  },
+  {
+    code:'STARTING POINT / STUDENTS',
+    title:'College & New Learners',
+    description:'Build the fundamentals, complete safe exercises and choose a direction for your first technical project.',
+    href:'/paths/students/',
+    action:'Follow the student path',
+  },
+  {
+    code:'STARTING POINT / PROFESSIONALS',
+    title:'Professional Upskilling',
+    description:'Refresh technical foundations and focus on the cloud, DevOps or security skills that support your role.',
+    href:'/paths/professionals/',
+    action:'Explore professional learning',
+  },
+];
+---
+{variant === 'evidence' && (
+  <div class="ghc-home-exercises" aria-label="Three free practical starting exercises">
+    {exercises.map(exercise => (
+      <a class="ghc-home-exercise" href={exercise.href} aria-label={exercise.action}>
+        <span class="ghc-home-kicker">{exercise.code} · FREE LESSON</span>
+        <h3>{exercise.title}</h3>
+        <p>{exercise.description}</p>
+        <div class="ghc-home-evidence"><strong>What you create</strong><span>{exercise.evidence}</span></div>
+        <span class="ghc-home-link">{exercise.action} <span aria-hidden="true">→</span></span>
+      </a>
+    ))}
+  </div>
+)}
+{variant === 'pathways' && (
+  <div class="ghc-home-paths" aria-label="Four free learning plans and starting pathways">
+    {pathways.map(path => (
+      <a class="ghc-home-path" href={path.href} aria-label={path.action}>
+        <span class="ghc-home-kicker">{path.code}</span>
+        <h3>{path.title}</h3>
+        <p>{path.description}</p>
+        <span class="ghc-home-link">{path.action} <span aria-hidden="true">↗</span></span>
+      </a>
+    ))}
+  </div>
+)}
+{variant === 'portfolio' && (
+  <div class="ghc-home-portfolio" aria-label="Free technical portfolio learning opportunities">
+    <div class="ghc-home-portfolio-feature">
+      <span class="ghc-home-kicker">FREE CAREER & PORTFOLIO HUB</span>
+      <h3>Show how you solve technical problems.</h3>
+      <p>Turn what you have learned into six guided projects with architecture diagrams, evidence notes and seven downloadable Markdown worksheets. Work with synthetic or authorized scenarios—no account or hosted lab required.</p>
+      <a href="/portfolio/" class="ghc-home-feature-action">Explore the Portfolio Hub <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="ghc-home-portfolio-next">
+      <a href="/portfolio/projects/system-architecture/">
+        <span class="ghc-home-kicker">BEGINNER PROJECT</span>
+        <h3>System Architecture</h3>
+        <p>Document components, dependencies and a safe troubleshooting approach.</p>
+        <strong>Open guided project <span aria-hidden="true">↗</span></strong>
+      </a>
+      <a href="/portfolio/projects/cloud-iam-review/">
+        <span class="ghc-home-kicker">CLOUD SECURITY PROJECT</span>
+        <h3>Cloud IAM Review</h3>
+        <p>Prepare an access matrix, a least-privilege recommendation and a test plan.</p>
+        <strong>Open guided project <span aria-hidden="true">↗</span></strong>
+      </a>
+    </div>
+  </div>
+)}
+<style>
+.ghc-home-exercises,.ghc-home-paths{display:grid;gap:1rem;margin:1.3rem 0 2.5rem}
+.ghc-home-exercises{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ghc-home-paths{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ghc-home-exercise,.ghc-home-path,.ghc-home-portfolio-next a{
+  min-width:0;display:flex;flex-direction:column;gap:.7rem;
+  padding:clamp(1.1rem,2vw,1.5rem);
+  border:1px solid var(--sl-color-gray-5);
+  border-radius:15px;background:var(--sl-color-bg-nav);
+  color:var(--sl-color-text)!important;text-decoration:none!important;
+  transition:border-color .16s ease,transform .16s ease;
+}
+.ghc-home-exercise:hover,.ghc-home-path:hover,.ghc-home-portfolio-next a:hover{
+  border-color:var(--sl-color-accent);transform:translateY(-2px);
+}
+.ghc-home-kicker{
+  display:block;font-size:.67rem;letter-spacing:.085em;
+  font-weight:850;color:var(--sl-color-accent-high);line-height:1.45;
+}
+.ghc-home-exercise h3,.ghc-home-path h3,.ghc-home-portfolio h3{
+  font-size:clamp(1.05rem,1.65vw,1.35rem)!important;
+  line-height:1.3;letter-spacing:-.02em;margin:0!important;
+}
+.ghc-home-exercise p,.ghc-home-path p,.ghc-home-portfolio p{
+  color:var(--sl-color-gray-2);font-size:.85rem;
+  line-height:1.7;margin:0!important;
+}
+.ghc-home-evidence{
+  display:grid;gap:.2rem;margin-top:auto;padding-top:.7rem;
+  border-top:1px solid var(--sl-color-gray-5);
+}
+.ghc-home-evidence strong{font-size:.73rem}
+.ghc-home-evidence span{font-size:.79rem;color:var(--sl-color-gray-2)}
+.ghc-home-link{display:block;margin-top:auto;font-size:.84rem;font-weight:800;color:var(--sl-color-accent-high)}
+.ghc-home-portfolio{
+  display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.85fr);
+  gap:1rem;margin:1.25rem 0 2.7rem;
+}
+.ghc-home-portfolio-feature{
+  display:flex;flex-direction:column;align-items:flex-start;gap:1rem;min-width:0;
+  border:1px solid #326078;border-radius:17px;
+  padding:clamp(1.4rem,3vw,2.25rem);
+  background:radial-gradient(circle at 100% 0%,#18435f,transparent 65%),linear-gradient(135deg,#08172b,#0c2d44);
+  color:#f8fafc;
+}
+.ghc-home-portfolio-feature .ghc-home-kicker{color:#91e8f3}
+.ghc-home-portfolio-feature h3{color:#fff!important;font-size:clamp(1.5rem,2.6vw,2.15rem)!important}
+.ghc-home-portfolio-feature p{color:#cee0eb;font-size:.92rem}
+.ghc-home-feature-action{
+  display:inline-flex;gap:.7rem;align-items:center;
+  min-height:45px;border-radius:9px;background:#83e2ef;
+  padding:.75rem 1rem;color:#082539!important;text-decoration:none!important;
+  font-size:.86rem;font-weight:800;margin-top:auto;
+}
+.ghc-home-portfolio-next{display:grid;gap:1rem;grid-template-rows:repeat(2,minmax(0,1fr))}
+.ghc-home-portfolio-next a h3{font-size:1.16rem!important}
+.ghc-home-portfolio-next a strong{font-size:.79rem;color:var(--sl-color-accent-high);margin-top:auto}
+.ghc-home-exercise:focus-visible,.ghc-home-path:focus-visible,
+.ghc-home-portfolio a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:62rem){
+  .ghc-home-exercises{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ghc-home-portfolio{grid-template-columns:1fr}
+  .ghc-home-portfolio-next{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto}
+}
+@media(max-width:42rem){
+  .ghc-home-exercises,.ghc-home-paths,.ghc-home-portfolio-next{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .ghc-home-exercise,.ghc-home-path,.ghc-home-portfolio-next a{transition:none}
+}
+</style>
