@@ -29,18 +29,18 @@
 </div>
 <style>
 .ghc-about-diagram-layout{
-  display:grid;grid-template-columns:minmax(0,1.5fr) minmax(15rem,.75fr);
-  gap:1.1rem;align-items:start;margin:1rem 0 1.2rem;
+  display:grid;grid-template-columns:minmax(0,1fr);
+  gap:.85rem;align-items:start;margin:.85rem 0 1rem;
 }
 .ghc-about-diagram-panel{
-  min-width:0;overflow-x:auto;border:1px solid var(--sl-color-gray-5);
-  border-radius:15px;background:var(--sl-color-bg-nav);padding:1.15rem;
+  min-width:0;max-width:100%;overflow-x:auto;border:1px solid var(--sl-color-gray-5);
+  border-radius:15px;background:var(--sl-color-bg-nav);padding:clamp(.8rem,2vw,1.15rem);
 }
 .ghc-about-diagram-eyebrow{
   font-weight:850;letter-spacing:.09em;font-size:.66rem;
   color:var(--sl-color-accent-high);margin-bottom:.7rem;
 }
-.ghc-about-diagram-panel :global(pre.mermaid){margin:0;max-width:100%}
+.ghc-about-diagram-panel :global(pre.mermaid){margin:0;max-width:100%;overflow-x:auto}
 .ghc-about-diagram-panel :global(.mermaid){min-width:0}
 .ghc-about-diagram-companion{
   border:1px solid var(--sl-color-gray-5);border-radius:15px;
@@ -48,7 +48,7 @@
 }
 .ghc-about-companion-eyebrow{font-size:.66rem;font-weight:850;letter-spacing:.09em;color:var(--sl-color-accent-high)}
 .ghc-about-diagram-companion h3{font-size:1.15rem!important;letter-spacing:-.02em;line-height:1.28;margin:0!important}
-.ghc-about-companion-links{display:grid;gap:.4rem}
+.ghc-about-companion-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem}
 .ghc-about-companion-links a{
   display:grid;gap:.2rem;border:1px solid var(--sl-color-gray-5);
   border-radius:9px;background:var(--sl-color-bg);
@@ -60,6 +60,6 @@
 .ghc-about-companion-links b{color:var(--sl-color-accent-high)}
 .ghc-about-diagram-companion p{margin:0!important;font-size:.72rem;line-height:1.58;color:var(--sl-color-gray-2)}
 .ghc-about-diagram-companion a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
-@media(max-width:65rem){.ghc-about-diagram-layout{grid-template-columns:1fr}.ghc-about-diagram-companion{max-width:none}.ghc-about-companion-links{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:65rem){.ghc-about-diagram-layout{grid-template-columns:1fr}.ghc-about-diagram-companion{max-width:none}}
 @media(max-width:37rem){.ghc-about-companion-links{grid-template-columns:1fr}}
 </style>

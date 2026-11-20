@@ -109,6 +109,8 @@ const about=built('/about-gohackerscloud/');
 const aboutSource=read('src/content/docs/about-gohackerscloud/index.mdx');
 const aboutCards=read('src/components/FoundationAboutCards.astro');
 const lead=read('src/components/FoundationAboutLead.astro');
+const aboutDiagram=read('src/components/FoundationAboutDiagram.astro');
+const catalogHero=read('src/components/FoundationCatalogHero.astro');
 assert.equal(h1(about),1);
 assert.ok(aboutSource.includes('title: "About GoHackersCloud"'),
   'About needs concise Starlight page title');
@@ -126,6 +128,16 @@ assert.ok(aboutCards.includes('@media(max-width:39rem)'),
   'About links and learning stages must stack on narrow screens');
 assert.ok(lead.includes('@media(max-width:58rem)'),
   'Existing About introduction must stack below tablet widths');
+assert.ok(lead.includes('grid-template-rows:2.1rem minmax(2.1rem,auto)'),
+  'About numeric facts must align numbers and labels into common rows');
+assert.ok(aboutDiagram.includes('grid-template-columns:minmax(0,1fr)') &&
+  aboutDiagram.includes('grid-template-columns:repeat(2,minmax(0,1fr))'),
+  'About ecosystem diagram must use available reading width and balance companion cards');
+assert.ok(catalogHero.includes('grid-template-rows:2rem minmax(2.5rem,auto)'),
+  'Catalog metric cards must align counts and labels');
+assert.ok(css.includes('body:has(.ghc-about-lead) .sl-markdown-content > h2') &&
+  css.includes('body:has(.ghc-catalog-hero) .sl-markdown-content > h2'),
+  'Showcase heading spacing must remain scoped away from lessons');
 assert.equal((about.match(/<pre[^>]*\bclass="[^"]*\bmermaid\b[^"]*"/g)||[]).length,1,
   'Existing ecosystem Mermaid diagram must be retained');
 for(const route of ['/start-here/','/7-day-challenge/','/portfolio/',
