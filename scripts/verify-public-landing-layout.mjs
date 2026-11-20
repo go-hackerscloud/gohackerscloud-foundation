@@ -173,7 +173,9 @@ for(const [route,variant,expectedLink] of [
     'Expected contextual panel on '+route);
   assert.ok(html.includes('ghc-discovery--'+variant),
     'Discovery panel missing from built route '+route);
-  assert.equal(cards(html,'ghc-discovery-card'),3,
+  const exactDiscoveryCards=[...html.matchAll(/<a\b[^>]*class="([^"]*)"/g)]
+    .filter(([,classes])=>classes.split(/\s+/).includes('ghc-discovery-card'));
+  assert.equal(exactDiscoveryCards.length,3,
     'Exactly three navigable resource cards expected on '+route);
   assert.ok(html.includes(expectedLink),
     'Canonical current resource destination missing on '+route);
