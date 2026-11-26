@@ -128,7 +128,6 @@ export default defineConfig({
           collapsed: true,
           items: [
             {label: 'Compare 9 Certification Paths', link: '/learning-hub/certification-paths/'},
-            {label: 'AWS Cloud Practitioner · 14-chapter Guide', link: '/learning-hub/aws-clf-c02/'},
             ...ghcCareerPathways.map(role=>({label: role.title+' · Certifications', link: ghcCertURL(role.id)})),
           ],
         },
@@ -145,7 +144,7 @@ export default defineConfig({
           label: 'Academy & GHC Labs',
           collapsed: true,
           items: [
-            {label: 'GHC Labs Overview', link: '/ghc-labs/'},
+            {label: 'Academy & GHC Labs Hub', link: '/ghc-labs/'},
             {label: 'How Labs Work', link: '/ghc-labs/how-it-works/'},
             {label: 'Explore 13 Academy Tracks', link: '/ghc-labs/track-selection/'},
             {label: 'Five Lab Video Guides', link: '/ghc-labs/instructor-demo/'},
