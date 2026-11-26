@@ -1,9 +1,9 @@
 ---
 title: GoHackersCloud Foundation
 description: Learn IT, networking, Linux, cloud, cybersecurity, DevOps and AI fundamentals for free. Choose a student or professional learning path, practise safely and build your skills.
-template: splash
 ---
 
+import FoundationJourneyNavigation from '../../components/FoundationJourneyNavigation.astro';
 import FoundationHero from '../../components/FoundationHero.astro';
 import FoundationAudiencePaths from '../../components/FoundationAudiencePaths.astro';
 import FoundationChallengePromo from '../../components/FoundationChallengePromo.astro';
@@ -12,6 +12,10 @@ import FoundationResourceHub from '../../components/FoundationResourceHub.astro'
 import GoHackersCloudOfferings from '../../components/GoHackersCloudOfferings.astro';
 import FoundationHomeCards from '../../components/FoundationHomeCards.astro';
 import FoundationSectionIntro from '../../components/FoundationSectionIntro.astro';
+
+<div class="ghc-explore-width-marker ghc-foundation-home-marker" aria-hidden="true"></div>
+
+<FoundationJourneyNavigation section="entry" current="/" />
 
 <FoundationHero />
 

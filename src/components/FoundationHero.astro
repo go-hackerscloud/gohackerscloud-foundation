@@ -6,6 +6,7 @@ const steps = [
   {number:'04',label:'Save evidence and keep learning'},
 ];
 ---
+<div class="foundation-hero-frame">
 <section class="foundation-hero" aria-label="Welcome to GoHackersCloud Foundation">
   <div class="foundation-hero-copy">
     <span class="foundation-eyebrow">GOHACKERSCLOUD FOUNDATION · FREE LEARNING</span>
@@ -32,7 +33,9 @@ const steps = [
     </div>
   </div>
 </section>
+</div>
 <style>
+.foundation-hero-frame{min-width:0;container-type:inline-size}
 .foundation-hero{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(235px,.85fr);gap:2rem;align-items:center;padding:clamp(1.4rem,3.6vw,3.5rem);border:1px solid #23425d;border-radius:20px;background:radial-gradient(circle at 88% 0%,#154b61 0%,transparent 42%),linear-gradient(135deg,#071629,#0b2541);color:#f8fafc;margin:.7rem 0 2.4rem;overflow:hidden}
 .foundation-eyebrow{font-size:.7rem;font-weight:800;letter-spacing:.1em;color:#8edff0}
 .foundation-hero h2{font-size:clamp(2.1rem,3.5vw,3.55rem)!important;line-height:1.08;letter-spacing:-.045em;color:#fff;margin:.75rem 0 1.15rem!important}
@@ -58,6 +61,9 @@ const steps = [
 .foundation-process li:last-child{border-bottom:0}
 .foundation-process li span:first-child{font-size:.68rem;color:#98b9ce}
 .foundation-process li span:last-child{color:#62e8ae}
+/* The Foundation homepage now retains both Starlight sidebars.
+   Responsive hero columns follow the actual reading width, not the viewport. */
+@container (max-width:62rem){.foundation-hero{grid-template-columns:1fr;gap:1.4rem}.foundation-hero-graphic{max-width:450px}.foundation-process{transform:none}.foundation-hero h2{font-size:clamp(2rem,4vw,3.25rem)!important}}
 @media(max-width:850px){.foundation-hero{grid-template-columns:1fr}.foundation-process{transform:none}.foundation-hero-graphic{max-width:450px}}
 @media(max-width:540px){.foundation-hero{padding:1.4rem}.foundation-hero-graphic{display:none}.foundation-hero-actions a{width:100%}}
 </style>

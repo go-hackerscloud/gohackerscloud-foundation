@@ -79,6 +79,47 @@ for(const route of freeFoundationStudyRoutes){
   assert.ok(document.includes('href="/explore/"'),
     'Free Foundation study page must offer its Explore Overview return link: '+route);
 }
+
+const journeyComponent=read('src/components/FoundationJourneyNavigation.astro');
+assert.ok(journeyComponent.includes("ghcExploreGroups.find(item=>item.id==='careers')") &&
+  journeyComponent.includes('aria-current=') &&
+  journeyComponent.includes('@media(max-width:40rem)'),
+  'Unified journey navigation must reuse canonical career links, support active state, and stack on phones');
+for(const route of ['/','/explore/']){
+ const document=html(route);
+ assert.ok(document.includes('data-has-sidebar'),
+   'Both entry pages must preserve the visible Explore navigation sidebar: '+route);
+ assert.equal(countClass(document,'ghc-journey-navigation'),1,
+   'Both entry pages must have exactly one matching overview/home navigation: '+route);
+ for(const sibling of ['/','/explore/'])
+   assert.ok(document.includes('href="'+sibling+'"'),
+    'Entry page must link directly to '+sibling+' from '+route);
+ assert.ok(document.includes('aria-current="page"'),
+   'Entry page must clearly identify its current section: '+route);
+}
+const careerPages=[
+ ['/paths/students/','src/content/docs/paths/students.mdx'],
+ ['/paths/professionals/','src/content/docs/paths/professionals.mdx'],
+ ['/portfolio/','src/content/docs/portfolio/index.mdx'],
+];
+const careers=ghcExploreGroups.find(group=>group.id==='careers');
+assert.equal(careers?.links.length,3,'Career & Portfolio group must have three routes');
+for(const [route,sourcePath] of careerPages){
+ const page=html(route);
+ const mdx=read(sourcePath);
+ assert.ok(page.includes('data-has-sidebar')&&mdx.includes('ghc-explore-width-marker'),
+   'Career page must retain the sidebar and Explore content canvas: '+route);
+ assert.equal(countClass(page,'ghc-journey-navigation'),1,
+   'Each Career page needs one common three-page navigator: '+route);
+ assert.ok(page.includes('aria-current="page"'),
+   'Career page should highlight its current location: '+route);
+ for(const link of careers.links){
+   assert.ok(page.includes('href="'+link.href+'"'),
+     'Career and Portfolio page must link to sibling '+link.href+' from '+route);
+ }
+ assert.ok(page.includes('href="/explore/"')&&page.includes('href="/"'),
+   'Each Career page must provide Overview and Foundation Home return routes: '+route);
+}
 const hubSource=read('src/components/FoundationExploreHub.astro');
 assert.ok(hubSource.includes('grid-template-columns:repeat(2,minmax(0,1fr))')&&
  hubSource.includes('@media(max-width:48rem)'),
@@ -88,4 +129,4 @@ assert.ok(!/\b(?:fetch|sendBeacon|XMLHttpRequest)\s*\(/.test(hubSource),
 assert.ok(html('/curriculum/').includes('id="lesson-directory"')&&
  html('/portfolio/').includes('ghc-portfolio-hub-marker'),
  'Foundation lessons and portfolio hubs must stay intact');
-console.log('Explore navigation QA passed: four grouped categories, all 16 original routes, a sidebar-aware overview, six splash-page return links and five unified study pages.');
+console.log('Explore navigation QA passed: four grouped categories, all 16 original routes, two synchronized entry pages, three career-path pages, six splash-page returns and five unified study pages.');
