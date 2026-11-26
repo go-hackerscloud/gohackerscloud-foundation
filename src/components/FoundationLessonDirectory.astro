@@ -55,14 +55,18 @@ const modules = foundationModules.map(module => {
 .foundation-directory-stage{margin-top:2rem}
 .foundation-directory-stage h3{font-size:1.04rem;margin-bottom:.85rem}
 .foundation-directory-list{display:grid;gap:.6rem}
-.foundation-directory-module{border:1px solid var(--sl-color-gray-5);border-radius:12px;background:var(--sl-color-bg-nav);overflow:hidden;scroll-margin-top:1rem}
-.foundation-directory-module summary{display:grid;grid-template-columns:80px minmax(0,1fr) auto 18px;gap:.8rem;align-items:center;list-style:none;cursor:pointer;padding:1.05rem 1.2rem;color:var(--sl-color-text)}
+.foundation-directory-module{border:1px solid var(--sl-color-gray-5);border-radius:12px;background:var(--sl-color-bg-nav);overflow:hidden;scroll-margin-top:1rem;container-type:inline-size}
+/* Starlight also styles details/summary. Force the directory's own grid so the resource label never gets pushed outside the card. */
+.foundation-directory-module > summary{display:grid!important;grid-template-columns:6.5rem minmax(0,1fr) max-content 1.25rem;gap:.8rem;align-items:center;box-sizing:border-box;width:100%;min-width:0;list-style:none;cursor:pointer;padding:1.05rem 1.2rem;color:var(--sl-color-text)}
+.foundation-directory-module > summary::marker{content:''}
+.foundation-directory-module > summary::before,.foundation-directory-module > summary::after{display:none!important;content:none!important}
+.foundation-directory-module > summary > span{min-width:0}
 .foundation-directory-module summary::-webkit-details-marker{display:none}
 .foundation-directory-module summary:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:-3px}
 .foundation-directory-id{font-size:.67rem;letter-spacing:.04em;font-weight:800;color:var(--sl-color-accent-high)}
-.foundation-directory-name{font-size:.92rem;line-height:1.35;font-weight:750}
-.foundation-directory-total{font-size:.75rem;color:var(--sl-color-gray-2);white-space:nowrap}
-.foundation-directory-arrow{font-size:1.1rem;text-align:center;transition:transform .15s ease}
+.foundation-directory-name{font-size:.92rem;line-height:1.35;font-weight:750;overflow-wrap:anywhere}
+.foundation-directory-total{font-size:.75rem;line-height:1.35;color:var(--sl-color-gray-2);white-space:nowrap;justify-self:end;display:inline-flex;align-items:center;padding:.28rem .55rem;border:1px solid var(--sl-color-gray-5);border-radius:999px;background:var(--sl-color-bg)}
+.foundation-directory-arrow{font-size:1.1rem;text-align:center;justify-self:center;transition:transform .15s ease}
 .foundation-directory-module[open] .foundation-directory-arrow{transform:rotate(180deg)}
 .foundation-directory-module[open]{border-color:var(--sl-color-accent)}
 .foundation-directory-body{padding:0 1.2rem 1.2rem;border-top:1px solid var(--sl-color-gray-5)}
@@ -72,6 +76,8 @@ const modules = foundationModules.map(module => {
 .foundation-directory-link{color:var(--sl-color-text);text-decoration:none}
 .foundation-directory-link:hover{text-decoration:underline;color:var(--sl-color-accent-high)}
 .foundation-directory-begin{font-size:.84rem;font-weight:800;text-decoration:none}
-@media(max-width:650px){.foundation-directory-module summary{grid-template-columns:1fr 19px;gap:.32rem .5rem;padding:.9rem}.foundation-directory-id{grid-column:1}.foundation-directory-name{grid-column:1}.foundation-directory-total{grid-column:1}.foundation-directory-arrow{grid-column:2;grid-row:1 / 4}.foundation-directory-body ol{columns:1}}
+/* Adapt to the available card width, not just the screen width (which can have two Starlight sidebars). */
+@container (max-width:52rem){.foundation-directory-module > summary{grid-template-columns:minmax(0,1fr) max-content;grid-template-areas:'id total' 'name arrow';gap:.45rem .75rem}.foundation-directory-id{grid-area:id}.foundation-directory-name{grid-area:name}.foundation-directory-total{grid-area:total}.foundation-directory-arrow{grid-area:arrow}.foundation-directory-body ol{columns:1}}
+@media(max-width:650px){.foundation-directory-module > summary{padding:.9rem;gap:.4rem .55rem}.foundation-directory-body{padding:0 .9rem 1rem}.foundation-directory-body ol{columns:1}}
 @media(prefers-reduced-motion:reduce){.foundation-directory-arrow{transition:none}}
 </style>
