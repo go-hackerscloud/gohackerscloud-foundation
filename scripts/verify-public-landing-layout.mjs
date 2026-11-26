@@ -317,6 +317,23 @@ assert.equal([...portfolioHub.matchAll(/class="([^"]*)"/g)].filter(([,value])=>v
   'Portfolio hub must present exactly six grouped cards');
 assert.equal([...curriculumHub.matchAll(/class="([^"]*)"/g)].filter(([,value])=>value.split(/\s+/).includes('foundation-directory-module')).length,16,
   'Curriculum must retain all 16 real lesson-list accordions');
+
+const directoryComponent=read('src/components/FoundationLessonDirectory.astro');
+assert.ok(directoryComponent.includes('display:grid!important') &&
+  directoryComponent.includes('grid-template-columns:6.5rem minmax(0,1fr) max-content 1.25rem') &&
+  directoryComponent.includes('@container (max-width:52rem)') &&
+  directoryComponent.includes('summary::before') &&
+  directoryComponent.includes('white-space:nowrap'),
+  'Module headers need a forced responsive grid, a full resource badge and no duplicate Starlight chevrons');
+const resourceBadges=[...curriculumHub.matchAll(/<span\b[^>]*class="([^"]*)"[^>]*>([^<]*)<\/span>/g)]
+  .filter(([,classes])=>classes.split(/\s+/).includes('foundation-directory-total'));
+assert.equal(resourceBadges.length,16,
+  'All 16 module headers must show a published resource count');
+for(const [,classes,label] of resourceBadges){
+  assert.match(label,/^\s*\d+ resources\s*$/,
+    'Resource count must retain its complete readable number and resources label');
+}
+
 assert.ok(curriculumHub.includes('id="lesson-directory"') &&
   curriculumHub.includes('id="foundation-modules"'),
   'Curriculum module explorer and full lesson syllabus must have stable jump targets');
