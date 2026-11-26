@@ -61,6 +61,10 @@ Ask: Which identities may deploy? Which components need public access? What data
 
 A serious junior portfolio can be built without expensive infrastructure. Create three documented artifacts: a **cloud architecture and trust-boundary diagram**, an **IAM or network least-privilege review**, and a **synthetic incident or risk assessment**. Explain the assumptions and results. Deploy resources only when you have authorization and cost controls.
 
+## Aligned certifications and interviews
+
+For this career path, compare the [Cloud Security Engineer certification recommendations](/learning-hub/certification-paths/cloud-security-engineer/) (including AWS Security – Specialty, ISC2 CCSP and Google Professional Cloud Security Engineer), and practise the [Cloud Security Engineer interview questions](/learning-hub/interview-paths/cloud-security-engineer/). These are independent credentials, not automatically included with Foundation or Academy.
+
 ## Foundation and Academy
 
 Read [Foundation Cloud Fundamentals](/foundation/gohackerscloud-foundation/07-cloud-computing-fundamentals/01-cloud-computing/) and [IAM Fundamentals](/foundation/gohackerscloud-foundation/09-identity--access-management/01-iam-fundamentals/) as prerequisites. For advanced guided practice, see [Academy Cloud Security](https://academy.gohackerscloud.com/tracks/cloud/) and the separate [GHC Labs overview](/ghc-labs/). Hosted Labs have their own subscription terms.
