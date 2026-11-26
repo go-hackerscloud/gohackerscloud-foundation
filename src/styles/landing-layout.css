@@ -1,5 +1,5 @@
 /* Match Academy's 78rem desktop canvas on all 16 Explore pages:
-   11 splash routes and 5 explicitly marked pages (four guides + Labs hub).
+   9 splash routes and 7 explicitly marked pages (four guides + Labs, Portfolio and Curriculum hubs).
    Standard technical lessons retain Starlight's narrower reading width. */
 
 html:not([data-has-sidebar]) body,
@@ -74,7 +74,7 @@ body:has(.ghc-catalog-hero) .sl-markdown-content > h3 {
 .ghc-lab-directory-anchor { display:block;scroll-margin-top:6rem; }
 
 
-/* The five non-splash Explore pages explicitly opt in through their page
+/* The seven non-splash Explore pages explicitly opt in through their page
    marker; other sidebar lesson routes keep Starlight's default width.
    Wide tables scroll locally instead of expanding the viewport. */
 html:not([data-has-sidebar]) .content-panel,
