@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import {existsSync,readFileSync,readdirSync} from 'node:fs';
 import {join} from 'node:path';
+import {foundationPortfolioProjects,foundationPortfolioURL} from '../src/data/foundation-portfolio-projects.mjs';
+import {foundationModules} from '../src/data/foundation-modules.mjs';
 const read=path=>readFileSync(path,'utf8');
 const built=route=>{
   const path=join('dist',route.replace(/^\/+/,''),'index.html');
@@ -321,6 +323,30 @@ assert.ok(!lessonSidebar.includes('autogenerate') &&
 assert.ok(portfolioData.includes("export const foundationPortfolioProjects") &&
   sidebar.includes('foundationPortfolioGroups.map(group=>'),
   'Portfolio cards and sidebar must use shared project metadata');
+assert.equal(foundationPortfolioProjects.length,6,'Expect six documented Foundation portfolio exercises');
+for(const [i,project] of foundationPortfolioProjects.entries()){
+  const route=foundationPortfolioURL(project.id);
+  const detail=built(route);
+  assert.ok(portfolioHub.includes('href="'+route+'"'),
+    'Portfolio hub must link to every real project: '+project.id);
+  assert.ok(detail.includes('class="ghc-portfolio-project-nav"') &&
+    detail.includes('href="/portfolio/"'),
+    'Project details must preserve return navigation: '+project.id);
+  assert.ok(detail.includes('PROJECT '+project.number+' OF 06'),
+    'Project details must show correct sequence position: '+project.id);
+  if(i>0)assert.ok(detail.includes('href="'+foundationPortfolioURL(foundationPortfolioProjects[i-1].id)+'"'),
+    'Project previous route is missing: '+project.id);
+  if(i<foundationPortfolioProjects.length-1)
+    assert.ok(detail.includes('href="'+foundationPortfolioURL(foundationPortfolioProjects[i+1].id)+'"'),
+      'Project next route is missing: '+project.id);
+}
+assert.equal(foundationModules.length,16,'Foundation module catalogue must remain complete');
+for(const module of foundationModules){
+  assert.ok(curriculumHub.includes('href="'+module.link+'"'),
+    'The module explorer must still link to its first published lesson: '+module.id);
+  built(module.link);
+}
+
 
 assert.ok(!p3Panel.includes('fetch(') && !p3Panel.includes('sendBeacon('),
   'P3 panels must not collect learner information');
