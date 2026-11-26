@@ -86,9 +86,19 @@ export default defineConfig({
         {
           label: 'Foundation Learning Stages',
           items: [
-            {label: '01 · Core IT & DevOps', collapsed: true, items: moduleLinks('core')},
-            {label: '02 · Cloud & Cybersecurity', collapsed: true, items: moduleLinks('security')},
-            {label: '03 · Enterprise & Professional', collapsed: true, items: moduleLinks('professional')},
+            {label: 'Overview · Three Learning Stages', link: '/learning-stages/'},
+            {label: '01 · Core IT & DevOps', collapsed: true, items: [
+              {label: 'Stage 1 Overview', link: '/learning-stages/core/'},
+              ...moduleLinks('core'),
+            ]},
+            {label: '02 · Cloud & Cybersecurity', collapsed: true, items: [
+              {label: 'Stage 2 Overview', link: '/learning-stages/security/'},
+              ...moduleLinks('security'),
+            ]},
+            {label: '03 · Enterprise & Professional', collapsed: true, items: [
+              {label: 'Stage 3 Overview', link: '/learning-stages/professional/'},
+              ...moduleLinks('professional'),
+            ]},
           ],
         },
         {
