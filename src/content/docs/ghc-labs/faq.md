@@ -3,6 +3,9 @@ title: "GHC Labs — Membership, Safety and FAQs"
 description: "Clarify free Foundation content, Academy lab access, browser-based practice, ethical testing, costs and troubleshooting."
 ---
 
+[← Academy & GHC Labs Hub](/ghc-labs/) · [How Labs Work](/ghc-labs/how-it-works/) · [13 Academy Tracks](/ghc-labs/track-selection/)
+
+
 ## Is the Foundation free?
 
 Yes, Foundation's publicly accessible educational lessons and learning resources are free to read. Academy memberships and hosted lab access are separate offerings.
@@ -29,7 +32,7 @@ Depending on the track: networking and operating systems, web/API assessment, cl
 
 ## Where do I watch the demonstration?
 
-The [GHC Labs overview](/ghc-labs/) has a reserved video section. A placeholder is shown until an official recording is attached.
+The [five-video GHC Labs learning library](/ghc-labs/instructor-demo/) lists five planned demonstration topics and embeds each official recording only after its publication. Unpublished topics show honest placeholders.
 
 ## Where do I see current prices and access terms?
 
@@ -48,3 +51,6 @@ Check access eligibility, the selected lesson's availability, browser session st
 Aim for a concise report with scope, objective, observations, interpretation, remediation guidance and retest plan. Distinguish real observations from hypothetical example outputs.
 
 [Explore all tracks](/ghc-labs/track-selection/) · [Subscription options](https://gohackerscloud.com/hands-on-cybersecurity-labs)
+
+
+[← Back to the Academy & GHC Labs Hub](/ghc-labs/) · [Explore Five Video Guides](/ghc-labs/instructor-demo/)
