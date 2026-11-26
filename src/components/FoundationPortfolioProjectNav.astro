@@ -1,0 +1,29 @@
+---
+import {foundationPortfolioProjects,foundationPortfolioURL} from '../data/foundation-portfolio-projects.mjs';
+const index=foundationPortfolioProjects.findIndex(project=>project.id===Astro.props.projectId);
+if(index<0)throw new Error('Unknown Foundation portfolio project '+Astro.props.projectId);
+const previous=foundationPortfolioProjects[index-1];
+const next=foundationPortfolioProjects[index+1];
+const current=foundationPortfolioProjects[index];
+---
+<nav class="ghc-portfolio-project-nav" aria-label="Portfolio project learning navigation">
+  <a class="ghc-portfolio-project-home" href="/portfolio/">← All six portfolio projects</a>
+  <span class="ghc-portfolio-current">PROJECT {current.number} OF 06 · {current.level}</span>
+  <div class="ghc-portfolio-project-neighbors">
+    {previous ? <a href={foundationPortfolioURL(previous.id)}><span>← Previous project</span><strong>{previous.shortTitle}</strong></a> : <span class="ghc-portfolio-project-empty">First project in the series</span>}
+    {next ? <a href={foundationPortfolioURL(next.id)}><span>Next project →</span><strong>{next.shortTitle}</strong></a> : <a href="/portfolio/"><span>Completed this sequence?</span><strong>Return to Portfolio Hub →</strong></a>}
+  </div>
+</nav>
+<style>
+.ghc-portfolio-project-nav{margin:1.8rem 0 1.5rem;padding:1.1rem;border-radius:13px;background:var(--sl-color-bg-nav);border:1px solid var(--sl-color-gray-5)}
+.ghc-portfolio-project-home{display:inline-flex;font-size:.83rem;font-weight:800;margin-bottom:.65rem}
+.ghc-portfolio-current{display:block;font-size:.68rem;font-weight:850;letter-spacing:.065em;color:var(--sl-color-accent-high)}
+.ghc-portfolio-project-neighbors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin-top:.85rem}
+.ghc-portfolio-project-neighbors a{display:flex;flex-direction:column;gap:.35rem;min-height:80px;border-radius:9px;border:1px solid var(--sl-color-gray-5);background:var(--sl-color-bg);padding:.8rem;text-decoration:none!important;color:var(--sl-color-text)!important}
+.ghc-portfolio-project-neighbors a:hover{border-color:var(--sl-color-accent)}
+.ghc-portfolio-project-neighbors a span{font-size:.73rem;color:var(--sl-color-gray-2)}
+.ghc-portfolio-project-neighbors a strong{font-size:.85rem;line-height:1.4}
+.ghc-portfolio-project-empty{display:grid;place-items:center;border:1px dashed var(--sl-color-gray-5);border-radius:9px;font-size:.78rem;color:var(--sl-color-gray-2);padding:.8rem}
+.ghc-portfolio-project-nav a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:37rem){.ghc-portfolio-project-neighbors{grid-template-columns:1fr}}
+</style>
