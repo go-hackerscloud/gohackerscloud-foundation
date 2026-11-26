@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {existsSync,readFileSync} from 'node:fs';
 import {join} from 'node:path';
 import {foundationChallengeDays} from '../src/data/foundation-challenge.mjs';
+import {ghcExploreGroups,ghcExploreRoutes} from '../src/data/ghc-explore-navigation.mjs';
 
 const challengePath='src/content/docs/7-day-challenge.mdx';
 const componentPath='src/components/FoundationChallenge.astro';
@@ -104,12 +105,18 @@ assert.ok(page('/start-here/').includes(route),'Start Here must link to challeng
 assert.ok(page('/paths/students/').includes(route),'Student path must link to challenge');
 assert.ok(page('/paths/professionals/').includes(route),'Professional path must link to challenge');
 const nav=source('astro.config.mjs');
-assert.ok(nav.includes("label: '7-Day Free Foundation Challenge', link: '/7-day-challenge/'"),
-  'Challenge must be discoverable in first navigation');
-assert.ok(nav.indexOf("link: '/start-here/'")<nav.indexOf("link: '/7-day-challenge/'"),
-  'Challenge should follow Start Here');
-assert.ok(nav.indexOf("link: '/7-day-challenge/'")<nav.indexOf("link: '/paths/students/'"),
-  'Challenge should precede role-specific paths');
+assert.ok(nav.includes("ghcExploreGroups.map(group=>") &&
+  ghcExploreRoutes.includes('/7-day-challenge/'),
+  'Challenge must be discoverable from the grouped Explore navigation');
+const foundationGroup=ghcExploreGroups.find(group=>group.id==='foundation');
+const careerGroup=ghcExploreGroups.find(group=>group.id==='careers');
+assert.ok(foundationGroup&&careerGroup&&
+ ghcExploreGroups.indexOf(foundationGroup)<ghcExploreGroups.indexOf(careerGroup),
+ 'Free Foundation learning must precede career pathways');
+const firstLink=foundationGroup.links.findIndex(link=>link.href==='/start-here/');
+const challengeLink=foundationGroup.links.findIndex(link=>link.href==='/7-day-challenge/');
+assert.ok(firstLink>=0&&challengeLink>firstLink,
+ 'The seven-day challenge should follow Start Here inside the free learning group');
 
 for(const match of markdown.matchAll(/\]\((\/[^)#?]+)(?:[?#][^)]*)?\)/g))page(match[1]);
 for(const path of ['/curriculum/','/ghc-labs/','/about-gohackerscloud/catalog/'])page(path);
