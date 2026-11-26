@@ -4,6 +4,7 @@ import mermaid from 'astro-mermaid';
 import { foundationModules } from './src/data/foundation-modules.mjs';
 import {ghcCareerPathways,ghcCareerURL,ghcCertURL,ghcInterviewURL} from './src/data/ghc-career-pathways.mjs';
 import {foundationPortfolioGroups,foundationPortfolioProjects,foundationPortfolioURL} from './src/data/foundation-portfolio-projects.mjs';
+import {ghcExploreGroups} from './src/data/ghc-explore-navigation.mjs';
 
 const foundationStructuredData = JSON.stringify({
   '@context': 'https://schema.org',
@@ -73,22 +74,13 @@ export default defineConfig({
         {
           label: 'Explore GoHackersCloud',
           items: [
-            { label: 'Foundation Home', link: '/' },
-            { label: 'About GoHackersCloud', link: '/about-gohackerscloud/' },
-            { label: 'Complete Promotional Catalog', link: '/about-gohackerscloud/catalog/' },
-            { label: 'Courses & Bundles', link: '/about-gohackerscloud/courses/' },
-            { label: 'Test Engine & Mock Exams', link: '/about-gohackerscloud/test-engine/' },
-            { label: 'Cybersecurity Services', link: '/about-gohackerscloud/cybersecurity-services/' },
-            { label: 'GHC Labs & Academy', link: '/ghc-labs/' },
-            { label: 'Academy Lab Lesson Directory', link: '/about-gohackerscloud/lab-directory/' },
-            { label: 'Start Here · Free Foundation', link: '/start-here/' },
-            { label: '7-Day Free Foundation Challenge', link: '/7-day-challenge/' },
-            { label: 'Career & Portfolio Hub', link: '/portfolio/' },
-            { label: 'Student Learning Path', link: '/paths/students/' },
-            { label: 'Professional Upskilling Path', link: '/paths/professionals/' },
-            { label: 'Explore 16 Modules', link: '/curriculum/' },
-            { label: 'Core IT & DevOps Deep-Dive', link: '/core-it-devops/' },
-            { label: '12-Week Study Plan', link: '/study-plan/' },
+            {label: 'Explore Overview', link: '/explore/'},
+            {label: 'Foundation Home', link: '/'},
+            ...ghcExploreGroups.map(group=>({
+              label: group.title,
+              collapsed: true,
+              items: group.links.map(link=>({label: link.label,link: link.href})),
+            })),
           ],
         },
         {
