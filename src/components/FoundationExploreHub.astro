@@ -14,7 +14,7 @@ import {ghcExploreGroups} from '../data/ghc-explore-navigation.mjs';
   </div>
   <div class="ghc-explore-hub-grid">
     {ghcExploreGroups.map((group,index)=>(
-      <section class="ghc-explore-hub-card" aria-labelledby={'explore-'+group.id} id={'explore-'+group.id}>
+      <section class="ghc-explore-hub-card" aria-labelledby={'explore-'+group.id+'-heading'} id={'explore-'+group.id}>
         <div class="ghc-explore-hub-card-heading">
           <span>{String(index+1).padStart(2,'0')} · {group.eyebrow}</span>
           <h3 id={'explore-'+group.id+'-heading'}>{group.title}</h3>
