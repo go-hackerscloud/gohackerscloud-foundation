@@ -6,13 +6,13 @@
 
 - Site: `foundation.gohackerscloud.com`.
 - Page set: all **16 Explore GoHackersCloud** sidebar destinations, extracted from `astro.config.mjs`.
-- Public Foundation landing pages and the Study Plan use an **Academy-aligned 78rem / 1248px maximum width** (updated 26 November 2026); technical learning lessons retain narrower reading widths.
+- All **16 Explore GoHackersCloud** pages use an **Academy-aligned 78rem / 1248px maximum content width** (updated 26 November 2026); individual technical lessons and project instructions retain their narrower reading widths.
 - Keep all Foundation, Academy and lab links, URLs, content, course or subscription terms unchanged.
 - No source-owned Obsidian lessons, content tree, product inventory, runtime services, auth or billing changes.
 
 ## Layout correction — 26 November 2026
 
-The Foundation homepage was visibly narrower than the Academy because public landing pages used both `--sl-content-width: 60rem` and an explicit `.sl-container` maximum of `60rem`. The Academy homepage uses a wider `78rem` setting. A separate scoped correction aligns Foundation splash pages and the Study Plan to `78rem`, retains centered fluid layouts on smaller screens, and preserves long-form lesson widths. The automated checks and manual viewport audit now use this updated baseline. This correction changes only layout styling, assertions and documentation—not learning content or routes.
+The Foundation homepage was visibly narrower than the Academy because public landing pages used both `--sl-content-width: 60rem` and an explicit `.sl-container` maximum of `60rem`. The Academy homepage uses a wider `78rem` setting. A scoped correction aligns all **12 Explore splash pages** and the **four guidance pages** (Start Here, Student Path, Professional Path and Study Plan) to `78rem`. The guidance pages use a page-specific marker so standard technical lessons and project pages retain narrower widths. Centered fluid layouts and paragraph readability are preserved on smaller screens. The automated checks and manual viewport audit now use this updated baseline. This correction changes only layout styling, assertions and documentation—not learning content or routes.
 
 ## Automated static checks
 
@@ -34,7 +34,7 @@ Download the `foundation-p5-static-audit` artifact from the functional workflow 
 
 | Category | Required check | Pages / viewport | Evidence |
 |---|---|---|---|
-| Responsive layout | Verify centered 78rem public canvas (and narrower lesson reading widths), responsive cards and local table scrolling, without viewport horizontal overflow | 16 Explore routes at 375, 768, 1440, 1920px | Screenshots / measurements |
+| Responsive layout | Verify centered 78rem canvas across all 16 Explore routes (and narrower technical lesson widths), responsive cards and local table scrolling, without viewport horizontal overflow | 16 Explore routes at 375, 768, 1440, 1920px | Screenshots / measurements |
 | Zoom & accessibility | Keyboard-only navigation; focus order/visibility; headings, labels, expanded disclosures; 200% zoom | Home, Catalog, Courses, Test Engine, Labs, Study Plan, Challenge | Video or screenshots |
 | Contrast | Use automated axe-style scan plus human verification of light/dark mode contrast and decorative text | All 16 pages | Test output |
 | Diagrams | Mermaid graphics readable with scroll/zoom and no clipped nodes | About, Catalog, Challenge, Services, learning paths | Screenshots |
