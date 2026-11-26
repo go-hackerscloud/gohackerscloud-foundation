@@ -3,6 +3,9 @@ title: "How GHC Labs Works — Student Journey"
 description: "A practical walkthrough of selecting a lesson, launching authorized hosted cyber labs, collecting evidence and ending a session."
 ---
 
+[← Academy & GHC Labs Hub](/ghc-labs/) · [Browse Academy Tracks](/ghc-labs/track-selection/) · [Video Guides](/ghc-labs/instructor-demo/)
+
+
 ## Before the lab
 
 Foundation lessons are public and free. Hosted environments are part of the separate GoHackersCloud Academy offering and require whatever access the specific track and membership provide. **Read the lab-specific scope and safety notice before running any security test.**
@@ -48,3 +51,6 @@ Use the intended End Lab workflow. Hosted environments may be temporary; do not 
 Check browser/session state, whether the lesson includes a launch control, whether your subscription permits the track, and whether a previous session needs to be ended. Share non-sensitive errors with official support. Do not share authentication cookies or access tokens.
 
 [Explore tracks](/ghc-labs/track-selection/) · [See membership options](https://gohackerscloud.com/hands-on-cybersecurity-labs)
+
+
+[← Back to the Academy & GHC Labs Hub](/ghc-labs/) · [Membership & FAQs](/ghc-labs/faq/)

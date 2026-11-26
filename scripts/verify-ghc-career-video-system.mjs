@@ -13,7 +13,7 @@ const built=(route)=>{
 const countClass=(html,cls)=>[...html.matchAll(/class="([^"]*)"/g)]
  .filter(([,v])=>v.split(/\s+/).includes(cls)).length;
 const config=readFileSync('astro.config.mjs','utf8');
-const cloudId='cloud-security-engineer';
+
 assert.equal(ghcCareerPathways.length,9,'Nine connected career profiles required');
 assert.equal(new Set(ghcCareerPathways.map(p=>p.id)).size,9,'Role IDs must be unique');
 assert.equal(demoVideos.length,5,'Exactly five video slots expected');
@@ -41,10 +41,8 @@ for(const p of ghcCareerPathways){
  const career=built(ghcCareerURL(p.id));
  const cert=built(ghcCertURL(p.id));
  const interview=built(ghcInterviewURL(p.id));
- if(p.id!==cloudId){
-  assert.ok(career.includes('data-career-id="'+p.id+'"')&&career.includes('data-career-mode="roadmap"'),
-   'Missing routed career guide: '+p.id);
- }
+ assert.ok(career.includes('data-career-id="'+p.id+'"')&&career.includes('data-career-mode="roadmap"'),
+  'All nine career roadmaps must render the unified guide: '+p.id);
  assert.ok(cert.includes('data-career-id="'+p.id+'"')&&cert.includes('data-career-mode="certifications"'),
   'Missing routed certification mapping: '+p.id);
  assert.ok(interview.includes('data-career-id="'+p.id+'"')&&interview.includes('data-career-mode="interview"'),
@@ -56,6 +54,10 @@ for(const p of ghcCareerPathways){
  assert.ok(interview.includes('Q01')&&interview.includes('Q06'),
   'Interview question list incomplete: '+p.id);
 }
+assert.equal(ghcCareerURL('cloud-security-engineer'),'/learning-hub/career-paths/cloud-security-engineer/',
+ 'Cloud career link must use the shared roadmap design rather than the old 14-chapter standalone page');
+assert.ok(!config.includes("{label: 'AWS Cloud Practitioner · 14-chapter Guide',"),
+ 'Optional AWS CLF-C02 reference should no longer be a top-level Certification Guides item');
 const demo=built('/ghc-labs/instructor-demo/');
 assert.equal(countClass(demo,'ghc-video-card'),5,'GHC Labs public video gallery must show five cards');
 assert.ok(!demo.includes('How to attach the real demo')&&!demo.includes('Do not paste a full YouTube URL'),
@@ -79,4 +81,4 @@ for(const route of ['/learning-hub/cloud-security-roadmap/','/learning-hub/aws-c
  assert.ok(built(route).includes('14 chapters')||built(route).includes('Chapter 14')||built(route).includes('Fourteen'),
   'The original detailed guide must remain available: '+route);
 }
-console.log('GHC career + video system QA passed: 9 matched roles, 9 certification paths, 54 original interview Q&As, 5 truthful video slots, 13 canonical Academy tracks.');
+console.log('GHC career + video system QA passed: 9 consistently formatted career routes, 9 certification paths, 54 original interview Q&As, 5 truthful video slots, 13 canonical Academy tracks.');

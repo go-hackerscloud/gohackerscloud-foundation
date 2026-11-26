@@ -3,6 +3,9 @@ title: "Choose a GHC Academy Lab Track"
 description: "Which of the 13 GoHackersCloud Academy tracks to choose, prerequisites, practice themes, deliverables and readiness guidance."
 ---
 
+[← Academy & GHC Labs Hub](/ghc-labs/) · [Choose a Career Roadmap](/learning-hub/career-paths/) · [Video Guides](/ghc-labs/instructor-demo/)
+
+
 ## Select by learning outcome
 
 **Foundations first.** A learner who can explain TCP/IP, Linux permissions, basic HTTP and cloud identity will get more from guided security labs than someone memorizing attack tools without understanding the environment.
@@ -46,3 +49,6 @@ Begin with an instructor demonstration, continue with a guided exercise, then re
 The track directory is a navigation guide, not a live capacity or lab-availability feed. Check each lesson and access terms before promising a particular lab to a student.
 
 [Back to GHC Labs overview](/ghc-labs/) · [Explore subscriptions](https://gohackerscloud.com/hands-on-cybersecurity-labs)
+
+
+[← Back to the Academy & GHC Labs Hub](/ghc-labs/) · [How Labs Work](/ghc-labs/how-it-works/)

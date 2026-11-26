@@ -1,7 +1,11 @@
 ---
-title: "Cloud Security Engineer — Complete Career Roadmap"
+title: "Cloud Security Engineer — Optional 14-Chapter Deep Dive"
 description: "A guided cloud security engineering roadmap with 14 practical chapters, real-world examples, evidence projects and role preparation."
 ---
+
+**[← Return to the unified Cloud Security Engineer Career Roadmap](/learning-hub/career-paths/cloud-security-engineer/)** · [Certification Recommendations](/learning-hub/certification-paths/cloud-security-engineer/) · [Role-Specific Interviews](/learning-hub/interview-paths/cloud-security-engineer/)
+
+This longer reference is an **optional, detailed study companion**, not a separate career selection path. Start with the matching role page above for the same navigation format as the other eight careers.
 
 **Audience:** IT students, networking or DevOps professionals, cloud administrators and security learners moving toward cloud security engineering.
 

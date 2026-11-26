@@ -672,6 +672,6 @@ export const ghcCareerPathways = [
   }
 ];
 export const findGhcCareerPath = (id)=>ghcCareerPathways.find(p=>p.id===id);
-export const ghcCareerURL = (id)=>id==='cloud-security-engineer'?'/learning-hub/cloud-security-roadmap/':`/learning-hub/career-paths/${id}/`;
+export const ghcCareerURL = (id)=>`/learning-hub/career-paths/${id}/`;
 export const ghcCertURL = (id)=>`/learning-hub/certification-paths/${id}/`;
 export const ghcInterviewURL = (id)=>`/learning-hub/interview-paths/${id}/`;
