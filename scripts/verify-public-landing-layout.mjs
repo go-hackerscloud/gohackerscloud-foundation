@@ -12,7 +12,6 @@ const built=route=>{
 };
 
 const splash=[
- ['/', 'src/content/docs/index.mdx'],
  ['/about-gohackerscloud/','src/content/docs/about-gohackerscloud/index.mdx'],
  ['/about-gohackerscloud/catalog/','src/content/docs/about-gohackerscloud/catalog.mdx'],
  ['/about-gohackerscloud/courses/','src/content/docs/about-gohackerscloud/courses.mdx'],
@@ -36,8 +35,8 @@ assert.equal(files('src/content/docs').filter(file=>/^template:\s*splash\s*$/m.t
   splash.length,'Review new splash pages before changing widths');
 
 // Every Explore sidebar destination must use the Academy-aligned canvas.
-// Seven splash pages use html:not([data-has-sidebar]); ten marked Explore
-// pages (six learning guides plus Labs, Curriculum, Portfolio and Explore hubs) opt in.
+// Six splash pages use html:not([data-has-sidebar]); eleven marked Explore
+// pages (seven learner/entry routes plus Labs, Curriculum, Portfolio and Explore hubs) opt in.
 const sidebarConfig=read('astro.config.mjs');
 const exploreSidebar=sidebarConfig.split("label: 'Explore GoHackersCloud'")[1]
   ?.split("label: 'Foundation Learning Stages'")[0]||'';
@@ -48,6 +47,7 @@ assert.equal(ghcExploreGroups.length,4,'Explore overview should offer four navig
 assert.equal(ghcExploreRoutes.length,16,'All sixteen original Explore routes must be retained');
 const exploreRoutes=['/explore/',...ghcExploreRoutes];
 const markedExploreGuides=new Map([
+  ['/','src/content/docs/index.mdx'],
   ['/start-here/','src/content/docs/start-here.mdx'],
   ['/paths/students/','src/content/docs/paths/students.mdx'],
   ['/paths/professionals/','src/content/docs/paths/professionals.mdx'],
@@ -158,6 +158,14 @@ assert.ok(compiledCss.includes('78rem')&&compiledCss.includes('foundation-hero')
 const h1=html=>(html.match(/<h1(?:\s|>)/g)||[]).length;
 const cards=(html,name)=>(html.match(new RegExp('class="[^"]*\\b'+name+'\\b[^"]*"','g'))||[]).length;
 const home=built('/');
+const foundationHomeHero=read('src/components/FoundationHero.astro');
+assert.ok(!/^template:\s*splash\s*$/m.test(read('src/content/docs/index.mdx')) &&
+  home.includes('data-has-sidebar') && home.includes('ghc-foundation-home-marker'),
+  'Foundation Home must preserve main sidebar and the 78rem Explore width');
+assert.ok(foundationHomeHero.includes('container-type:inline-size') &&
+  foundationHomeHero.includes('@container (max-width:62rem)') &&
+  foundationHomeHero.includes('foundation-hero-graphic'),
+  'Foundation hero must stack gracefully beside persistent sidebars');
 const homeSource=read('src/content/docs/index.mdx');
 const homeCards=read('src/components/FoundationHomeCards.astro');
 for(const marker of ['<FoundationHero />','<FoundationAudiencePaths />',
@@ -432,6 +440,6 @@ assert.ok(challenge.includes('ghc-challenge-rail')&&
   challenge.includes('data-save-progress')&&challenge.includes('data-clear-progress'),
   'Previous challenge sidebar and privacy settings must remain intact');
 
-console.log('Academy-style Foundation layout QA passed: 7 splash routes at 78rem plus ten marked Explore pages, '+ 
+console.log('Academy-style Foundation layout QA passed: 6 splash routes at 78rem plus eleven marked Explore pages, '+ 
  '3 lesson + 4 pathway + 3 portfolio cards, 5 learning-stage + 6 site cards, '+ 
  'Mermaid and existing free lesson/challenge navigation.');
