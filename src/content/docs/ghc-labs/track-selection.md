@@ -23,6 +23,12 @@ description: "Which of the 13 GoHackersCloud Academy tracks to choose, prerequis
 | [Projects & Capstones](https://academy.gohackerscloud.com/tracks/projects/) | Multiple completed concepts | End-to-end project report |
 | [90-Day Hackathon](https://academy.gohackerscloud.com/tracks/hackathon/) | Foundational skills and consistency | A sequence of documented practice outcomes |
 
+## Choose a role before selecting a track
+
+Use the [nine career roadmaps](/learning-hub/career-paths/) to find out how your target job relates to the Academy's 13 track categories. Each roadmap points to [suggested third-party certification pathways](/learning-hub/certification-paths/) and [role-specific technical interview questions](/learning-hub/interview-paths/). The [five-video lab library](/ghc-labs/instructor-demo/) introduces different practical workflows as official recordings are released.
+
+For example, penetration testing maps to **Network, Web and API** tracks; DevSecOps maps to **AppSec, Cloud and Projects**; SOC analyst practice maps to **CompTIA, Cloud and Projects**. These are learning-track links, not confirmations that a separate hosted lab instance exists for every topic.
+
 ## Evidence quality checklist
 
 - **Scope:** authorized lab, target and objective stated clearly.
