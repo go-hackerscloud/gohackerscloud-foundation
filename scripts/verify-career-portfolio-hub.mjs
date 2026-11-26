@@ -25,6 +25,7 @@ const hub=page(hubRoute);
 const headingCount=html=>(html.match(/<h1(?:\s|>)/g)||[]).length;
 const diagramCount=html=>(html.match(/<pre[^>]*\bclass="[^"]*\bmermaid\b[^"]*"/g)||[]).length;
 const h1FromBody=mdx=>mdx.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/,'').match(/^# [^#]/gm)||[];
+const countClass=(html,name)=>[...html.matchAll(/class="([^"]*)"/g)].filter(([,classes])=>classes.split(/\s+/).includes(name)).length;
 
 assert.equal(headingCount(hub),1,'Portfolio hub needs one page-level heading');
 assert.equal(diagramCount(hub),1,'Portfolio hub needs one rendered learning workflow');
@@ -58,6 +59,34 @@ for(const {slug,template} of projectPages){
     'Project needs a downloadable worksheet: '+slug);
   assert.ok(content.includes('https://')===false,
     'Project must use stable internal Foundation sources unless externally verified: '+slug);
+  assert.ok(rendered.includes('data-has-sidebar'),
+    'All six project guides must keep the persistent Starlight sidebar: '+slug);
+  assert.ok(content.includes('<FoundationExploreSectionNavigation section="careers" current="/portfolio/" />'),
+    'Every project must reuse the shared Career & Portfolio section tabs: '+slug);
+  assert.ok(content.includes('<FoundationPortfolioProjectNav projectId="'+slug+'" variant="top" />'),
+    'Every project must have a top-level six-project selector: '+slug);
+  assert.ok(content.includes('<FoundationPortfolioProjectNav projectId="'+slug+'" />'),
+    'Every project must retain the existing bottom previous/next controls: '+slug);
+  assert.equal(countClass(rendered,'ghc-section-navigation'),1,
+    'Project must show exactly one Career & Portfolio navigation strip: '+slug);
+  assert.equal(countClass(rendered,'ghc-portfolio-project-directory'),1,
+    'Project must show exactly one six-project selector: '+slug);
+  assert.equal(countClass(rendered,'ghc-portfolio-project-nav'),1,
+    'Project must keep exactly one previous/next footer: '+slug);
+  assert.ok(rendered.includes('href="/portfolio/"') &&
+    rendered.includes('href="/paths/students/"') &&
+    rendered.includes('href="/paths/professionals/"'),
+    'Project must link to the hub and its career pathway siblings: '+slug);
+  for(const project of foundationPortfolioProjects){
+    assert.ok(rendered.includes('href="'+foundationPortfolioURL(project.id)+'"'),
+      'Every project must link directly to '+project.id+' from '+slug);
+  }
+  const currentLinks=[...rendered.matchAll(/<a\b[^>]*aria-current="page"[^>]*>/g)];
+  assert.ok(currentLinks.some(([tag])=>tag.includes('href="'+route+'"')),
+    'The active portfolio project tab must highlight the current route: '+slug);
+  assert.ok(rendered.includes('href="/portfolio/#portfolio-'),
+    'Project must link to its overview category: '+slug);
+
 }
 
 for(const name of templates){
@@ -107,6 +136,11 @@ for(const route of ['/7-day-challenge/','/paths/students/','/paths/professionals
   const built=page(route);
   assert.ok(built.includes(hubRoute),'Existing learner pathway missing portfolio bridge: '+route);
 }
+const projectNavSource=source('src/components/FoundationPortfolioProjectNav.astro');
+assert.ok(projectNavSource.includes('grid-template-columns:repeat(3,minmax(0,1fr))') &&
+  projectNavSource.includes('@media(max-width:29rem)') &&
+  projectNavSource.includes('foundationPortfolioProjects.map(project=>'),
+  'Portfolio tabs must be data-driven and responsive at narrow reading widths');
 const nav=source('astro.config.mjs');
 const first=nav.slice(nav.indexOf("label: 'Explore GoHackersCloud'"),
   nav.indexOf("label: 'Foundation Learning Stages'"));

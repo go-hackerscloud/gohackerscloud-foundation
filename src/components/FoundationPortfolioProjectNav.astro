@@ -1,20 +1,56 @@
 ---
-import {foundationPortfolioProjects,foundationPortfolioURL} from '../data/foundation-portfolio-projects.mjs';
+import {foundationPortfolioGroups,foundationPortfolioProjects,foundationPortfolioURL} from '../data/foundation-portfolio-projects.mjs';
 const index=foundationPortfolioProjects.findIndex(project=>project.id===Astro.props.projectId);
 if(index<0)throw new Error('Unknown Foundation portfolio project '+Astro.props.projectId);
 const previous=foundationPortfolioProjects[index-1];
 const next=foundationPortfolioProjects[index+1];
 const current=foundationPortfolioProjects[index];
+const group=foundationPortfolioGroups.find(group=>group.id===current.group);
+const variant=Astro.props.variant==='top'?'top':'bottom';
 ---
-<nav class="ghc-portfolio-project-nav" aria-label="Portfolio project learning navigation">
+{variant==='top'
+ ? <nav class="ghc-portfolio-project-directory" aria-label="Choose from six Foundation portfolio projects">
+     <div class="ghc-portfolio-directory-head">
+       <span>PORTFOLIO PROJECTS · SIX GUIDED EXERCISES</span>
+       <a href="/portfolio/">← Career &amp; Portfolio Hub</a>
+     </div>
+     <div class="ghc-portfolio-directory-list">
+       {foundationPortfolioProjects.map(project=>(
+         <a href={foundationPortfolioURL(project.id)} aria-current={project.id===current.id?'page':undefined}>
+           <span class="ghc-portfolio-directory-num">{project.number}</span>
+           <span>{project.shortTitle}</span>
+         </a>
+       ))}
+     </div>
+     <div class="ghc-portfolio-directory-foot">
+       <span>Project {current.number} of {String(foundationPortfolioProjects.length).padStart(2,'0')} · <strong>{current.title}</strong></span>
+       <a href={'/portfolio/#portfolio-'+group.id}>Explore {group.title} →</a>
+     </div>
+   </nav>
+ : <nav class="ghc-portfolio-project-nav" aria-label="Portfolio project learning navigation">
   <a class="ghc-portfolio-project-home" href="/portfolio/">← All six portfolio projects</a>
   <span class="ghc-portfolio-current">PROJECT {current.number} OF 06 · {current.level}</span>
   <div class="ghc-portfolio-project-neighbors">
     {previous ? <a href={foundationPortfolioURL(previous.id)}><span>← Previous project</span><strong>{previous.shortTitle}</strong></a> : <span class="ghc-portfolio-project-empty">First project in the series</span>}
     {next ? <a href={foundationPortfolioURL(next.id)}><span>Next project →</span><strong>{next.shortTitle}</strong></a> : <a href="/portfolio/"><span>Completed this sequence?</span><strong>Return to Portfolio Hub →</strong></a>}
   </div>
-</nav>
+</nav>}
 <style>
+.ghc-portfolio-project-directory{min-width:0;margin:.55rem 0 1.4rem;padding:.85rem;border:1px solid var(--sl-color-gray-5);border-radius:12px;background:var(--sl-color-bg-nav)}
+.ghc-portfolio-directory-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.35rem .9rem;align-items:center;margin-bottom:.7rem}
+.ghc-portfolio-directory-head>span{font-size:.68rem;letter-spacing:.07em;font-weight:850;color:var(--sl-color-accent-high)}
+.ghc-portfolio-directory-head a{font-size:.76rem;font-weight:800;color:var(--sl-color-accent-high)!important;text-decoration:none!important}
+.ghc-portfolio-directory-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem}
+.ghc-portfolio-directory-list a{display:flex;gap:.45rem;min-width:0;min-height:42px;align-items:center;padding:.55rem .65rem;border:1px solid var(--sl-color-gray-5);border-radius:8px;background:var(--sl-color-bg);color:var(--sl-color-text)!important;text-decoration:none!important;font-size:.77rem;line-height:1.35;font-weight:750}
+.ghc-portfolio-directory-list a:hover{border-color:var(--sl-color-accent)}
+.ghc-portfolio-directory-list a[aria-current="page"]{background:var(--sl-color-accent-low);border-color:var(--sl-color-accent);color:var(--sl-color-accent-high)!important}
+.ghc-portfolio-directory-num{flex:none;font-size:.66rem;color:var(--sl-color-gray-2);font-variant-numeric:tabular-nums}
+.ghc-portfolio-directory-foot{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between;gap:.4rem .8rem;margin-top:.7rem;padding-top:.55rem;border-top:1px solid var(--sl-color-gray-5);font-size:.75rem;line-height:1.5;color:var(--sl-color-gray-2)}
+.ghc-portfolio-directory-foot a{font-size:.76rem;font-weight:800}
+.ghc-portfolio-project-directory a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:45rem){.ghc-portfolio-directory-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:29rem){.ghc-portfolio-directory-list{grid-template-columns:1fr}}
+
 .ghc-portfolio-project-nav{margin:1.8rem 0 1.5rem;padding:1.1rem;border-radius:13px;background:var(--sl-color-bg-nav);border:1px solid var(--sl-color-gray-5)}
 .ghc-portfolio-project-home{display:inline-flex;font-size:.83rem;font-weight:800;margin-bottom:.65rem}
 .ghc-portfolio-current{display:block;font-size:.68rem;font-weight:850;letter-spacing:.065em;color:var(--sl-color-accent-high)}
