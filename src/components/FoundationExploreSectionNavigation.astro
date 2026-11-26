@@ -1,0 +1,62 @@
+---
+import {ghcExploreGroups} from '../data/ghc-explore-navigation.mjs';
+const section=['academy','company','careers'].includes(Astro.props.section)?Astro.props.section:'academy';
+const group=ghcExploreGroups.find(g=>g.id===section);
+if(!group) throw new Error('Unknown Explore navigation group: '+section);
+const current=Astro.props.current||Astro.url.pathname;
+const active=current.endsWith('/')?current:current+'/';
+const headings={
+  academy:'COURSES, TESTS & GHC LABS',
+  company:'ABOUT GOHACKERSCLOUD & SERVICES',
+  careers:'CAREER & PORTFOLIO DEVELOPMENT',
+};
+const short={
+  '/about-gohackerscloud/courses/':'Courses & Bundles',
+  '/about-gohackerscloud/test-engine/':'Test Engine',
+  '/ghc-labs/':'GHC Labs Hub',
+  '/about-gohackerscloud/lab-directory/':'Lab Lesson Directory',
+  '/about-gohackerscloud/':'About Us',
+  '/about-gohackerscloud/catalog/':'Complete Catalog',
+  '/about-gohackerscloud/cybersecurity-services/':'Cybersecurity Services',
+  '/paths/students/':'Student Learning Path',
+  '/paths/professionals/':'Professional Upskilling Path',
+  '/portfolio/':'Career & Portfolio Hub',
+};
+---
+<nav class="ghc-section-navigation" aria-label={group.title+' navigation'}>
+  <div class="ghc-section-navigation-head">
+    <span>{headings[section]}</span>
+    <div class="ghc-section-navigation-return">
+      <a href="/explore/">← Explore Overview</a>
+      <span aria-hidden="true">·</span>
+      <a href="/">Foundation Home</a>
+    </div>
+  </div>
+  <div class="ghc-section-navigation-links">
+    {group.links.map((item,index)=>(
+      <a href={item.href} aria-current={item.href===active?'page':undefined}>
+        <span class="ghc-section-navigation-index">{String(index+1).padStart(2,'0')}</span>
+        <span>{short[item.href]||item.label}</span>
+      </a>
+    ))}
+  </div>
+  {section==='academy'&&<p class="ghc-section-navigation-note">Courses, mock exams, Academy membership and hosted labs have separate access terms. Foundation lessons remain free.</p>}
+  {section==='company'&&<p class="ghc-section-navigation-note">Learning resources and professional cybersecurity engagements are separate offerings.</p>}
+  {section==='careers'&&<p class="ghc-section-navigation-note">Choose a student or professional path, then build practical portfolio evidence using free Foundation learning.</p>}
+</nav>
+<style>
+.ghc-section-navigation{min-width:0;margin:.6rem 0 1.5rem;padding:.85rem;background:var(--sl-color-bg-nav);border:1px solid var(--sl-color-gray-5);border-radius:12px}
+.ghc-section-navigation-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.35rem .9rem;margin:0 0 .7rem}
+.ghc-section-navigation-head>span{font-size:.68rem;letter-spacing:.07em;font-weight:850;color:var(--sl-color-accent-high)}
+.ghc-section-navigation-return{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;font-size:.76rem;color:var(--sl-color-gray-2)}
+.ghc-section-navigation-return a{font-weight:750;color:var(--sl-color-accent-high)!important;text-decoration:none!important}
+.ghc-section-navigation-links{display:flex;flex-wrap:wrap;gap:.4rem}
+.ghc-section-navigation-links a{display:inline-flex;align-items:center;gap:.45rem;min-height:42px;padding:.53rem .68rem;min-width:0;border:1px solid var(--sl-color-gray-5);border-radius:8px;background:var(--sl-color-bg);color:var(--sl-color-text)!important;text-decoration:none!important;font-size:.78rem;font-weight:750;line-height:1.4}
+.ghc-section-navigation-links a[aria-current="page"]{background:var(--sl-color-accent-low);border-color:var(--sl-color-accent);color:var(--sl-color-accent-high)!important}
+.ghc-section-navigation-index{font-size:.65rem;font-variant-numeric:tabular-nums;color:var(--sl-color-gray-2)}
+.ghc-section-navigation-links a:hover{border-color:var(--sl-color-accent)}
+.ghc-section-navigation-note{margin:.75rem .1rem 0!important;font-size:.74rem;line-height:1.55;color:var(--sl-color-gray-2)}
+.ghc-section-navigation a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:44rem){.ghc-section-navigation-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.ghc-section-navigation-links a{width:100%}}
+@media(max-width:28rem){.ghc-section-navigation-links{grid-template-columns:1fr}}
+</style>

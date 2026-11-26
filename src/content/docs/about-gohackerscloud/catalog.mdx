@@ -1,15 +1,16 @@
 ---
 title: "GoHackersCloud Complete Catalog"
 description: "A unified promotional catalog of GoHackersCloud course and bundle families, AWS bundle contents, exam practice, Academy tracks, lab lessons, cloud security services and video walkthroughs."
-template: splash
 ---
 
-import FoundationExploreReturn from '../../../components/FoundationExploreReturn.astro';
+import FoundationExploreSectionNavigation from '../../../components/FoundationExploreSectionNavigation.astro';
 
 import FoundationCatalogHero from '../../../components/FoundationCatalogHero.astro';
 import FoundationCatalogChoices from '../../../components/FoundationCatalogChoices.astro';
 
-<FoundationExploreReturn />
+<div class="ghc-explore-width-marker ghc-section-content-marker" aria-hidden="true"></div>
+
+<FoundationExploreSectionNavigation section="company" current="/about-gohackerscloud/catalog/" />
 
 <FoundationCatalogHero />
 

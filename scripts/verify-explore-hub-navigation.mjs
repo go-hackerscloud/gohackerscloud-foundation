@@ -53,18 +53,34 @@ for(const group of groups){
   html(link.href);
  }
 }
-const splashDetailRoutes=[
- '/about-gohackerscloud/','/about-gohackerscloud/catalog/',
- '/about-gohackerscloud/courses/','/about-gohackerscloud/test-engine/',
- '/about-gohackerscloud/cybersecurity-services/',
- '/about-gohackerscloud/lab-directory/',
+// All seven Courses/Labs and About/Services pages now keep their sidebars.
+// The section navigator is generated from the canonical Explore route map.
+const sections=[
+ {id:'academy',routes:ghcExploreGroups.find(g=>g.id==='academy').links.map(g=>g.href)},
+ {id:'company',routes:ghcExploreGroups.find(g=>g.id==='company').links.map(g=>g.href)},
 ];
-for(const route of splashDetailRoutes){
- const document=html(route);
- assert.equal(countClass(document,'ghc-explore-return'),1,
-  'Splash layout without sidebar needs a single clear Explore return path: '+route);
- assert.ok(document.includes('href="/explore/"')&&document.includes('href="/"'),
-  'Splash page must offer Overview and Foundation Home return links: '+route);
+const sectionSource=read('src/components/FoundationExploreSectionNavigation.astro');
+assert.ok(sectionSource.includes("ghcExploreGroups.find(g=>g.id===section)") &&
+  sectionSource.includes("'academy','company','careers'") &&
+  sectionSource.includes('aria-current=') &&
+  sectionSource.includes('@media(max-width:44rem)'),
+  'Courses/Labs, Company/Services and Career/Portfolio navigation must share canonical links and mobile layout');
+for(const section of sections){
+ for(const route of section.routes){
+  const page=html(route);
+  assert.ok(page.includes('data-has-sidebar') && page.includes('ghc-explore-width-marker'),
+   'The sidebar and wide Explore canvas must stay visible for '+route);
+  assert.equal(countClass(page,'ghc-section-navigation'),1,
+   'Exactly one shared '+section.id+' navigation is required on '+route);
+  assert.ok(page.includes('aria-current="page"'),
+   'The current section page must be highlighted: '+route);
+  for(const sibling of section.routes){
+   assert.ok(page.includes('href="'+sibling+'"'),
+    'Section '+section.id+' must link '+route+' to '+sibling);
+  }
+  assert.ok(page.includes('href="/explore/"') && page.includes('href="/"'),
+   'Every section page must offer Explore/Home return links: '+route);
+ }
 }
 
 const freeFoundationStudyRoutes=[
@@ -81,10 +97,10 @@ for(const route of freeFoundationStudyRoutes){
 }
 
 const journeyComponent=read('src/components/FoundationJourneyNavigation.astro');
-assert.ok(journeyComponent.includes("ghcExploreGroups.find(item=>item.id==='careers')") &&
+assert.ok(journeyComponent.includes("label:'Explore Overview'") &&
   journeyComponent.includes('aria-current=') &&
   journeyComponent.includes('@media(max-width:40rem)'),
-  'Unified journey navigation must reuse canonical career links, support active state, and stack on phones');
+  'Homepage/Overview navigation must support active state and stack on phones');
 for(const route of ['/','/explore/']){
  const document=html(route);
  assert.ok(document.includes('data-has-sidebar'),
@@ -107,10 +123,15 @@ assert.equal(careers?.links.length,3,'Career & Portfolio group must have three r
 for(const [route,sourcePath] of careerPages){
  const page=html(route);
  const mdx=read(sourcePath);
- assert.ok(page.includes('data-has-sidebar')&&mdx.includes('ghc-explore-width-marker'),
+ assert.ok(!/^template:\\s*splash\\s*$/m.test(mdx) &&
+   page.includes('data-has-sidebar') && mdx.includes('ghc-explore-width-marker'),
    'Career page must retain the sidebar and Explore content canvas: '+route);
- assert.equal(countClass(page,'ghc-journey-navigation'),1,
-   'Each Career page needs one common three-page navigator: '+route);
+ assert.ok(mdx.includes('<FoundationExploreSectionNavigation section="careers" current="'+route+'" />'),
+   'Career page must mount the exact shared section navigation: '+route);
+ assert.equal(countClass(page,'ghc-section-navigation'),1,
+   'Each Career page needs the same navigation component as Courses/Labs and Company/Services: '+route);
+ assert.equal(countClass(page,'ghc-journey-navigation'),0,
+   'Career page must not render the retired parallel navigation component: '+route);
  assert.ok(page.includes('aria-current="page"'),
    'Career page should highlight its current location: '+route);
  for(const link of careers.links){
@@ -129,4 +150,4 @@ assert.ok(!/\b(?:fetch|sendBeacon|XMLHttpRequest)\s*\(/.test(hubSource),
 assert.ok(html('/curriculum/').includes('id="lesson-directory"')&&
  html('/portfolio/').includes('ghc-portfolio-hub-marker'),
  'Foundation lessons and portfolio hubs must stay intact');
-console.log('Explore navigation QA passed: four grouped categories, all 16 original routes, two synchronized entry pages, three career-path pages, six splash-page returns and five unified study pages.');
+console.log('Explore navigation QA passed: four grouped categories, all 16 original routes, two synchronized entry pages, ten section-synchronized product/company/career pages and five unified study pages.');

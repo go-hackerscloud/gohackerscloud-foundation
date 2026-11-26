@@ -1,22 +1,15 @@
 ---
-import {ghcExploreGroups} from '../data/ghc-explore-navigation.mjs';
-
-const section=Astro.props.section==='careers'?'careers':'entry';
-const group=ghcExploreGroups.find(item=>item.id==='careers');
-if(!group || group.links.length!==3) throw new Error('Career & Portfolio Development must list three existing routes');
-const links=section==='entry'
-  ?[{label:'Explore Overview',href:'/explore/'},{label:'Foundation Home',href:'/'}]
-  :group.links;
+// The three Career & Portfolio pages use FoundationExploreSectionNavigation,
+ // together with the Courses/Labs and Company/Services pages.
+const links=[{label:'Explore Overview',href:'/explore/'},{label:'Foundation Home',href:'/'}];
 const current=Astro.props.current||Astro.url.pathname;
 const active=current.endsWith('/')?current:current+'/';
 ---
-<nav class="ghc-journey-navigation" aria-label={section==='entry'?'Explore GoHackersCloud overview and home navigation':'Career and Portfolio Development page navigation'}>
+<nav class="ghc-journey-navigation" aria-label="Explore GoHackersCloud overview and home navigation">
   <div class="ghc-journey-navigation-head">
-    <span>{section==='entry'?'EXPLORE GOHACKERSCLOUD · START HERE':'CAREER & PORTFOLIO DEVELOPMENT'}</span>
+    <span>EXPLORE GOHACKERSCLOUD · START HERE</span>
     <div class="ghc-journey-navigation-return">
-      {section==='entry'
-        ? <a href="/start-here/">Start free learning <span aria-hidden="true">→</span></a>
-        : <><a href="/explore/">← Explore Overview</a><span aria-hidden="true">·</span><a href="/">Foundation Home</a></>}
+      <a href="/start-here/">Start free learning <span aria-hidden="true">→</span></a>
     </div>
   </div>
   <div class="ghc-journey-navigation-links">

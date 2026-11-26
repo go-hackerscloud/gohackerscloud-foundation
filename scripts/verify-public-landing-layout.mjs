@@ -11,14 +11,7 @@ const built=route=>{
   return read(path);
 };
 
-const splash=[
- ['/about-gohackerscloud/','src/content/docs/about-gohackerscloud/index.mdx'],
- ['/about-gohackerscloud/catalog/','src/content/docs/about-gohackerscloud/catalog.mdx'],
- ['/about-gohackerscloud/courses/','src/content/docs/about-gohackerscloud/courses.mdx'],
- ['/about-gohackerscloud/test-engine/','src/content/docs/about-gohackerscloud/test-engine.mdx'],
- ['/about-gohackerscloud/cybersecurity-services/','src/content/docs/about-gohackerscloud/cybersecurity-services.mdx'],
- ['/about-gohackerscloud/lab-directory/','src/content/docs/about-gohackerscloud/lab-directory.mdx'],
-];
+const splash=[];
 for(const [route,file] of splash){
   const mdx=read(file);
   assert.match(mdx,/^template:\s*splash\s*$/m,'Expected public landing page '+route);
@@ -35,8 +28,8 @@ assert.equal(files('src/content/docs').filter(file=>/^template:\s*splash\s*$/m.t
   splash.length,'Review new splash pages before changing widths');
 
 // Every Explore sidebar destination must use the Academy-aligned canvas.
-// Six splash pages use html:not([data-has-sidebar]); eleven marked Explore
-// pages (seven learner/entry routes plus Labs, Curriculum, Portfolio and Explore hubs) opt in.
+// All 17 original Explore destinations retain Starlight's sidebar and
+// explicitly opt in to the 78rem Explore canvas. Four stage guides also opt in.
 const sidebarConfig=read('astro.config.mjs');
 const exploreSidebar=sidebarConfig.split("label: 'Explore GoHackersCloud'")[1]
   ?.split("label: 'Foundation Learning Stages'")[0]||'';
@@ -58,6 +51,12 @@ const markedExploreGuides=new Map([
   ['/explore/','src/content/docs/explore/index.mdx'],
   ['/core-it-devops/','src/content/docs/core-it-devops/index.mdx'],
   ['/7-day-challenge/','src/content/docs/7-day-challenge.mdx'],
+  ['/about-gohackerscloud/','src/content/docs/about-gohackerscloud/index.mdx'],
+  ['/about-gohackerscloud/catalog/','src/content/docs/about-gohackerscloud/catalog.mdx'],
+  ['/about-gohackerscloud/courses/','src/content/docs/about-gohackerscloud/courses.mdx'],
+  ['/about-gohackerscloud/test-engine/','src/content/docs/about-gohackerscloud/test-engine.mdx'],
+  ['/about-gohackerscloud/cybersecurity-services/','src/content/docs/about-gohackerscloud/cybersecurity-services.mdx'],
+  ['/about-gohackerscloud/lab-directory/','src/content/docs/about-gohackerscloud/lab-directory.mdx'],
 ]);
 const splashRoutes=new Set(splash.map(([route])=>route));
 assert.equal(new Set(exploreRoutes).size,17,'Explore navigation must cover all 16 original routes plus the overview');
@@ -77,6 +76,44 @@ for(const route of exploreRoutes){
 assert.ok(!built('/foundation/gohackerscloud-foundation/01-it-fundamentals/01-computer-hardware/')
   .includes('ghc-explore-width-marker'),
   'Original technical lessons must not inherit the Explore width marker');
+
+// New navigation is a guide before technical lessons, not a replacement for lessons.
+const newStageRoutes=[
+  ['/learning-stages/','src/content/docs/learning-stages/index.mdx','all',16],
+  ['/learning-stages/core/','src/content/docs/learning-stages/core/index.mdx','core',7],
+  ['/learning-stages/security/','src/content/docs/learning-stages/security/index.mdx','security',5],
+  ['/learning-stages/professional/','src/content/docs/learning-stages/professional/index.mdx','professional',4],
+];
+for(const [route,file,stage,expected] of newStageRoutes){
+ const page=built(route);
+ const source=read(file);
+ assert.ok(page.includes('data-has-sidebar')&&page.includes('ghc-stage-guide-marker')&&
+  source.includes('<FoundationLearningStageHub stage="'+stage+'" />'),
+  'Each learning stage route must retain the sidebar and its stage module component: '+route);
+ assert.equal([...page.matchAll(/class="([^"]*)"/g)].filter(([,classes])=>
+  classes.split(/\s+/).includes('ghc-stage-module')).length,expected,
+  'Stage page must show exact published module inventory: '+route);
+ for(const nav of newStageRoutes)
+  assert.ok(page.includes('href="'+nav[0]+'"'),
+   'All stage guides must link to their siblings: '+route+' to '+nav[0]);
+}
+const navConfig=read('astro.config.mjs');
+assert.ok(navConfig.includes("link: '/learning-stages/'") &&
+  navConfig.includes("link: '/learning-stages/core/'") &&
+  navConfig.includes("link: '/learning-stages/security/'") &&
+  navConfig.includes("link: '/learning-stages/professional/'") &&
+  navConfig.includes("...moduleLinks('core')") &&
+  navConfig.includes("...moduleLinks('security')") &&
+  navConfig.includes("...moduleLinks('professional')"),
+  'Learning Stages sidebar must expose stage guides and preserve direct module links');
+const stageOverview=built('/learning-stages/');
+for(const module of foundationModules){
+ assert.ok(stageOverview.includes('href="'+module.link+'"') &&
+  stageOverview.includes('href="/curriculum/#module-'+module.id+'"'),
+  'Stage overview must retain the real first lesson and full module syllabus: '+module.id);
+ built(module.link);
+}
+
 
 const freeFoundationStudyPages=[
   ['/start-here/','src/content/docs/start-here.mdx'],
@@ -440,6 +477,6 @@ assert.ok(challenge.includes('ghc-challenge-rail')&&
   challenge.includes('data-save-progress')&&challenge.includes('data-clear-progress'),
   'Previous challenge sidebar and privacy settings must remain intact');
 
-console.log('Academy-style Foundation layout QA passed: 6 splash routes at 78rem plus eleven marked Explore pages, '+ 
+console.log('Academy-style Foundation layout QA passed: 17 sidebar-marked original Explore pages with four additional stage guides, '+ 
  '3 lesson + 4 pathway + 3 portfolio cards, 5 learning-stage + 6 site cards, '+ 
  'Mermaid and existing free lesson/challenge navigation.');

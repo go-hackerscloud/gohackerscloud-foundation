@@ -1,0 +1,81 @@
+---
+import {foundationGroups,foundationModules} from '../data/foundation-modules.mjs';
+const selected=Astro.props.stage||'all';
+if(selected!=='all'&&!foundationGroups.some(group=>group.id===selected))throw new Error('Unknown Foundation stage '+selected);
+const groups=selected==='all'?foundationGroups:foundationGroups.filter(group=>group.id===selected);
+const stageURL=id=>`/learning-stages/${id}/`;
+const stageLabel=id=>({core:'Core IT & DevOps',security:'Cloud & Cybersecurity',professional:'Enterprise & Professional'})[id];
+---
+<section class="ghc-stage-hub" aria-label="Explore Foundation learning stages">
+  <div class="ghc-stage-hub-header">
+    <span class="ghc-stage-eyebrow">FOUNDATION · THREE CONNECTED STAGES</span>
+    <h2>{selected==='all'?'Choose a learning stage':stageLabel(selected)+' learning journey'}</h2>
+    <p>Follow a coherent path from IT fundamentals to cloud, cybersecurity and enterprise skills. Each stage is free independent study. Select a module to open its real Foundation lesson in the focused technical reader.</p>
+  </div>
+  <nav class="ghc-stage-hub-choices" aria-label="Three Foundation learning stage routes">
+    <a href="/learning-stages/" aria-current={selected==='all'?'page':undefined}>All stages</a>
+    {foundationGroups.map((group,i)=>(
+      <a href={stageURL(group.id)} aria-current={selected===group.id?'page':undefined}>{String(i+1).padStart(2,'0')} · {stageLabel(group.id)}</a>
+    ))}
+  </nav>
+  {groups.map((group,i)=>(
+    <section class="ghc-stage-group" aria-labelledby={'stage-'+group.id}>
+      <div class="ghc-stage-group-heading">
+        <span>{selected==='all'?String(foundationGroups.indexOf(group)+1).padStart(2,'0'):'STAGE '+String(foundationGroups.indexOf(group)+1).padStart(2,'0')} · FREE LEARNING</span>
+        <h3 id={'stage-'+group.id}>{group.title}</h3>
+        <p>{group.description}</p>
+        {selected==='all'&&<a class="ghc-stage-explore" href={stageURL(group.id)}>Open this stage overview →</a>}
+      </div>
+      <div class="ghc-stage-module-grid">
+        {foundationModules.filter(module=>module.category===group.id).map(module=>(
+          <article class="ghc-stage-module">
+            <span>MODULE {module.id}</span>
+            <h4>{module.title}</h4>
+            <p>{module.description}</p>
+            <div class="ghc-stage-module-actions">
+              <a href={module.link}>Start first lesson <span aria-hidden="true">→</span></a>
+              <a href={'/curriculum/#module-'+module.id}>Full module syllabus <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  ))}
+  <div class="ghc-stage-bottom">
+    <strong>Where do I go next?</strong>
+    <p>Begin with the first lesson of a module. When you want all the published lessons and assessments, use its syllabus link. The full lesson pages use a narrower reading width intentionally, to make technical instructions and diagrams easier to follow.</p>
+    <nav aria-label="Foundation stage return links">
+      <a href="/curriculum/">Explore 16 free modules →</a>
+      <a href="/7-day-challenge/">Try the 7-day challenge →</a>
+      <a href="/explore/">Explore GoHackersCloud →</a>
+    </nav>
+  </div>
+</section>
+<style>
+.ghc-stage-hub{min-width:0;margin:1.1rem 0 2rem}
+.ghc-stage-eyebrow,.ghc-stage-group-heading>span{color:var(--sl-color-accent-high);font-size:.69rem;font-weight:850;letter-spacing:.07em}
+.ghc-stage-hub-header h2{font-size:clamp(1.45rem,2.5vw,1.95rem)!important;margin:.4rem 0 .65rem!important}
+.ghc-stage-hub-header p,.ghc-stage-group-heading p,.ghc-stage-bottom p{max-width:80ch;font-size:.88rem;line-height:1.7;color:var(--sl-color-gray-2)}
+.ghc-stage-hub-choices{display:flex;flex-wrap:wrap;gap:.45rem;margin:1.2rem 0 1.7rem}
+.ghc-stage-hub-choices a{min-height:42px;display:inline-flex;align-items:center;padding:.55rem .72rem;border:1px solid var(--sl-color-gray-5);background:var(--sl-color-bg-nav);border-radius:8px;text-decoration:none!important;color:var(--sl-color-text)!important;font-size:.79rem;font-weight:750}
+.ghc-stage-hub-choices a[aria-current="page"]{background:var(--sl-color-accent-low);border-color:var(--sl-color-accent);color:var(--sl-color-accent-high)!important}
+.ghc-stage-group{margin:1.5rem 0 2rem;scroll-margin-top:6rem}
+.ghc-stage-group-heading h3{font-size:1.18rem!important;margin:.4rem 0!important}
+.ghc-stage-group-heading p{margin:.3rem 0 .65rem!important}
+.ghc-stage-explore{font-size:.82rem;font-weight:800}
+.ghc-stage-module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;margin:.9rem 0}
+.ghc-stage-module{display:flex;flex-direction:column;gap:.55rem;min-width:0;padding:1.05rem;background:var(--sl-color-bg-nav);border:1px solid var(--sl-color-gray-5);border-radius:12px}
+.ghc-stage-module>span{font-size:.67rem;color:var(--sl-color-accent-high);letter-spacing:.05em;font-weight:850}
+.ghc-stage-module h4{font-size:.98rem!important;line-height:1.35;margin:0!important}
+.ghc-stage-module p{font-size:.8rem;color:var(--sl-color-gray-2);line-height:1.6;flex:1;margin:0!important}
+.ghc-stage-module-actions{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem;border-top:1px solid var(--sl-color-gray-5);padding-top:.6rem;margin-top:.3rem}
+.ghc-stage-module-actions a{font-size:.77rem;line-height:1.4;font-weight:800}
+.ghc-stage-bottom{border:1px solid var(--sl-color-gray-5);border-radius:12px;padding:1rem}
+.ghc-stage-bottom strong{font-size:.9rem}
+.ghc-stage-bottom p{margin:.4rem 0 .6rem!important}
+.ghc-stage-bottom nav{display:flex;flex-wrap:wrap;gap:.5rem 1rem}
+.ghc-stage-bottom nav a{font-weight:750;font-size:.8rem}
+.ghc-stage-hub a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:46rem){.ghc-stage-module-grid{grid-template-columns:1fr}}
+@media(max-width:28rem){.ghc-stage-hub-choices{display:grid;grid-template-columns:1fr}}
+</style>
