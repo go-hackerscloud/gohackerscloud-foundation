@@ -1,0 +1,50 @@
+---
+import {ghcExploreGroups} from '../data/ghc-explore-navigation.mjs';
+
+const studyGroup=ghcExploreGroups.find(group=>group.id==='foundation');
+if (!studyGroup || studyGroup.links.length !== 5) {
+  throw new Error('Free Foundation & Study Plans must contain five linked pages');
+}
+const path=Astro.props.current || Astro.url.pathname;
+const active=path.endsWith('/')?path:path+'/';
+const shortLabels={
+  '/start-here/':'Start Here',
+  '/curriculum/':'16 Free Modules',
+  '/core-it-devops/':'Core IT & DevOps',
+  '/7-day-challenge/':'7-Day Challenge',
+  '/study-plan/':'12-Week Plan',
+};
+---
+<nav class="ghc-study-navigation" aria-label="Navigate the five Free Foundation and Study Plan pages">
+  <div class="ghc-study-navigation-heading">
+    <span>FREE FOUNDATION · STUDY PATHS</span>
+    <div class="ghc-study-navigation-breadcrumbs">
+      <a href="/explore/">← Explore Overview</a>
+      <span aria-hidden="true">·</span>
+      <a href="/">Foundation Home</a>
+    </div>
+  </div>
+  <div class="ghc-study-navigation-items">
+    {studyGroup.links.map((item,index)=>(
+      <a href={item.href} aria-current={active===item.href?'page':undefined}>
+        <span class="ghc-study-navigation-number">{String(index+1).padStart(2,'0')}</span>
+        <span>{shortLabels[item.href]||item.label}</span>
+      </a>
+    ))}
+  </div>
+</nav>
+<style>
+.ghc-study-navigation{margin:.65rem 0 1.35rem;padding:.85rem;border:1px solid var(--sl-color-gray-5);border-radius:12px;background:var(--sl-color-bg-nav);min-width:0}
+.ghc-study-navigation-heading{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between;gap:.45rem .9rem;margin:0 0 .7rem}
+.ghc-study-navigation-heading>span{font-size:.68rem;letter-spacing:.07em;color:var(--sl-color-accent-high);font-weight:850}
+.ghc-study-navigation-breadcrumbs{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;font-size:.75rem;color:var(--sl-color-gray-3)}
+.ghc-study-navigation-breadcrumbs a{font-weight:750;text-decoration:none!important;color:var(--sl-color-accent-high)!important}
+.ghc-study-navigation-items{display:flex;flex-wrap:wrap;gap:.4rem}
+.ghc-study-navigation-items a{display:inline-flex;gap:.42rem;align-items:center;min-height:40px;min-width:0;padding:.54rem .65rem;border:1px solid var(--sl-color-gray-5);border-radius:8px;background:var(--sl-color-bg);color:var(--sl-color-text)!important;text-decoration:none!important;font-size:.77rem;line-height:1.35;font-weight:750}
+.ghc-study-navigation-number{font-variant-numeric:tabular-nums;font-size:.65rem;color:var(--sl-color-gray-2);font-weight:850}
+.ghc-study-navigation-items a[aria-current="page"]{border-color:var(--sl-color-accent);background:var(--sl-color-accent-low);color:var(--sl-color-accent-high)!important}
+.ghc-study-navigation-items a:hover{border-color:var(--sl-color-accent)}
+.ghc-study-navigation a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:44rem){.ghc-study-navigation{padding:.75rem}.ghc-study-navigation-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.ghc-study-navigation-items a{width:100%}}
+@media(max-width:26rem){.ghc-study-navigation-items{grid-template-columns:1fr}}
+</style>
