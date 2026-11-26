@@ -18,8 +18,6 @@ const splash=[
  ['/about-gohackerscloud/lab-directory/','src/content/docs/about-gohackerscloud/lab-directory.mdx'],
  ['/7-day-challenge/','src/content/docs/7-day-challenge.mdx'],
  ['/core-it-devops/','src/content/docs/core-it-devops/index.mdx'],
- ['/curriculum/','src/content/docs/curriculum/index.mdx'],
- ['/portfolio/','src/content/docs/portfolio/index.mdx'],
 ];
 for(const [route,file] of splash){
   const mdx=read(file);
@@ -37,8 +35,8 @@ assert.equal(files('src/content/docs').filter(file=>/^template:\s*splash\s*$/m.t
   splash.length,'Review new splash pages before changing widths');
 
 // Every Explore sidebar destination must use the Academy-aligned canvas.
-// 11 splash pages use html:not([data-has-sidebar]); five marked Explore
-// pages (four free guides plus GHC Labs hub) opt in without widening lessons.
+// Nine splash pages use html:not([data-has-sidebar]); seven marked Explore
+// pages (four free guides plus Labs, Curriculum and Portfolio hubs) opt in.
 const sidebarConfig=read('astro.config.mjs');
 const exploreSidebar=sidebarConfig.split("label: 'Explore GoHackersCloud'")[1]
   ?.split("label: 'Foundation Learning Stages'")[0]||'';
@@ -49,6 +47,8 @@ const markedExploreGuides=new Map([
   ['/paths/professionals/','src/content/docs/paths/professionals.mdx'],
   ['/study-plan/','src/content/docs/study-plan/index.mdx'],
   ['/ghc-labs/','src/content/docs/ghc-labs/index.mdx'],
+  ['/curriculum/','src/content/docs/curriculum/index.mdx'],
+  ['/portfolio/','src/content/docs/portfolio/index.mdx'],
 ]);
 const splashRoutes=new Set(splash.map(([route])=>route));
 assert.equal(exploreRoutes.length,16,'Explore navigation must cover exactly 16 routes');
@@ -289,6 +289,39 @@ assert.equal(exactAnchors(built('/ghc-labs/'),'ghc-labs-track-card').length,13,
   'All 13 Academy tracks must remain navigable');
 assert.equal(exactAnchors(built('/curriculum/'),'foundation-module-card').length,16,
   'All 16 free Foundation modules must remain navigable');
+const portfolioHub=built('/portfolio/');
+const curriculumHub=built('/curriculum/');
+const portfolioMDX=read('src/content/docs/portfolio/index.mdx');
+const curriculumMDX=read('src/content/docs/curriculum/index.mdx');
+assert.ok(!/^template:\\s*splash\\s*$/m.test(portfolioMDX) &&
+  !/^template:\\s*splash\\s*$/m.test(curriculumMDX) &&
+  portfolioHub.includes('ghc-portfolio-hub-marker') &&
+  curriculumHub.includes('ghc-curriculum-hub-marker') &&
+  portfolioHub.includes('data-has-sidebar') && curriculumHub.includes('data-has-sidebar'),
+  'Portfolio and Curriculum landing hubs must retain sidebar and scoped Explore width');
+assert.ok(portfolioMDX.includes('<FoundationPortfolioHubNav />') &&
+  curriculumMDX.includes('<FoundationLessonHubNav />') &&
+  curriculumMDX.includes('<FoundationModuleExplorer />') &&
+  curriculumMDX.includes('<FoundationLessonDirectory />'),
+  'Hubs must retain their detailed content, searchable modules and full lesson directory');
+assert.equal((portfolioHub.match(/class="ghc-portfolio-project-card"/g)||[]).length,6,
+  'Portfolio hub must present exactly six grouped cards');
+assert.equal((curriculumHub.match(/class="foundation-directory-module"/g)||[]).length,16,
+  'Curriculum must retain all 16 real lesson-list accordions');
+assert.ok(curriculumHub.includes('id="lesson-directory"') &&
+  curriculumHub.includes('id="foundation-modules"'),
+  'Curriculum module explorer and full lesson syllabus must have stable jump targets');
+const portfolioData=read('src/data/foundation-portfolio-projects.mjs');
+const sidebar=read('astro.config.mjs');
+const lessonSidebar=sidebar.split("label: 'All Foundation Lessons'")[1]
+  ?.split("label: 'Portfolio Projects'")[0] || '';
+assert.ok(!lessonSidebar.includes('autogenerate') &&
+  lessonSidebar.includes('/curriculum/#lesson-directory'),
+  'Do not expose the complete nested Obsidian lesson tree in the sidebar');
+assert.ok(portfolioData.includes("export const foundationPortfolioProjects") &&
+  sidebar.includes('foundationPortfolioGroups.map(group=>'),
+  'Portfolio cards and sidebar must use shared project metadata');
+
 assert.ok(!p3Panel.includes('fetch(') && !p3Panel.includes('sendBeacon('),
   'P3 panels must not collect learner information');
 
@@ -327,6 +360,6 @@ assert.ok(challenge.includes('ghc-challenge-rail')&&
   challenge.includes('data-save-progress')&&challenge.includes('data-clear-progress'),
   'Previous challenge sidebar and privacy settings must remain intact');
 
-console.log('Academy-style Foundation layout QA passed: 11 splash routes at 78rem plus five marked Explore pages, '+ 
+console.log('Academy-style Foundation layout QA passed: 9 splash routes at 78rem plus seven marked Explore pages, '+ 
  '3 lesson + 4 pathway + 3 portfolio cards, 5 learning-stage + 6 site cards, '+ 
  'Mermaid and existing free lesson/challenge navigation.');
