@@ -57,7 +57,7 @@ const splashDetailRoutes=[
  '/about-gohackerscloud/','/about-gohackerscloud/catalog/',
  '/about-gohackerscloud/courses/','/about-gohackerscloud/test-engine/',
  '/about-gohackerscloud/cybersecurity-services/',
- '/about-gohackerscloud/lab-directory/','/7-day-challenge/','/core-it-devops/',
+ '/about-gohackerscloud/lab-directory/',
 ];
 for(const route of splashDetailRoutes){
  const document=html(route);
@@ -65,6 +65,19 @@ for(const route of splashDetailRoutes){
   'Splash layout without sidebar needs a single clear Explore return path: '+route);
  assert.ok(document.includes('href="/explore/"')&&document.includes('href="/"'),
   'Splash page must offer Overview and Foundation Home return links: '+route);
+}
+
+const freeFoundationStudyRoutes=[
+ '/start-here/','/curriculum/','/core-it-devops/','/7-day-challenge/','/study-plan/',
+];
+for(const route of freeFoundationStudyRoutes){
+  const document=html(route);
+  assert.ok(document.includes('data-has-sidebar'),
+    'Every free Foundation study page must keep the Starlight navigation menu: '+route);
+  assert.equal(countClass(document,'ghc-study-navigation'),1,
+    'Every free Foundation study page must have one common study navigation: '+route);
+  assert.ok(document.includes('href="/explore/"'),
+    'Free Foundation study page must offer its Explore Overview return link: '+route);
 }
 const hubSource=read('src/components/FoundationExploreHub.astro');
 assert.ok(hubSource.includes('grid-template-columns:repeat(2,minmax(0,1fr))')&&
@@ -75,4 +88,4 @@ assert.ok(!/\b(?:fetch|sendBeacon|XMLHttpRequest)\s*\(/.test(hubSource),
 assert.ok(html('/curriculum/').includes('id="lesson-directory"')&&
  html('/portfolio/').includes('ghc-portfolio-hub-marker'),
  'Foundation lessons and portfolio hubs must stay intact');
-console.log('Explore navigation QA passed: four grouped categories, all 16 original routes, a sidebar-aware overview, and 8 splash-page return links.');
+console.log('Explore navigation QA passed: four grouped categories, all 16 original routes, a sidebar-aware overview, six splash-page return links and five unified study pages.');
