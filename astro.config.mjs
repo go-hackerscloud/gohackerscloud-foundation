@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import mermaid from 'astro-mermaid';
 import { foundationModules } from './src/data/foundation-modules.mjs';
+import {ghcCareerPathways,ghcCareerURL,ghcCertURL,ghcInterviewURL} from './src/data/ghc-career-pathways.mjs';
 
 const foundationStructuredData = JSON.stringify({
   '@context': 'https://schema.org',
@@ -118,21 +119,26 @@ export default defineConfig({
           label: 'Career Roadmaps',
           collapsed: true,
           items: [
-            {label: 'Cloud Security Engineer · Full Guide', link: '/learning-hub/cloud-security-roadmap/'},
+            {label: 'Browse 9 Career Roadmaps', link: '/learning-hub/career-paths/'},
+            ...ghcCareerPathways.map(role=>({label: role.title, link: ghcCareerURL(role.id)})),
           ],
         },
         {
           label: 'Certification Guides',
           collapsed: true,
           items: [
-            {label: 'AWS Cloud Practitioner · CLF-C02', link: '/learning-hub/aws-clf-c02/'},
+            {label: 'Compare 9 Certification Paths', link: '/learning-hub/certification-paths/'},
+            {label: 'AWS Cloud Practitioner · 14-chapter Guide', link: '/learning-hub/aws-clf-c02/'},
+            ...ghcCareerPathways.map(role=>({label: role.title+' · Certifications', link: ghcCertURL(role.id)})),
           ],
         },
         {
           label: 'IT Interview Preparation',
           collapsed: true,
           items: [
-            {label: 'Complete Interview Handbook', link: '/learning-hub/it-interview/'},
+            {label: 'Browse 9 Interview Question Sets', link: '/learning-hub/interview-paths/'},
+            {label: 'Complete Interview Handbook · 14 chapters', link: '/learning-hub/it-interview/'},
+            ...ghcCareerPathways.map(role=>({label: role.title+' · Questions', link: ghcInterviewURL(role.id)})),
           ],
         },
         {
@@ -142,7 +148,7 @@ export default defineConfig({
             {label: 'GHC Labs Overview', link: '/ghc-labs/'},
             {label: 'How Labs Work', link: '/ghc-labs/how-it-works/'},
             {label: 'Explore 13 Academy Tracks', link: '/ghc-labs/track-selection/'},
-            {label: 'Demo Video', link: '/ghc-labs/instructor-demo/'},
+            {label: 'Five Lab Video Guides', link: '/ghc-labs/instructor-demo/'},
             {label: 'Membership & FAQs', link: '/ghc-labs/faq/'},
           ],
         },
