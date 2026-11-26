@@ -1,0 +1,44 @@
+---
+import {foundationModules,foundationGroups} from '../data/foundation-modules.mjs';
+---
+<section class="ghc-lessons-hub" aria-labelledby="ghc-lessons-hub-heading">
+  <span class="ghc-lessons-kicker">FOUNDATION · FREE LEARNING LIBRARY</span>
+  <h2 id="ghc-lessons-hub-heading">Choose how you want to learn</h2>
+  <p>Use the searchable module cards to choose a subject, or open the full lesson-by-lesson syllabus when you need a specific lesson. The sidebar stays compact so you can focus on the material.</p>
+  <nav class="ghc-lessons-hub-grid" aria-label="Foundation lesson discovery options">
+    <a href="#foundation-modules" class="ghc-lessons-hub-card">
+      <span>01 · MODULE EXPLORER</span><strong>Browse all {foundationModules.length} free modules</strong>
+      <p>Search by topic and filter across the three learning stages.</p><b>Open module explorer <span aria-hidden="true">↓</span></b>
+    </a>
+    <a href="#lesson-directory" class="ghc-lessons-hub-card">
+      <span>02 · FULL SYLLABUS</span><strong>Find a specific lesson</strong>
+      <p>Expand a module to see its current published lessons and materials.</p><b>Browse every lesson <span aria-hidden="true">↓</span></b>
+    </a>
+    <a href="/start-here/" class="ghc-lessons-hub-card">
+      <span>03 · GUIDED START</span><strong>New to IT or cybersecurity?</strong>
+      <p>Follow the beginner learning path before selecting a specialty.</p><b>Start here <span aria-hidden="true">→</span></b>
+    </a>
+  </nav>
+  <div class="ghc-lessons-stages">
+    <strong>Three connected learning stages</strong>
+    <p>{foundationGroups.map((group,i)=>`${i+1}. ${group.title.replace(/^Stage \d+ · /,'')}`).join('  ·  ')}</p>
+  </div>
+</section>
+<style>
+.ghc-lessons-hub{margin:1.1rem 0 2rem;min-width:0}
+.ghc-lessons-kicker{font-size:.7rem;letter-spacing:.08em;font-weight:850;color:var(--sl-color-accent-high)}
+.ghc-lessons-hub h2{font-size:clamp(1.4rem,2.3vw,1.85rem)!important;margin:.45rem 0 .6rem!important;line-height:1.25}
+.ghc-lessons-hub>p{font-size:.89rem;line-height:1.65;color:var(--sl-color-gray-2);max-width:80ch}
+.ghc-lessons-hub-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin:1.1rem 0}
+.ghc-lessons-hub-card{display:flex;flex-direction:column;gap:.65rem;min-width:0;border-radius:13px;border:1px solid var(--sl-color-gray-5);background:var(--sl-color-bg-nav);padding:1rem;text-decoration:none!important;color:var(--sl-color-text)!important}
+.ghc-lessons-hub-card:hover{border-color:var(--sl-color-accent)}
+.ghc-lessons-hub-card>span{font-size:.67rem;font-weight:850;letter-spacing:.06em;color:var(--sl-color-accent-high)}
+.ghc-lessons-hub-card strong{font-size:1rem;line-height:1.35}
+.ghc-lessons-hub-card p{font-size:.8rem;line-height:1.6;color:var(--sl-color-gray-2);margin:0!important;flex:1}
+.ghc-lessons-hub-card b{font-size:.8rem;color:var(--sl-color-accent-high)}
+.ghc-lessons-stages{padding:.9rem 1rem;border:1px solid var(--sl-color-gray-5);border-radius:11px}
+.ghc-lessons-stages strong{font-size:.83rem}
+.ghc-lessons-stages p{margin:.3rem 0 0!important;font-size:.77rem;line-height:1.6;color:var(--sl-color-gray-2)}
+.ghc-lessons-hub a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:54rem){.ghc-lessons-hub-grid{grid-template-columns:1fr}}
+</style>
