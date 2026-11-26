@@ -37,35 +37,73 @@ const files=dir=>readdirSync(dir,{withFileTypes:true}).flatMap(e=>{
 assert.equal(files('src/content/docs').filter(file=>/^template:\s*splash\s*$/m.test(read(file))).length,
   splash.length,'Review new splash pages before changing widths');
 
+// Every Explore sidebar destination must use the Academy-aligned canvas.
+// 12 splash pages use html:not([data-has-sidebar]); the four learner
+// guidance pages opt in with a marker without widening technical lessons.
+const sidebarConfig=read('astro.config.mjs');
+const exploreSidebar=sidebarConfig.split("label: 'Explore GoHackersCloud'")[1]
+  ?.split("label: 'Foundation Learning Stages'")[0]||'';
+const exploreRoutes=[...new Set([...exploreSidebar.matchAll(/link:\s*'(\/[^']*)'/g)].map(m=>m[1]))];
+const markedExploreGuides=new Map([
+  ['/start-here/','src/content/docs/start-here.mdx'],
+  ['/paths/students/','src/content/docs/paths/students.mdx'],
+  ['/paths/professionals/','src/content/docs/paths/professionals.mdx'],
+  ['/study-plan/','src/content/docs/study-plan/index.mdx'],
+]);
+const splashRoutes=new Set(splash.map(([route])=>route));
+assert.equal(exploreRoutes.length,16,'Explore navigation must cover exactly 16 routes');
+for(const route of exploreRoutes){
+  assert.ok(splashRoutes.has(route)||markedExploreGuides.has(route),
+    'Missing Academy-width coverage for Explore page '+route);
+  const html=built(route);
+  if(markedExploreGuides.has(route)){
+    const file=markedExploreGuides.get(route);
+    assert.ok(read(file).includes('class="ghc-explore-width-marker"')||
+      read(file).includes('ghc-explore-width-marker'),
+      'Guide must explicitly opt in to wide landing canvas '+route);
+    assert.ok(html.includes('ghc-explore-width-marker'),
+      'Width marker must render on Explore guide '+route);
+  }
+}
+assert.ok(!built('/foundation/gohackerscloud-foundation/01-it-fundamentals/01-computer-hardware/')
+  .includes('ghc-explore-width-marker'),
+  'Original technical lessons must not inherit the Explore width marker');
+
+
 const css=read('src/styles/landing-layout.css');
 const config=read('astro.config.mjs');
 assert.ok(config.includes("'./src/styles/landing-layout.css'"),'Missing Foundation layout CSS');
 assert.ok(css.includes('body:has(.foundation-hero)'),'Flagship homepage selector must remain present');
 assert.ok(css.includes('body:has(.ghc-about-lead)'),'Academy-style width must include About');
-assert.ok(css.includes('--sl-content-width: 60rem'),
-  'Public Foundation pages should use the reduced 60rem canvas');
-assert.ok(css.includes('max-width: min(100%, 60rem)'),
-  'Actual Starlight content container must be capped at 60rem, not just a CSS variable');
+assert.ok(css.includes('--sl-content-width: 78rem'),
+  "Public Foundation landing pages should share Academy's 78rem canvas");
+assert.ok(!css.includes('max-width: min(100%, 60rem)'),
+  'The prior 60rem hard cap must not restrict public landing pages');
+assert.ok(css.includes('html:not([data-has-sidebar]) .content-panel > .sl-container') &&
+  css.includes('body:has(.ghc-explore-width-marker) .content-panel > .sl-container'),
+  'Wider Foundation canvas must remain scoped to splash pages and marked Explore guides');
+assert.ok(css.includes('max-width: min(100%, 78rem)'),
+  "Starlight public content container must match the Academy's 78rem width");
 assert.ok(css.includes('.content-panel > .sl-container') && css.includes('margin-inline: auto'),
-  'Reduced Foundation content must be centered in the actual content panel');
+  'Wide Foundation landing content must remain centered');
 assert.ok(!/\.content-panel \.sl-container,\s*body:has\(\.ghc-study-plan-marker\) \.content-panel \.sl-container\s*\{\s*min-width:\s*0;\s*max-width:\s*100%/.test(css),
   'Do not reintroduce a max-width:100% override on Starlight sl-container');
 assert.ok(!css.includes('88rem'),'Reject the oversized PR #19 desktop layout');
 assert.ok(css.includes('html:not([data-has-sidebar]) body'),
   'Every public splash page must use Academy width');
-assert.ok(css.includes('body:has(.ghc-study-plan-marker)'),
-  'Study Plan must share the Academy width without changing other lessons');
+assert.ok(css.includes('body:has(.ghc-explore-width-marker)'),
+  'Four Explore guidance pages must share Academy width without widening technical lessons');
 assert.ok(css.includes('overscroll-behavior-x: contain'),
   'Wide public tables must scroll locally rather than overflow the viewport');
 assert.ok(read('src/content/docs/study-plan/index.mdx').includes('ghc-study-plan-marker'),
-  'Study Plan style marker must be present');
+  'Study Plan must retain its original styling marker');
 assert.ok(css.includes('max-width: 70ch'),
   'Long paragraph lines must remain readable on wide hero pages');
 assert.ok(css.includes('@media (max-width: 48rem)'),'Mobile layout fallback is required');
 
 const compiledCss=readdirSync('dist/_astro',{recursive:true})
   .filter(f=>f.endsWith('.css')).map(f=>read(join('dist/_astro',f))).join('\n');
-assert.ok(compiledCss.includes('60rem')&&compiledCss.includes('foundation-hero')&&
+assert.ok(compiledCss.includes('78rem')&&compiledCss.includes('foundation-hero')&&
   compiledCss.includes('ghc-about-lead'),
   'Academy-style shared width must compile into the actual CSS assets');
 
@@ -267,14 +305,14 @@ for(const [route,file,variant] of [
 assert.ok(!built('/').includes('ghc-guided-next') &&
   !built('/about-gohackerscloud/catalog/').includes('ghc-guided-next'),
   'Guidance navigation must not spread to promotional or home pages');
-assert.ok(css.includes('--sl-content-width: 60rem'),
-  'P4 must preserve the existing Foundation content width');
+assert.ok(css.includes('--sl-content-width: 78rem'),
+  'P4 navigation must preserve the Academy-aligned Foundation landing width');
 
 const challenge=built('/7-day-challenge/');
 assert.ok(challenge.includes('ghc-challenge-rail')&&
   challenge.includes('data-save-progress')&&challenge.includes('data-clear-progress'),
   'Previous challenge sidebar and privacy settings must remain intact');
 
-console.log('Academy-style Foundation layout QA passed: 12 splash routes at 60rem plus Study Plan, '+ 
+console.log('Academy-style Foundation layout QA passed: 12 splash routes at 78rem plus Study Plan, '+ 
  '3 lesson + 4 pathway + 3 portfolio cards, 5 learning-stage + 6 site cards, '+ 
  'Mermaid and existing free lesson/challenge navigation.');

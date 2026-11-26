@@ -1,11 +1,10 @@
-/* Narrow and center Foundation public pages to a 60rem reading canvas.
-   The Academy's 78rem hero setting is intentionally not copied: the user
-   wants the tighter reading-page proportions, not a wider landing canvas.
-   Technical lessons retain their Starlight reading widths. */
+/* Match Academy's 78rem desktop canvas on all 16 Explore pages:
+   12 splash routes and 4 explicitly marked learner-guidance pages.
+   Standard technical lessons retain Starlight's narrower reading width. */
 
 html:not([data-has-sidebar]) body,
-body:has(.ghc-study-plan-marker) {
-  --sl-content-width: 60rem;
+body:has(.ghc-explore-width-marker) {
+  --sl-content-width: 78rem;
 }
 
 /* Keep flagship brand accents without changing instructional pages. */
@@ -48,8 +47,8 @@ body:has(.ghc-catalog-hero) .sl-markdown-content > table {
 
 /* The catalog is a long reference directory, so it benefits from a
    navigable hierarchy without changing any inventory or external links. */
-/* Trim the oversized global heading spacing on the two showcase pages,
-   without changing technical lesson headings or the public 60rem canvas. */
+/* Trim oversized headings on the two showcase pages without affecting
+   technical lessons or the public landing width. */
 body:has(.ghc-about-lead) .sl-markdown-content > h2 {
   margin-top: 2rem;
   padding-top: .45rem;
@@ -75,26 +74,27 @@ body:has(.ghc-catalog-hero) .sl-markdown-content > h3 {
 .ghc-lab-directory-anchor { display:block;scroll-margin-top:6rem; }
 
 
-/* Prevent any wide tables or long names from forcing the entire
-   page outside the viewport. Tables may scroll in their own region. */
+/* The four non-splash Explore guides explicitly opt in through their page
+   marker; other sidebar lesson routes keep Starlight's default width.
+   Wide tables scroll locally instead of expanding the viewport. */
 html:not([data-has-sidebar]) .content-panel,
-body:has(.ghc-study-plan-marker) .content-panel {
+body:has(.ghc-explore-width-marker) .content-panel {
   min-width: 0;
   max-width: 100%;
 }
 
-/* Starlight caps .sl-container with --sl-content-width. The former
-   max-width:100% rule overrode that cap and made 60rem ineffective.
-   Reinstate the cap on the actual content container, not just body. */
+/* Match both the Starlight width token and the actual sl-container max.
+   A hard 60rem cap here previously kept the Foundation hero substantially
+   narrower than Academy, even when the page had free horizontal space. */
 html:not([data-has-sidebar]) .content-panel > .sl-container,
-body:has(.ghc-study-plan-marker) .content-panel > .sl-container {
+body:has(.ghc-explore-width-marker) .content-panel > .sl-container {
   box-sizing: border-box;
   min-width: 0;
-  max-width: min(100%, 60rem);
+  max-width: min(100%, 78rem);
   margin-inline: auto;
 }
 html:not([data-has-sidebar]) .sl-markdown-content > table,
-body:has(.ghc-study-plan-marker) .sl-markdown-content > table {
+body:has(.ghc-explore-width-marker) .sl-markdown-content > table {
   display: block;
   max-width: 100%;
   overflow-x: auto;
@@ -106,7 +106,7 @@ body:has(.ghc-study-plan-marker) .content-panel h1 {
 }
 @media (max-width: 48rem) {
   html:not([data-has-sidebar]) body,
-  body:has(.ghc-study-plan-marker) {
+  body:has(.ghc-explore-width-marker) {
     --sl-content-width: 100%;
   }
 }
