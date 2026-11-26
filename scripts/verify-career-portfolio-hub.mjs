@@ -125,7 +125,7 @@ for(const {slug} of projectPages){
 }
 assert.ok(hub.includes('ghc-portfolio-hub-marker')&&hub.includes('data-has-sidebar'),
   'Portfolio hub must retain a visible Starlight sidebar');
-assert.equal((hub.match(/class="ghc-portfolio-project-card"/g)||[]).length,6,
+assert.equal([...hub.matchAll(/class="([^"]*)"/g)].filter(([,value])=>value.split(/\s+/).includes('ghc-portfolio-project-card')).length,6,
   'Portfolio cards must show all six project options');
 for(const route of ['/curriculum/','/core-it-devops/','/ghc-labs/',
   '/about-gohackerscloud/catalog/']) page(route);
