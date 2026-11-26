@@ -19,8 +19,6 @@ const splash=[
  ['/about-gohackerscloud/test-engine/','src/content/docs/about-gohackerscloud/test-engine.mdx'],
  ['/about-gohackerscloud/cybersecurity-services/','src/content/docs/about-gohackerscloud/cybersecurity-services.mdx'],
  ['/about-gohackerscloud/lab-directory/','src/content/docs/about-gohackerscloud/lab-directory.mdx'],
- ['/7-day-challenge/','src/content/docs/7-day-challenge.mdx'],
- ['/core-it-devops/','src/content/docs/core-it-devops/index.mdx'],
 ];
 for(const [route,file] of splash){
   const mdx=read(file);
@@ -38,8 +36,8 @@ assert.equal(files('src/content/docs').filter(file=>/^template:\s*splash\s*$/m.t
   splash.length,'Review new splash pages before changing widths');
 
 // Every Explore sidebar destination must use the Academy-aligned canvas.
-// Nine splash pages use html:not([data-has-sidebar]); eight marked Explore
-// pages (four free guides plus Labs, Curriculum, Portfolio and Explore hubs) opt in.
+// Seven splash pages use html:not([data-has-sidebar]); ten marked Explore
+// pages (six learning guides plus Labs, Curriculum, Portfolio and Explore hubs) opt in.
 const sidebarConfig=read('astro.config.mjs');
 const exploreSidebar=sidebarConfig.split("label: 'Explore GoHackersCloud'")[1]
   ?.split("label: 'Foundation Learning Stages'")[0]||'';
@@ -58,6 +56,8 @@ const markedExploreGuides=new Map([
   ['/curriculum/','src/content/docs/curriculum/index.mdx'],
   ['/portfolio/','src/content/docs/portfolio/index.mdx'],
   ['/explore/','src/content/docs/explore/index.mdx'],
+  ['/core-it-devops/','src/content/docs/core-it-devops/index.mdx'],
+  ['/7-day-challenge/','src/content/docs/7-day-challenge.mdx'],
 ]);
 const splashRoutes=new Set(splash.map(([route])=>route));
 assert.equal(new Set(exploreRoutes).size,17,'Explore navigation must cover all 16 original routes plus the overview');
@@ -77,6 +77,45 @@ for(const route of exploreRoutes){
 assert.ok(!built('/foundation/gohackerscloud-foundation/01-it-fundamentals/01-computer-hardware/')
   .includes('ghc-explore-width-marker'),
   'Original technical lessons must not inherit the Explore width marker');
+
+const freeFoundationStudyPages=[
+  ['/start-here/','src/content/docs/start-here.mdx'],
+  ['/curriculum/','src/content/docs/curriculum/index.mdx'],
+  ['/core-it-devops/','src/content/docs/core-it-devops/index.mdx'],
+  ['/7-day-challenge/','src/content/docs/7-day-challenge.mdx'],
+  ['/study-plan/','src/content/docs/study-plan/index.mdx'],
+];
+const studyNavSource=read('src/components/FoundationStudyNavigation.astro');
+assert.ok(studyNavSource.includes("ghcExploreGroups.find(group=>group.id==='foundation')") &&
+  studyNavSource.includes('@media(max-width:44rem)'),
+  'Five-page nav must use the shared Foundation category list and wrap on phones');
+for(const [current,filename] of freeFoundationStudyPages){
+  const document=built(current);
+  const source=read(filename);
+  assert.ok(!/^template:\s*splash\s*$/m.test(source),
+    'Free Foundation study pages must not hide the persistent sidebar: '+current);
+  assert.ok(document.includes('data-has-sidebar'),
+    'Free Foundation study page must retain the Starlight sidebar: '+current);
+  assert.ok(source.includes('ghc-explore-width-marker'),
+    'Each free study page must keep the original wide Explore canvas marker: '+current);
+  assert.ok(source.includes('<FoundationStudyNavigation current="'+current+'" />'),
+    'Study page must mount the common five-link navigator: '+current);
+  assert.ok(document.includes('ghc-study-navigation') &&
+    document.includes('aria-current="page"'),
+    'Study page must show the shared navigator and its active state: '+current);
+  for(const [href] of freeFoundationStudyPages){
+    assert.ok(document.includes('href="'+href+'"'),
+      'Study page must link to its sibling route '+href+' from '+current);
+  }
+  assert.ok(document.includes('href="/explore/"')&&document.includes('href="/"'),
+    'Study pages must offer Explore Overview and Foundation Home breadcrumbs: '+current);
+}
+const challengeLayout=read('src/components/FoundationChallengeLayout.astro');
+assert.ok(challengeLayout.includes('container-type:inline-size') &&
+  challengeLayout.includes('@container (max-width:72rem)') &&
+  challengeLayout.includes('data-challenge-rail-count'),
+  '7-Day quiz companion must fit the remaining reading canvas beside navigation sidebars');
+
 
 
 const css=read('src/styles/landing-layout.css');
@@ -393,6 +432,6 @@ assert.ok(challenge.includes('ghc-challenge-rail')&&
   challenge.includes('data-save-progress')&&challenge.includes('data-clear-progress'),
   'Previous challenge sidebar and privacy settings must remain intact');
 
-console.log('Academy-style Foundation layout QA passed: 9 splash routes at 78rem plus eight marked Explore pages, '+ 
+console.log('Academy-style Foundation layout QA passed: 7 splash routes at 78rem plus ten marked Explore pages, '+ 
  '3 lesson + 4 pathway + 3 portfolio cards, 5 learning-stage + 6 site cards, '+ 
  'Mermaid and existing free lesson/challenge navigation.');

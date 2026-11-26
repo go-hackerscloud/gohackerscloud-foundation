@@ -1,6 +1,7 @@
 ---
 import { foundationChallengeDays } from '../data/foundation-challenge.mjs';
 ---
+<div class="ghc-challenge-shell">
 <div class="ghc-challenge-layout">
   <div class="ghc-challenge-content">
     <slot />
@@ -39,7 +40,9 @@ import { foundationChallengeDays } from '../data/foundation-challenge.mjs';
     </div>
   </aside>
 </div>
+</div>
 <style>
+.ghc-challenge-shell{width:100%;min-width:0;container-type:inline-size}
 .ghc-challenge-layout{
   width:100%;
   max-width:84rem;
@@ -137,6 +140,21 @@ import { foundationChallengeDays } from '../data/foundation-challenge.mjs';
 .ghc-rail-day-link:focus-visible,.ghc-challenge-rail-resources a:focus-visible{
   outline:3px solid var(--sl-color-accent);
   outline-offset:3px;
+}
+/* The learner sidebar + On This Page rail narrow the actual reading canvas.
+   Collapse by content-container width rather than window width alone. */
+@container (max-width:72rem){
+  .ghc-challenge-layout{grid-template-columns:minmax(0,1fr);gap:1.35rem}
+  .ghc-challenge-rail{grid-row:1;position:static;max-height:none;overflow:visible;gap:.65rem}
+  .ghc-challenge-rail-card{padding:1rem}
+  .ghc-rail-description,.ghc-rail-status-note{display:none}
+  .ghc-rail-day-nav{display:flex;overflow-x:auto;gap:.35rem;scroll-snap-type:x proximity;padding-bottom:.5rem}
+  .ghc-rail-day-link{flex:0 0 10.7rem;scroll-snap-align:start;min-height:48px;background:var(--sl-color-bg);border-color:var(--sl-color-gray-5)}
+  .ghc-challenge-rail-resources{padding:.75rem 1rem}
+  .ghc-challenge-rail-resources nav{display:flex;flex-wrap:wrap;gap:.3rem 1rem}
+  .ghc-challenge-rail-resources a{min-height:38px;border:0}
+  .ghc-rail-resources-title{margin-bottom:.35rem!important}
+  .ghc-rail-footnote{display:none}
 }
 @media(max-width:62rem){
   .ghc-challenge-layout{grid-template-columns:minmax(0,1fr);gap:1.35rem}
