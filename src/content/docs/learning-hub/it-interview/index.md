@@ -5,6 +5,10 @@ description: "A 14-chapter guide to IT, cloud and security interviews with model
 
 This free handbook helps you explain technical concepts, reason through problems and present truthful evidence. It does **not** promise a job offer.
 
+## Role-specific security interview questions
+
+For a focused interview preparation set, browse [54 original scenario questions across nine security pathways](/learning-hub/interview-paths/). Each set connects to the relevant [Career Roadmap](/learning-hub/career-paths/) and [Certification Guidance](/learning-hub/certification-paths/), with links to matching Academy learning tracks. This handbook remains the deeper foundation for technical troubleshooting and behavioral interviews.
+
 ## Choose your role
 
 | Role | Suggested chapters |
