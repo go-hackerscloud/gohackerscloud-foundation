@@ -1,0 +1,14 @@
+---
+const label=Astro.props.label||'Explore GoHackersCloud';
+---
+<nav class="ghc-explore-return" aria-label="Return to Explore GoHackersCloud">
+  <a href="/explore/" aria-label={'Back to '+label}><span aria-hidden="true">←</span> Explore Overview</a>
+  <span aria-hidden="true">·</span>
+  <a href="/">Foundation Home</a>
+</nav>
+<style>
+.ghc-explore-return{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;font-size:.79rem;margin:.65rem 0 1.05rem;color:var(--sl-color-gray-3)}
+.ghc-explore-return a{display:inline-flex;align-items:center;gap:.25rem;color:var(--sl-color-accent-high);font-weight:800;text-decoration:none}
+.ghc-explore-return a:hover{text-decoration:underline}
+.ghc-explore-return a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+</style>
