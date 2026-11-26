@@ -1,0 +1,57 @@
+---
+import {ghcExploreGroups} from '../data/ghc-explore-navigation.mjs';
+---
+<section class="ghc-explore-hub" aria-labelledby="ghc-explore-hub-heading">
+  <div class="ghc-explore-hub-intro">
+    <span class="ghc-explore-hub-eyebrow">GOHACKERSCLOUD · LEARNING & SERVICES</span>
+    <h2 id="ghc-explore-hub-heading">Find the right starting point</h2>
+    <p>Choose a free learning route, a career goal, a practical training option or a business service. The four groups below follow the same order as the Explore navigation on the left.</p>
+    <div class="ghc-explore-hub-fastlinks" aria-label="Recommended quick starts">
+      <a href="/start-here/">New learner? Start here <span aria-hidden="true">→</span></a>
+      <a href="/learning-hub/career-paths/">Choose from 9 career roadmaps <span aria-hidden="true">→</span></a>
+      <a href="/ghc-labs/">Explore Academy & GHC Labs <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <div class="ghc-explore-hub-grid">
+    {ghcExploreGroups.map((group,index)=>(
+      <section class="ghc-explore-hub-card" aria-labelledby={'explore-'+group.id+'-heading'} id={'explore-'+group.id}>
+        <div class="ghc-explore-hub-card-heading">
+          <span>{String(index+1).padStart(2,'0')} · {group.eyebrow}</span>
+          <h3 id={'explore-'+group.id+'-heading'}>{group.title}</h3>
+          <p>{group.description}</p>
+        </div>
+        <nav aria-label={group.title}>
+          {group.links.map(link=>(
+            <a href={link.href}>
+              <span>{link.label}</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          ))}
+        </nav>
+      </section>
+    ))}
+  </div>
+  <p class="ghc-explore-hub-disclosure"><strong>Choose by your goal:</strong> Foundation lessons and independent portfolio exercises are free. Courses, test products, Academy memberships, hosted labs and professional services are separate offerings with their own availability and terms. Certification guidance is educational and does not award a third-party credential.</p>
+</section>
+<style>
+.ghc-explore-hub{margin:1.2rem 0 2.5rem;min-width:0}
+.ghc-explore-hub-eyebrow{font-size:.7rem;letter-spacing:.08em;font-weight:850;color:var(--sl-color-accent-high)}
+.ghc-explore-hub-intro h2{font-size:clamp(1.45rem,2.4vw,1.95rem)!important;line-height:1.23;margin:.5rem 0 .6rem!important}
+.ghc-explore-hub-intro>p{font-size:.91rem;line-height:1.68;color:var(--sl-color-gray-2);max-width:76ch}
+.ghc-explore-hub-fastlinks{display:flex;flex-wrap:wrap;gap:.55rem;margin:1rem 0 1.3rem}
+.ghc-explore-hub-fastlinks a{display:inline-flex;align-items:center;gap:.45rem;min-height:42px;padding:.6rem .8rem;border:1px solid var(--sl-color-gray-5);border-radius:9px;background:var(--sl-color-bg-nav);color:var(--sl-color-text)!important;text-decoration:none!important;font-weight:750;font-size:.8rem}
+.ghc-explore-hub-fastlinks a:hover{border-color:var(--sl-color-accent)}
+.ghc-explore-hub-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem}
+.ghc-explore-hub-card{display:flex;flex-direction:column;min-width:0;padding:1.1rem;border:1px solid var(--sl-color-gray-5);border-radius:14px;background:var(--sl-color-bg-nav);scroll-margin-top:6rem}
+.ghc-explore-hub-card-heading{flex:0 0 auto}
+.ghc-explore-hub-card-heading span{font-size:.69rem;letter-spacing:.075em;font-weight:850;color:var(--sl-color-accent-high)}
+.ghc-explore-hub-card h3{margin:.45rem 0!important;font-size:1.14rem!important;line-height:1.35}
+.ghc-explore-hub-card-heading p{font-size:.82rem;line-height:1.62;color:var(--sl-color-gray-2);margin:0 0 .85rem!important}
+.ghc-explore-hub-card nav{display:grid;gap:.15rem;margin-top:auto;padding-top:.7rem;border-top:1px solid var(--sl-color-gray-5)}
+.ghc-explore-hub-card nav a{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.52rem .25rem;border-radius:6px;font-size:.85rem;font-weight:700;line-height:1.35;color:var(--sl-color-text)!important;text-decoration:none!important}
+.ghc-explore-hub-card nav a:hover{color:var(--sl-color-accent-high)!important;background:var(--sl-color-bg)}
+.ghc-explore-hub-card nav a span:last-child{color:var(--sl-color-accent-high)}
+.ghc-explore-hub-disclosure{font-size:.81rem;line-height:1.65;color:var(--sl-color-gray-2);margin:1rem 0!important}
+.ghc-explore-hub a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:48rem){.ghc-explore-hub-grid{grid-template-columns:1fr}.ghc-explore-hub-fastlinks{flex-direction:column}.ghc-explore-hub-fastlinks a{width:100%}}
+</style>

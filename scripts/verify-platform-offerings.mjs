@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {existsSync, readFileSync} from 'node:fs';
 import {join} from 'node:path';
+import {ghcExploreGroups,ghcExploreRoutes} from '../src/data/ghc-explore-navigation.mjs';
 
 const sourceRoot='src/content/docs/about-gohackerscloud';
 const paths=[
@@ -58,12 +59,13 @@ const nav=config.slice(navStart,learningStages);
 const routes=['/about-gohackerscloud/','/about-gohackerscloud/courses/',
  '/about-gohackerscloud/test-engine/','/about-gohackerscloud/cybersecurity-services/',
  '/ghc-labs/','/start-here/','/curriculum/'];
-let prev=-1;
+assert.ok(nav.includes("ghcExploreGroups.map(group=>"),'Explore sidebar must use grouped navigation');
 for(const route of routes){
-  const i=nav.indexOf("link: '"+route+"'");
-  assert.ok(i>prev,'Missing or incorrectly ordered sidebar link: '+route);
-  prev=i;
+  assert.ok(ghcExploreRoutes.includes(route),'Missing grouped Explore destination: '+route);
 }
+assert.deepEqual(ghcExploreGroups.map(group=>group.id),
+ ['foundation','careers','academy','company'],
+ 'Free learning and career paths should precede paid product and service categories');
 assert.ok(!nav.includes("label: 'Start Learning'"),'Old first group label remains');
 const home=routeHtml('/');
 assert.ok(home.includes('ghc-ecosystem-section'),'Homepage is missing offering cards');

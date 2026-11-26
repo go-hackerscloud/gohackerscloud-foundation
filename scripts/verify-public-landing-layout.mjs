@@ -3,6 +3,7 @@ import {existsSync,readFileSync,readdirSync} from 'node:fs';
 import {join} from 'node:path';
 import {foundationPortfolioProjects,foundationPortfolioURL} from '../src/data/foundation-portfolio-projects.mjs';
 import {foundationModules} from '../src/data/foundation-modules.mjs';
+import {ghcExploreGroups,ghcExploreRoutes} from '../src/data/ghc-explore-navigation.mjs';
 const read=path=>readFileSync(path,'utf8');
 const built=route=>{
   const path=join('dist',route.replace(/^\/+/,''),'index.html');
@@ -37,12 +38,17 @@ assert.equal(files('src/content/docs').filter(file=>/^template:\s*splash\s*$/m.t
   splash.length,'Review new splash pages before changing widths');
 
 // Every Explore sidebar destination must use the Academy-aligned canvas.
-// Nine splash pages use html:not([data-has-sidebar]); seven marked Explore
-// pages (four free guides plus Labs, Curriculum and Portfolio hubs) opt in.
+// Nine splash pages use html:not([data-has-sidebar]); eight marked Explore
+// pages (four free guides plus Labs, Curriculum, Portfolio and Explore hubs) opt in.
 const sidebarConfig=read('astro.config.mjs');
 const exploreSidebar=sidebarConfig.split("label: 'Explore GoHackersCloud'")[1]
   ?.split("label: 'Foundation Learning Stages'")[0]||'';
-const exploreRoutes=[...new Set([...exploreSidebar.matchAll(/link:\s*'(\/[^']*)'/g)].map(m=>m[1]))];
+assert.ok(exploreSidebar.includes("ghcExploreGroups.map(group=>") &&
+  exploreSidebar.includes("group.links.map(link=>"),
+  'Explore sidebar must use the shared group definitions rather than unrelated flat links');
+assert.equal(ghcExploreGroups.length,4,'Explore overview should offer four navigation categories');
+assert.equal(ghcExploreRoutes.length,16,'All sixteen original Explore routes must be retained');
+const exploreRoutes=['/explore/',...ghcExploreRoutes];
 const markedExploreGuides=new Map([
   ['/start-here/','src/content/docs/start-here.mdx'],
   ['/paths/students/','src/content/docs/paths/students.mdx'],
@@ -51,9 +57,10 @@ const markedExploreGuides=new Map([
   ['/ghc-labs/','src/content/docs/ghc-labs/index.mdx'],
   ['/curriculum/','src/content/docs/curriculum/index.mdx'],
   ['/portfolio/','src/content/docs/portfolio/index.mdx'],
+  ['/explore/','src/content/docs/explore/index.mdx'],
 ]);
 const splashRoutes=new Set(splash.map(([route])=>route));
-assert.equal(exploreRoutes.length,16,'Explore navigation must cover exactly 16 routes');
+assert.equal(new Set(exploreRoutes).size,17,'Explore navigation must cover all 16 original routes plus the overview');
 for(const route of exploreRoutes){
   assert.ok(splashRoutes.has(route)||markedExploreGuides.has(route),
     'Missing Academy-width coverage for Explore page '+route);
@@ -386,6 +393,6 @@ assert.ok(challenge.includes('ghc-challenge-rail')&&
   challenge.includes('data-save-progress')&&challenge.includes('data-clear-progress'),
   'Previous challenge sidebar and privacy settings must remain intact');
 
-console.log('Academy-style Foundation layout QA passed: 9 splash routes at 78rem plus seven marked Explore pages, '+ 
+console.log('Academy-style Foundation layout QA passed: 9 splash routes at 78rem plus eight marked Explore pages, '+ 
  '3 lesson + 4 pathway + 3 portfolio cards, 5 learning-stage + 6 site cards, '+ 
  'Mermaid and existing free lesson/challenge navigation.');

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {existsSync,readFileSync} from 'node:fs';
 import {join} from 'node:path';
 import {ghcLabTracks} from '../src/data/ghc-labs-tracks.mjs';
+import {ghcExploreGroups,ghcExploreRoutes} from '../src/data/ghc-explore-navigation.mjs';
 
 const source=p=>readFileSync(p,'utf8');
 const page=route=>{
@@ -82,12 +83,19 @@ assert.ok(courses.includes(catalogRoute),'Courses page missing catalog route');
 
 const config=source('astro.config.mjs');
 const nav=config.slice(config.indexOf("label: 'Explore GoHackersCloud'"),config.indexOf("label: 'Foundation Learning Stages'"));
-for(const route of [catalogRoute,labRoute])assert.ok(nav.includes("link: '"+route+"'"),'Missing sidebar catalog route: '+route);
-const aboutIndex=nav.indexOf("link: '/about-gohackerscloud/'");
-const catalogIndex=nav.indexOf("link: '"+catalogRoute+"'");
-const coursesIndex=nav.indexOf("link: '/about-gohackerscloud/courses/'");
-assert.ok(aboutIndex<catalogIndex&&catalogIndex<coursesIndex,'Catalog nav position incorrect');
-assert.ok(nav.indexOf("link: '"+labRoute+"'")<nav.indexOf("link: '/start-here/'"),'Lab directory should precede free Start Here');
+assert.ok(nav.includes('ghcExploreGroups.map(group=>'),'Explore navigation must use the shared groups');
+for(const route of [catalogRoute,labRoute])assert.ok(ghcExploreRoutes.includes(route),
+  'Missing catalog or lab directory from grouped Explore navigation: '+route);
+const companyGroup=ghcExploreGroups.find(group=>group.id==='company');
+const academyGroup=ghcExploreGroups.find(group=>group.id==='academy');
+assert.ok(companyGroup&&academyGroup,'Missing About/Services or Courses/Labs groups');
+const companyRoutes=companyGroup.links.map(link=>link.href);
+const academyRoutes=academyGroup.links.map(link=>link.href);
+assert.ok(companyRoutes.indexOf('/about-gohackerscloud/')>=0 &&
+  companyRoutes.indexOf('/about-gohackerscloud/')<companyRoutes.indexOf(catalogRoute),
+  'About should precede the complete promotional catalog in the Company group');
+assert.ok(academyRoutes.includes('/about-gohackerscloud/courses/')&&academyRoutes.includes(labRoute),
+  'Academy group should link course discovery and lab lesson inventory');
 
 for(const [name,markdown] of [['catalog',catalogSource],['lab directory',labSource]]){
   for(const match of markdown.matchAll(/\]\((\/[^)#?]+)(?:[?#][^)]*)?\)/g)){

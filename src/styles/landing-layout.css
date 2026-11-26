@@ -1,5 +1,5 @@
-/* Match Academy's 78rem desktop canvas on all 16 Explore pages:
-   9 splash routes and 7 explicitly marked pages (four guides + Labs, Portfolio and Curriculum hubs).
+/* Match Academy's 78rem desktop canvas on all 17 Explore pages:
+   9 splash routes and 8 explicitly marked pages (four guides + Labs, Portfolio, Curriculum and Explore hubs).
    Standard technical lessons retain Starlight's narrower reading width. */
 
 html:not([data-has-sidebar]) body,

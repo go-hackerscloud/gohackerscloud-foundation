@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {existsSync,readFileSync} from 'node:fs';
 import {join} from 'node:path';
 import {foundationPortfolioProjects,foundationPortfolioURL} from '../src/data/foundation-portfolio-projects.mjs';
+import {ghcExploreRoutes} from '../src/data/ghc-explore-navigation.mjs';
 
 const source=path=>readFileSync(path,'utf8');
 const page=route=>{
@@ -109,7 +110,9 @@ for(const route of ['/7-day-challenge/','/paths/students/','/paths/professionals
 const nav=source('astro.config.mjs');
 const first=nav.slice(nav.indexOf("label: 'Explore GoHackersCloud'"),
   nav.indexOf("label: 'Foundation Learning Stages'"));
-assert.ok(first.includes("link: '/portfolio/'"),'Portfolio hub not in first sidebar section');
+assert.ok(first.includes("ghcExploreGroups.map(group=>") &&
+  ghcExploreRoutes.includes('/portfolio/'),
+  'Portfolio Hub must remain reachable within the grouped Explore sidebar');
 assert.ok(nav.includes("label: 'Portfolio Projects'"),'Collapsible project sidebar is missing');
 assert.ok(nav.includes("foundationPortfolioGroups.map(group=>") &&
   nav.includes("foundationPortfolioURL(project.id)"),

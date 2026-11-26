@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {existsSync,readFileSync} from 'node:fs';
 import {join} from 'node:path';
 import {foundationModules} from '../src/data/foundation-modules.mjs';
+import {ghcExploreRoutes} from '../src/data/ghc-explore-navigation.mjs';
 
 const source = path => readFileSync(path,'utf8');
 const html = route => {
@@ -76,8 +77,11 @@ assert.equal((homepage.match(/<h1(?:\s|>)/g)||[]).length,1,
   'Homepage should retain Starlight single H1 convention');
 
 const nav=source('astro.config.mjs');
+assert.ok(nav.includes("ghcExploreGroups.map(group=>"),
+  'Audience guides must use the canonical grouped Explore navigation');
 for(const route of [studentRoute,professionalRoute]){
-  assert.ok(nav.includes("link: '"+route+"'"),'New audience guide missing from sidebar: '+route);
+  assert.ok(ghcExploreRoutes.includes(route),
+    'Audience guide missing from grouped Explore sidebar: '+route);
 }
 const start=html('/start-here/');
 assert.ok(start.includes(studentRoute)&&start.includes(professionalRoute),
