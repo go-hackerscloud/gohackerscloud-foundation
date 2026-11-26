@@ -1,10 +1,15 @@
 ---
 import {ghcExploreGroups} from '../data/ghc-explore-navigation.mjs';
-const section=['academy','company'].includes(Astro.props.section)?Astro.props.section:'academy';
+const section=['academy','company','careers'].includes(Astro.props.section)?Astro.props.section:'academy';
 const group=ghcExploreGroups.find(g=>g.id===section);
 if(!group) throw new Error('Unknown Explore navigation group: '+section);
 const current=Astro.props.current||Astro.url.pathname;
 const active=current.endsWith('/')?current:current+'/';
+const headings={
+  academy:'COURSES, TESTS & GHC LABS',
+  company:'ABOUT GOHACKERSCLOUD & SERVICES',
+  careers:'CAREER & PORTFOLIO DEVELOPMENT',
+};
 const short={
   '/about-gohackerscloud/courses/':'Courses & Bundles',
   '/about-gohackerscloud/test-engine/':'Test Engine',
@@ -13,11 +18,14 @@ const short={
   '/about-gohackerscloud/':'About Us',
   '/about-gohackerscloud/catalog/':'Complete Catalog',
   '/about-gohackerscloud/cybersecurity-services/':'Cybersecurity Services',
+  '/paths/students/':'Student Learning Path',
+  '/paths/professionals/':'Professional Upskilling Path',
+  '/portfolio/':'Career & Portfolio Hub',
 };
 ---
 <nav class="ghc-section-navigation" aria-label={group.title+' navigation'}>
   <div class="ghc-section-navigation-head">
-    <span>{section==='academy'?'COURSES, TESTS & GHC LABS':'ABOUT GOHACKERSCLOUD & SERVICES'}</span>
+    <span>{headings[section]}</span>
     <div class="ghc-section-navigation-return">
       <a href="/explore/">← Explore Overview</a>
       <span aria-hidden="true">·</span>
@@ -34,6 +42,7 @@ const short={
   </div>
   {section==='academy'&&<p class="ghc-section-navigation-note">Courses, mock exams, Academy membership and hosted labs have separate access terms. Foundation lessons remain free.</p>}
   {section==='company'&&<p class="ghc-section-navigation-note">Learning resources and professional cybersecurity engagements are separate offerings.</p>}
+  {section==='careers'&&<p class="ghc-section-navigation-note">Choose a student or professional path, then build practical portfolio evidence using free Foundation learning.</p>}
 </nav>
 <style>
 .ghc-section-navigation{min-width:0;margin:.6rem 0 1.5rem;padding:.85rem;background:var(--sl-color-bg-nav);border:1px solid var(--sl-color-gray-5);border-radius:12px}
