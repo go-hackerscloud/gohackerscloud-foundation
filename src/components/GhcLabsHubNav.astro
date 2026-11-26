@@ -1,0 +1,52 @@
+---
+import {ghcLabTracks} from '../data/ghc-labs-tracks.mjs';
+import {ghcCareerPathways} from '../data/ghc-career-pathways.mjs';
+import {demoVideos} from '../data/ghc-labs-demo.mjs';
+
+const destinations=[
+  {number:'01',label:'Explore Academy tracks',type:'LEARNING TRACKS',detail:`${ghcLabTracks.length} Academy track categories with learning content and hosted labs where available.`,href:'/ghc-labs/track-selection/',action:'Compare the tracks'},
+  {number:'02',label:'How the labs work',type:'STUDENT JOURNEY',detail:'Understand access, authorization, session launch, evidence gathering and safe cleanup.',href:'/ghc-labs/how-it-works/',action:'See the workflow'},
+  {number:'03',label:'Watch the video guides',type:'RECORDED WALKTHROUGHS',detail:`${demoVideos.length} planned walkthrough topics; videos appear when official recordings are published.`,href:'/ghc-labs/instructor-demo/',action:'Open video library'},
+  {number:'04',label:'Pick a cybersecurity career',type:'CAREER TO LAB MATCH',detail:`Connect ${ghcCareerPathways.length} career roadmaps to Academy tracks, certifications and interviews.`,href:'/learning-hub/career-paths/',action:'Choose a career path'},
+  {number:'05',label:'Browse the lab lesson directory',type:'PRACTICE CURRICULUM',detail:'Explore documented exercises by category; a lesson document is not necessarily a running lab.',href:'/about-gohackerscloud/lab-directory/',action:'Browse lesson inventory'},
+  {number:'06',label:'Membership, safety and FAQs',type:'HELP AND ACCESS',detail:'Understand free Foundation learning versus separate Academy membership and lab access.',href:'/ghc-labs/faq/',action:'Review access guidance'},
+];
+---
+<section class="ghc-labs-hub" aria-labelledby="ghc-labs-hub-heading">
+  <div class="ghc-labs-hub-head">
+    <span class="ghc-labs-hub-eyebrow">ACADEMY & GHC LABS · START HERE</span>
+    <h2 id="ghc-labs-hub-heading">Choose what you want to explore</h2>
+    <p>Start from a career goal, explore a learning track or see how the student lab workflow works. Each option leads to a page in this section, with a route back to the hub.</p>
+  </div>
+  <nav class="ghc-labs-hub-grid" aria-label="Academy and GHC Labs section navigation">
+    {destinations.map(item=>(
+      <a href={item.href} class="ghc-labs-hub-card">
+        <span class="ghc-labs-hub-type"><span>{item.number}</span> {item.type}</span>
+        <strong>{item.label}</strong>
+        <p>{item.detail}</p>
+        <b>{item.action} <span aria-hidden="true">→</span></b>
+      </a>
+    ))}
+  </nav>
+  <p class="ghc-labs-hub-disclosure"><strong>Learning access:</strong> Foundation lessons are free. Academy track content, hosted lab launch and subscriptions are separate; the track directory does not promise a live environment for every lesson.</p>
+</section>
+<style>
+.ghc-labs-hub{margin:1.3rem 0 2.15rem;min-width:0}
+.ghc-labs-hub-eyebrow{font-size:.69rem;font-weight:850;letter-spacing:.09em;color:var(--sl-color-accent-high)}
+.ghc-labs-hub-head{max-width:76ch}
+.ghc-labs-hub-head h2{font-size:clamp(1.4rem,2.4vw,1.85rem)!important;line-height:1.22;margin:.4rem 0 .6rem!important}
+.ghc-labs-hub-head p{font-size:.88rem;line-height:1.7;color:var(--sl-color-gray-2);margin:0 0 1.1rem!important}
+.ghc-labs-hub-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem}
+.ghc-labs-hub-card{display:flex;flex-direction:column;gap:.63rem;min-width:0;border:1px solid var(--sl-color-gray-5);border-radius:13px;background:var(--sl-color-bg-nav);padding:1rem;color:var(--sl-color-text)!important;text-decoration:none!important;transition:border-color .15s ease,transform .15s ease}
+.ghc-labs-hub-card:hover{border-color:var(--sl-color-accent);transform:translateY(-2px)}
+.ghc-labs-hub-card:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+.ghc-labs-hub-type{display:flex;flex-wrap:wrap;gap:.5rem;align-items:baseline;font-size:.66rem;font-weight:850;letter-spacing:.06em;line-height:1.5;color:var(--sl-color-accent-high)}
+.ghc-labs-hub-type span{font-variant-numeric:tabular-nums;color:var(--sl-color-gray-2)}
+.ghc-labs-hub-card strong{font-size:1rem;line-height:1.35}
+.ghc-labs-hub-card p{font-size:.8rem;line-height:1.65;flex:1;color:var(--sl-color-gray-2);margin:0!important}
+.ghc-labs-hub-card b{font-size:.79rem;line-height:1.45;color:var(--sl-color-accent-high);margin-top:.2rem}
+.ghc-labs-hub-disclosure{font-size:.79rem;line-height:1.6;color:var(--sl-color-gray-2);margin:.9rem 0 0!important}
+@media(max-width:68rem){.ghc-labs-hub-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:39rem){.ghc-labs-hub-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.ghc-labs-hub-card{transition:none}}
+</style>
