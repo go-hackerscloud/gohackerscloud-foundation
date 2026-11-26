@@ -76,14 +76,14 @@ assert.ok(config.includes("'./src/styles/landing-layout.css'"),'Missing Foundati
 assert.ok(css.includes('body:has(.foundation-hero)'),'Flagship homepage selector must remain present');
 assert.ok(css.includes('body:has(.ghc-about-lead)'),'Academy-style width must include About');
 assert.ok(css.includes('--sl-content-width: 78rem'),
-  'Public Foundation landing pages should share Academy's 78rem canvas');
+  "Public Foundation landing pages should share Academy's 78rem canvas");
 assert.ok(!css.includes('max-width: min(100%, 60rem)'),
   'The prior 60rem hard cap must not restrict public landing pages');
 assert.ok(css.includes('html:not([data-has-sidebar]) .content-panel > .sl-container') &&
   css.includes('body:has(.ghc-explore-width-marker) .content-panel > .sl-container'),
   'Wider Foundation canvas must remain scoped to splash pages and marked Explore guides');
 assert.ok(css.includes('max-width: min(100%, 78rem)'),
-  'Starlight public content container must match the Academy's 78rem width');
+  "Starlight public content container must match the Academy's 78rem width");
 assert.ok(css.includes('.content-panel > .sl-container') && css.includes('margin-inline: auto'),
   'Wide Foundation landing content must remain centered');
 assert.ok(!/\.content-panel \.sl-container,\s*body:has\(\.ghc-study-plan-marker\) \.content-panel \.sl-container\s*\{\s*min-width:\s*0;\s*max-width:\s*100%/.test(css),
