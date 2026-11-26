@@ -1,9 +1,9 @@
-/* Match the Academy's spacious 78rem desktop landing canvas.
-   This applies only to Foundation's public splash pages and the Study Plan.
-   Technical lesson pages retain Starlight's narrower reading width. */
+/* Match Academy's 78rem desktop canvas on all 16 Explore pages:
+   12 splash routes and 4 explicitly marked learner-guidance pages.
+   Standard technical lessons retain Starlight's narrower reading width. */
 
 html:not([data-has-sidebar]) body,
-body:has(.ghc-study-plan-marker) {
+body:has(.ghc-explore-width-marker) {
   --sl-content-width: 78rem;
 }
 
@@ -74,10 +74,11 @@ body:has(.ghc-catalog-hero) .sl-markdown-content > h3 {
 .ghc-lab-directory-anchor { display:block;scroll-margin-top:6rem; }
 
 
-/* Prevent any wide tables or long names from forcing the entire
-   page outside the viewport. Tables may scroll in their own region. */
+/* The four non-splash Explore guides explicitly opt in through their page
+   marker; other sidebar lesson routes keep Starlight's default width.
+   Wide tables scroll locally instead of expanding the viewport. */
 html:not([data-has-sidebar]) .content-panel,
-body:has(.ghc-study-plan-marker) .content-panel {
+body:has(.ghc-explore-width-marker) .content-panel {
   min-width: 0;
   max-width: 100%;
 }
@@ -86,14 +87,14 @@ body:has(.ghc-study-plan-marker) .content-panel {
    A hard 60rem cap here previously kept the Foundation hero substantially
    narrower than Academy, even when the page had free horizontal space. */
 html:not([data-has-sidebar]) .content-panel > .sl-container,
-body:has(.ghc-study-plan-marker) .content-panel > .sl-container {
+body:has(.ghc-explore-width-marker) .content-panel > .sl-container {
   box-sizing: border-box;
   min-width: 0;
   max-width: min(100%, 78rem);
   margin-inline: auto;
 }
 html:not([data-has-sidebar]) .sl-markdown-content > table,
-body:has(.ghc-study-plan-marker) .sl-markdown-content > table {
+body:has(.ghc-explore-width-marker) .sl-markdown-content > table {
   display: block;
   max-width: 100%;
   overflow-x: auto;
@@ -105,7 +106,7 @@ body:has(.ghc-study-plan-marker) .content-panel h1 {
 }
 @media (max-width: 48rem) {
   html:not([data-has-sidebar]) body,
-  body:has(.ghc-study-plan-marker) {
+  body:has(.ghc-explore-width-marker) {
     --sl-content-width: 100%;
   }
 }
