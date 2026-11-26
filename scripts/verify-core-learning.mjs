@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {existsSync,readFileSync} from 'node:fs';
 import {join} from 'node:path';
+import {ghcExploreRoutes} from '../src/data/ghc-explore-navigation.mjs';
 
 const built = route => join('dist',route.replace(/^\/+/,''),'index.html');
 const html = route => {
@@ -17,7 +18,9 @@ const startHere=html('/start-here/');
 assert.ok(homepage.includes('/core-it-devops/'));
 assert.ok(startHere.includes('/core-it-devops/'));
 const config=read('astro.config.mjs');
-assert.ok(config.includes("link: '/core-it-devops/'"),'Core path must be in sidebar');
+assert.ok(config.includes("ghcExploreGroups.map(group=>") &&
+  ghcExploreRoutes.includes('/core-it-devops/'),
+  'Core path must remain reachable from the grouped Explore sidebar');
 
 const base='src/content/docs/core-it-devops';
 const original='src/content/docs/foundation/GoHackersCloud Foundation';
