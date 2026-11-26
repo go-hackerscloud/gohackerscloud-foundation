@@ -1,7 +1,11 @@
 ---
-title: "AWS Certified Cloud Practitioner (CLF-C02) — Complete Study Guide"
+title: "AWS Cloud Practitioner (CLF-C02) — Optional Foundation Reference"
 description: "Four-domain AWS CLF-C02 exam preparation with 14 study chapters, original practice questions, AWS service comparisons and a revision plan."
 ---
+
+**[← Compare Career-Aligned Certification Guides](/learning-hub/certification-paths/)** · [Cloud Security Engineer Certifications](/learning-hub/certification-paths/cloud-security-engineer/) · [Cloud Security Career Roadmap](/learning-hub/career-paths/cloud-security-engineer/)
+
+This **optional AWS fundamentals deep-dive** remains available for learners who want to understand CLF-C02 topics; it is not a tenth career-based certification pathway. Choose your goal from the main Certification Guides directory first.
 
 This free study guide teaches the concepts, service choices and decision patterns used in AWS's foundational Cloud Practitioner certification. **It is not an AWS-endorsed course, exam voucher, official question bank or passing guarantee.**
 
@@ -65,7 +69,7 @@ Every service above has its own scope. A diagram is a way to reason about requir
 
 ## Connecting certification preparation to your career
 
-AWS Cloud Practitioner is an optional foundation step for the [Cloud Security Engineer career roadmap](/learning-hub/cloud-security-roadmap/). Compare the [advanced cloud security credentials](/learning-hub/certification-paths/cloud-security-engineer/) and practise [cloud security interviews](/learning-hub/interview-paths/cloud-security-engineer/) after you have mastered the introductory concepts.
+AWS Cloud Practitioner is an optional foundation step for the [Cloud Security Engineer career roadmap](/learning-hub/career-paths/cloud-security-engineer/). Compare the [advanced cloud security credentials](/learning-hub/certification-paths/cloud-security-engineer/) and practise [cloud security interviews](/learning-hub/interview-paths/cloud-security-engineer/) after you have mastered the introductory concepts.
 
 ## Practice exam disclaimer
 
