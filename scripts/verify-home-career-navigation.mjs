@@ -33,7 +33,7 @@ for(const route of [
  html(route);
 }
 assert.ok(home.includes('54 original practice questions')&&
- home.includes('nine')||home.includes('9 career directions'),
+ (home.includes('nine')||home.includes('9 career directions')),
  'Homepage should describe cross-linked career and interview system');
 for(const role of ghcCareerPathways){
  const url=ghcCareerURL(role.id);
@@ -53,6 +53,9 @@ const required=[
  ['/about-gohackerscloud/',['/learning-hub/career-paths/','/learning-hub/certification-paths/','/learning-hub/interview-paths/']],
  ['/about-gohackerscloud/catalog/',['/learning-hub/career-paths/','/learning-hub/certification-paths/','/learning-hub/interview-paths/','/ghc-labs/instructor-demo/']],
  ['/ghc-labs/track-selection/',['/learning-hub/career-paths/','/learning-hub/certification-paths/','/learning-hub/interview-paths/','/ghc-labs/instructor-demo/']],
+ ['/curriculum/',['/learning-hub/career-paths/','/learning-hub/certification-paths/','/learning-hub/interview-paths/']],
+ ['/about-gohackerscloud/courses/',['/learning-hub/career-paths/','/learning-hub/certification-paths/','/learning-hub/interview-paths/']],
+ ['/about-gohackerscloud/test-engine/',['/learning-hub/certification-paths/','/learning-hub/interview-paths/','/ghc-labs/instructor-demo/']],
 ];
 for(const [route,links] of required){
  const page=html(route);
@@ -67,4 +70,4 @@ assert.equal(classCount(home,'ghc-home-path'),4,
  'Keep the existing four study-path cards');
 assert.ok(home.includes('https://academy.gohackerscloud.com/')||
  home.includes('/ghc-labs/'),'Separate Academy access still needs a discovery link');
-console.log('Foundation homepage career sync QA passed: 6 resource cards, 9 career shortcuts, 9 certification paths, 54 interview Q&As, 5-video series, legacy 14-chapter guides and 7 cross-linked learner pages.');
+console.log('Foundation homepage career sync QA passed: 6 resource cards, 9 career shortcuts, 9 certification paths, 54 interview Q&As, 5-video series, legacy 14-chapter guides and 10 cross-linked learner pages.');
