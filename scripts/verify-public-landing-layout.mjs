@@ -37,6 +37,39 @@ const files=dir=>readdirSync(dir,{withFileTypes:true}).flatMap(e=>{
 assert.equal(files('src/content/docs').filter(file=>/^template:\s*splash\s*$/m.test(read(file))).length,
   splash.length,'Review new splash pages before changing widths');
 
+// Every Explore sidebar destination must use the Academy-aligned canvas.
+// 12 splash pages use html:not([data-has-sidebar]); the four learner
+// guidance pages opt in with a marker without widening technical lessons.
+const sidebarConfig=read('astro.config.mjs');
+const exploreSidebar=sidebarConfig.split("label: 'Explore GoHackersCloud'")[1]
+  ?.split("label: 'Foundation Learning Stages'")[0]||'';
+const exploreRoutes=[...new Set([...exploreSidebar.matchAll(/link:\s*'(\/[^']*)'/g)].map(m=>m[1]))];
+const markedExploreGuides=new Map([
+  ['/start-here/','src/content/docs/start-here.mdx'],
+  ['/paths/students/','src/content/docs/paths/students.mdx'],
+  ['/paths/professionals/','src/content/docs/paths/professionals.mdx'],
+  ['/study-plan/','src/content/docs/study-plan/index.mdx'],
+]);
+const splashRoutes=new Set(splash.map(([route])=>route));
+assert.equal(exploreRoutes.length,16,'Explore navigation must cover exactly 16 routes');
+for(const route of exploreRoutes){
+  assert.ok(splashRoutes.has(route)||markedExploreGuides.has(route),
+    'Missing Academy-width coverage for Explore page '+route);
+  const html=built(route);
+  if(markedExploreGuides.has(route)){
+    const file=markedExploreGuides.get(route);
+    assert.ok(read(file).includes('class="ghc-explore-width-marker"')||
+      read(file).includes('ghc-explore-width-marker'),
+      'Guide must explicitly opt in to wide landing canvas '+route);
+    assert.ok(html.includes('ghc-explore-width-marker'),
+      'Width marker must render on Explore guide '+route);
+  }
+}
+assert.ok(!built('/foundation/gohackerscloud-foundation/01-it-fundamentals/01-computer-hardware/')
+  .includes('ghc-explore-width-marker'),
+  'Original technical lessons must not inherit the Explore width marker');
+
+
 const css=read('src/styles/landing-layout.css');
 const config=read('astro.config.mjs');
 assert.ok(config.includes("'./src/styles/landing-layout.css'"),'Missing Foundation layout CSS');
@@ -47,8 +80,8 @@ assert.ok(css.includes('--sl-content-width: 78rem'),
 assert.ok(!css.includes('max-width: min(100%, 60rem)'),
   'The prior 60rem hard cap must not restrict public landing pages');
 assert.ok(css.includes('html:not([data-has-sidebar]) .content-panel > .sl-container') &&
-  css.includes('body:has(.ghc-study-plan-marker) .content-panel > .sl-container'),
-  'Wider Foundation canvas must remain scoped to splash pages and Study Plan');
+  css.includes('body:has(.ghc-explore-width-marker) .content-panel > .sl-container'),
+  'Wider Foundation canvas must remain scoped to splash pages and marked Explore guides');
 assert.ok(css.includes('max-width: min(100%, 78rem)'),
   'Starlight public content container must match the Academy's 78rem width');
 assert.ok(css.includes('.content-panel > .sl-container') && css.includes('margin-inline: auto'),
@@ -58,12 +91,12 @@ assert.ok(!/\.content-panel \.sl-container,\s*body:has\(\.ghc-study-plan-marker\
 assert.ok(!css.includes('88rem'),'Reject the oversized PR #19 desktop layout');
 assert.ok(css.includes('html:not([data-has-sidebar]) body'),
   'Every public splash page must use Academy width');
-assert.ok(css.includes('body:has(.ghc-study-plan-marker)'),
-  'Study Plan must share the Academy width without changing other lessons');
+assert.ok(css.includes('body:has(.ghc-explore-width-marker)'),
+  'Four Explore guidance pages must share Academy width without widening technical lessons');
 assert.ok(css.includes('overscroll-behavior-x: contain'),
   'Wide public tables must scroll locally rather than overflow the viewport');
 assert.ok(read('src/content/docs/study-plan/index.mdx').includes('ghc-study-plan-marker'),
-  'Study Plan style marker must be present');
+  'Study Plan must retain its original styling marker');
 assert.ok(css.includes('max-width: 70ch'),
   'Long paragraph lines must remain readable on wide hero pages');
 assert.ok(css.includes('@media (max-width: 48rem)'),'Mobile layout fallback is required');
