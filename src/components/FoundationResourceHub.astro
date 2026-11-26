@@ -1,18 +1,20 @@
 ---
+import {ghcCareerPathways,ghcCareerURL} from '../data/ghc-career-pathways.mjs';
+const interviewQuestionCount=ghcCareerPathways.reduce((sum,role)=>sum+role.qa.length,0);
 const resources=[
   {eyebrow:'FREE PORTFOLIO HUB',title:'Six Guided Technical Projects',description:'Turn Foundation lessons into practical case studies with six guided projects, safe scenarios and seven downloadable Markdown worksheets.',href:'/portfolio/',label:'Explore portfolio projects'},
-  {eyebrow:'CAREER ROADMAP',title:'Cloud Security Engineer',description:'14 chapters covering AWS/cloud architecture, identity, networking, data, detection, DevSecOps and portfolio preparation.',href:'/learning-hub/cloud-security-roadmap/',label:'Explore career roadmap'},
-  {eyebrow:'CERTIFICATION GUIDE',title:'AWS Cloud Practitioner',description:'CLF-C02 domain-based study, AWS service comparisons, security, billing and original practice questions.',href:'/learning-hub/aws-clf-c02/',label:'Open certification guide'},
-  {eyebrow:'CAREER PREPARATION',title:'IT Interview Preparation',description:'14 chapters of IT, Linux, Windows, networking, cloud and cybersecurity questions with model answers.',href:'/learning-hub/it-interview/',label:'Prepare for interviews'},
+  {eyebrow:'9 CAREER ROADMAPS',title:'Choose Your Cybersecurity Career Path',description:'Explore cloud security, penetration testing, ethical hacking, OSCP-oriented practice, bug bounty, SOC, DevSecOps, application and API security.',href:'/learning-hub/career-paths/',label:'Explore all career roadmaps'},
+  {eyebrow:'9 CERTIFICATION PATHWAYS',title:'Match Certifications to Your Goal',description:'Compare suggested independent credentials for each career direction, official issuing bodies and aligned Academy learning tracks.',href:'/learning-hub/certification-paths/',label:'Compare certification guides'},
+  {eyebrow:'54 ORIGINAL INTERVIEW Q&AS',title:'Interview Questions for Your Role',description:'Choose from nine specialist interview sets with six scenario-based questions, suggested answers, evidence prompts and related lab tracks.',href:'/learning-hub/interview-paths/',label:'Practice role-specific interviews'},
   {eyebrow:'FREE SELF-STUDY',title:'7-Day IT & Security Challenge',description:'Review seven Foundation lessons, practise with 21 original questions and optionally save your self-reviewed progress in your browser.',href:'/7-day-challenge/',label:'Start the free challenge'},
-  {eyebrow:'PRACTICAL NEXT STEP',title:'Academy GHC Labs',description:'Compare all 13 Academy tracks, understand the lab workflow, view the demo area and find subscription options.',href:'/ghc-labs/',label:'Discover GHC Labs'},
+  {eyebrow:'PRACTICAL NEXT STEP',title:'Academy GHC Labs & Five Video Guides',description:'Compare 13 Academy tracks, understand lab access, and browse five recording topics as their official videos become available.',href:'/ghc-labs/',label:'Discover GHC Labs and videos'},
 ];
 ---
 <section class="foundation-resource-hub" aria-labelledby="foundation-resources-heading">
   <div class="foundation-resources-intro">
     <span class="foundation-resources-eyebrow">GO DEEPER</span>
-    <h2 id="foundation-resources-heading">Build a career, prepare for an exam, or practise a skill.</h2>
-    <p>Use these chapter-based resources alongside the 16 free Foundation modules. The GHC Labs overview explains separate Academy hosted-practice access.</p>
+    <h2 id="foundation-resources-heading">Choose a career, build evidence, and prepare with purpose.</h2>
+    <p>Explore {ghcCareerPathways.length} connected role profiles, {interviewQuestionCount} original practice questions and free portfolio projects alongside the 16 Foundation modules. Certification issuers and hosted Academy labs have separate rules and access.</p>
   </div>
   <div class="foundation-resource-cards">
     {resources.map(resource=>(
@@ -23,6 +25,13 @@ const resources=[
         <b>{resource.label} <span aria-hidden="true">↗</span></b>
       </a>
     ))}
+  </div>
+  <div class="foundation-career-shortcuts" aria-label="Choose from nine career roadmap specialties">
+    <h3>Explore all {ghcCareerPathways.length} career directions</h3>
+    <nav aria-label="Foundation career roadmap quick links">
+      {ghcCareerPathways.map(role=><a href={ghcCareerURL(role.id)}>{role.title} <span aria-hidden="true">→</span></a>)}
+    </nav>
+    <p>Prefer a detailed handbook? Start with the <a href="/learning-hub/cloud-security-roadmap/">14-chapter Cloud Security Engineer roadmap</a>, <a href="/learning-hub/aws-clf-c02/">AWS Cloud Practitioner study guide</a>, or <a href="/learning-hub/it-interview/">14-chapter IT Interview Handbook</a>. Discover the <a href="/ghc-labs/instructor-demo/">five-video GHC Labs series</a> as recordings are published.</p>
   </div>
 </section>
 <style>
@@ -39,6 +48,13 @@ const resources=[
 .foundation-resource-card strong{font-size:1.2rem;letter-spacing:-.02em}
 .foundation-resource-card p{flex:1;margin:0;color:var(--sl-color-gray-2);font-size:.85rem;line-height:1.65}
 .foundation-resource-card b{font-size:.86rem;color:var(--sl-color-accent-high)}
+ .foundation-career-shortcuts{margin:1.05rem 0 0;padding:1.1rem;border:1px solid var(--sl-color-gray-5);border-radius:14px;background:var(--sl-color-bg-nav)}
+.foundation-career-shortcuts h3{font-size:1.05rem!important;line-height:1.35;margin:0 0 .75rem!important}
+.foundation-career-shortcuts nav{display:flex;flex-wrap:wrap;gap:.5rem}
+.foundation-career-shortcuts nav a{display:inline-flex;gap:.4rem;align-items:center;min-height:40px;border-radius:9px;background:var(--sl-color-bg);border:1px solid var(--sl-color-gray-5);padding:.55rem .7rem;font-size:.77rem;font-weight:750;text-decoration:none!important;color:var(--sl-color-text)!important}
+.foundation-career-shortcuts nav a:hover{border-color:var(--sl-color-accent)}
+.foundation-career-shortcuts nav a:focus-visible,.foundation-career-shortcuts p a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+.foundation-career-shortcuts p{margin:.9rem 0 0!important;font-size:.8rem;line-height:1.65;color:var(--sl-color-gray-2)}
 @media(max-width:650px){.foundation-resource-cards{grid-template-columns:1fr}.foundation-resource-card{padding:1.2rem}}
 @media(prefers-reduced-motion:reduce){.foundation-resource-card{transition:none}}
 </style>
