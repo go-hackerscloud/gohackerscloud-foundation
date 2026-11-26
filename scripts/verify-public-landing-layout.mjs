@@ -19,7 +19,6 @@ const splash=[
  ['/7-day-challenge/','src/content/docs/7-day-challenge.mdx'],
  ['/core-it-devops/','src/content/docs/core-it-devops/index.mdx'],
  ['/curriculum/','src/content/docs/curriculum/index.mdx'],
- ['/ghc-labs/','src/content/docs/ghc-labs/index.mdx'],
  ['/portfolio/','src/content/docs/portfolio/index.mdx'],
 ];
 for(const [route,file] of splash){
@@ -38,8 +37,8 @@ assert.equal(files('src/content/docs').filter(file=>/^template:\s*splash\s*$/m.t
   splash.length,'Review new splash pages before changing widths');
 
 // Every Explore sidebar destination must use the Academy-aligned canvas.
-// 12 splash pages use html:not([data-has-sidebar]); the four learner
-// guidance pages opt in with a marker without widening technical lessons.
+// 11 splash pages use html:not([data-has-sidebar]); five marked Explore
+// pages (four free guides plus GHC Labs hub) opt in without widening lessons.
 const sidebarConfig=read('astro.config.mjs');
 const exploreSidebar=sidebarConfig.split("label: 'Explore GoHackersCloud'")[1]
   ?.split("label: 'Foundation Learning Stages'")[0]||'';
@@ -49,6 +48,7 @@ const markedExploreGuides=new Map([
   ['/paths/students/','src/content/docs/paths/students.mdx'],
   ['/paths/professionals/','src/content/docs/paths/professionals.mdx'],
   ['/study-plan/','src/content/docs/study-plan/index.mdx'],
+  ['/ghc-labs/','src/content/docs/ghc-labs/index.mdx'],
 ]);
 const splashRoutes=new Set(splash.map(([route])=>route));
 assert.equal(exploreRoutes.length,16,'Explore navigation must cover exactly 16 routes');
@@ -237,11 +237,10 @@ const exactAnchors=(html,className)=>[...html.matchAll(/<a\b[^>]*class="([^"]*)"
 assert.ok(p3Panel.includes('@media(max-width:50rem)') &&
   p3Panel.includes('@media(max-width:38rem)'),
   'P3 panels and card navigation must stack responsively');
-assert.ok(p3LabMdx.includes('<FoundationExperiencePanel variant="labs" />') &&
+assert.ok(p3LabMdx.includes('<GhcLabsHubNav />') &&
   p3ServiceMdx.includes('<FoundationExperiencePanel variant="services" />'),
-  'Only targeted pages should include P3 contextual panels');
+  'Labs should use its dedicated navigation hub and Services its scoped contextual panel');
 for(const [route,variant,cta] of [
-  ['/ghc-labs/','labs','https://gohackerscloud.com/hands-on-cybersecurity-labs'],
   ['/about-gohackerscloud/cybersecurity-services/','services','https://gohackerscloud.com/contact-gohackerscloud'],
 ]){
   const html=built(route);
@@ -271,6 +270,21 @@ assert.ok(p3DirectoryNav.includes('90 dedicated curriculum documents') &&
 assert.ok(p3TrackDirectory.includes('grid-template-columns:repeat(2,minmax(0,1fr))') &&
   p3ModuleExplorer.includes('grid-template-columns:repeat(2,minmax(0,1fr))'),
   'Track and module cards must use balanced two-column desktop grids');
+const labsHub=built('/ghc-labs/');
+const labsHubComponent=read('src/components/GhcLabsHubNav.astro');
+assert.ok(!/^template:\s*splash\s*$/m.test(p3LabMdx) &&
+  p3LabMdx.includes('ghc-explore-width-marker') && labsHub.includes('data-has-sidebar'),
+  'Labs overview must retain its sidebar and the wider Explore layout marker');
+assert.equal(exactAnchors(labsHub,'ghc-labs-hub-card').length,6,
+  'Labs landing must offer six practical navigation cards');
+assert.ok(labsHubComponent.includes('grid-template-columns:repeat(2,minmax(0,1fr))') &&
+  labsHubComponent.includes('@media(max-width:39rem)'),
+  'Labs overview navigation cards must be responsive');
+for(const route of ['/ghc-labs/how-it-works/','/ghc-labs/track-selection/',
+ '/ghc-labs/instructor-demo/','/ghc-labs/faq/']){
+  assert.ok(built(route).includes('href="/ghc-labs/"'),
+    'Lab detail page must have a clear return-to-hub link: '+route);
+}
 assert.equal(exactAnchors(built('/ghc-labs/'),'ghc-labs-track-card').length,13,
   'All 13 Academy tracks must remain navigable');
 assert.equal(exactAnchors(built('/curriculum/'),'foundation-module-card').length,16,
@@ -313,6 +327,6 @@ assert.ok(challenge.includes('ghc-challenge-rail')&&
   challenge.includes('data-save-progress')&&challenge.includes('data-clear-progress'),
   'Previous challenge sidebar and privacy settings must remain intact');
 
-console.log('Academy-style Foundation layout QA passed: 12 splash routes at 78rem plus Study Plan, '+ 
+console.log('Academy-style Foundation layout QA passed: 11 splash routes at 78rem plus five marked Explore pages, '+ 
  '3 lesson + 4 pathway + 3 portfolio cards, 5 learning-stage + 6 site cards, '+ 
  'Mermaid and existing free lesson/challenge navigation.');
