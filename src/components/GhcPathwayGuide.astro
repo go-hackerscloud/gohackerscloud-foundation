@@ -1,0 +1,114 @@
+---
+import {findGhcCareerPath, ghcCareerURL, ghcCertURL, ghcInterviewURL} from '../data/ghc-career-pathways.mjs';
+import {ghcLabTracks,ghcTrackURL} from '../data/ghc-labs-tracks.mjs';
+const role=findGhcCareerPath(Astro.props.roleId);
+if(!role)throw new Error('Unknown career pathway: '+Astro.props.roleId);
+const mode=['roadmap','certifications','interview'].includes(Astro.props.mode)?Astro.props.mode:'roadmap';
+const labs=role.tracks.map(id=>ghcLabTracks.find(t=>t.id===id)).filter(Boolean);
+const related=[
+  {label:'Career roadmap',href:ghcCareerURL(role.id),mode:'roadmap'},
+  {label:'Certification options',href:ghcCertURL(role.id),mode:'certifications'},
+  {label:'Interview questions',href:ghcInterviewURL(role.id),mode:'interview'},
+];
+---
+<div class="ghc-pathway" data-career-id={role.id} data-career-mode={mode}>
+  <p class="ghc-pathway-stage">{role.stage}</p>
+  <p class="ghc-pathway-intro">{role.intro}</p>
+  <nav class="ghc-pathway-nav" aria-label={'Learning resources for '+role.title}>
+    {related.map(item=><a href={item.href} aria-current={item.mode===mode?'page':undefined}>{item.label} <span aria-hidden="true">→</span></a>)}
+  </nav>
+  {mode==='roadmap'&&(
+    <>
+      <h2>Skills to build</h2>
+      <div class="ghc-pathway-grid">
+        {role.focus.map((skill,i)=><article class="ghc-pathway-card"><span>{String(i+1).padStart(2,'0')}</span><strong>{skill}</strong></article>)}
+      </div>
+      <h2>Four-stage practice plan</h2>
+      <ol class="ghc-pathway-steps">{role.sequence.map(step=><li>{step}</li>)}</ol>
+      <h2>Portfolio evidence to prepare</h2>
+      <ul>{role.portfolio.map(project=><li>{project}</li>)}</ul>
+      <h2>Recommended next resources</h2>
+      <p>Explore the <a href={ghcCertURL(role.id)}>certification options for this pathway</a> and prepare with the <a href={ghcInterviewURL(role.id)}>role-specific interview questions</a>. The credentials are independent of Foundation and Academy subscriptions.</p>
+      {role.id==='cloud-security-engineer'&&<p>Continue with the existing <a href="/learning-hub/cloud-security-roadmap/">complete 14-chapter Cloud Security Engineer roadmap</a>.</p>}
+    </>
+  )}
+  {mode==='certifications'&&(
+    <>
+      <h2>Which certification should you consider?</h2>
+      <p>Choose based on your current skill level, target employer, hands-on experience and the latest vendor exam guide. These are <strong>suggested independent credentials</strong>, not bundled exams, guaranteed outcomes or official endorsements.</p>
+      <div class="ghc-cert-list">
+        {role.certs.map(([name,level,reason,url])=>(
+          <article class="ghc-cert-card">
+            <span class="ghc-cert-level">{level}</span>
+            <h3>{name}</h3>
+            <p>{reason}</p>
+            <a href={url} rel="noopener noreferrer">Check official credential details <span aria-hidden="true">↗</span></a>
+          </article>
+        ))}
+      </div>
+      <p><strong>Preparation checklist:</strong> Read the current official objectives and prerequisites, revise foundational gaps, practise safely with independent exercises, and use original questions to test understanding. Exam codes, validity periods and requirements can change.</p>
+      {role.id==='cloud-security-engineer'&&<p>Start with the free <a href="/learning-hub/aws-clf-c02/">14-chapter AWS Cloud Practitioner study guide</a> if cloud fundamentals are new.</p>}
+    </>
+  )}
+  {mode==='interview'&&(
+    <>
+      <h2>Role-specific interview questions and model answers</h2>
+      <p>These original practice questions focus on reasoning, safe scope, evidence and communication. Expand each question to review a suggested answer, then rehearse using your own project experience.</p>
+      <div class="ghc-interview-list">
+        {role.qa.map(([question,answer],i)=>(
+          <details>
+            <summary><span>Q{String(i+1).padStart(2,'0')}</span> {question}</summary>
+            <p><strong>Suggested answer:</strong> {answer}</p>
+          </details>
+        ))}
+      </div>
+      <h2>Portfolio-based mock interview</h2>
+      <p>Choose one evidence artifact from the roadmap. Explain the problem, assumptions, authorization, investigation steps, expected results, remediation and limitations in five minutes. Ask a peer to challenge your claims.</p>
+      <ul>{role.portfolio.map(project=><li>{project}</li>)}</ul>
+      <p>Use the <a href="/learning-hub/it-interview/">complete 14-chapter IT Interview Preparation Handbook</a> for fundamentals, troubleshooting, STAR examples and mock interview scoring.</p>
+    </>
+  )}
+  <section class="ghc-pathway-labs" aria-label="Related Academy learning tracks">
+    <div><span class="ghc-pathway-stage">MATCHED ACADEMY TRACKS</span><h2>Continue with relevant GHC Labs content</h2><p>These are real Academy learning-track categories. Hosted environment availability, eligibility and membership are checked separately.</p></div>
+    <div class="ghc-pathway-tracks">
+      {labs.map(lab=><a href={ghcTrackURL(lab.id)}><strong>{lab.name}</strong><span>{lab.description}</span><b>Explore track ↗</b></a>)}
+    </div>
+  </section>
+  <p class="ghc-pathway-disclaimer"><strong>Scope:</strong> Foundation pages are free learning resources. Practice only on owned, synthetic or explicitly authorized systems. Third-party certifications and Academy-hosted labs have separate rules and access terms; completing a study guide does not award a credential.</p>
+</div>
+<style>
+.ghc-pathway{min-width:0;margin:1rem 0 2.5rem}
+.ghc-pathway-stage{font-size:.72rem;font-weight:850;letter-spacing:.08em;color:var(--sl-color-accent-high);text-transform:uppercase}
+.ghc-pathway-intro{font-size:1.05rem;line-height:1.7;max-width:75ch;color:var(--sl-color-gray-2)}
+.ghc-pathway-nav{display:flex;flex-wrap:wrap;gap:.55rem;margin:1.25rem 0 1.8rem}
+.ghc-pathway-nav a{display:inline-flex;gap:.45rem;align-items:center;min-height:42px;padding:.65rem .85rem;border:1px solid var(--sl-color-gray-5);border-radius:9px;text-decoration:none!important;font-size:.8rem;font-weight:800;background:var(--sl-color-bg-nav);color:var(--sl-color-text)!important}
+.ghc-pathway-nav a[aria-current="page"]{border-color:var(--sl-color-accent);color:var(--sl-color-accent-high)!important}
+.ghc-pathway h2{font-size:clamp(1.3rem,2vw,1.65rem)!important;margin:1.85rem 0 .8rem!important}
+.ghc-pathway-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+.ghc-pathway-card{display:flex;gap:.8rem;min-width:0;padding:1rem;border:1px solid var(--sl-color-gray-5);border-radius:11px;background:var(--sl-color-bg-nav)}
+.ghc-pathway-card span{font-weight:800;font-size:.76rem;color:var(--sl-color-accent-high)}
+.ghc-pathway-card strong{font-size:.9rem;line-height:1.45}
+.ghc-pathway-steps li{padding:.4rem 0;line-height:1.6}
+.ghc-cert-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+.ghc-cert-card{min-width:0;padding:1rem;border:1px solid var(--sl-color-gray-5);border-radius:11px;background:var(--sl-color-bg-nav)}
+.ghc-cert-level{font-size:.69rem;color:var(--sl-color-accent-high);font-weight:850;text-transform:uppercase;letter-spacing:.05em}
+.ghc-cert-card h3{font-size:1.02rem!important;margin:.45rem 0!important;line-height:1.3}
+.ghc-cert-card p{font-size:.84rem;line-height:1.55;color:var(--sl-color-gray-2);margin:.5rem 0!important}
+.ghc-cert-card a{font-size:.79rem;font-weight:800}
+.ghc-interview-list{display:grid;gap:.65rem}
+.ghc-interview-list details{border:1px solid var(--sl-color-gray-5);border-radius:11px;padding:.85rem 1rem;background:var(--sl-color-bg-nav)}
+.ghc-interview-list summary{cursor:pointer;font-weight:800;line-height:1.5}
+.ghc-interview-list summary span{margin-right:.65rem;color:var(--sl-color-accent-high)}
+.ghc-interview-list details p{font-size:.88rem;line-height:1.65;color:var(--sl-color-gray-2);margin:.8rem 0 0!important}
+.ghc-pathway-labs{padding:1.1rem;border-radius:14px;background:var(--sl-color-bg-nav);border:1px solid var(--sl-color-gray-5);margin:1.9rem 0}
+.ghc-pathway-labs h2{margin:.4rem 0 .4rem!important}
+.ghc-pathway-labs p{color:var(--sl-color-gray-2);font-size:.85rem;line-height:1.6}
+.ghc-pathway-tracks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem}
+.ghc-pathway-tracks a{display:flex;flex-direction:column;gap:.5rem;padding:.85rem;border:1px solid var(--sl-color-gray-5);border-radius:9px;background:var(--sl-color-bg);text-decoration:none!important;color:var(--sl-color-text)!important}
+.ghc-pathway-tracks a strong{font-size:.88rem}
+.ghc-pathway-tracks a span{font-size:.78rem;line-height:1.5;color:var(--sl-color-gray-2)}
+.ghc-pathway-tracks a b{font-size:.76rem;color:var(--sl-color-accent-high)}
+.ghc-pathway-disclaimer{font-size:.83rem;line-height:1.6;color:var(--sl-color-gray-2)}
+.ghc-pathway a:focus-visible,.ghc-pathway summary:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:42rem){.ghc-pathway-grid,.ghc-cert-list,.ghc-pathway-tracks{grid-template-columns:1fr}.ghc-pathway-nav{flex-direction:column}.ghc-pathway-nav a{width:100%}}
+</style>
