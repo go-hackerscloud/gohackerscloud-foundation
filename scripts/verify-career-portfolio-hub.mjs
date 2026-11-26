@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {existsSync,readFileSync} from 'node:fs';
 import {join} from 'node:path';
+import {foundationPortfolioProjects,foundationPortfolioURL} from '../src/data/foundation-portfolio-projects.mjs';
 
 const source=path=>readFileSync(path,'utf8');
 const page=route=>{
@@ -110,10 +111,22 @@ const first=nav.slice(nav.indexOf("label: 'Explore GoHackersCloud'"),
   nav.indexOf("label: 'Foundation Learning Stages'"));
 assert.ok(first.includes("link: '/portfolio/'"),'Portfolio hub not in first sidebar section');
 assert.ok(nav.includes("label: 'Portfolio Projects'"),'Collapsible project sidebar is missing');
-for(const route of routes){
-  assert.ok(nav.includes("link: '"+route+"'")||route===hubRoute,
-    'Project navigation route absent: '+route);
+assert.ok(nav.includes("foundationPortfolioGroups.map(group=>") &&
+  nav.includes("foundationPortfolioURL(project.id)"),
+  'Portfolio sidebar must derive its grouped project links from shared metadata');
+assert.equal(foundationPortfolioProjects.length,projectPages.length,
+  'The shared portfolio navigation and actual guided project inventory must match');
+for(const {slug} of projectPages){
+  assert.ok(foundationPortfolioProjects.some(p=>p.id===slug),
+    'Missing real portfolio project in shared navigation data: '+slug);
+  assert.ok(routes.has(foundationPortfolioURL(slug)) &&
+    hub.includes('href="'+foundationPortfolioURL(slug)+'"'),
+    'Project must be navigable from the rendered hub: '+slug);
 }
+assert.ok(hub.includes('ghc-portfolio-hub-marker')&&hub.includes('data-has-sidebar'),
+  'Portfolio hub must retain a visible Starlight sidebar');
+assert.equal([...hub.matchAll(/class="([^"]*)"/g)].filter(([,value])=>value.split(/\s+/).includes('ghc-portfolio-project-card')).length,6,
+  'Portfolio cards must show all six project options');
 for(const route of ['/curriculum/','/core-it-devops/','/ghc-labs/',
   '/about-gohackerscloud/catalog/']) page(route);
 

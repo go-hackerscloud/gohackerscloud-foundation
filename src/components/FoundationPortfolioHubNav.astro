@@ -1,0 +1,62 @@
+---
+import {foundationPortfolioGroups,foundationPortfolioProjects,foundationPortfolioURL} from '../data/foundation-portfolio-projects.mjs';
+---
+<section class="ghc-portfolio-hub" id="guided-projects" aria-labelledby="ghc-portfolio-heading">
+  <div class="ghc-portfolio-hub-intro">
+    <span>FREE FOUNDATION · PROJECT HUB</span>
+    <h2 id="ghc-portfolio-heading">Choose one of six guided portfolio projects</h2>
+    <p>Work through realistic, synthetic scenarios at your own pace. Each project includes concepts, guided steps, a worksheet and a self-review rubric. Start with one project, then save a clear evidence-based summary.</p>
+    <nav class="ghc-portfolio-hub-shortcuts" aria-label="Portfolio quick links">
+      <a href="/curriculum/">Browse 16 Foundation modules →</a>
+      <a href="/learning-hub/career-paths/">Match a career pathway →</a>
+      <a href="/downloads/portfolio/portfolio-readme.md" download="portfolio-readme.md">Download portfolio README (.md) ↓</a>
+    </nav>
+  </div>
+  {foundationPortfolioGroups.map(group=>(
+    <div class="ghc-portfolio-group" id={'portfolio-'+group.id}>
+      <header>
+        <h3>{group.title}</h3>
+        <p>{group.description}</p>
+      </header>
+      <div class="ghc-portfolio-grid">
+        {foundationPortfolioProjects.filter(project=>project.group===group.id).map(project=>(
+          <article class="ghc-portfolio-project-card">
+            <span class="ghc-portfolio-project-meta">PROJECT {project.number} · {project.level}</span>
+            <h4><a href={foundationPortfolioURL(project.id)}>{project.title}</a></h4>
+            <p>{project.description}</p>
+            <div class="ghc-portfolio-project-output"><strong>Deliverable:</strong> {project.deliverable}</div>
+            <div class="ghc-portfolio-project-footer">
+              <span>{project.effort}</span>
+              <a href={foundationPortfolioURL(project.id)}>Open guided project <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  ))}
+  <p class="ghc-portfolio-notice"><strong>Learning scope:</strong> All six projects are free self-study resources using synthetic or explicitly authorized situations. A completed worksheet is not a client engagement, externally verified assessment or professional certification.</p>
+</section>
+<style>
+.ghc-portfolio-hub{display:grid;gap:1.25rem;margin:1.15rem 0 2.3rem;min-width:0;scroll-margin-top:6rem}
+.ghc-portfolio-hub-intro>span{font-size:.7rem;letter-spacing:.08em;font-weight:850;color:var(--sl-color-accent-high)}
+.ghc-portfolio-hub-intro h2{font-size:clamp(1.4rem,2.2vw,1.85rem)!important;margin:.45rem 0 .6rem!important;line-height:1.25}
+.ghc-portfolio-hub-intro p{font-size:.88rem;line-height:1.65;color:var(--sl-color-gray-2);max-width:80ch}
+.ghc-portfolio-hub-shortcuts{display:flex;gap:.6rem;flex-wrap:wrap}
+.ghc-portfolio-hub-shortcuts a{display:inline-flex;align-items:center;min-height:42px;padding:.58rem .72rem;border-radius:9px;border:1px solid var(--sl-color-gray-5);background:var(--sl-color-bg-nav);color:var(--sl-color-text)!important;text-decoration:none!important;font-size:.79rem;font-weight:750}
+.ghc-portfolio-group{scroll-margin-top:6rem}
+.ghc-portfolio-group header h3{font-size:1.1rem!important;margin:0 0 .35rem!important}
+.ghc-portfolio-group header p{font-size:.8rem;color:var(--sl-color-gray-2);margin:0 0 .8rem!important}
+.ghc-portfolio-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem}
+.ghc-portfolio-project-card{display:flex;flex-direction:column;gap:.65rem;min-width:0;border:1px solid var(--sl-color-gray-5);border-radius:13px;background:var(--sl-color-bg-nav);padding:1.1rem}
+.ghc-portfolio-project-meta{font-size:.67rem;letter-spacing:.05em;color:var(--sl-color-accent-high);font-weight:850}
+.ghc-portfolio-project-card h4{font-size:1.05rem!important;line-height:1.35;margin:0!important}
+.ghc-portfolio-project-card h4 a{color:var(--sl-color-text)!important;text-decoration:none!important}
+.ghc-portfolio-project-card p{font-size:.82rem;line-height:1.55;color:var(--sl-color-gray-2);margin:0!important;flex:1}
+.ghc-portfolio-project-output{font-size:.8rem;line-height:1.5}
+.ghc-portfolio-project-footer{border-top:1px solid var(--sl-color-gray-5);padding-top:.65rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.35rem;align-items:center}
+.ghc-portfolio-project-footer span{font-size:.74rem;color:var(--sl-color-gray-2)}
+.ghc-portfolio-project-footer a{font-size:.8rem;font-weight:800}
+.ghc-portfolio-notice{font-size:.79rem;line-height:1.6;color:var(--sl-color-gray-2);margin:0!important}
+.ghc-portfolio-hub a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:42rem){.ghc-portfolio-grid{grid-template-columns:1fr}.ghc-portfolio-hub-shortcuts{flex-direction:column}.ghc-portfolio-hub-shortcuts a{width:100%}}
+</style>

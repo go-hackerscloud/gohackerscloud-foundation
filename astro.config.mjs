@@ -3,6 +3,7 @@ import starlight from '@astrojs/starlight';
 import mermaid from 'astro-mermaid';
 import { foundationModules } from './src/data/foundation-modules.mjs';
 import {ghcCareerPathways,ghcCareerURL,ghcCertURL,ghcInterviewURL} from './src/data/ghc-career-pathways.mjs';
+import {foundationPortfolioGroups,foundationPortfolioProjects,foundationPortfolioURL} from './src/data/foundation-portfolio-projects.mjs';
 
 const foundationStructuredData = JSON.stringify({
   '@context': 'https://schema.org',
@@ -17,8 +18,8 @@ const foundationStructuredData = JSON.stringify({
   },
 });
 
-// Short, learner-focused navigation. The full Obsidian lesson tree remains
-// available in a separate collapsed section without moving any lesson URLs.
+// Keep the sidebar compact. The live lesson-by-lesson directory is rendered
+// on /curriculum/; all Obsidian lesson URLs remain unchanged and navigable.
 const moduleLinks = (category) => foundationModules
   .filter((module) => module.category === category)
   .map((module) => ({label: `${module.id} · ${module.title}`, link: module.link}));
@@ -101,18 +102,24 @@ export default defineConfig({
         {
           label: 'All Foundation Lessons',
           collapsed: true,
-          items: [{autogenerate: {directory: 'foundation'}}],
+          items: [
+            {label: 'Browse 16 Modules', link: '/curriculum/'},
+            {label: 'Full Lesson-by-Lesson Syllabus', link: '/curriculum/#lesson-directory'},
+            {label: 'Start Here · Beginner Path', link: '/start-here/'},
+          ],
         },
         {
           label: 'Portfolio Projects',
           collapsed: true,
           items: [
-            {label: 'System Architecture & Inventory', link: '/portfolio/projects/system-architecture/'},
-            {label: 'Network Troubleshooting', link: '/portfolio/projects/network-troubleshooting/'},
-            {label: 'Cloud IAM Least Privilege', link: '/portfolio/projects/cloud-iam-review/'},
-            {label: 'API Authorization Test Plan', link: '/portfolio/projects/api-authorization/'},
-            {label: 'SOC Alert Triage', link: '/portfolio/projects/soc-alert-triage/'},
-            {label: 'Git & DevSecOps Review', link: '/portfolio/projects/git-devsecops-review/'},
+            {label: 'Browse Six Guided Projects', link: '/portfolio/'},
+            ...foundationPortfolioGroups.map(group=>({
+              label: group.title,
+              collapsed: true,
+              items: foundationPortfolioProjects
+                .filter(project=>project.group===group.id)
+                .map(project=>({label: project.shortTitle,link:foundationPortfolioURL(project.id)})),
+            })),
           ],
         },
         {
