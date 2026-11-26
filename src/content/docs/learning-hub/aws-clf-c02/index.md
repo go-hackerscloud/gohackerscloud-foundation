@@ -63,6 +63,10 @@ Every service above has its own scope. A diagram is a way to reason about requir
 
 **Start with [Chapter 01 — Exam Blueprint and Study Strategy](/learning-hub/aws-clf-c02/01-exam-blueprint-and-study-strategy/).** Return to the [Foundation Cloud Concepts module](/foundation/gohackerscloud-foundation/07-cloud-computing-fundamentals/01-cloud-computing/) whenever a term is unfamiliar.
 
+## Connecting certification preparation to your career
+
+AWS Cloud Practitioner is an optional foundation step for the [Cloud Security Engineer career roadmap](/learning-hub/cloud-security-roadmap/). Compare the [advanced cloud security credentials](/learning-hub/certification-paths/cloud-security-engineer/) and practise [cloud security interviews](/learning-hub/interview-paths/cloud-security-engineer/) after you have mastered the introductory concepts.
+
 ## Practice exam disclaimer
 
 The scenario questions in Chapter 14 are original teaching material; they are not claimed to be AWS's official exam questions. Actual AWS Certification is awarded only by AWS, not by completing this guide.

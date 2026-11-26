@@ -1,0 +1,46 @@
+---
+import {ghcCareerPathways,ghcCareerURL,ghcCertURL,ghcInterviewURL} from '../data/ghc-career-pathways.mjs';
+const category=Astro.props.category==='certifications'?'certifications':Astro.props.category==='interviews'?'interviews':'careers';
+const title={
+  careers:'Career roadmaps and lab tracks',
+  certifications:'Certification guidance by career role',
+  interviews:'Practice interview questions by role'
+}[category];
+const lead={
+  careers:'Choose a target role, build the foundations and follow Academy learning tracks that match the work.',
+  certifications:'Compare suggested third-party credentials based on your goal. Check current provider requirements and exam versions before registering.',
+  interviews:'Choose your target role to practise six original scenario questions and review evidence-based suggested answers.'
+}[category];
+---
+<section class="ghc-route-directory" aria-label={title} data-ghc-directory={category}>
+  <header><span>FOUNDATION · CAREER LEARNING SYSTEM</span><h2>{title}</h2><p>{lead}</p></header>
+  <div class="ghc-route-grid">
+  {ghcCareerPathways.map(p=>(
+    <article class="ghc-route-card">
+      <span>{p.stage}</span>
+      <h3>{p.title}</h3>
+      <p>{p.intro}</p>
+      <nav aria-label={'Resources for '+p.title}>
+        <a href={ghcCareerURL(p.id)}>Roadmap →</a>
+        <a href={ghcCertURL(p.id)}>Certifications →</a>
+        <a href={ghcInterviewURL(p.id)}>Interview questions →</a>
+      </nav>
+    </article>
+  ))}
+  </div>
+</section>
+<style>
+.ghc-route-directory{margin:1.2rem 0 2.4rem}
+.ghc-route-directory>header>span{font-size:.72rem;letter-spacing:.08em;font-weight:800;color:var(--sl-color-accent-high)}
+.ghc-route-directory>header h2{margin:.5rem 0!important;font-size:clamp(1.4rem,2.3vw,1.9rem)!important}
+.ghc-route-directory>header p{font-size:.92rem;line-height:1.65;color:var(--sl-color-gray-2)}
+.ghc-route-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;margin-top:1rem}
+.ghc-route-card{display:flex;flex-direction:column;gap:.65rem;padding:1.1rem;border:1px solid var(--sl-color-gray-5);border-radius:13px;background:var(--sl-color-bg-nav);min-width:0}
+.ghc-route-card>span{font-size:.67rem;color:var(--sl-color-accent-high);text-transform:uppercase;letter-spacing:.05em;font-weight:850}
+.ghc-route-card h3{font-size:1.13rem!important;line-height:1.3;margin:0!important}
+.ghc-route-card p{font-size:.83rem;line-height:1.65;color:var(--sl-color-gray-2);margin:0!important;flex:1}
+.ghc-route-card nav{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.3rem}
+.ghc-route-card nav a{font-size:.78rem;font-weight:800;text-decoration:underline;text-underline-offset:4px;color:var(--sl-color-accent-high)}
+.ghc-route-card a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:42rem){.ghc-route-grid{grid-template-columns:1fr}}
+</style>
