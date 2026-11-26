@@ -306,9 +306,9 @@ assert.ok(portfolioMDX.includes('<FoundationPortfolioHubNav />') &&
   curriculumMDX.includes('<FoundationModuleExplorer />') &&
   curriculumMDX.includes('<FoundationLessonDirectory />'),
   'Hubs must retain their detailed content, searchable modules and full lesson directory');
-assert.equal((portfolioHub.match(/class="ghc-portfolio-project-card"/g)||[]).length,6,
+assert.equal([...portfolioHub.matchAll(/class="([^"]*)"/g)].filter(([,value])=>value.split(/\s+/).includes('ghc-portfolio-project-card')).length,6,
   'Portfolio hub must present exactly six grouped cards');
-assert.equal((curriculumHub.match(/class="foundation-directory-module"/g)||[]).length,16,
+assert.equal([...curriculumHub.matchAll(/class="([^"]*)"/g)].filter(([,value])=>value.split(/\s+/).includes('foundation-directory-module')).length,16,
   'Curriculum must retain all 16 real lesson-list accordions');
 assert.ok(curriculumHub.includes('id="lesson-directory"') &&
   curriculumHub.includes('id="foundation-modules"'),
@@ -329,7 +329,7 @@ for(const [i,project] of foundationPortfolioProjects.entries()){
   const detail=built(route);
   assert.ok(portfolioHub.includes('href="'+route+'"'),
     'Portfolio hub must link to every real project: '+project.id);
-  assert.ok(detail.includes('class="ghc-portfolio-project-nav"') &&
+  assert.ok([...detail.matchAll(/class="([^"]*)"/g)].some(([,value])=>value.split(/\s+/).includes('ghc-portfolio-project-nav')) &&
     detail.includes('href="/portfolio/"'),
     'Project details must preserve return navigation: '+project.id);
   assert.ok(detail.includes('PROJECT '+project.number+' OF 06'),
