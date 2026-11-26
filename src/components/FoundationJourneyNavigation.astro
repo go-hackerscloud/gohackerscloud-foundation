@@ -1,0 +1,44 @@
+---
+import {ghcExploreGroups} from '../data/ghc-explore-navigation.mjs';
+
+const section=Astro.props.section==='careers'?'careers':'entry';
+const group=ghcExploreGroups.find(item=>item.id==='careers');
+if(!group || group.links.length!==3) throw new Error('Career & Portfolio Development must list three existing routes');
+const links=section==='entry'
+  ?[{label:'Explore Overview',href:'/explore/'},{label:'Foundation Home',href:'/'}]
+  :group.links;
+const current=Astro.props.current||Astro.url.pathname;
+const active=current.endsWith('/')?current:current+'/';
+---
+<nav class="ghc-journey-navigation" aria-label={section==='entry'?'Explore GoHackersCloud overview and home navigation':'Career and Portfolio Development page navigation'}>
+  <div class="ghc-journey-navigation-head">
+    <span>{section==='entry'?'EXPLORE GOHACKERSCLOUD · START HERE':'CAREER & PORTFOLIO DEVELOPMENT'}</span>
+    <div class="ghc-journey-navigation-return">
+      {section==='entry'
+        ? <a href="/start-here/">Start free learning <span aria-hidden="true">→</span></a>
+        : <><a href="/explore/">← Explore Overview</a><span aria-hidden="true">·</span><a href="/">Foundation Home</a></>}
+    </div>
+  </div>
+  <div class="ghc-journey-navigation-links">
+    {links.map((item,i)=>(
+      <a href={item.href} aria-current={active===item.href?'page':undefined}>
+        <span class="ghc-journey-navigation-number">{String(i+1).padStart(2,'0')}</span>
+        <span>{item.label}</span>
+      </a>
+    ))}
+  </div>
+</nav>
+<style>
+.ghc-journey-navigation{min-width:0;margin:.65rem 0 1.35rem;padding:.85rem;background:var(--sl-color-bg-nav);border:1px solid var(--sl-color-gray-5);border-radius:12px}
+.ghc-journey-navigation-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.45rem .9rem;margin:0 0 .7rem}
+.ghc-journey-navigation-head>span{font-size:.68rem;letter-spacing:.07em;font-weight:850;color:var(--sl-color-accent-high)}
+.ghc-journey-navigation-return{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem;color:var(--sl-color-gray-3);font-size:.76rem}
+.ghc-journey-navigation-return a{font-weight:750;text-decoration:none!important;color:var(--sl-color-accent-high)!important}
+.ghc-journey-navigation-links{display:flex;gap:.45rem;flex-wrap:wrap}
+.ghc-journey-navigation-links a{display:inline-flex;min-width:0;min-height:42px;align-items:center;gap:.48rem;padding:.55rem .72rem;background:var(--sl-color-bg);border:1px solid var(--sl-color-gray-5);border-radius:8px;color:var(--sl-color-text)!important;text-decoration:none!important;font-size:.8rem;font-weight:750;line-height:1.35}
+.ghc-journey-navigation-links a:hover{border-color:var(--sl-color-accent)}
+.ghc-journey-navigation-links a[aria-current="page"]{background:var(--sl-color-accent-low);border-color:var(--sl-color-accent);color:var(--sl-color-accent-high)!important}
+.ghc-journey-navigation-number{font-variant-numeric:tabular-nums;font-size:.67rem;color:var(--sl-color-gray-2);font-weight:850}
+.ghc-journey-navigation a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:40rem){.ghc-journey-navigation-links{display:grid;grid-template-columns:1fr}.ghc-journey-navigation-links a{width:100%}}
+</style>
