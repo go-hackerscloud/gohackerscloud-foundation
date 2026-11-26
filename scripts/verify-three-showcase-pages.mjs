@@ -32,8 +32,8 @@ assert.ok(!css.includes('max-width: min(100%, 60rem)'),
  'The old 60rem cap must not reduce the wider Foundation landing canvas');
 assert.ok(!css.includes('88rem'),'Do not introduce an oversized desktop width');
 assert.ok(css.includes('html:not([data-has-sidebar]) body') &&
- css.includes('body:has(.ghc-study-plan-marker)'),
- 'Public splash pages and Study Plan must share Academy width');
+ css.includes('body:has(.ghc-explore-width-marker)'),
+ 'Public splash pages and marked Explore guides must share Academy width');
 assert.ok(!css.includes('html[data-has-sidebar] body {') &&
  !css.includes('body:has(.ghc-lesson-context) {'),
  'Standard technical lesson pages must not inherit Academy landing width');
