@@ -1,0 +1,77 @@
+---
+import {demoVideos} from '../data/ghc-labs-demo.mjs';
+import {ghcCareerURL} from '../data/ghc-career-pathways.mjs';
+import {ghcTrackURL,ghcLabTracks} from '../data/ghc-labs-tracks.mjs';
+const playable=id=>typeof id==='string'&&/^[A-Za-z0-9_-]{11}$/.test(id);
+const liveCount=demoVideos.filter(v=>playable(v.videoId)).length;
+---
+<section class="ghc-video-library" aria-label="Five GHC Labs demonstration videos">
+  <div class="ghc-video-library-intro">
+    <span>GHC LABS · FIVE-VIDEO LEARNING SERIES</span>
+    <h2>Explore the lab experience</h2>
+    <p>Five focused video guides are planned around the Academy's learning tracks. Recorded lessons appear here when published and reviewed. Until then, each topic shows an honest placeholder, not a fake player.</p>
+    <small>{liveCount} of {demoVideos.length} recordings currently embedded</small>
+  </div>
+  <nav class="ghc-video-jumps" aria-label="Jump to a GHC Labs video guide">
+    {demoVideos.map((v,i)=><a href={'#'+v.id}>{i+1}. {v.title}</a>)}
+  </nav>
+  <div class="ghc-video-grid">
+    {demoVideos.map((v,i)=>{
+      const valid=playable(v.videoId);
+      const track=ghcLabTracks.find(t=>t.id===v.trackId);
+      return (
+        <article class="ghc-video-card" id={v.id}>
+          <div class="ghc-video-card-heading">
+            <span>VIDEO {String(i+1).padStart(2,'0')} / 05</span>
+            <h3>{v.title}</h3>
+            <p>{v.description}</p>
+          </div>
+          {valid ? (
+            <div class="ghc-video-player">
+              <iframe src={'https://www.youtube-nocookie.com/embed/'+v.videoId}
+                title={'GHC Labs video '+(i+1)+': '+v.title}
+                loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
+          ) : (
+            <div class="ghc-video-pending" role="note" aria-label={v.title+' recording pending'}>
+              <span aria-hidden="true">▶</span>
+              <strong>Recording not yet published</strong>
+              <p>The video player will appear here when an official recording is available.</p>
+            </div>
+          )}
+          <div class="ghc-video-card-actions">
+            {valid&&<a href={'https://www.youtube.com/watch?v='+v.videoId} rel="noopener noreferrer">Open published video ↗</a>}
+            <a href={ghcCareerURL(v.roleId)}>Related career roadmap →</a>
+            <a href={ghcTrackURL(v.trackId)}>{track?.name||'Related Academy track'} ↗</a>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</section>
+<style>
+.ghc-video-library{display:grid;gap:1rem;margin:1.1rem 0 2rem}
+.ghc-video-library-intro>span,.ghc-video-card-heading>span{font-size:.7rem;letter-spacing:.075em;color:var(--sl-color-accent-high);font-weight:850}
+.ghc-video-library-intro h2{font-size:clamp(1.45rem,2.3vw,1.9rem)!important;margin:.4rem 0!important}
+.ghc-video-library-intro p{max-width:75ch;font-size:.9rem;line-height:1.65;color:var(--sl-color-gray-2)}
+.ghc-video-library-intro small{font-size:.76rem;font-weight:750;color:var(--sl-color-gray-2)}
+.ghc-video-jumps{display:flex;gap:.5rem;flex-wrap:wrap}
+.ghc-video-jumps a{padding:.55rem .7rem;border:1px solid var(--sl-color-gray-5);background:var(--sl-color-bg-nav);border-radius:8px;font-size:.76rem;font-weight:750;text-decoration:none!important;color:var(--sl-color-text)!important}
+.ghc-video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem}
+.ghc-video-card{min-width:0;border:1px solid var(--sl-color-gray-5);border-radius:14px;padding:1rem;background:var(--sl-color-bg-nav);scroll-margin-top:5rem}
+.ghc-video-card-heading h3{font-size:1.08rem!important;line-height:1.35;margin:.45rem 0!important}
+.ghc-video-card-heading p{font-size:.82rem;line-height:1.6;color:var(--sl-color-gray-2);min-height:4.5em;margin:.3rem 0 .8rem!important}
+.ghc-video-player,.ghc-video-pending{aspect-ratio:16/9;width:100%;overflow:hidden;border-radius:9px;background:#10273d}
+.ghc-video-player iframe{width:100%;height:100%;border:0}
+.ghc-video-pending{display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;gap:.5rem;color:#e8f8ff;padding:1rem;border:1px dashed #5c8b9f}
+.ghc-video-pending>span{display:grid;place-items:center;width:45px;height:45px;border-radius:50%;background:#90dae9;color:#10273d;font-size:1rem}
+.ghc-video-pending strong{font-size:.84rem}
+.ghc-video-pending p{margin:0!important;font-size:.72rem;color:#cbdce5;max-width:33ch;line-height:1.5}
+.ghc-video-card-actions{display:flex;flex-direction:column;gap:.5rem;margin-top:.9rem}
+.ghc-video-card-actions a{font-size:.78rem;font-weight:800}
+.ghc-video-library a:focus-visible{outline:3px solid var(--sl-color-accent);outline-offset:3px}
+@media(max-width:49rem){.ghc-video-grid{grid-template-columns:1fr}.ghc-video-card-heading p{min-height:0}}
+@media(max-width:35rem){.ghc-video-jumps{flex-direction:column}}
+</style>
